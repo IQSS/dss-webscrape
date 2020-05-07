@@ -1,0 +1,15 @@
+book_filename: 'template'
+
+output_dir: docs
+
+repo: https://github.com/IQSS/dss-template
+
+rmd_files:
+  - "index.Rmd"
+  - "01_chapter.Rmd"
+
+delete_merged_file: true
+
+clean: [packages.bib, bookdown.bbl]
+
+new_session: yes

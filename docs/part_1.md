@@ -86,7 +86,7 @@ html.open_in_browser(staticLink_html, encoding = 'UTF-8')
 ```
 
 ```
-## file://C:/Users/JLiu/AppData/Local/Temp/tmpt6myj3y8.html
+## file://C:/Users/JLiu/AppData/Local/Temp/tmpi7xdzp6a.html
 ```
 
 ```python
@@ -97,7 +97,7 @@ html.open_in_browser(dynamicLink_html, encoding = 'UTF-8')
 ```
 
 ```
-## file://C:/Users/JLiu/AppData/Local/Temp/tmpnnl6w_en.html
+## file://C:/Users/JLiu/AppData/Local/Temp/tmp42do31t5.html
 ```
 
 The requests module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.  

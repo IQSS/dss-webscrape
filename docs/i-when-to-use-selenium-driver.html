@@ -4,23 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 I. When to Use Selenium Driver? | template.utf8</title>
-  <meta name="description" content="" />
+  <title>1 I. When to Use Selenium Driver? | Template</title>
+  <meta name="description" content="This is a template for a bookdown website" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 I. When to Use Selenium Driver? | template.utf8" />
+  <meta property="og:title" content="1 I. When to Use Selenium Driver? | Template" />
   <meta property="og:type" content="book" />
   
   
-  
-  
+  <meta property="og:description" content="This is a template for a bookdown website" />
+  <meta name="github-repo" content="IQSS/dss-template" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 I. When to Use Selenium Driver? | template.utf8" />
+  <meta name="twitter:title" content="1 I. When to Use Selenium Driver? | Template" />
   
-  
+  <meta name="twitter:description" content="This is a template for a bookdown website" />
   
 
+<meta name="author" content="" />
 
 
 
@@ -29,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="index.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -129,10 +130,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A template for a bookdown website</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="part_1.html"><a href="#i.-when-to-use-selenium-driver"><i class="fa fa-check"></i><b>1</b> I. When to Use Selenium Driver?</a><ul>
-<li class="chapter" data-level="1.1" data-path="part_1.html"><a href="#i-1.-an-example-of-dynamic-search"><i class="fa fa-check"></i><b>1.1</b> I-1. An Example of Dynamic Search</a></li>
-<li class="chapter" data-level="1.2" data-path="part_1.html"><a href="#i-2.-an-example-of-dynamic-link"><i class="fa fa-check"></i><b>1.2</b> I-2. An Example of Dynamic Link</a></li>
-<li class="chapter" data-level="1.3" data-path="part_1.html"><a href="#i-3.-an-example-of-dynamic-new-load"><i class="fa fa-check"></i><b>1.3</b> I-3. An Example of Dynamic New Load</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#table-of-contents"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-and-sources"><i class="fa fa-check"></i>Authors and Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="i-when-to-use-selenium-driver.html"><a href="i-when-to-use-selenium-driver.html"><i class="fa fa-check"></i><b>1</b> I. When to Use Selenium Driver?</a><ul>
+<li class="chapter" data-level="1.1" data-path="i-when-to-use-selenium-driver.html"><a href="i-when-to-use-selenium-driver.html#i-1.-an-example-of-dynamic-search"><i class="fa fa-check"></i><b>1.1</b> I-1. An Example of Dynamic Search</a></li>
+<li class="chapter" data-level="1.2" data-path="i-when-to-use-selenium-driver.html"><a href="i-when-to-use-selenium-driver.html#i-2.-an-example-of-dynamic-link"><i class="fa fa-check"></i><b>1.2</b> I-2. An Example of Dynamic Link</a></li>
+<li class="chapter" data-level="1.3" data-path="i-when-to-use-selenium-driver.html"><a href="i-when-to-use-selenium-driver.html#i-3.-an-example-of-dynamic-new-load"><i class="fa fa-check"></i><b>1.3</b> I-3. An Example of Dynamic New Load</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -146,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Template</a>
           </h1>
         </div>
 
@@ -154,8 +159,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
 <div id="i.-when-to-use-selenium-driver" class="section level1">
 <h1><span class="header-section-number">1</span> I. When to Use Selenium Driver?</h1>
 <p>The Selenium driver is particularly used to scrape data from dynamic websites that use JavaScript (although it can scrape data from static websites too). If the content you are viewing in your browser does not match the content you see in the HTML source code you are retrieving from the site, then you are experiencing the dynamic websites. The use of JavaScript can vary from simple form events to single page apps that download all their content after loading. The consequence of this is that for many web pages the content that is displayed in our web browser is not available in the original HTML. For example, the result table shows up only after the user click the search box, the content following a click on a link is generated instantaneously rather than already being stored on the server before the click, or a JavaScript request might trigger a new block of content to load. The following subsections of this part cover those three examples in detail. This tutorial will cover the scraping techniques that use Python Selenium package capable of executing the JavaScript itself, and scrape the website as you view it in your browser.</p>
@@ -296,12 +299,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb3-2" title="2">staticLink_page <span class="op">=</span> requests.get(staticLink_url)</a>
 <a class="sourceLine" id="cb3-3" title="3">staticLink_html <span class="op">=</span> html.fromstring(staticLink_page.text)</a>
 <a class="sourceLine" id="cb3-4" title="4">html.open_in_browser(staticLink_html, encoding <span class="op">=</span> <span class="st">&#39;UTF-8&#39;</span>)</a></code></pre></div>
-<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpt6myj3y8.html</code></pre>
+<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpi7xdzp6a.html</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" title="1">dynamicLink_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams&quot;</span></a>
 <a class="sourceLine" id="cb5-2" title="2">dynamicLink_page <span class="op">=</span> requests.get(dynamicLink_url)</a>
 <a class="sourceLine" id="cb5-3" title="3">dynamicLink_html <span class="op">=</span> html.fromstring(dynamicLink_page.text)</a>
 <a class="sourceLine" id="cb5-4" title="4">html.open_in_browser(dynamicLink_html, encoding <span class="op">=</span> <span class="st">&#39;UTF-8&#39;</span>)</a></code></pre></div>
-<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpnnl6w_en.html</code></pre>
+<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmp42do31t5.html</code></pre>
 <p>The requests module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.</p>
 <p>Examining the source code of the chosen student’s profile web page of both the static and dynamic links can help you further understand why. The source code of the profile web page of a static link shows a complete html file without a JavaScript section.</p>
 <table>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

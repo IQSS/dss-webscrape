@@ -7,7 +7,7 @@ Write-Host "Deploy GH Pages Starts"
 & git checkout -b gh-pages
 & git rm -rf .
 & copy-item docs\ . 
-& git remote set-url origin https://github.com/IQSS/dss-ec2gui.git
+& git remote set-url origin https://github.com/liujinjie111/webscrape.git
 & git add -A
 & git commit -a -m "Commit from AppVeyor"
 & git push

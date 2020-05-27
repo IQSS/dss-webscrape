@@ -16,7 +16,8 @@ only_commits:
 
 # environment variables
 environment:
-  APPVEYOR_RDP_PASSWORD: RDPPwd # used for debug purpose - RDP VM login password.
+  APPVEYOR_RDP_PASSWORD: RDPPwd20 # used for debug purpose - RDP VM login password.
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   access_token:
     secure: 2a753785b3e66f5def0f1d5d06ea54719d5b4941
 # scripts that are called at very beginning, before repo cloning    
@@ -45,9 +46,9 @@ install:
   - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"install.packages('reticulate', repos='https://cran.rstudio.com/')\""
   - cmd: echo 'reticulate' is installed!  
 
-  - cmd: echo pip install requests
-  - cmd: pip install requests
-  - cmd: echo 'requests' is installed! 
+  - cmd: echo Installing python packages - 'requests', 'bs4', 'lxml', 'pandas', 'selenium'...
+  - cmd: "C:\\Python37-x64\\Scripts\\pip.exe install requests bs4 lxml pandas selenium"
+  - cmd: echo Python packages installed - 'requests', 'bs4', 'lxml', 'pandas', 'selenium'!
 
 #+++++++++++++++++++++++++++++++
 #       Building Process
@@ -57,7 +58,6 @@ install:
 build_script:
   - git checkout master
   - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 #+++++++++++++++++++++++++++++++
 #        Global Handler
@@ -71,6 +71,5 @@ on_success:
   - git config --global user.name "liujinjie111"
   - git add docs
   - git commit -m "[skip appveyor] Publish tutorial"
-  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - git push origin head:master
 

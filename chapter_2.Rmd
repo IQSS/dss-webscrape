@@ -16,7 +16,7 @@ We place the mouse anywhere on this webpage. We right-click the mouse and click 
 
 Let us try to scrape the information from the result table using the lxml module, which was also covered in detail in the Python Web-Scraping Workshop. 
 
-```{python, eval=TRUE}
+```{python, eval=TRUE, engine.path='c:\\Python37-x64'}
 from lxml import html
 import requests
 
@@ -72,7 +72,7 @@ Suppose that we temporarily disable the JavaScript execution functionality in ou
 
 We can also see this difference using the requests module, which was also covered in detail in the Python Web-Scraping Workshop. 
 
-```{python, eval=TRUE}
+```{python, eval=TRUE, engine.path='c:\\Python37-x64'}
 staticLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"
 staticLink_page = requests.get(staticLink_url)
 staticLink_html = html.fromstring(staticLink_page.text)
@@ -109,7 +109,7 @@ Let us first look at pagination. Let us **inspect** the web page of dynamic sear
 
 In this case, the value of the `href` attribute is not an URL (The Uniform Resource Locator). So, there is no point to try to test if this is a static or dynamic link using the requests module as what we do in **Section I-2**. But we can illustrate the dynamic load using the lxml module. The code below tries to scrape the page link information using the lxml module. The scraper here has failed to extract the page links since the `xpath()` method returns an empty list. 
 
-```{python, eval=TRUE}
+```{python, eval=TRUE, engine.path='c:\\Python37-x64'}
 search_url = "https://iqssdss2020.pythonanywhere.com/tutorial/cases/search"
 search_page = requests.get(search_url)
 search_html = html.fromstring(search_page.text)
@@ -129,7 +129,7 @@ Let us examine the **page source code** to see why. Here, we find that the `<div
 
 Now let us examine the second way of design – scroll down to the bottom of page – to load the new content. Let us look at another example web page, which is available at [dynamic search load](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). This webpage is the same as the previous example webpage except it uses scrolling bar down instead of clicking page link to load the new content. The code below tries to scrap the information of the result table’s entries using the lxml module. The scraper here has failed to extract those information since the `xpath()` method returns an empty list. 
 
-```{python, eval=TRUE}
+```{python, eval=TRUE, engine.path='c:\\Python37-x64'}
 searchLoad_url = "https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search"
 searchLoad_page = requests.get(searchLoad_url)
 searchLoad_html = html.fromstring(searchLoad_page.text)

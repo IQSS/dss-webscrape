@@ -6,6 +6,7 @@ repo: https://github.com/IQSS/dss-template
 
 rmd_files:
   - "index.Rmd"
+  - "intro.Rmd"
   - "chapter_1.Rmd"
   - "chapter_2.Rmd"
 

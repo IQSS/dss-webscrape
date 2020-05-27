@@ -293,7 +293,7 @@ print(table_area)
 ```
 Here is an initial example with Selenium. Selenium can be installed using **pip** with the command: `pip install selenium`. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser via executing the JavaScript. The JavaScript is executed because now the div element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.
 
-```{python, eval=TRUE}
+```{python, eval=FALSE}
 from selenium import webdriver
 
 driver = webdriver.Chrome('https://driver/chromedriver.exe')

@@ -1,0 +1,72 @@
+﻿#+++++++++++++++++++++++++++++++
+#     General Configuration
+#+++++++++++++++++++++++++++++++
+
+# version format
+version: 1.0.{build}
+
+# We only generate /Docs when .rmd files are changed.
+only_commits:
+  files:
+    - '**/*.rmd'
+
+#+++++++++++++++++++++++++++++++
+#   Environment Configuration
+#+++++++++++++++++++++++++++++++
+
+# environment variables
+environment:
+  APPVEYOR_RDP_PASSWORD: RDPPwd # used for debug purpose - RDP VM login password.
+  access_token:
+    secure: 2a753785b3e66f5def0f1d5d06ea54719d5b4941
+# scripts that are called at very beginning, before repo cloning    
+init:  
+  - git config --global core.autocrlf true #Good practice because Windows line ending is different from Unix/Linux's
+
+# Software and packages needed to do R-Markdown
+install:
+  - cmd: echo Installing R...
+  - choco install R --version=3.6.1
+  - cmd: echo R is installed!
+ 
+  - cmd: echo Installing pandoc...
+  - choco install pandoc
+  - cmd: echo pandoc is installed!
+ 
+  - cmd: echo Installing R package 'rmarkdown'...
+  - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"install.packages('rmarkdown', repos='https://cran.rstudio.com/')\""
+  - cmd: echo 'rmarkdown' is installed!
+ 
+  - cmd: echo Installing R package 'bookdown'...
+  - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"install.packages('bookdown', repos='https://cran.rstudio.com/')\""
+  - cmd: echo 'bookdown' is installed!
+
+  - cmd: echo Installing R package 'reticulate'...
+  - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"install.packages('reticulate', repos='https://cran.rstudio.com/')\""
+  - cmd: echo 'reticulate' is installed!  
+
+#+++++++++++++++++++++++++++++++
+#       Building Process
+#+++++++++++++++++++++++++++++++
+
+# Building settings
+build_script:
+  - git checkout master
+  - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"bookdown::render_book('index.Rmd', 'bookdown::gitbook')\""
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+#+++++++++++++++++++++++++++++++
+#        Global Handler
+#+++++++++++++++++++++++++++++++
+
+# Logic after a successful build
+on_success:
+  - git config --global credential.helper store
+  - ps: Add-Content "$HOME\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"  
+  - git config --global user.email "jinjie_liu@fas.harvard.edu"
+  - git config --global user.name "liujinjie111"
+  - git add docs
+  - git commit -m "[skip appveyor] Publish tutorial"
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - git push origin head:master
+

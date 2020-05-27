@@ -16,7 +16,8 @@ We place the mouse anywhere on this webpage. We right-click the mouse and click 
 
 Let us try to scrape the information from the result table using the lxml module, which was also covered in detail in the Python Web-Scraping Workshop. 
 
-```{python, eval=TRUE}
+
+```python
 from lxml import html
 import requests
 
@@ -25,6 +26,10 @@ search_page = requests.get(search_url)
 search_html = html.fromstring(search_page.text)
 firstEntry_link = search_html.xpath('//*[@id="results"]/table')
 print(firstEntry_link)
+```
+
+```
+## []
 ```
 
 The example scraper here has failed to extract results since the `xpath()` method returns an empty list. Examining the source code of this web page can help you understand why. Let us put the mouse anywhere on this webpage. Right-click the mouse and click **View page source** from the menu to examine the source code. Here, we find that the `<div>` element with `ID “results”` is empty. 
@@ -72,16 +77,27 @@ Suppose that we temporarily disable the JavaScript execution functionality in ou
 
 We can also see this difference using the requests module, which was also covered in detail in the Python Web-Scraping Workshop. 
 
-```{python, eval=TRUE}
+
+```python
 staticLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"
 staticLink_page = requests.get(staticLink_url)
 staticLink_html = html.fromstring(staticLink_page.text)
 html.open_in_browser(staticLink_html, encoding = 'UTF-8')
+```
 
+```
+## file://C:/Users/JLiu/AppData/Local/Temp/tmpn5gpc678.html
+```
+
+```python
 dynamicLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams"
 dynamicLink_page = requests.get(dynamicLink_url)
 dynamicLink_html = html.fromstring(dynamicLink_page.text)
 html.open_in_browser(dynamicLink_html, encoding = 'UTF-8')
+```
+
+```
+## file://C:/Users/JLiu/AppData/Local/Temp/tmpqu65by_p.html
 ```
 
 The requests module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.  
@@ -109,12 +125,17 @@ Let us first look at pagination. Let us **inspect** the web page of dynamic sear
 
 In this case, the value of the `href` attribute is not an URL (The Uniform Resource Locator). So, there is no point to try to test if this is a static or dynamic link using the requests module as what we do in **Section I-2**. But we can illustrate the dynamic load using the lxml module. The code below tries to scrape the page link information using the lxml module. The scraper here has failed to extract the page links since the `xpath()` method returns an empty list. 
 
-```{python, eval=TRUE}
+
+```python
 search_url = "https://iqssdss2020.pythonanywhere.com/tutorial/cases/search"
 search_page = requests.get(search_url)
 search_html = html.fromstring(search_page.text)
 page_link = search_html.xpath('//*[@id="next"]')
 print(page_link)
+```
+
+```
+## []
 ```
 
 Let us examine the **page source code** to see why. Here, we find that the `<div>` element with `ID “pagination”` is empty. If we scroll down the source code to the end, we can find that the display of the page links is coded in a JavaScript function `displayResult(jsonresult)` in the JavaScript section. This means that the web page has used JavaScript to load the page links and insert it at the position of the `<div>` element with `ID “pagination”` in the original HTML. We could see the revised HTML after running the JavaScript code in the **Elements** window. 
@@ -129,12 +150,17 @@ Let us examine the **page source code** to see why. Here, we find that the `<div
 
 Now let us examine the second way of design – scroll down to the bottom of page – to load the new content. Let us look at another example web page, which is available at [dynamic search load](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). This webpage is the same as the previous example webpage except it uses scrolling bar down instead of clicking page link to load the new content. The code below tries to scrap the information of the result table’s entries using the lxml module. The scraper here has failed to extract those information since the `xpath()` method returns an empty list. 
 
-```{python, eval=TRUE}
+
+```python
 searchLoad_url = "https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search"
 searchLoad_page = requests.get(searchLoad_url)
 searchLoad_html = html.fromstring(searchLoad_page.text)
 entries_link = searchLoad_html.xpath('//*[@id="resultstable"]/tbody/tr')
 print(page_link)
+```
+
+```
+## []
 ```
 
 **Figure I-3.4** illustrates the result table part of code in the original HTML from the **page source code**. **Figure I-3.5** highlights the same part of code in the revised HTML from the **Elements** window after it executes the JavaScript code. It is clear to see that there is no information under the tag name `<tbody>` in **Figure I-3.4**. This explains why the `xpath()` method returns an empty list. In **Figure I-3.5**, the webpage runs the JavaScript to insert the first chunk of the students’ information into the empty result table that has been created statically before running the JavaScript and then display it in the browser.  

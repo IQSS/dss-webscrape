@@ -45,6 +45,10 @@ install:
   - cmd: "C:\\\"Program Files\"\\R\\R-3.6.1\\bin\\rscript.exe -e \"install.packages('reticulate', repos='https://cran.rstudio.com/')\""
   - cmd: echo 'reticulate' is installed!  
 
+  - cmd: echo pip install requests
+  - cmd: pip install requests
+  - cmd: echo 'requests' is installed! 
+
 #+++++++++++++++++++++++++++++++
 #       Building Process
 #+++++++++++++++++++++++++++++++

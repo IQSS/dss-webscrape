@@ -367,9 +367,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb22-39" title="39">        <span class="cf">assert</span>(result[<span class="st">&quot;level&quot;</span>] <span class="op">==</span> <span class="st">&quot;No&quot;</span>)</a>
 <a class="sourceLine" id="cb22-40" title="40">    end <span class="op">=</span> time.time()</a>
 <a class="sourceLine" id="cb22-41" title="41">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st"> seconds&#39;</span>.<span class="bu">format</span>(name, end <span class="op">-</span> start))</a></code></pre></div>
-<pre><code>## Regular Expressions: 0.3739955425262451 seconds
-## Beautiful Soup: 0.8199987411499023 seconds
-## Lxml: 0.13904094696044922 seconds</code></pre>
+<pre><code>## Regular Expressions: 0.3550107479095459 seconds
+## Beautiful Soup: 0.8189530372619629 seconds
+## Lxml: 0.1420001983642578 seconds</code></pre>
 <p>The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call <code>re.purge()</code> in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.</p>
 </div>
 </div>
@@ -433,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="selenium" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Selenium</h3>
-<p>The second approach uses Python packages capable of executing the JavaScript itself, and scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we expect. To confirm that Selenium can automate browser to execute JavaScript, this is a simple <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example web page</a>. This web page simply uses JavaScript to write a table to a <code>div</code> element. Here is the source code:</p>
+<p>The second approach uses Python packages capable of executing the JavaScript itself, and scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we expect. To confirm that Selenium can automate browser to execute JavaScript, this is a simple <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example web page</a>. This web page simply uses JavaScript to write a table to a <code>&lt;div&gt;</code> element. Here is the source code:</p>
 <pre><code>&lt;html&gt;
     &lt;body&gt;
         &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
@@ -475,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<p>With the traditional approach of downloading the original HTML and parsing the result, the div element will be empty, as follows:</p>
+<p>With the traditional approach of downloading the original HTML and parsing the result, the <code>&lt;div&gt;</code> element will be empty, as follows:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" title="1"><span class="im">from</span> lxml <span class="im">import</span> html</a>
 <a class="sourceLine" id="cb31-2" title="2"><span class="im">import</span> requests</a>
 <a class="sourceLine" id="cb31-3" title="3"></a>
@@ -485,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb31-7" title="7">table_area <span class="op">=</span> global_dynamicHtml.xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table&#39;</span>)</a>
 <a class="sourceLine" id="cb31-8" title="8"><span class="bu">print</span>(table_area)</a></code></pre></div>
 <pre><code>## []</code></pre>
-<p>Here is an initial example with Selenium. Selenium can be installed using <strong>pip</strong> with the command: <code>pip install selenium</code>. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser via executing the JavaScript. The JavaScript is executed because now the div element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.</p>
+<p>Here is an initial example with Selenium. Selenium can be installed using <code>pip</code> with the command: <code>pip install selenium</code>. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser via executing the JavaScript. The JavaScript is executed because now the <code>&lt;div&gt;</code> element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" title="1"><span class="im">from</span> selenium <span class="im">import</span> webdriver</a>
 <a class="sourceLine" id="cb33-2" title="2"></a>
 <a class="sourceLine" id="cb33-3" title="3">driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;https://driver/chromedriver.exe&#39;</span>)</a>

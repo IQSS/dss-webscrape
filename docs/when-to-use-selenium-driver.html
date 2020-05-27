@@ -321,12 +321,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb37-2" title="2">staticLink_page <span class="op">=</span> requests.get(staticLink_url)</a>
 <a class="sourceLine" id="cb37-3" title="3">staticLink_html <span class="op">=</span> html.fromstring(staticLink_page.text)</a>
 <a class="sourceLine" id="cb37-4" title="4">html.open_in_browser(staticLink_html, encoding <span class="op">=</span> <span class="st">&#39;UTF-8&#39;</span>)</a></code></pre></div>
-<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpj2t2fmk4.html</code></pre>
+<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpqcynnfub.html</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb39-1" title="1">dynamicLink_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams&quot;</span></a>
 <a class="sourceLine" id="cb39-2" title="2">dynamicLink_page <span class="op">=</span> requests.get(dynamicLink_url)</a>
 <a class="sourceLine" id="cb39-3" title="3">dynamicLink_html <span class="op">=</span> html.fromstring(dynamicLink_page.text)</a>
 <a class="sourceLine" id="cb39-4" title="4">html.open_in_browser(dynamicLink_html, encoding <span class="op">=</span> <span class="st">&#39;UTF-8&#39;</span>)</a></code></pre></div>
-<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpxi4_1zc2.html</code></pre>
+<pre><code>## file://C:/Users/JLiu/AppData/Local/Temp/tmpgajkmvoe.html</code></pre>
 <p>The requests module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.</p>
 <p>Examining the source code of the chosen student’s profile web page of both the static and dynamic links can help you further understand why. The source code of the profile web page of a static link shows a complete html file without a JavaScript section.</p>
 <table>

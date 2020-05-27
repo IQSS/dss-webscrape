@@ -259,9 +259,9 @@ for name, scraper in [('Regular Expressions', re_scraper), ('Beautiful Soup', bs
 ```
 
 ```
-## Regular Expressions: 0.3739955425262451 seconds
-## Beautiful Soup: 0.8199987411499023 seconds
-## Lxml: 0.13904094696044922 seconds
+## Regular Expressions: 0.3550107479095459 seconds
+## Beautiful Soup: 0.8189530372619629 seconds
+## Lxml: 0.1420001983642578 seconds
 ```
 The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call `re.purge()` in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.
 
@@ -345,7 +345,7 @@ print(students_df.head(10))
 The AJAX-dependent websites initially look more complex but their structure encourages separating the data transmission between client and server and the data presentation on the client browser executing JavaScript, which can make our job of extracting this data much easier.
 
 ### Selenium
-The second approach uses Python packages capable of executing the JavaScript itself, and scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we expect. To confirm that Selenium can automate browser to execute JavaScript, this is a simple [example web page](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This web page simply uses JavaScript to write a table to a `div` element. Here is the source code:
+The second approach uses Python packages capable of executing the JavaScript itself, and scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we expect. To confirm that Selenium can automate browser to execute JavaScript, this is a simple [example web page](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This web page simply uses JavaScript to write a table to a `<div>` element. Here is the source code:
 
 ```
 <html>
@@ -390,7 +390,7 @@ The second approach uses Python packages capable of executing the JavaScript its
     </body>
 </html>
 ```
-With the traditional approach of downloading the original HTML and parsing the result, the div element will be empty, as follows:
+With the traditional approach of downloading the original HTML and parsing the result, the `<div>` element will be empty, as follows:
 
 
 ```python
@@ -407,7 +407,7 @@ print(table_area)
 ```
 ## []
 ```
-Here is an initial example with Selenium. Selenium can be installed using **pip** with the command: `pip install selenium`. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser via executing the JavaScript. The JavaScript is executed because now the div element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.
+Here is an initial example with Selenium. Selenium can be installed using `pip` with the command: `pip install selenium`. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser via executing the JavaScript. The JavaScript is executed because now the `<div>` element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.
 
 
 ```python

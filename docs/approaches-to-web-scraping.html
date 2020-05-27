@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Approaches to Web Scraping | Template</title>
+  <meta name="description" content="This is a template for a bookdown website" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Approaches to Web Scraping | Template" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a template for a bookdown website" />
+  <meta name="github-repo" content="IQSS/dss-template" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Approaches to Web Scraping | Template" />
+  
+  <meta name="twitter:description" content="This is a template for a bookdown website" />
+  
+
+<meta name="author" content="" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-1.html"/>
+<link rel="next" href="when-to-use-selenium-driver.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A template for a bookdown website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#table-of-contents"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-and-sources"><i class="fa fa-check"></i>Authors and Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-1.html"><a href="introduction-1.html#how-does-the-web-work"><i class="fa fa-check"></i><b>1.1</b> How does the web work?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-1.html"><a href="introduction-1.html#components"><i class="fa fa-check"></i><b>1.1.1</b> Components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-1.html"><a href="introduction-1.html#so-what-happens"><i class="fa fa-check"></i><b>1.1.2</b> So what happens?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-1.html"><a href="introduction-1.html#uniform-resource-locator-url"><i class="fa fa-check"></i><b>1.2</b> Uniform Resource Locator (URL)</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-1.html"><a href="introduction-1.html#document-object-model-dom"><i class="fa fa-check"></i><b>1.3</b> Document Object Model (DOM)</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction-1.html"><a href="introduction-1.html#decision-tree-for-choosing-web-scraping-approaches"><i class="fa fa-check"></i><b>1.4</b> Decision Tree for Choosing Web Scraping Approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html"><i class="fa fa-check"></i><b>2</b> Approaches to Web Scraping</a><ul>
+<li class="chapter" data-level="2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-static-web-page"><i class="fa fa-check"></i><b>2.1</b> Approaches to Scraping a Static Web Page</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#regular-expressions"><i class="fa fa-check"></i><b>2.1.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#beautiful-soup"><i class="fa fa-check"></i><b>2.1.2</b> Beautiful Soup</a></li>
+<li class="chapter" data-level="2.1.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#lxml"><i class="fa fa-check"></i><b>2.1.3</b> Lxml</a></li>
+<li class="chapter" data-level="2.1.4" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#comparison-of-approaches"><i class="fa fa-check"></i><b>2.1.4</b> Comparison of Approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-dynamic-web-page"><i class="fa fa-check"></i><b>2.2</b> Approaches to Scraping a Dynamic Web Page</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#ajax-requests"><i class="fa fa-check"></i><b>2.2.1</b> AJAX Requests</a></li>
+<li class="chapter" data-level="2.2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#selenium"><i class="fa fa-check"></i><b>2.2.2</b> Selenium</a></li>
+<li class="chapter" data-level="2.2.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#comparison-of-approaches-1"><i class="fa fa-check"></i><b>2.2.3</b> Comparison of Approaches</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use Selenium Driver?</a><ul>
+<li class="chapter" data-level="3.1" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-search"><i class="fa fa-check"></i><b>3.1</b> An Example of Dynamic Search</a></li>
+<li class="chapter" data-level="3.2" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-link"><i class="fa fa-check"></i><b>3.2</b> An Example of Dynamic Link</a></li>
+<li class="chapter" data-level="3.3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-new-load"><i class="fa fa-check"></i><b>3.3</b> An Example of Dynamic New Load</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Template</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="approaches-to-web-scraping" class="section level1">
+<h1><span class="header-section-number">2</span> Approaches to Web Scraping</h1>
+<p>If the content you are viewing in your browser does not match the content you see in the HTML source code you are retrieving from the site, then you are experiencing the dynamic websites. Otherwise, if they match with each other, the websites are static. The mismatch is due to the execution of JavaScript that changes the HTML elements on the page. You could view the original HTML via <strong>View page source</strong>. You could view the revised HTML in your browser if it executes JavaScript in the <strong>Elements</strong> window via <strong>Inspecting</strong> the web page.</p>
+<div id="approaches-to-scraping-a-static-web-page" class="section level2">
+<h2><span class="header-section-number">2.1</span> Approaches to Scraping a Static Web Page</h2>
+<p>There are three approaches to extracting data from a static webpage that has been downloaded: using regular expressions, using Beautiful Soup module, and finally using lxml module. We use this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html">static student profile webpage</a> to provide examples for each approach. Suppose that we want to scrape the student name. The data we are interested in is found in this part of the HTML. The student name is included within a <code>&lt;td&gt;</code> element of <code>class w2p_fw</code>, which is the child of a <code>&lt;tr&gt;</code> element of <code>ID students_name_row</code>.</p>
+<pre><code>&lt;table&gt;
+    &lt;tr id=&quot;students_name_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_name&quot; id=&quot;students_name_label&quot;&gt;Name:&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;Adams&lt;/td&gt;
+        &lt;td class=&quot;w2p_fc&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr id=&quot;students_school_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;IV&lt;/td&gt;
+        &lt;td class=&quot;w2p_fc&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr id=&quot;students_level_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_level&quot; id=&quot;students_level_label&quot;&gt;Advanced:&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;No&lt;/td&gt;
+        &lt;td class=&quot;w2p_fc&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<div id="regular-expressions" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Regular Expressions</h3>
+<p>Regular expressions directly work on a downloaded web page with no need of parsing it into a certain format and try to match the content of the part of the HTML that contains the data you want to scrape from. There is a thorough overview of regular expressions <a href="https://docs.python.org/3.8/howto/regex.html">here</a>. In this example, we need to match the <code>&lt;td class="w2p_fw"&gt;</code> tag to scrape the student name. But this tag is used for multiple student profile attributes. To isolate the name, we select the first element, as shown in the code below.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="im">import</span> re</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4">url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></a>
+<a class="sourceLine" id="cb3-5" title="5">html <span class="op">=</span> requests.get(url)</a>
+<a class="sourceLine" id="cb3-6" title="6">mylist <span class="op">=</span> re.findall(<span class="st">&#39;&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)</a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="bu">print</span>(mylist)</a></code></pre></div>
+<pre><code>## [&#39;Adams&#39;, &#39;IV&#39;, &#39;No&#39;]</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" title="1">name <span class="op">=</span> re.findall(<span class="st">&#39;&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="bu">print</span>(name)</a></code></pre></div>
+<pre><code>## Adams</code></pre>
+<p>This solution works now but could easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an <code>ID</code>, so it ought to be unique:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1"><span class="im">import</span> re</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb7-3" title="3"></a>
+<a class="sourceLine" id="cb7-4" title="4">url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></a>
+<a class="sourceLine" id="cb7-5" title="5">html <span class="op">=</span> requests.get(url)</a>
+<a class="sourceLine" id="cb7-6" title="6">mylist <span class="op">=</span> re.findall(<span class="st">&#39;&lt;tr id=&quot;students_name_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_name&quot; id=&quot;students_name_label&quot;&gt;Name:\</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="st">&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)</a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="bu">print</span>(mylist)</a></code></pre></div>
+<pre><code>## [&#39;Adams&#39;]</code></pre>
+<p>This solution is better. However, there are many other ways the web page could be updated that still break the regular expression. For example, double quotation might be changed to single for class name, extra space could be added between the <code>&lt;td&gt;</code> tags, or the name_label could be changed. The general solution to it is to make the regular expression as generic as possible to support various possibilities:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" title="1"><span class="im">import</span> re</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb9-3" title="3"></a>
+<a class="sourceLine" id="cb9-4" title="4">url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></a>
+<a class="sourceLine" id="cb9-5" title="5">html <span class="op">=</span> requests.get(url)</a>
+<a class="sourceLine" id="cb9-6" title="6">mylist <span class="op">=</span> re.findall(<span class="st">&#39;&lt;tr id=&quot;students_name_row&quot;&gt;.*?&lt;td\s*class=[&quot;</span><span class="ch">\&#39;</span><span class="st">]w2p_fw[&quot;</span><span class="ch">\&#39;</span><span class="st">]&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)</a>
+<a class="sourceLine" id="cb9-7" title="7"><span class="bu">print</span>(mylist)</a></code></pre></div>
+<pre><code>## [&#39;Adams&#39;]</code></pre>
+<p>This regular expression is more robust to webpage updates but is more difficult to construct, becoming even unreadable. But still, there are other minor layout changes that would break it, such as if a title attribute is added to the <code>&lt;td&gt;</code> tag. From this example, regular expressions provide a quick way to scrape data without the step of parsing but are too brittle and will easily break when a web page is updated.</p>
+</div>
+<div id="beautiful-soup" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Beautiful Soup</h3>
+<p>Beautiful Soup is a popular module that parses a downloaded web page into a certain format and then provides a convenient interface to navigate content. The official documentation of Beautiful Soup can be found <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">here</a>. The latest version of the module can be installed using this command: <code>pip install beautifulsoup4</code>.</p>
+<p>The first step with Beautiful Soup is to parse the downloaded HTML into a soup document. Beautiful Soup supports several different parsers. Parsers behave differently when parsing web pages that do not contain perfectly valid HTML. For example, consider this HTML syntax of a table entry with missing attribute quotes and closing tags for the table row and table fields:</p>
+<pre><code>&lt;tr id=students_school_row&gt;
+    &lt;td class=w2p_fl&gt;
+        &lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;
+            School:
+        &lt;/label&gt;
+    &lt;td class=w2p_fw&gt;IV</code></pre>
+<p>Beautiful Soup with the <strong>lxml</strong> parser can correctly interpret the missing attribute quotes and closing tags, as well as add the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags to form a complete HTML document, as the code below shows:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" title="1"><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</a>
+<a class="sourceLine" id="cb12-2" title="2"></a>
+<a class="sourceLine" id="cb12-3" title="3">broken_html <span class="op">=</span> <span class="st">&#39;&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV&#39;</span></a>
+<a class="sourceLine" id="cb12-4" title="4">soup <span class="op">=</span> BeautifulSoup(broken_html, <span class="st">&#39;lxml&#39;</span>)</a>
+<a class="sourceLine" id="cb12-5" title="5">fixed_html <span class="op">=</span> soup.prettify()</a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="bu">print</span>(fixed_html)</a></code></pre></div>
+<pre><code>## &lt;html&gt;
+##  &lt;body&gt;
+##   &lt;tr id=&quot;students_school_row&quot;&gt;
+##    &lt;td class=&quot;w2p_fl&quot;&gt;
+##     &lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;
+##      School:
+##     &lt;/label&gt;
+##    &lt;/td&gt;
+##    &lt;td class=&quot;w2p_fw&quot;&gt;
+##     IV
+##    &lt;/td&gt;
+##   &lt;/tr&gt;
+##  &lt;/body&gt;
+## &lt;/html&gt;</code></pre>
+<p>But if we use the <strong>html.parser</strong>, it interprets the school name itself as a child of the school key instead of the parallel table fields and it does not create a complete HTML, as the code below shows:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" title="1"><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3">broken_html <span class="op">=</span> <span class="st">&#39;&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV&#39;</span></a>
+<a class="sourceLine" id="cb14-4" title="4">soup <span class="op">=</span> BeautifulSoup(broken_html, <span class="st">&#39;html.parser&#39;</span>)</a>
+<a class="sourceLine" id="cb14-5" title="5">fixed_html <span class="op">=</span> soup.prettify()</a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="bu">print</span>(fixed_html)</a></code></pre></div>
+<pre><code>## &lt;tr id=&quot;students_school_row&quot;&gt;
+##  &lt;td class=&quot;w2p_fl&quot;&gt;
+##   &lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;
+##    School:
+##   &lt;/label&gt;
+##   &lt;td class=&quot;w2p_fw&quot;&gt;
+##    IV
+##   &lt;/td&gt;
+##  &lt;/td&gt;
+## &lt;/tr&gt;</code></pre>
+<p>However, keep it in mind that none of these parsers is always the correct way to handle invalid HTML. It will be case-by-case. The next step of using Beautiful Soup is to navigate to the elements of HTML we want using its API. Here is an example to extract the student name from our example profile webpage:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" title="1"><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb16-3" title="3"></a>
+<a class="sourceLine" id="cb16-4" title="4">url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></a>
+<a class="sourceLine" id="cb16-5" title="5">html <span class="op">=</span> requests.get(url)</a>
+<a class="sourceLine" id="cb16-6" title="6">soup <span class="op">=</span> BeautifulSoup(html.text, <span class="st">&#39;html.parser&#39;</span>)</a>
+<a class="sourceLine" id="cb16-7" title="7">tr <span class="op">=</span> soup.find(attrs<span class="op">=</span>{<span class="st">&#39;id&#39;</span>:<span class="st">&#39;students_name_row&#39;</span>})</a>
+<a class="sourceLine" id="cb16-8" title="8">td <span class="op">=</span> tr.find(attrs<span class="op">=</span>{<span class="st">&#39;class&#39;</span>:<span class="st">&#39;w2p_fw&#39;</span>}) </a>
+<a class="sourceLine" id="cb16-9" title="9">name <span class="op">=</span> td.text </a>
+<a class="sourceLine" id="cb16-10" title="10"><span class="bu">print</span>(name)</a></code></pre></div>
+<pre><code>## Adams</code></pre>
+<p>This code is longer than regular expressions but easier to construct and understand. Also, we no longer need to worry about problems in minor layout changes, such as extra whitespace or tag attributes.</p>
+</div>
+<div id="lxml" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Lxml</h3>
+<p>The lxml module is a Python wrapper on the top of the C libraries libxml2 and libxslt. It works the same way as Beautiful Soup but is much faster. The documentation of lxml can be found <a href="https://lxml.de/index.html">here</a>. The module can be installed using this command: <code>pip install lxml</code>.</p>
+<p>As with Beautiful Soup, the first step of lxml is parsing the potentially invalid HTML into a consistent format. Here is an example of parsing the same broken HTML:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" title="1"><span class="im">from</span> lxml <span class="im">import</span> etree, html</a>
+<a class="sourceLine" id="cb18-2" title="2"></a>
+<a class="sourceLine" id="cb18-3" title="3">broken_html <span class="op">=</span> <span class="st">&#39;&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV&#39;</span></a>
+<a class="sourceLine" id="cb18-4" title="4">tree <span class="op">=</span> html.fromstring(broken_html)</a>
+<a class="sourceLine" id="cb18-5" title="5">fixed_html <span class="op">=</span> etree.tostring(tree, pretty_print<span class="op">=</span><span class="va">True</span>).decode(<span class="st">&#39;utf-8&#39;</span>)</a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="bu">print</span>(fixed_html)</a></code></pre></div>
+<pre><code>## &lt;tr id=&quot;students_school_row&quot;&gt;
+##   &lt;td class=&quot;w2p_fl&quot;&gt;
+##     &lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;
+##   &lt;/td&gt;
+##   &lt;td class=&quot;w2p_fw&quot;&gt;IV&lt;/td&gt;
+## &lt;/tr&gt;</code></pre>
+<p>As with Beautiful Soup, lxml was able to correctly parse the missing attribute quotes and closing tags, although it did not add the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags. Here we use <strong>lxml.etree</strong> module to formulate a more hierarchical tree structure and then convert it to text via <code>tostring()</code> method in order to display it.</p>
+<p>After parsing the input, lxml has its API to select elements, such as XPath selectors, like Beautiful Soup. Here is an example using the lxml <code>xpath()</code> method to extract the student name data:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" title="1"><span class="im">from</span> lxml <span class="im">import</span> etree, html</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb20-3" title="3"></a>
+<a class="sourceLine" id="cb20-4" title="4">static_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&quot;</span></a>
+<a class="sourceLine" id="cb20-5" title="5">static_html <span class="op">=</span> requests.get(static_url)</a>
+<a class="sourceLine" id="cb20-6" title="6">tree <span class="op">=</span> html.fromstring(static_html.text)</a>
+<a class="sourceLine" id="cb20-7" title="7">name <span class="op">=</span> tree.xpath(<span class="st">&#39;//*[@id=&quot;students_name_row&quot;]/td[2]&#39;</span>)[<span class="dv">0</span>].text</a>
+<a class="sourceLine" id="cb20-8" title="8"><span class="bu">print</span>(name)</a></code></pre></div>
+<pre><code>## Adams</code></pre>
+</div>
+<div id="comparison-of-approaches" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Comparison of Approaches</h3>
+<p>As shown in the previous sections, Beautiful Soup and lxml are more robust to webpage changes than regular expressions. Comparing their relative efficiency, lxml and the regular expression module were written in C, while Beautiful Soup is pure Python. So, lxml and regular expressions are much faster than Beautiful Soup. We did an experiment that ran each scraper to extract all the available student profile data 1000 times and record the total time taken by each scraper. A full implementation of this experiment can be found as follows, as well as the results from running this script on my computer:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" title="1"><span class="im">import</span> re</a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="im">from</span> lxml <span class="im">import</span> html</a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="im">import</span> time</a>
+<a class="sourceLine" id="cb22-5" title="5"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb22-6" title="6"></a>
+<a class="sourceLine" id="cb22-7" title="7">fields <span class="op">=</span> [<span class="st">&quot;name&quot;</span>, <span class="st">&quot;school&quot;</span>, <span class="st">&quot;level&quot;</span>]</a>
+<a class="sourceLine" id="cb22-8" title="8"></a>
+<a class="sourceLine" id="cb22-9" title="9"><span class="kw">def</span> re_scraper(htmlText):</a>
+<a class="sourceLine" id="cb22-10" title="10">    results <span class="op">=</span> {}</a>
+<a class="sourceLine" id="cb22-11" title="11">    <span class="cf">for</span> field <span class="kw">in</span> fields:</a>
+<a class="sourceLine" id="cb22-12" title="12">        results[field] <span class="op">=</span> re.findall(<span class="st">&#39;&lt;tr id=&quot;students_</span><span class="sc">{}</span><span class="st">_row&quot;&gt;.*?&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>.<span class="bu">format</span>(field), htmlText)[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb22-13" title="13">    <span class="cf">return</span> results</a>
+<a class="sourceLine" id="cb22-14" title="14"></a>
+<a class="sourceLine" id="cb22-15" title="15"><span class="kw">def</span> bs_scraper(htmlText):</a>
+<a class="sourceLine" id="cb22-16" title="16">    soup <span class="op">=</span> BeautifulSoup(htmlText, <span class="st">&#39;html.parser&#39;</span>)</a>
+<a class="sourceLine" id="cb22-17" title="17">    results <span class="op">=</span> {}</a>
+<a class="sourceLine" id="cb22-18" title="18">    <span class="cf">for</span> field <span class="kw">in</span> fields:</a>
+<a class="sourceLine" id="cb22-19" title="19">        results[field] <span class="op">=</span> soup.find(attrs<span class="op">=</span>{<span class="st">&#39;id&#39;</span>:<span class="st">&#39;students_</span><span class="sc">{}</span><span class="st">_row&#39;</span>.<span class="bu">format</span>(field)}).find(attrs<span class="op">=</span>{<span class="st">&#39;class&#39;</span>:<span class="st">&#39;w2p_fw&#39;</span>}).text</a>
+<a class="sourceLine" id="cb22-20" title="20">    <span class="cf">return</span> results</a>
+<a class="sourceLine" id="cb22-21" title="21"></a>
+<a class="sourceLine" id="cb22-22" title="22"><span class="kw">def</span> lxml_scraper(htmlText):</a>
+<a class="sourceLine" id="cb22-23" title="23">    tree <span class="op">=</span> html.fromstring(htmlText)</a>
+<a class="sourceLine" id="cb22-24" title="24">    results <span class="op">=</span> {}</a>
+<a class="sourceLine" id="cb22-25" title="25">    <span class="cf">for</span> field <span class="kw">in</span> fields:</a>
+<a class="sourceLine" id="cb22-26" title="26">        results[field] <span class="op">=</span> tree.xpath(<span class="st">&#39;//*[@id=&quot;students_</span><span class="sc">{}</span><span class="st">_row&quot;]/td[2]&#39;</span>.<span class="bu">format</span>(field))[<span class="dv">0</span>].text</a>
+<a class="sourceLine" id="cb22-27" title="27">    <span class="cf">return</span> results</a>
+<a class="sourceLine" id="cb22-28" title="28"></a>
+<a class="sourceLine" id="cb22-29" title="29">num_iterations <span class="op">=</span> <span class="dv">1000</span></a>
+<a class="sourceLine" id="cb22-30" title="30">static_html <span class="op">=</span> requests.get(<span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&quot;</span>).text</a>
+<a class="sourceLine" id="cb22-31" title="31"><span class="cf">for</span> name, scraper <span class="kw">in</span> [(<span class="st">&#39;Regular Expressions&#39;</span>, re_scraper), (<span class="st">&#39;Beautiful Soup&#39;</span>, bs_scraper), (<span class="st">&#39;Lxml&#39;</span>, lxml_scraper)]:</a>
+<a class="sourceLine" id="cb22-32" title="32">    start <span class="op">=</span> time.time()</a>
+<a class="sourceLine" id="cb22-33" title="33">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_iterations):</a>
+<a class="sourceLine" id="cb22-34" title="34">        <span class="cf">if</span> scraper <span class="op">==</span> re_scraper:</a>
+<a class="sourceLine" id="cb22-35" title="35">            re.purge()</a>
+<a class="sourceLine" id="cb22-36" title="36">        result <span class="op">=</span> scraper(static_html)</a>
+<a class="sourceLine" id="cb22-37" title="37">        <span class="cf">assert</span>(result[<span class="st">&quot;name&quot;</span>] <span class="op">==</span> <span class="st">&quot;Adams&quot;</span>)</a>
+<a class="sourceLine" id="cb22-38" title="38">        <span class="cf">assert</span>(result[<span class="st">&quot;school&quot;</span>] <span class="op">==</span> <span class="st">&quot;IV&quot;</span>)</a>
+<a class="sourceLine" id="cb22-39" title="39">        <span class="cf">assert</span>(result[<span class="st">&quot;level&quot;</span>] <span class="op">==</span> <span class="st">&quot;No&quot;</span>)</a>
+<a class="sourceLine" id="cb22-40" title="40">    end <span class="op">=</span> time.time()</a>
+<a class="sourceLine" id="cb22-41" title="41">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st"> seconds&#39;</span>.<span class="bu">format</span>(name, end <span class="op">-</span> start))</a></code></pre></div>
+<pre><code>## Regular Expressions: 0.3739955425262451 seconds
+## Beautiful Soup: 0.8199987411499023 seconds
+## Lxml: 0.13904094696044922 seconds</code></pre>
+<p>The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call <code>re.purge()</code> in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.</p>
+</div>
+</div>
+<div id="approaches-to-scraping-a-dynamic-web-page" class="section level2">
+<h2><span class="header-section-number">2.2</span> Approaches to Scraping a Dynamic Web Page</h2>
+<p>There are two approaches to scraping a dynamic webpage: scrape the content directly from the JavaScript, or use Python packages capable of executing the JavaScript itself, and scrape the website as you view it in your browser.</p>
+<div id="ajax-requests" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> AJAX Requests</h3>
+<p>Because the data is loaded dynamically with JavaScript, to scrape this data, we need to understand how the web page loads this data. Suppose that we want to find all students whose names start with letter A in the fifth grade with page size set at 5 from this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/search">example dynamic web page</a>. After we click <strong>Search</strong> button, open <strong>Fiddler</strong>—a software that can inspect HTTP requests on your computer and can be downloaded <a href="https://www.telerik.com/download/fiddler">here</a>. We will see that an AJAX request is made. Under <strong>Request Headers</strong> in the <strong>Inspectors</strong> window, we can find the URL for this search. Under <strong>Response</strong> window, we can see the response content is in JSON format. They are highlighted in blue in the figure as follows:</p>
+<p><img src="images/approaches/1.png" /></p>
+<p>AJAX stands for Asynchronous JavaScript and XML. A dynamic web page works because the AJAX allows JavaScript to make HTTP requests to a remote server and receive responses. This approach is to first access to the AJAX request responses, and then to scrape information of interest from them. The AJAX response data can be downloaded directly. With the URL of the response, we can make a request to the server, scrape the information from the response, and store the scraped information in a spreadsheet, as the following code shows:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" title="1"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb24-3" title="3"></a>
+<a class="sourceLine" id="cb24-4" title="4">html <span class="op">=</span> requests.get(<span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search_ajax?search_name=A&amp;search_grade=5&amp;page_size=5&amp;page=1&#39;</span>)</a>
+<a class="sourceLine" id="cb24-5" title="5">html_json <span class="op">=</span> html.json()</a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="bu">print</span>(html_json)</a></code></pre></div>
+<pre><code>## {&#39;records&#39;: [{&#39;Name&#39;: &#39;Annie&#39;, &#39;Grade&#39;: &#39;5&#39;, &#39;GPA&#39;: 3.0}, {&#39;Name&#39;: &#39;Ala&#39;, &#39;Grade&#39;: &#39;5&#39;, &#39;GPA&#39;: 2.5}, {&#39;Name&#39;: &#39;Aayusha&#39;, &#39;Grade&#39;: &#39;5&#39;, &#39;GPA&#39;: 3.5}, {&#39;Name&#39;: &#39;Anushri&#39;, &#39;Grade&#39;: &#39;5&#39;, &#39;GPA&#39;: 4.0}, {&#39;Name&#39;: &#39;Andrew&#39;, &#39;Grade&#39;: &#39;5&#39;, &#39;GPA&#39;: 3.0}], &#39;num_pages&#39;: 5, &#39;error&#39;: &#39;&#39;}</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" title="1">students_A5p0 <span class="op">=</span> pd.DataFrame.from_records(html_json[<span class="st">&#39;records&#39;</span>])</a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="bu">print</span>(students_A5p0.head(<span class="dv">10</span>))</a></code></pre></div>
+<pre><code>##    GPA Grade     Name
+## 0  3.0     5    Annie
+## 1  2.5     5      Ala
+## 2  3.5     5  Aayusha
+## 3  4.0     5  Anushri
+## 4  3.0     5   Andrew</code></pre>
+<p>Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating the resulting pages of the JSON responses. The results are then stored in a spreadsheet.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" title="1"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="im">import</span> string</a>
+<a class="sourceLine" id="cb28-4" title="4"></a>
+<a class="sourceLine" id="cb28-5" title="5">temp_url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search_ajax?search_name=</span><span class="sc">{}</span><span class="st">&amp;search_grade=</span><span class="sc">{}</span><span class="st">&amp;page_size=5&amp;page=</span><span class="sc">{}</span><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb28-6" title="6">students <span class="op">=</span> <span class="bu">list</span>()</a>
+<a class="sourceLine" id="cb28-7" title="7">grades <span class="op">=</span> [<span class="st">&quot;K&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>]</a>
+<a class="sourceLine" id="cb28-8" title="8"><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</a>
+<a class="sourceLine" id="cb28-9" title="9">    <span class="cf">for</span> grade <span class="kw">in</span> grades:</a>
+<a class="sourceLine" id="cb28-10" title="10">        page <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb28-11" title="11">        <span class="cf">while</span> <span class="va">True</span>:</a>
+<a class="sourceLine" id="cb28-12" title="12">            url <span class="op">=</span> temp_url.<span class="bu">format</span>(letter, grade, page)</a>
+<a class="sourceLine" id="cb28-13" title="13">            html <span class="op">=</span> requests.get(url)</a>
+<a class="sourceLine" id="cb28-14" title="14">            html_json <span class="op">=</span> html.json()</a>
+<a class="sourceLine" id="cb28-15" title="15">            students.extend(html_json[<span class="st">&quot;records&quot;</span>])</a>
+<a class="sourceLine" id="cb28-16" title="16">            page <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb28-17" title="17">            <span class="cf">if</span> page <span class="op">&gt;=</span> html_json[<span class="st">&quot;num_pages&quot;</span>]:</a>
+<a class="sourceLine" id="cb28-18" title="18">                <span class="cf">break</span></a>
+<a class="sourceLine" id="cb28-19" title="19"></a>
+<a class="sourceLine" id="cb28-20" title="20">students_df <span class="op">=</span> pd.DataFrame.from_records(students)</a>
+<a class="sourceLine" id="cb28-21" title="21"><span class="bu">print</span>(students_df.head(<span class="dv">10</span>))</a></code></pre></div>
+<pre><code>##    GPA Grade       Name
+## 0    3     1      Allen
+## 1  3.5     4   Anderson
+## 2    4     5      Adams
+## 3    1     5  Alexander
+## 4    3     5      Aaron
+## 5  3.5     5        Aws
+## 6    2     5       Alan
+## 7    3     5      Annie
+## 8  2.5     5        Ala
+## 9  3.5     5    Aayusha</code></pre>
+<p>The AJAX-dependent websites initially look more complex but their structure encourages separating the data transmission between client and server and the data presentation on the client browser executing JavaScript, which can make our job of extracting this data much easier.</p>
+</div>
+<div id="selenium" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Selenium</h3>
+<p>The second approach uses Python packages capable of executing the JavaScript itself, and scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we expect. To confirm that Selenium can automate browser to execute JavaScript, this is a simple <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example web page</a>. This web page simply uses JavaScript to write a table to a <code>div</code> element. Here is the source code:</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+        &lt;script&gt;
+                document.getElementById(&quot;result&quot;).innerHTML = 
+            `&lt;table&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Name&lt;/th&gt;
+                        &lt;th&gt;Grade&lt;/th&gt;
+                        &lt;th&gt;GPA&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Adams&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;4&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Alexander&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;1&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Aaron&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;3&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Aws&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;3.5&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Alan&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;2&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            `;
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>With the traditional approach of downloading the original HTML and parsing the result, the div element will be empty, as follows:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" title="1"><span class="im">from</span> lxml <span class="im">import</span> html</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb31-3" title="3"></a>
+<a class="sourceLine" id="cb31-4" title="4">global_dynamicUrl <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic&quot;</span></a>
+<a class="sourceLine" id="cb31-5" title="5">global_dynamicPage <span class="op">=</span> requests.get(global_dynamicUrl)</a>
+<a class="sourceLine" id="cb31-6" title="6">global_dynamicHtml <span class="op">=</span> html.fromstring(global_dynamicPage.text)</a>
+<a class="sourceLine" id="cb31-7" title="7">table_area <span class="op">=</span> global_dynamicHtml.xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table&#39;</span>)</a>
+<a class="sourceLine" id="cb31-8" title="8"><span class="bu">print</span>(table_area)</a></code></pre></div>
+<pre><code>## []</code></pre>
+<p>Here is an initial example with Selenium. Selenium can be installed using <strong>pip</strong> with the command: <code>pip install selenium</code>. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser via executing the JavaScript. The JavaScript is executed because now the div element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" title="1"><span class="im">from</span> selenium <span class="im">import</span> webdriver</a>
+<a class="sourceLine" id="cb33-2" title="2"></a>
+<a class="sourceLine" id="cb33-3" title="3">driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;https://driver/chromedriver.exe&#39;</span>)</a>
+<a class="sourceLine" id="cb33-4" title="4">global_dynamicUrl <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic&quot;</span></a>
+<a class="sourceLine" id="cb33-5" title="5">driver.get(global_dynamicUrl)</a>
+<a class="sourceLine" id="cb33-6" title="6">table_area <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table&#39;</span>)</a>
+<a class="sourceLine" id="cb33-7" title="7">table_entries <span class="op">=</span> table_area.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</a>
+<a class="sourceLine" id="cb33-8" title="8"><span class="bu">print</span>(<span class="bu">len</span>(table_entries))</a>
+<a class="sourceLine" id="cb33-9" title="9">driver.close()</a></code></pre></div>
+<p>So far, our browser automaton can only execute JavaScript and access the resulting HTML. To scrape the resulting HTML will require extending the browser automation to support intensive website interactions with the user. Fortunately, Selenium has an excellent API to select and manipulate the HTML elements, which makes this straightforward. Here is an example implementation that rewrites the previous search all students example in Selenium. We will cover Selenium in detail in the following chapters.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" title="1"><span class="im">from</span> selenium <span class="im">import</span> webdriver</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="im">import</span> time</a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="im">import</span> string</a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb34-5" title="5"></a>
+<a class="sourceLine" id="cb34-6" title="6">driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;https://driver/chromedriver.exe&#39;</span>)</a>
+<a class="sourceLine" id="cb34-7" title="7">searchAddress <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search&quot;</span></a>
+<a class="sourceLine" id="cb34-8" title="8">driver.get(searchAddress)</a>
+<a class="sourceLine" id="cb34-9" title="9">time.sleep(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb34-10" title="10"></a>
+<a class="sourceLine" id="cb34-11" title="11">students <span class="op">=</span> <span class="bu">list</span>()</a>
+<a class="sourceLine" id="cb34-12" title="12"></a>
+<a class="sourceLine" id="cb34-13" title="13"><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</a>
+<a class="sourceLine" id="cb34-14" title="14">    <span class="cf">for</span> grade <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">8</span>):</a>
+<a class="sourceLine" id="cb34-15" title="15">        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).send_keys(letter)</a>
+<a class="sourceLine" id="cb34-16" title="16">        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_grade&quot;]/option[</span><span class="sc">{}</span><span class="st">]&#39;</span>.<span class="bu">format</span>(grade)).click()</a>
+<a class="sourceLine" id="cb34-17" title="17">        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search&quot;]&#39;</span>).click()</a>
+<a class="sourceLine" id="cb34-18" title="18">        time.sleep(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb34-19" title="19">        <span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb34-20" title="20">            <span class="cf">while</span> <span class="va">True</span>:</a>
+<a class="sourceLine" id="cb34-21" title="21">                table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</a>
+<a class="sourceLine" id="cb34-22" title="22">                entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</a>
+<a class="sourceLine" id="cb34-23" title="23">                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</a>
+<a class="sourceLine" id="cb34-24" title="24">                    student_dict <span class="op">=</span> <span class="bu">dict</span>()</a>
+<a class="sourceLine" id="cb34-25" title="25">                    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&quot;td&quot;</span>)</a>
+<a class="sourceLine" id="cb34-26" title="26">                    student_dict[<span class="st">&quot;name&quot;</span>] <span class="op">=</span> cols[<span class="dv">0</span>].text</a>
+<a class="sourceLine" id="cb34-27" title="27">                    student_dict[<span class="st">&quot;grade&quot;</span>] <span class="op">=</span> cols[<span class="dv">1</span>].text</a>
+<a class="sourceLine" id="cb34-28" title="28">                    student_dict[<span class="st">&quot;gpa&quot;</span>] <span class="op">=</span> cols[<span class="dv">2</span>].text</a>
+<a class="sourceLine" id="cb34-29" title="29">                    students.append(student_dict)</a>
+<a class="sourceLine" id="cb34-30" title="30"></a>
+<a class="sourceLine" id="cb34-31" title="31">                <span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb34-32" title="32">                    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>).click()</a>
+<a class="sourceLine" id="cb34-33" title="33">                    time.sleep(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb34-34" title="34">                <span class="cf">except</span>:</a>
+<a class="sourceLine" id="cb34-35" title="35">                    <span class="cf">break</span></a>
+<a class="sourceLine" id="cb34-36" title="36">            driver.get(searchAddress)</a>
+<a class="sourceLine" id="cb34-37" title="37">            time.sleep(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb34-38" title="38">        <span class="cf">except</span>:</a>
+<a class="sourceLine" id="cb34-39" title="39">            <span class="bu">print</span>(<span class="st">&quot;No results for letter </span><span class="sc">{}</span><span class="st"> at grade </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(letter, grade <span class="op">-</span> <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb34-40" title="40">            driver.get(searchAddress)</a>
+<a class="sourceLine" id="cb34-41" title="41">            time.sleep(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb34-42" title="42"></a>
+<a class="sourceLine" id="cb34-43" title="43">students_df <span class="op">=</span> pd.DataFrame.from_records(students)</a>
+<a class="sourceLine" id="cb34-44" title="44"><span class="bu">print</span>(students_df.head(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb34-45" title="45">driver.close()</a></code></pre></div>
+</div>
+<div id="comparison-of-approaches-1" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Comparison of Approaches</h3>
+<p>Because the first approach needs to understand how the data is loaded dynamically with JavaScript, it needs you to understand the JavaScript code, which can be found in <strong>View page source</strong>. For the example search web page, we were able to easily know how it works. However, some websites will be very complex and difficult to understand. With enough effort, any website can be scraped in this way. However, this effort can be avoided by instead using a Python package Selenium that automates a web browser to execute JavaScript to display a web page as we expect and then perform actions on this web page. Doing this way only needs you to know how Selenium works and its APIs that control a web browser. You do not need to understand how the backend of a website works. However, there are disadvantages. Automating a web browser adds overhead and so is much slower than just downloading the HTML. Additionally, solutions using a browser driver often require polling the web page to check whether the resulting HTML from an event has occurred yet or waiting a set amount of time for an AJAX event is complete by then, which is brittle and can easily fail when the network is slow.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="when-to-use-selenium-driver.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/IQSS/dss-template/edit/master/chapter_1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["template.pdf", "template.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -4,7 +4,7 @@ Write-Host "EBook creation starts"
 & "C:\Program Files\R\R-3.6.2\bin\rscript.exe" -e "install.packages('bookdown', repos='http://cran.case.edu/')"
 & "C:\Program Files\R\R-3.6.2\bin\rscript.exe" -e "install.packages('reticulate', repos='http://cran.case.edu/')"
  
-& "C:\Program Files\R\R-3.6.2\bin\rscript.exe" -e "bookdown::render_book('part_1.rmd', 'bookdown::gitbook')"
+& "C:\Program Files\R\R-3.6.2\bin\rscript.exe" -e "bookdown::render_book('index.rmd', 'bookdown::gitbook')"
 #& "C:\Program Files\R\R-3.6.2\bin\rscript.exe" -e "bookdown::render_book('rmd_files', 'bookdown::pdf_book')"
 #& "C:\Program Files\R\R-3.6.2\bin\rscript.exe" -e "bookdown::render_book('rmd_files', 'bookdown::epub_book')"
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Template</title>
+  <title>1 Introduction | Template</title>
   <meta name="description" content="This is a template for a bookdown website" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Template" />
+  <meta property="og:title" content="1 Introduction | Template" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="IQSS/dss-template" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Template" />
+  <meta name="twitter:title" content="1 Introduction | Template" />
   
   <meta name="twitter:description" content="This is a template for a bookdown website" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-1.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="approaches-to-web-scraping.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -181,26 +181,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Template</h1>
-<p class="date"><em>May 2020</em></p>
+<div id="introduction-1" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>We start with the basic concepts that are generic to all web scraping approaches.</p>
+<div id="how-does-the-web-work" class="section level2">
+<h2><span class="header-section-number">1.1</span> How does the web work?</h2>
+<div id="components" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Components</h3>
+<p>Computers connected to the web are called <strong>clients</strong> and <strong>servers</strong>. A simplified diagram of how they interact might look like this:</p>
+<p><img src="images/intro/client_server.png" /></p>
+<ul>
+<li><strong>Clients</strong> are the typical web user’s internet-connected devices (for example, your computer connected to your Wi-Fi) and web-accessing software available on those devices (usually a web browser like Firefox or Chrome).</li>
+<li><strong>Servers</strong> are computers that store webpages, sites, or apps. When a client device wants to access a webpage, a copy of the webpage is downloaded from the server onto the client machine to be displayed in the user’s web browser.</li>
+<li><strong>HTTP</strong> is a language for clients and servers to speak to each other.</li>
+</ul>
 </div>
-<div id="introduction" class="section level1 unnumbered">
-<h1>Introduction</h1>
-<div id="table-of-contents" class="section level2 unnumbered">
-<h2>Table of Contents</h2>
-<p>Here, we outline how the guide is organized into parts.</p>
+<div id="so-what-happens" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> So what happens?</h3>
+<p>When you type a web address into your browser:</p>
 <ol style="list-style-type: decimal">
-<li>First, we…</li>
-<li>Second, we…</li>
-<li>Lastly, we…</li>
+<li>The browser finds the address of the server that the website lives on.</li>
+<li>The browser sends an <strong>HTTP request message</strong> to the server, asking it to send a copy of the website to the client.</li>
+<li>If the server approves the client’s request, the server sends the client a <code>200 OK</code> message, and then starts displaying the website in the browser.</li>
 </ol>
-<p><a href="https://www.rstudio.com/wp-content/uploads/2015/03/devtools-cheatsheet.pdf">Here we provide an outside link to important content</a> which puts some useful information for this tutorial/workshop at our fingertips.</p>
-<p>Here we specify where people can provide feedback! Please email <a href="mailto:help@iq.harvard.edu" class="email">help@iq.harvard.edu</a></p>
 </div>
-<div id="authors-and-sources" class="section level2 unnumbered">
-<h2>Authors and Sources</h2>
-<p>Here we acknowledge a few people who helped make this tutorial/workshop possible. We also reference any sources that material was taken from.</p>
+</div>
+<div id="uniform-resource-locator-url" class="section level2">
+<h2><span class="header-section-number">1.2</span> Uniform Resource Locator (URL)</h2>
+<p>To retrieve information from the website (i.e., make a request), we need to know the location of the information we want to collect. The Uniform Resource Locator (URL) — commonly know as a “web address”, specifies the location of a resource (such as a web page) on the internet.</p>
+<p>A URL is usually composed of 5 parts:</p>
+<p><img src="images/intro/URL.png" /></p>
+<p>The 4th part, the “query string”, contains one or more <strong>parameters</strong>. The 5th part, the “fragment”, is an internal page reference and may not be present.</p>
+<p>For example, the URL we want to retrieve data from has the following structure:</p>
+<pre><code>protocol                    domain    path  parameters
+   https www.harvardartmuseums.org  browse  load_amount=10&amp;offset=0</code></pre>
+<p>It is often convenient to create variables containing the domain(s) and path(s) you’ll be working with, as this allows you to swap out paths and parameters as needed. Note that the path is separated from the domain with <code>/</code> and the parameters are separated from the path with <code>?</code>. If there are multiple parameters they are separated from each other with a <code>&amp;</code>.</p>
+</div>
+<div id="document-object-model-dom" class="section level2">
+<h2><span class="header-section-number">1.3</span> Document Object Model (DOM)</h2>
+<p>To parse HTML, we need to have a nice tree structure that contains the whole HTML file through which we can locate the information. This tree-like structure is the <strong>Document Object Model (DOM)</strong>. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. The DOM represents a document with a logical tree. <em>Each branch of the tree ends in a node, and each node contains objects</em>. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following is an example of DOM hierarchy in an HTML document:</p>
+<p><img src="images/intro/DOM.png" /></p>
+</div>
+<div id="decision-tree-for-choosing-web-scraping-approaches" class="section level2">
+<h2><span class="header-section-number">1.4</span> Decision Tree for Choosing Web Scraping Approaches</h2>
+<p>There are many commonly used web scraping approaches. The decision tree as follows will help you to decide upon the best approach to use for a particular web site.</p>
+<p><img src="images/intro/decision_tree.png" /></p>
 
 </div>
 </div>
@@ -209,8 +234,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="introduction-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="approaches-to-web-scraping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -241,7 +266,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/IQSS/dss-template/edit/master/index.Rmd",
+"link": "https://github.com/IQSS/dss-template/edit/master/intro.Rmd",
 "text": "Edit"
 },
 "history": {

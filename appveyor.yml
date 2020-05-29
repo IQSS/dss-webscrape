@@ -19,7 +19,7 @@ environment:
   APPVEYOR_RDP_PASSWORD: RDPPwd20 # used for debug purpose - RDP VM login password.
   #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   access_token:
-    secure: 2a753785b3e66f5def0f1d5d06ea54719d5b4941
+    secure: 63164897b8ff3f7add9d22879566fdfd6188e28b
 # scripts that are called at very beginning, before repo cloning    
 init:  
   - git config --global core.autocrlf true #Good practice because Windows line ending is different from Unix/Linux's

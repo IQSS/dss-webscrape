@@ -72,7 +72,7 @@ Suppose that we temporarily disable the JavaScript execution functionality in ou
 
 We can also see this difference using the requests module, which was also covered in detail in the Python Web-Scraping Workshop. 
 
-```{python, eval=TRUE, engine.path='c:\\Python37-x64'}
+```{python, eval=FALSE, engine.path='c:\\Python37-x64'}
 staticLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"
 staticLink_page = requests.get(staticLink_url)
 staticLink_html = html.fromstring(staticLink_page.text)

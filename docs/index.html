@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="This is a template for a bookdown website" />
   
 
-<meta name="author" content="" />
 
 
 
@@ -32,6 +31,7 @@
   
 
 <link rel="next" href="introduction-1.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,25 +52,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +80,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -130,12 +131,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A template for a bookdown website</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#table-of-contents"><i class="fa fa-check"></i>Table of Contents</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-and-sources"><i class="fa fa-check"></i>Authors and Sources</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction-1.html"><a href="introduction-1.html#how-does-the-web-work"><i class="fa fa-check"></i><b>1.1</b> How does the web work?</a><ul>
+<li class="chapter" data-level="1" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-1.html"><a href="introduction-1.html#how-does-the-web-work"><i class="fa fa-check"></i><b>1.1</b> How does the web work?</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="introduction-1.html"><a href="introduction-1.html#components"><i class="fa fa-check"></i><b>1.1.1</b> Components</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction-1.html"><a href="introduction-1.html#so-what-happens"><i class="fa fa-check"></i><b>1.1.2</b> So what happens?</a></li>
 </ul></li>
@@ -143,20 +147,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="introduction-1.html"><a href="introduction-1.html#document-object-model-dom"><i class="fa fa-check"></i><b>1.3</b> Document Object Model (DOM)</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction-1.html"><a href="introduction-1.html#decision-tree-for-choosing-web-scraping-approaches"><i class="fa fa-check"></i><b>1.4</b> Decision Tree for Choosing Web Scraping Approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html"><i class="fa fa-check"></i><b>2</b> Approaches to Web Scraping</a><ul>
-<li class="chapter" data-level="2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-static-web-page"><i class="fa fa-check"></i><b>2.1</b> Approaches to Scraping a Static Web Page</a><ul>
+<li class="chapter" data-level="2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html"><i class="fa fa-check"></i><b>2</b> Approaches to Web Scraping</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-static-web-page"><i class="fa fa-check"></i><b>2.1</b> Approaches to Scraping a Static Web Page</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#regular-expressions"><i class="fa fa-check"></i><b>2.1.1</b> Regular Expressions</a></li>
 <li class="chapter" data-level="2.1.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#beautiful-soup"><i class="fa fa-check"></i><b>2.1.2</b> Beautiful Soup</a></li>
 <li class="chapter" data-level="2.1.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#lxml"><i class="fa fa-check"></i><b>2.1.3</b> Lxml</a></li>
 <li class="chapter" data-level="2.1.4" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#comparison-of-approaches"><i class="fa fa-check"></i><b>2.1.4</b> Comparison of Approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-dynamic-web-page"><i class="fa fa-check"></i><b>2.2</b> Approaches to Scraping a Dynamic Web Page</a><ul>
+<li class="chapter" data-level="2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-dynamic-web-page"><i class="fa fa-check"></i><b>2.2</b> Approaches to Scraping a Dynamic Web Page</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#ajax-requests"><i class="fa fa-check"></i><b>2.2.1</b> AJAX Requests</a></li>
 <li class="chapter" data-level="2.2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#selenium"><i class="fa fa-check"></i><b>2.2.2</b> Selenium</a></li>
 <li class="chapter" data-level="2.2.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#comparison-of-approaches-1"><i class="fa fa-check"></i><b>2.2.3</b> Comparison of Approaches</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use Selenium Driver?</a><ul>
+<li class="chapter" data-level="3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use Selenium Driver?</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-search"><i class="fa fa-check"></i><b>3.1</b> An Example of Dynamic Search</a></li>
 <li class="chapter" data-level="3.2" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-link"><i class="fa fa-check"></i><b>3.2</b> An Example of Dynamic Link</a></li>
 <li class="chapter" data-level="3.3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-new-load"><i class="fa fa-check"></i><b>3.3</b> An Example of Dynamic New Load</a></li>
@@ -183,11 +191,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Template</h1>
+<p class="author"><em></em></p>
 <p class="date"><em>May 2020</em></p>
 </div>
-<div id="introduction" class="section level1 unnumbered">
+<div id="introduction" class="section level1 unnumbered" number="">
 <h1>Introduction</h1>
-<div id="table-of-contents" class="section level2 unnumbered">
+<div id="table-of-contents" class="section level2 unnumbered" number="">
 <h2>Table of Contents</h2>
 <p>Here, we outline how the guide is organized into parts.</p>
 <ol style="list-style-type: decimal">
@@ -198,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://www.rstudio.com/wp-content/uploads/2015/03/devtools-cheatsheet.pdf">Here we provide an outside link to important content</a> which puts some useful information for this tutorial/workshop at our fingertips.</p>
 <p>Here we specify where people can provide feedback! Please email <a href="mailto:help@iq.harvard.edu" class="email">help@iq.harvard.edu</a></p>
 </div>
-<div id="authors-and-sources" class="section level2 unnumbered">
+<div id="authors-and-sources" class="section level2 unnumbered" number="">
 <h2>Authors and Sources</h2>
 <p>Here we acknowledge a few people who helped make this tutorial/workshop possible. We also reference any sources that material was taken from.</p>
 

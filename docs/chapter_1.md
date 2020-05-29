@@ -259,9 +259,9 @@ for name, scraper in [('Regular Expressions', re_scraper), ('Beautiful Soup', bs
 ```
 
 ```
-## Regular Expressions: 0.3550107479095459 seconds
-## Beautiful Soup: 0.8189530372619629 seconds
-## Lxml: 0.1420001983642578 seconds
+## Regular Expressions: 0.6091632843017578 seconds
+## Beautiful Soup: 1.3750340938568115 seconds
+## Lxml: 0.23434114456176758 seconds
 ```
 The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call `re.purge()` in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.
 
@@ -295,12 +295,12 @@ print(students_A5p0.head(10))
 ```
 
 ```
-##    GPA Grade     Name
-## 0  3.0     5    Annie
-## 1  2.5     5      Ala
-## 2  3.5     5  Aayusha
-## 3  4.0     5  Anushri
-## 4  3.0     5   Andrew
+##       Name Grade  GPA
+## 0    Annie     5  3.0
+## 1      Ala     5  2.5
+## 2  Aayusha     5  3.5
+## 3  Anushri     5  4.0
+## 4   Andrew     5  3.0
 ```
 Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating the resulting pages of the JSON responses. The results are then stored in a spreadsheet.
 
@@ -330,17 +330,17 @@ print(students_df.head(10))
 ```
 
 ```
-##    GPA Grade       Name
-## 0    3     1      Allen
-## 1  3.5     4   Anderson
-## 2    4     5      Adams
-## 3    1     5  Alexander
-## 4    3     5      Aaron
-## 5  3.5     5        Aws
-## 6    2     5       Alan
-## 7    3     5      Annie
-## 8  2.5     5        Ala
-## 9  3.5     5    Aayusha
+##         Name Grade  GPA
+## 0      Allen     1    3
+## 1   Anderson     4  3.5
+## 2      Adams     5    4
+## 3  Alexander     5    1
+## 4      Aaron     5    3
+## 5        Aws     5  3.5
+## 6       Alan     5    2
+## 7      Annie     5    3
+## 8        Ala     5  2.5
+## 9    Aayusha     5  3.5
 ```
 The AJAX-dependent websites initially look more complex but their structure encourages separating the data transmission between client and server and the data presentation on the client browser executing JavaScript, which can make our job of extracting this data much easier.
 

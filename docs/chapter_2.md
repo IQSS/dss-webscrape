@@ -83,21 +83,11 @@ staticLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/static/views/A
 staticLink_page = requests.get(staticLink_url)
 staticLink_html = html.fromstring(staticLink_page.text)
 html.open_in_browser(staticLink_html, encoding = 'UTF-8')
-```
 
-```
-## file://C:/Users/JLiu/AppData/Local/Temp/tmpqcynnfub.html
-```
-
-```python
 dynamicLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams"
 dynamicLink_page = requests.get(dynamicLink_url)
 dynamicLink_html = html.fromstring(dynamicLink_page.text)
 html.open_in_browser(dynamicLink_html, encoding = 'UTF-8')
-```
-
-```
-## file://C:/Users/JLiu/AppData/Local/Temp/tmpgajkmvoe.html
 ```
 
 The requests module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.  

@@ -1,7 +1,7 @@
 ---
 title: "Template"
 author: ''
-date: "May 2020"
+date: "June 2020"
 description: This is a template for a bookdown website
 documentclass: book
 geometry: margin=1.5in

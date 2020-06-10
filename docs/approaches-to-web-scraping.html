@@ -31,7 +31,7 @@
   
 <link rel="prev" href="introduction-1.html"/>
 <link rel="next" href="when-to-use-selenium-driver.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.2/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -168,6 +168,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-search"><i class="fa fa-check"></i><b>3.1</b> An Example of Dynamic Search</a></li>
 <li class="chapter" data-level="3.2" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-link"><i class="fa fa-check"></i><b>3.2</b> An Example of Dynamic Link</a></li>
 <li class="chapter" data-level="3.3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-new-load"><i class="fa fa-check"></i><b>3.3</b> An Example of Dynamic New Load</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="handle-web-forms.html"><a href="handle-web-forms.html"><i class="fa fa-check"></i><b>4</b> Handle Web Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="handle-web-forms.html"><a href="handle-web-forms.html#input-box"><i class="fa fa-check"></i><b>4.1</b> Input Box</a></li>
+<li class="chapter" data-level="4.2" data-path="handle-web-forms.html"><a href="handle-web-forms.html#check-box"><i class="fa fa-check"></i><b>4.2</b> Check Box</a></li>
+<li class="chapter" data-level="4.3" data-path="handle-web-forms.html"><a href="handle-web-forms.html#radio-button"><i class="fa fa-check"></i><b>4.3</b> Radio Button</a></li>
+<li class="chapter" data-level="4.4" data-path="handle-web-forms.html"><a href="handle-web-forms.html#link"><i class="fa fa-check"></i><b>4.4</b> Link</a></li>
+<li class="chapter" data-level="4.5" data-path="handle-web-forms.html"><a href="handle-web-forms.html#dropdown"><i class="fa fa-check"></i><b>4.5</b> Dropdown</a></li>
+<li class="chapter" data-level="4.6" data-path="handle-web-forms.html"><a href="handle-web-forms.html#buttons"><i class="fa fa-check"></i><b>4.6</b> Buttons</a></li>
+<li class="chapter" data-level="4.7" data-path="handle-web-forms.html"><a href="handle-web-forms.html#demos"><i class="fa fa-check"></i><b>4.7</b> Demos</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="handle-web-forms.html"><a href="handle-web-forms.html#fill-in-the-form-just-once"><i class="fa fa-check"></i><b>4.7.1</b> Fill in the Form Just Once</a></li>
+<li class="chapter" data-level="4.7.2" data-path="handle-web-forms.html"><a href="handle-web-forms.html#fill-in-the-form-many-times"><i class="fa fa-check"></i><b>4.7.2</b> Fill in the Form Many Times</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="handle-web-forms.html"><a href="handle-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>4.8</b> ElementNotInteractableException</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="handle-web-forms.html"><a href="handle-web-forms.html#wait-until-the-element-is-clickable"><i class="fa fa-check"></i><b>4.8.1</b> Wait Until the Element is Clickable</a></li>
+<li class="chapter" data-level="4.8.2" data-path="handle-web-forms.html"><a href="handle-web-forms.html#scroll-until-the-element-is-on-screen"><i class="fa fa-check"></i><b>4.8.2</b> Scroll Until the Element is On-Screen</a></li>
+<li class="chapter" data-level="4.8.3" data-path="handle-web-forms.html"><a href="handle-web-forms.html#execute-javascript-to-interact-directly-with-the-dom"><i class="fa fa-check"></i><b>4.8.3</b> Execute JavaScript to Interact Directly with the DOM</a></li>
+<li class="chapter" data-level="4.8.4" data-path="handle-web-forms.html"><a href="handle-web-forms.html#perform-whatever-other-action-is-necessary"><i class="fa fa-check"></i><b>4.8.4</b> Perform Whatever Other Action is Necessary</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -375,9 +396,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-39"><a href="approaches-to-web-scraping.html#cb22-39"></a>        <span class="cf">assert</span>(result[<span class="st">&quot;level&quot;</span>] <span class="op">==</span> <span class="st">&quot;No&quot;</span>)</span>
 <span id="cb22-40"><a href="approaches-to-web-scraping.html#cb22-40"></a>    end <span class="op">=</span> time.time()</span>
 <span id="cb22-41"><a href="approaches-to-web-scraping.html#cb22-41"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st"> seconds&#39;</span>.<span class="bu">format</span>(name, end <span class="op">-</span> start))</span></code></pre></div>
-<pre><code>## Regular Expressions: 0.9999828338623047 seconds
-## Beautiful Soup: 2.54687237739563 seconds
-## Lxml: 0.28125762939453125 seconds</code></pre>
+<pre><code>## Regular Expressions: 0.6241536140441895 seconds
+## Beautiful Soup: 1.406250238418579 seconds
+## Lxml: 0.21875333786010742 seconds</code></pre>
 <p>The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call <code>re.purge()</code> in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.</p>
 </div>
 </div>

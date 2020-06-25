@@ -11,7 +11,7 @@ site: bookdown::bookdown_site
 biblio-style: apalike
 ---
 
-# Introduction {#intro}
+# Introduction {-}
 
 ## Table of Contents {-}
 

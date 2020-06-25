@@ -34,13 +34,17 @@ Next, we need to tell Selenium how to find a particular element or set of elemen
 
 *   `find_element_by_id()` and `find_elements_by_id()` methods:   
 They return an element or a set of elements that have matching ID attribute values. The `find_elements_by_id()` method returns all the elements that have the same ID attribute values. Let's try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as search. You can find this code if you inspect the site and reach this element in its DOM.
+
     ```
     <input type="submit" id="search" value="Search" name="q" class="button" />
     ```
+    
     Here is an example that uses the `find_element_by_id()` method to find the search button. We will pass the ID attribute's value, search, to the `find_element_by_id()` method:
+    
     ```{python, eval=FALSE}
     search_button = driver.find_element_by_id("search")
     ```
+
 *   `find_element_by_name()` and `find_elements_by_name()` methods:   
 They return element(s) that have matching name attribute value. The `find_elements_by_name()` method returns all the elements that have the same name attribute values. In the previous example, we can find the search button using its name attribute value instead of the ID attribute value in the following way:
     ```{python, eval=FALSE}
@@ -88,11 +92,13 @@ They return element(s) that are found by the specified CSS selector. CSS is a st
     ```
 *   `find_element_by_link_text()` and `find_elements_by_link_text()` methods:   
 They find link(s) using the text displayed for the link. The `find_elements_by_link_text()` method gets all the link elements that have matching link text. For example, we want to get the **privacy policy link** displayed on the example site. Here is the HTML code for the **privacy policy link** implemented as the `<a>` or anchor tag with text **“privacy policy”**:
+    
     ```
     This is the <a id="privacy_policy" href="/tutorial/static/views/privacy.html">privacy policy.</a><br/>
     ```
 
     Let's create a test that locates the privacy policy link using its text and check whether it's displayed:
+    
     ```{python, eval=FALSE}
     privacypolicy_link = driver.find_element_by_link_text("privacy policy.")
     privacypolicy_link.click()

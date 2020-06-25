@@ -1,4 +1,4 @@
-# Introduction
+# Concepts
 We start with the basic concepts that are generic to all web scraping approaches.
 
 ## How does the web work?

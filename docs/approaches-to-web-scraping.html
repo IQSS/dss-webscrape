@@ -408,9 +408,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-39"><a href="approaches-to-web-scraping.html#cb22-39"></a>        <span class="cf">assert</span>(result[<span class="st">&quot;level&quot;</span>] <span class="op">==</span> <span class="st">&quot;No&quot;</span>)</span>
 <span id="cb22-40"><a href="approaches-to-web-scraping.html#cb22-40"></a>    end <span class="op">=</span> time.time()</span>
 <span id="cb22-41"><a href="approaches-to-web-scraping.html#cb22-41"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st"> seconds&#39;</span>.<span class="bu">format</span>(name, end <span class="op">-</span> start))</span></code></pre></div>
-<pre><code>## Regular Expressions: 0.5155882835388184 seconds
-## Beautiful Soup: 1.2968761920928955 seconds
-## Lxml: 0.21877646446228027 seconds</code></pre>
+<pre><code>## Regular Expressions: 0.4687495231628418 seconds
+## Beautiful Soup: 1.171874761581421 seconds
+## Lxml: 0.1718752384185791 seconds</code></pre>
 <p>The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call <code>re.purge()</code> in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.</p>
 </div>
 </div>

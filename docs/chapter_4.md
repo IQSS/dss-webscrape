@@ -1,4 +1,4 @@
-# Handle Web Forms
+# Filling in Web Forms
 You must have noticed the ubiquity of web forms while surfing the internet. A web form comprises web elements such as input box, check box, radio button, link, drop down menu and submit button to collect user data. To process web forms, we would need to first find these web elements and then take subsequent actions on them like selecting a value or entering some text. Selenium has an API that helps us to do that. Since we have covered how to find web element(s) using Selenium selectors in the previous section, this section focuses on the crux of accessing form in Selenium: performing actions on and interacting with the forms using Selenium. Let us see how different actions can be performed on each type of web fields that may be involved in your web form. We use this [example login form website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to illustrate most of the examples used in this section. Below is a snapshot of how this website uses forms:  
 
 ![](images/form/form.png)

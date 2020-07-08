@@ -1,4 +1,10 @@
 # Approaches to Web Scraping
+
+## Decision Tree to Choose Web Scraping Approaches
+There are many commonly used web scraping approaches. The decision tree as follows will help you to decide upon the best approach to use for a particular web site.
+
+![](images/intro/decision_tree.png)
+
 If the content you are viewing in your browser does not match the content you see in the HTML source code you are retrieving from the site, then you are experiencing the dynamic websites. Otherwise, if they match with each other, the websites are static. The mismatch is due to the execution of JavaScript that changes the HTML elements on the page. You could view the original HTML via **View page source**. You could view the revised HTML in your browser if it executes JavaScript in the **Elements** window via **Inspecting** the web page.
 
 ## Approaches to Scraping a Static Web Page
@@ -259,9 +265,9 @@ for name, scraper in [('Regular Expressions', re_scraper), ('Beautiful Soup', bs
 ```
 
 ```
-## Regular Expressions: 0.4687495231628418 seconds
-## Beautiful Soup: 1.171874761581421 seconds
-## Lxml: 0.1718752384185791 seconds
+## Regular Expressions: 0.5156021118164062 seconds
+## Beautiful Soup: 1.2812488079071045 seconds
+## Lxml: 0.1875307559967041 seconds
 ```
 The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call `re.purge()` in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.
 

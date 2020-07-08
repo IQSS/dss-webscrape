@@ -22,8 +22,8 @@ This tutorial is organized into the following parts:
 1. Explain the basic concepts of a web.       
 2. Compare the common approaches to web scraping.       
 3. Illustrate the situations of when to use Selenium Driver.          
-4. Illustrate how to find web elements use Selenium Driver.     
-5. Illustrate how to fill in web forms use Selenium Driver.
+4. Illustrate how to find web elements using Selenium Driver.     
+5. Illustrate how to fill in web forms using Selenium Driver.
 
 We plan to add more applications in the near future. The current content of this tutorial is still under development, and we take feedback! If you find anything confusing or think the guide misses important content, please email help@iq.harvard.edu.
 

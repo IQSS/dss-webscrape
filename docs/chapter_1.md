@@ -265,9 +265,9 @@ for name, scraper in [('Regular Expressions', re_scraper), ('Beautiful Soup', bs
 ```
 
 ```
-## Regular Expressions: 0.5156021118164062 seconds
-## Beautiful Soup: 1.2812488079071045 seconds
-## Lxml: 0.1875307559967041 seconds
+## Regular Expressions: 0.5312414169311523 seconds
+## Beautiful Soup: 1.4062237739562988 seconds
+## Lxml: 0.20313143730163574 seconds
 ```
 The results show that Beautiful Soup is much slower than the other two approaches. Regular expressions does not perform the fastest, because we call `re.purge()` in every iteration to clear cache. By default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. lxml performs comparatively well with regular expressions, although lxml has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and lxml becomes even more competitive.
 

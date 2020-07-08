@@ -43,7 +43,3 @@ To parse HTML, we need to have a nice tree structure that contains the whole HTM
 
 ![](images/intro/DOM.png)
 
-## Decision Tree to Choose Web Scraping Approaches
-There are many commonly used web scraping approaches. The decision tree as follows will help you to decide upon the best approach to use for a particular web site.
-
-![](images/intro/decision_tree.png)

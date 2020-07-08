@@ -1,4 +1,10 @@
 # Approaches to Web Scraping
+
+## Decision Tree to Choose Web Scraping Approaches
+There are many commonly used web scraping approaches. The decision tree as follows will help you to decide upon the best approach to use for a particular web site.
+
+![](images/intro/decision_tree.png)
+
 If the content you are viewing in your browser does not match the content you see in the HTML source code you are retrieving from the site, then you are experiencing the dynamic websites. Otherwise, if they match with each other, the websites are static. The mismatch is due to the execution of JavaScript that changes the HTML elements on the page. You could view the original HTML via **View page source**. You could view the revised HTML in your browser if it executes JavaScript in the **Elements** window via **Inspecting** the web page.
 
 ## Approaches to Scraping a Static Web Page

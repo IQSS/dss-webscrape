@@ -1,12 +1,12 @@
-book_filename: 'template'
+book_filename: 'webscraping'
 
 output_dir: docs
 
-repo: https://github.com/IQSS/dss-template
+repo: https://github.com/IQSS/dss-webscrape
 
 rmd_files:
   - "index.Rmd"
-  - "intro.Rmd"
+  - "chapter_0.Rmd"
   - "chapter_1.Rmd"
   - "chapter_2.Rmd"
   - "chapter_3.Rmd"

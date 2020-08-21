@@ -1,3 +1,12 @@
+
+```{r, include=FALSE, echo=FALSE}
+require(knitr)
+knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
+# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
+require(reticulate)
+use_condaenv(condaenv="r-reticulate", required=TRUE)
+```
+
 # When to Use Selenium Driver?
 The Selenium driver is particularly used to scrape data from dynamic websites that use JavaScript (although it can scrape data from static websites too). The use of JavaScript can vary from simple form events to single page apps that download all their content after loading. The consequence of this is that for many web pages the content that is displayed in our web browser is not available in the original HTML. For example, the result table shows up only after the user click the search box, the content following a click on a link is generated instantaneously rather than already being stored on the server before the click, or a JavaScript request might trigger a new block of content to load. The following subsections of this part cover those three examples in detail. This tutorial will cover the scraping techniques that use Python Selenium package capable of executing the JavaScript itself, and scrape the website as you view it in your browser. 
 

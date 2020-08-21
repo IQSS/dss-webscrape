@@ -37,18 +37,20 @@ A URL is usually composed of 5 parts:
 
 ![](images/intro/URL.png)
 
-The 4th part, the "query string", contains one or more **parameters**. The 5th part, the "fragment", is an internal page reference and may not be present.
+The 4th part, the "query string", contains one or more **parameters** --- in this case, there are two parameters: `id` and `cat`. The 5th part, the "fragment", is an internal page reference and may not be present.
 
-It is often convenient to create variables containing the domain(s) and path(s) you'll be working with, as this allows you to swap out paths and parameters as needed. Note that the path is separated from the domain with `/` and the parameters are separated from the path with `?`. If there are multiple parameters they are separated from each other with a `&`.
+It is often convenient to create variables containing the domain(s) and path(s) you'll be working with, as this allows you to swap out paths and parameters as needed. Note that the path is separated from the domain with a forward slash `/` and the parameters are separated from the path with a question mark `?`. If there are multiple parameters they are separated from each other with an ampersand `&`.
 
 ## Document Object Model (DOM)
 
-To parse HTML, we need to have a nice tree structure that contains the whole HTML file through which we can locate the information. This tree-like structure is the **Document Object Model (DOM)**. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. The DOM represents a document with a logical tree. *Each branch of the tree ends in a node, and each node contains objects*. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following is an example of DOM hierarchy in an HTML document:
+To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in **nodes** and links information through **branches**. This tree-like structure is called the **Document Object Model (DOM)**. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. *Each branch of the tree ends in a node, and each node contains objects*. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following is an example of DOM hierarchy in an HTML document:
 
 ![](images/intro/DOM.png)
 
 
-**NEED AN ACTUAL EXAMPLE OF THE DOM IN HTML CODE:**
+**WE NEED AN ACTUAL EXAMPLE OF THE DOM IN HTML CODE:**
+
+Explain what a <div> element is, what a <td> element is etc.
 
 ```
 <tr id=students_school_row>
@@ -57,4 +59,48 @@ To parse HTML, we need to have a nice tree structure that contains the whole HTM
             School:
         </label>
     <td class=w2p_fw>IV
+```
+
+```
+<html>
+    <body>
+        <div id="result"></div>
+        <script>
+                document.getElementById("result").innerHTML = 
+            `<table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Grade</th>
+                        <th>GPA</th>
+                    </tr>
+                    <tr>
+                        <td>Adams</td>
+                        <td>5</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Alexander</td>
+                        <td>5</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Aaron</td>
+                        <td>5</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Aws</td>
+                        <td>5</td>
+                        <td>3.5</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>5</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            `;
+        </script>
+    </body>
+</html>
 ```

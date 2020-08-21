@@ -1,3 +1,12 @@
+
+```{r, include=FALSE, echo=FALSE}
+require(knitr)
+knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
+# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
+require(reticulate)
+use_condaenv(condaenv="r-reticulate", required=TRUE)
+```
+
 # Concepts
 We start with the basic concepts that are generic to all web scraping approaches.
 
@@ -30,11 +39,6 @@ A URL is usually composed of 5 parts:
 
 The 4th part, the "query string", contains one or more **parameters**. The 5th part, the "fragment", is an internal page reference and may not be present.
 
-For example, the URL we want to retrieve data from has the following structure:
-
-    protocol                    domain    path  parameters
-       https www.harvardartmuseums.org  browse  load_amount=10&offset=0
-
 It is often convenient to create variables containing the domain(s) and path(s) you'll be working with, as this allows you to swap out paths and parameters as needed. Note that the path is separated from the domain with `/` and the parameters are separated from the path with `?`. If there are multiple parameters they are separated from each other with a `&`.
 
 ## Document Object Model (DOM)
@@ -43,3 +47,14 @@ To parse HTML, we need to have a nice tree structure that contains the whole HTM
 
 ![](images/intro/DOM.png)
 
+
+**NEED AN ACTUAL EXAMPLE OF THE DOM IN HTML CODE:**
+
+```
+<tr id=students_school_row>
+    <td class=w2p_fl>
+        <label for="students_school" id="students_school_label">
+            School:
+        </label>
+    <td class=w2p_fw>IV
+```

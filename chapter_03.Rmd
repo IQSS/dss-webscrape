@@ -47,7 +47,7 @@ If we scroll down the source code a little, we find that the display of the resu
 ![](images/I-1/4.png)
 
 ## Dynamic link
-Let us now examine what a dynamic link is, and how it is different from a static link. When you click on a link, if it is a static link, the content that appears comes from a file that has been stored on the server before the click. If it is a dynamic link, then the content that appears is generated instantaneously after the click by executing a JavaScript function. To see this, let us `inspect` the result table in the `Elements` window.  
+Let us now examine what a dynamic link is, and how it is different from a static link. When you click on a link, if it is a static link, the content that appears comes from a file that has been stored on the server before the click. If it is a dynamic link, then the content that appears is generated instantaneously after the click by executing a JavaScript function. To see this, let us `Inspect` the result table in the `Elements` window.  
 
 Look at the two links highlighted below. They have a tag name `<a>` with an attribute `href`. The first link is a static link, while the second is a dynamic link: 
 

@@ -6,11 +6,11 @@ repo: https://github.com/IQSS/dss-webscrape
 
 rmd_files:
   - "index.Rmd"
-  - "chapter_0.Rmd"
-  - "chapter_1.Rmd"
-  - "chapter_2.Rmd"
-  - "chapter_3.Rmd"
-  - "chapter_4.Rmd"
+  - "chapter_01.Rmd"
+  - "chapter_02.Rmd"
+  - "chapter_03.Rmd"
+  - "chapter_04.Rmd"
+  - "chapter_05.Rmd"
 
 delete_merged_file: true
 

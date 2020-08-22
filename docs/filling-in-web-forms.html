@@ -191,8 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#buttons"><i class="fa fa-check"></i><b>5.6</b> Buttons</a></li>
 <li class="chapter" data-level="5.7" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#demos"><i class="fa fa-check"></i><b>5.7</b> Demos</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-just-once"><i class="fa fa-check"></i><b>5.7.1</b> Fill in the Form Just Once</a></li>
-<li class="chapter" data-level="5.7.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-many-times"><i class="fa fa-check"></i><b>5.7.2</b> Fill in the Form Many Times</a></li>
+<li class="chapter" data-level="5.7.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-form-once"><i class="fa fa-check"></i><b>5.7.1</b> Fill form once</a></li>
+<li class="chapter" data-level="5.7.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-form-many-times"><i class="fa fa-check"></i><b>5.7.2</b> Fill form many times</a></li>
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>5.8</b> <code>ElementNotInteractableException</code></a>
 <ul>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="radio-button" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Radio button</h2>
-<p>A radio button is a circular element on the screen that we can select. It is similar to a checkbox only difference being if we are given multiple radio buttons, we can select just one, while in the case of multiple checkboxes, we can opt multiple of them. The actions performed on the radio button are similar to those on a checkbox and we can use the same methods as above to select a radio button or validate its status of selection: <code>click()</code> and <code>is_selected()</code> / <code>get_attribute(“checked”)</code>. The code below provides an example:</p>
+<p>A radio button is a circular element on the screen that we can select. A radio button is similar to a checkbox, but it is only possible to select one radio button out of several choices, while we can select multiple checkboxes. The actions performed on the radio button are similar to those on a checkbox and we can use the same methods as above to select a radio button or validate its status of selection: <code>click()</code> and <code>is_selected()</code> / <code>get_attribute(“checked”)</code>. The code below provides an example:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="filling-in-web-forms.html#cb52-1"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
 <span id="cb52-2"><a href="filling-in-web-forms.html#cb52-2"></a>pageSize_5_boolean <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).is_selected()</span>
 <span id="cb52-3"><a href="filling-in-web-forms.html#cb52-3"></a><span class="bu">print</span>(pageSize_5_boolean)</span>
@@ -262,25 +262,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb52-6"><a href="filling-in-web-forms.html#cb52-6"></a>pageSize_5_other <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).get_attribute(<span class="st">&quot;checked&quot;</span>)</span>
 <span id="cb52-7"><a href="filling-in-web-forms.html#cb52-7"></a><span class="bu">print</span>(pageSize_5_other)</span>
 <span id="cb52-8"><a href="filling-in-web-forms.html#cb52-8"></a><span class="bu">print</span>(<span class="bu">type</span>(pageSize_5_other))</span></code></pre></div>
-<p>Radio button does not support deselection. To deselect a radio button, one needs to select any other radio button in that group. If you select the same radio button trying to deselect it, you will get the same selection as before; nothing will change. The following code shows how to deselect a radio button only when it is selected:</p>
+<p>Radio buttons do not support deselection. To deselect a radio button, one needs to select any other radio button in that group. If you select the same radio button trying to deselect it, you will get the same selection as before; nothing will change. The following code shows how to deselect a radio button only when it is selected:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="filling-in-web-forms.html#cb53-1"></a>driver.find_element_by_id(<span class="st">&#39;p10&#39;</span>).click()</span></code></pre></div>
 </div>
 <div id="link" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Link</h2>
-<p>A link redirects us to a new web page or a new window pop-up or a similar thing. We can use two mechanisms to navigate to a new screen or a new pop up or a new form: we can either do a click action on a link element we find, or get the new URL from the link element we find and then navigate to it. Here is an example of operating the link embedded in the example webpage using the first mechanism:</p>
+<p>A link redirects us to a new web page or a new pop-up window or a similar thing. We can use two mechanisms to navigate to a new screen or a new pop up or a new form: we can either do a click action on a link element we find, or get the new URL from the link element we find and then navigate to it. Here is an example of operating the link embedded in the example webpage using the first mechanism:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="filling-in-web-forms.html#cb54-1"></a>driver.find_element_by_id(<span class="st">&quot;privacy_policy&quot;</span>).click()</span></code></pre></div>
-<p>Links are generally embedded in the link element we find with a <code>&lt;a&gt;</code> tag name as the <strong>“href”</strong> property. Instead of directly clicking on the link, we can use the <code>get_attribute()</code> method. Here is the same example using the second mechanism:</p>
+<p>Links are generally embedded in the link element we find with a <code>&lt;a&gt;</code> tag name as the <code>"href"</code> property. Instead of directly clicking on the link, we can use the <code>get_attribute()</code> method. Here is the same example using the second mechanism:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="filling-in-web-forms.html#cb55-1"></a>privacy_object <span class="op">=</span> driver.find_element_by_id(<span class="st">&quot;privacy_policy&quot;</span>)</span>
 <span id="cb55-2"><a href="filling-in-web-forms.html#cb55-2"></a>privacy_link <span class="op">=</span> privacy_object.get_attribute(<span class="st">&quot;href&quot;</span>)</span>
 <span id="cb55-3"><a href="filling-in-web-forms.html#cb55-3"></a>driver.get(privacy_link)</span></code></pre></div>
 </div>
 <div id="dropdown" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Dropdown</h2>
-<p>Dropdown is a list which has an arrow at the rightmost end to expand and show the values. It provides a list of options to the user thereby giving access to one or multiple values as per the requirement. To work with a dropdown, first you need to select or find the main element group and then go inside further and select the sub-element that you want to select for. Selenium Python API provides the <code>Select</code> class, which allows you to select the element of your choice. Note that the <code>Select</code> class only works with tags which have <code>&lt;select&gt;</code> tags. We can select a sub-element using (1) the Index of Dropdown, (2) the Value of Dropdown, or (3) the Text of Dropdown.</p>
-<p>If the dropdown has an <strong>“index”</strong> attribute, then we can use that index to select a particular option. You need to be careful while using this way, because it is not un-common to have the index start at 0. We can use the <code>select_by_index()</code> method to select an option using the <strong>“index”</strong> attribute. For example, we want to select the 5th grade students:</p>
+<p>A dropdown is a list which has an arrow at the rightmost end to expand and show values. It provides a list of options to the user, thereby giving access to one or multiple values as per the requirement. To work with a dropdown, first you need to select or find the main element group and then go inside further and select the sub-element that you want to capture. The Selenium Python API provides the <code>Select</code> class, which allows you to select the element of your choice. Note that the <code>Select</code> class only works with tags that have <code>&lt;select&gt;</code> tags. We can select a sub-element of the dropdown using: 1) index, 2) value, or 3) text.</p>
+<p>If the dropdown has an <code>"index"</code> attribute, then we can use that index to select a particular option. We need to be careful when using this approach, because it is not uncommon to have the index start at 0. We can use the <code>select_by_index()</code> method to select an option using the <code>"index"</code> attribute. For example, we want to select the 5th grade students:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="filling-in-web-forms.html#cb56-1"></a>grade_dropdown <span class="op">=</span> Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>))</span>
 <span id="cb56-2"><a href="filling-in-web-forms.html#cb56-2"></a>grade_dropdown.select_by_index(<span class="dv">6</span>)</span></code></pre></div>
-<p>If the html mark-up defines an <code>&lt;option&gt;</code> tag, then you can use the value matching the argument. Suppose the html for dropdown is like this:</p>
+<p>If the HTML mark-up defines an <code>&lt;option&gt;</code> tag, then you can use the value matching the argument. Suppose the HTML for dropdown is like this:</p>
 <pre><code>&lt;td&gt;
     &lt;select id=&quot;search_grade&quot;&gt;
         &lt;option selected&gt;(no value)&lt;/option&gt;
@@ -294,18 +294,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 &lt;/td&gt;</code></pre>
 <p>We can use the <code>select_by_value()</code> method to select an option using the <code>"value"</code> attribute.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="filling-in-web-forms.html#cb58-1"></a>grade_dropdown.select_by_value(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
-<p>Probably the easiest way of doing it is to select an element using text of dropdown. You have to match the text which is displayed in the drop down using the <code>select_by_visible_text()</code> method. For example:</p>
+<p>Probably the easiest way of selecting a sub-element is to select an element using the text of the dropdown. We have to match the text that is displayed in the dropdown using the <code>select_by_visible_text()</code> method. For example:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="filling-in-web-forms.html#cb59-1"></a>grade_dropdown.select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
-<p>In a similar way we can deselect any selected value from the dropdown using any of the below options: (1) <code>deselect_by_index()</code>, (2) <code>deselect_by_value()</code>, and (3) <code>deselect_by_visible_text()</code>. These methods can be used only when you make multiple selections. The <code>deselect_all()</code> method clears all the selected options. This is also only applicable in case of multiple selections. If you try to use this in case of single selection, this will throw a <em>NotImplementedError</em> exception.</p>
-<p>There are times while performing Selenium automation of our web app, where we need to validate the options coming in our dropdown list. The <code>Select</code> class provides property methods that allow us to do it. The first two property methods are applicable wherein we can select multiple options.</p>
+<p>In a similar way, we can deselect any selected value from the dropdown using any of the following options: 1) <code>deselect_by_index()</code>, 2) <code>deselect_by_value()</code>, or 3) <code>deselect_by_visible_text()</code>. These methods can be used only when you make multiple selections. The <code>deselect_all()</code> method clears all the selected options. This is also only applicable when there are multiple selections. If you try to use this when there is a single selection, it will throw a <code>NotImplementedError</code> exception.</p>
+<p>There are times while performing Selenium automation of our web app, where we need to validate the options coming in our dropdown list. The <code>Select</code> class provides property methods that allow us to do this. The first two property methods are applicable when we can select multiple options.</p>
 <ul>
-<li>.all_selected_options - Get the list of all the selected options.<br />
+<li><code>.all_selected_options</code> — Get the list of all the selected options.<br />
 </li>
-<li>.first_selected_option - Return the first option that has been selected from the dropdown and unlike the above method it would return a single web element and not a list.<br />
+<li><code>.first_selected_option</code> — Return the first option that has been selected from the dropdown and unlike the above method it would return a single web element, not a list.<br />
 </li>
-<li>.is_multiple - Return True if the dropdown allows multi-selection and return NoneType otherwise.<br />
+<li><code>.is_multiple</code> — Return <code>True</code> if the dropdown allows multi-selection and return <code>NoneType</code> otherwise.<br />
 </li>
-<li>.options - Get a list of all available options in a dropdown.</li>
+<li><code>.options</code> — Get a list of all available options in a dropdown.</li>
 </ul>
 </div>
 <div id="buttons" class="section level2" number="5.6">
@@ -315,9 +315,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="demos" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Demos</h2>
-<p>I will first show you a simple program that handles all the types of form elements we have covered so far altogether using our <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example site</a>. Second, using our <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example site</a>, I will show you an advanced program that handles the situation where you will need to access this form not once but many times sequentially.</p>
-<div id="fill-in-the-form-just-once" class="section level3" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> Fill in the Form Just Once</h3>
+<p>Using our <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example site</a>, We will first show you a simple program that handles all the types of form elements we have covered so far. Second, we will show you an advanced program that handles the situation where you will need to access this form not once but many times sequentially.</p>
+<div id="fill-form-once" class="section level3" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Fill form once</h3>
 <p>Suppose that we want to search all the 5th grade students whose names start with “A” and page size set at 5. The program below shows you how to fill in the form and submit it to the server:</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="filling-in-web-forms.html#cb61-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb61-2"><a href="filling-in-web-forms.html#cb61-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
@@ -332,9 +332,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb61-11"><a href="filling-in-web-forms.html#cb61-11"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
 <span id="cb61-12"><a href="filling-in-web-forms.html#cb61-12"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span></code></pre></div>
 </div>
-<div id="fill-in-the-form-many-times" class="section level3" number="5.7.2">
-<h3><span class="header-section-number">5.7.2</span> Fill in the Form Many Times</h3>
-<p>Now suppose that we want to search all the students. This will require us to fill in the form many times, each time with changing input. We have to first play with the website to see if the form webpage will be refreshed every time you access to it. This will determine how we are going to code it. If the form page is refreshed every time you access to the form, then you have to refill in all the form fields each time even if most of those fields are repetitive inputs. The program below shows an example of this case:</p>
+<div id="fill-form-many-times" class="section level3" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Fill form many times</h3>
+<p>Now suppose that we want to search all the students. This will require us to fill in the form many times, each time with changing input. We have to first play with the website to see if the form webpage will be refreshed every time we access it. This will determine how we are going to write our code. If the form page is refreshed every time we access it, then we have to refill all the form fields each time even if most of those fields are repetitive inputs. The program below shows an example of this use-case:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="filling-in-web-forms.html#cb62-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb62-2"><a href="filling-in-web-forms.html#cb62-2"></a><span class="im">import</span> time</span>
 <span id="cb62-3"><a href="filling-in-web-forms.html#cb62-3"></a><span class="im">import</span> string</span>
@@ -383,9 +383,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-46"><a href="filling-in-web-forms.html#cb62-46"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
 <span id="cb62-47"><a href="filling-in-web-forms.html#cb62-47"></a><span class="bu">print</span>(students_df)</span>
 <span id="cb62-48"><a href="filling-in-web-forms.html#cb62-48"></a>driver.close()</span></code></pre></div>
-<p>Line 39 and 43 of this program (<code>driver.get(searchAddress)</code>) tells us that the form will be refreshed whenever we finish the current search. It could be either when we find out that there is no result for this search or when we have scraped the results for this search. Since the form is refreshed every time for a new search, we need to refill the form every time when a new search starts. This is why lines 15 to 19 of the code which execute the form filling actions are put in the most inner layer of loop.</p>
-<p>Another question is that when the form is refreshed for a new search, how could we know where the search has gone so far at this point? We must know this so that we can know what we will input for the new search. We control the moving of rounds of search by using the indexing of a list. We put all the options for a form field into a created list with the exact order of the list elements as that being displayed in the form field. When we loop this list, we can control where the search has run through. In this example, line 13 and 14 play this role. They control the indexing of the name list and the grade list. The name field and the grade field are the only two fields whose input values will change for a new search. This is why we need to create a list for them and then loop over it rather than doing the same thing for all the other form fields.</p>
-<p>Another scenario is that the form page is not refreshed for a new search. In this case, then we do not need to refill in the form fields that will not change their values in a new search. Below is the program that performs the same task – search all students – but in the situation that the form is not refreshed:</p>
+<p>Line 39 and 43 of this program (<code>driver.get(searchAddress)</code>) tells us that the form will be refreshed whenever we finish the current search. This could happen either when we find out there is no result for this search or when we have scraped the results for this search. Since the form is refreshed every time for a new search, we need to refill the form every time when a new search starts. This is why lines 15 to 19 of the code that execute the form filling actions are put in the most inner layer of the for loop.</p>
+<p>To know what we need to input for a new search, we have to find out where the search has gone so far up to this point when the form is refreshed for a new search. We control the moving of rounds of search by using the indexing of a list. We put all the options for a form field into a created list with the exact order of the list elements as that being displayed in the form field. When we loop through this list, we control where the search runs through. In the above example, line 13 and 14 play this role. They control the indexing of the name list and the grade list. The name field and the grade field are the only two fields whose input values will change for a new search. This is why we need to create a list for them and then loop over it rather than doing the same thing for all the other form fields.</p>
+<p>Another scenario is that the form page is not refreshed for a new search. In this case, then we do not need to refill the form fields that will not change their values in a new search. Below is the program that performs the same task –– search all students –– but in the use-case where the form is not refreshed:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="filling-in-web-forms.html#cb63-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb63-2"><a href="filling-in-web-forms.html#cb63-2"></a><span class="im">import</span> time</span>
 <span id="cb63-3"><a href="filling-in-web-forms.html#cb63-3"></a><span class="im">import</span> string</span>
@@ -432,7 +432,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb63-44"><a href="filling-in-web-forms.html#cb63-44"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
 <span id="cb63-45"><a href="filling-in-web-forms.html#cb63-45"></a><span class="bu">print</span>(students_df)</span>
 <span id="cb63-46"><a href="filling-in-web-forms.html#cb63-46"></a>driver.close()</span></code></pre></div>
-<p>We cannot find the lines of code in the program that refresh the form page. We put the lines of code that fill in the constant form fields outside of the loop so that those constant fields will not be refilled in every time for a new search. The change of the positions of lines 13 – 15 and line 19 of the code comparing the program in the first scenario reflects this idea.</p>
+<p>There is no code in this program that refreshes the form page. We put the lines of code that fill in the constant form fields outside of the loop so that those constant fields will not be refilled in every time for a new search. The change of the positions of lines 13 –- 15 and line 19 of the code comparing the program in the first scenario reflects this idea.</p>
 </div>
 </div>
 <div id="elementnotinteractableexception" class="section level2" number="5.8">

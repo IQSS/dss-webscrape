@@ -1,11 +1,5 @@
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
+
 
 # Finding Web Elements
 Selenium works by automating browsers to load the website, retrieve the required data, and even take certain actions on the website. Here, we walk through a practical use-case, using Selenium to extract data from a website.
@@ -21,7 +15,8 @@ Now that we have completed the setup steps, we can proceed. We have created this
 
 To begin with, we import `WebDriver` from Selenium and set a path to `chromedriver.exe`. Selenium does not contain its own web browser; it requires integration with third party browsers to run. The `selenium.webdriver` is used to implement various browsers, in this case, Google Chrome. The `webdriver.Chrome()` method is provided with the path of `chromedriver.exe` so that it creates an object of the `selenium.webdriver.chrome.webdriver.WebDriver` class, called "driver" in this case, which will now provide access to the various attributes and properties from `WebDriver`. The exectuable `chromedriver.exe` will be instantiated at this instance or upon creation of the driver object. The Terminal screen and an empty new window of Google Chrome will now be loaded. 
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 
 driver = webdriver.Chrome('C:\\Users\\JLiu\\Desktop\\Web_Tutorial\\chromedriver.exe')
@@ -29,7 +24,8 @@ driver = webdriver.Chrome('C:\\Users\\JLiu\\Desktop\\Web_Tutorial\\chromedriver.
 
 The new window from Google Chrome is then provided with a URL using the `get()` function from `WebDriver`. The `get()` method accepts the URL that is to be loaded on the browser. We provide our example website address as an argument to `get()`. Then the browser will start loading the URL:
 
-```{python, eval=FALSE}
+
+```python
 form_url = "https://iqssdss2020.pythonanywhere.com/tutorial/form/search"
 driver.get(form_url)
 ```
@@ -42,7 +38,8 @@ As you can see above, a notice is displayed just below the address bar with the 
 
 Following successful execution of the code, it is recommended that you close and quit the driver to free up system resources. The `close()` method terminates the loaded browser window. The `quit()` method ends the `WebDriver` application.
 
-```{python, eval=FALSE}
+
+```python
 driver.close()
 driver.quit()
 ```
@@ -63,21 +60,24 @@ Return an element or a set of elements that have matching ID attribute values. T
     
     Here is an example that uses the `find_element_by_id()` method to find the search button. We will pass the ID attribute's value, `search`, to the `find_element_by_id()` method:
     
-    ```{python, eval=FALSE}
+    
+    ```python
     search_button = driver.find_element_by_id("search")
     ```
 
 *   `find_element_by_name()` and `find_elements_by_name()` methods:   
 Return element(s) that have matching name attribute value(s). The `find_elements_by_name()` method returns all the elements that have the same name attribute values. Using the previous example, we can instead find the search button using its name attribute value instead of the ID attribute value in the following way:
 
-    ```{python, eval=FALSE}
+    
+    ```python
     search_button = driver.find_element_by_name("q")
     ```
 
 *   `find_element_by_class_name()` and `find_elements_by_class_name()` methods:   
 Return element(s) that have matching class attribute value(s). The `find_elements_by_class_name()` method returns all the elements that have the identical class name attribute values. Using the previous example, we can instead find the search button using its class attribute value in following way:
 
-    ```{python, eval=FALSE}
+    
+    ```python
     search_button = driver.find_element_by_class_name("button")
     ```
 
@@ -88,7 +88,8 @@ Find element(s) by their HTML tag name. The example page displays a search form 
 
     We will use the `find_elements_by_tag_name()` method to get all the form field names. In this example, we will first find the table body implemented as `<tbody>` using the `find_element_by_tag_name()` method and then get all the `<tr>` or table row elements by calling the `find_elements_by_tag_name()` method on the table body object. For each of the first 4 table rows, we then get its form field name using the `<th>` tag.
 
-    ```{python, eval=FALSE}
+    
+    ```python
     table = driver.find_element_by_tag_name("tbody")
     entries = table.find_elements_by_tag_name("tr")
     for i in range(4):
@@ -107,7 +108,8 @@ Return element(s) that are found by the specified XPath query. XPath is a query 
 
     This XPath indicates that the path to our desired element starts from the root and then proceeds to an element with a unique id (`id="table"`) and then continues until it reaches the desired element. Please note that the index of the XPath always starts with 1 rather than 0, unlike those of built-in Python data structures. We then pass this XPath to the `find_element_by_xpath()` method as an argument:
 
-    ```{python, eval=FALSE}
+    
+    ```python
     second_header = driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/th').text
     ```
 
@@ -118,7 +120,8 @@ Return element(s) that are found by the specified CSS selector. CSS is a style s
 
     In our previous example, in which we wanted to get the search button on the example site, we can use the following selector, where the selector is defined as the element tag along with the class name. This will find an `<input>` element with the `"btn-default"` class name. We then test it by automating a click on the search button object we found and find if it starts the search successfully. 
 
-    ```{python, eval=FALSE}
+    
+    ```python
     search_button = driver.find_element_by_css_selector("input.btn-default")
     search_button.click()
     ```
@@ -132,7 +135,8 @@ Find link(s) using the text displayed for the link. The `find_elements_by_link_t
 
     Let's create a test that locates the `privacy policy link` using its text and check whether it's displayed:
     
-    ```{python, eval=FALSE}
+    
+    ```python
     privacypolicy_link = driver.find_element_by_link_text("privacy policy.")
     privacypolicy_link.click()
     ```
@@ -140,7 +144,8 @@ Find link(s) using the text displayed for the link. The `find_elements_by_link_t
 *   `find_element_by_partial_link_text()` and `find_elements_by_partial_link_text()` methods:   
 Find link(s) using partial text. For example, on the example site, two links are displayed: one is the `privacy policy link` with `"privacy policy"` as text and the other is the `term conditions policy link` with `"term conditions policy"` as text. Let us use this method to find these links using the `"policy"` text and check whether we have two of these links available on the page:
 
-    ```{python, eval=FALSE}
+    
+    ```python
     policy_links = driver.find_elements_by_partial_link_text("policy")
     print(len(policy_links))
     ```
@@ -151,7 +156,8 @@ This section will show you two use-cases to demonstrate the use of various `find
 ### Scrape tables
 Let's examine this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This page uses JavaScript to write a table to a `<div>` element of the page. If we were to scrape this page’s table using traditional methods, we’d only get the loading page, without actually getting the data that we want. Suppose that we want to scrape all cells of this table. The first thing we need to do is to locate the cells. If we `Inspect` this page, we can see that the table is defined with a `<tbody>` tag inside a `<table>` tag. Each table row is defined with a `<tr>` tag and there are multiple table rows. The first table row is the table header row, each of its fields is defined with a `<th>` tag or a header cell tag. In each of the other table rows, there are multiple data cells and each data cell is defined with a `<td>` tag. Next, we have to find each cell using `find_elements_by` methods and get its data. There is no way to directly scrape the whole table. Given this, the logic naturally is to loop row by row, and in each row, loop cell by cell. So, we need to have a double for loop in our script. Finally, we need to store the scraped data in a nice format, like a `.csv` file. We can use the Python file operation methods to achieve this. Here's an implementation:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 import time
 
@@ -188,14 +194,15 @@ for i in range(1, len(entries)):
 
 driver.close()
 file.close()
-``` 
+```
 
 ### Scrape text
 Let us examine this [example website](https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding). The article on this page has many subsections, each of which have multiple paragraphs and even bullet points. Suppose that we want to scrape the whole text of the article. One interesting way to do it is to scrape all the subsections separately first and then concatenate them altogether. The advantage of doing it this way is that we can also get each subsection's text.
 
 Let us `Inspect` this website. Let us move the cursor to the element of its DOM that defines the article content area. Under this `<div>` element, we can see that subsection headers have tag names all starting with `"h"`, paragraphs have a `<p>` tag name, and bullet points parts have a `<ul>` tag name. The elements with these tag names are all parallel with one other, rather than embedded in a hierarchical structure. This design dictates that we should not write a loop in our script to access them, for example, to access each paragraph under a subsection. Another point to note is that here we use a Python dictionary to store each subsection's text. For each key-value pair in this dictionary, the key stores the subsection title, and the value stores its paragraphs of text. So, this is a convenient data structure to use for this use-case. The following program implements our strategy above to scrape the whole text of the article:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 import time
 
@@ -251,9 +258,10 @@ The solution to address the `NoSuchElementException` can be either of the follow
 
 1.   When the element you locate does not exist in the DOM, use `try-except` event handler to avoid the termination of the program:  
 
-    ```{python, eval=FALSE}
+    
+    ```python
     from selenium.common.exceptions import NoSuchElementException
-
+    
     try:
         elem = driver.find_element_by_xpath("element_xpath")
         elem.click()
@@ -265,14 +273,16 @@ The solution to address the `NoSuchElementException` can be either of the follow
 
 2.   When the page loads, for some reason you may be taken to the bottom of the page, but the element you need to scrape is on the top of the page and thus is out of view. In this situation you can locate the element in the DOM first, then use the `execute_script()` method to scroll the element into view: 
 
-    ```{python, eval=FALSE}
+    
+    ```python
     elem = driver.find_element_by_xpath("element_xpath")
     driver.execute_script("arguments[0].scrollIntoView();", elem)
     ```
 
 3.   In case the element has the attribute `style="display: none;"`, remove the attribute through `execute_script()` method:
 
-    ```{python, eval=FALSE}
+    
+    ```python
     elem = driver.find_element_by_xpath("element_xpath")
     driver.execute_script("arguments[0].removeAttribute('style')", elem)
     elem.send_keys("text_to_send")
@@ -283,7 +293,8 @@ The solution to address the `NoSuchElementException` can be either of the follow
 
 5.   To check if the element is within an `<iframe>`, traverse up the HTML to locate the respective `<iframe>` tag and use the `switch_to()` method to shift to the desired iframe through any of the following approaches:
 
-    ```{python, eval=FALSE}
+    
+    ```python
     driver.switch_to.frame("iframe_name")
     driver.switch_to.frame("iframe_id")
     driver.switch_to.frame(1) // 1 represents frame index
@@ -291,20 +302,22 @@ The solution to address the `NoSuchElementException` can be either of the follow
 
     We can switch back to the main frame by using one of the following methods:
     
-    ```{python, eval=FALSE}
+    
+    ```python
     driver.switch_to.default_content()
     driver.switch_to.parent_frame()
     ```
 
     A better way to switch frames would be to induce `WebDriverWait()` for the availability of the intended frame with `expected_conditions` set to `frame_to_be_available_and_switch_to_it` as in the following examples:
     
-    ```{python, eval=FALSE}
+    
+    ```python
     WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.ID,"id_of_iframe")) // through Frame ID
-
+    
     WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.NAME,"name_of_iframe")) // through Frame name
-
+    
     WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.XPATH,"xpath_of_iframe")) // through Frame XPath
-
+    
     WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.CSS_SELECTOR,"css_of_iframe")) // through Frame CSS
     ```
 
@@ -312,19 +325,22 @@ The solution to address the `NoSuchElementException` can be either of the follow
 
     +   To wait for `presence_of_element_located`:   
 
-       ```{python, eval=FALSE}
+       
+       ```python
        element = WebDriverWait(driver, 20).until(expected_conditions.presence_of_element_located((By.XPATH, "element_xpath']")))
        ```
 
     +	To wait for `visibility_of_element_located`:
 
-       ```{python, eval=FALSE}
+       
+       ```python
        element = WebDriverWait(driver, 20).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "element_css")))
        ```
 
     +	To wait for `element_to_be_clickable`: 
 
-       ```{python, eval=FALSE}
+       
+       ```python
        element = WebDriverWait(driver, 20).until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, "element_link_text")))
        ```
 

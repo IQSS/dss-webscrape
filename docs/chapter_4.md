@@ -1,11 +1,5 @@
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
+
 
 # Filling in Web Forms
 You must have noticed the ubiquity of web forms while surfing the internet. A web form comprises web elements such as input boxes, check boxes, radio buttons, links, drop down menus, and submit buttons to collect user data. To process web forms, we need to first find these web elements and then take subsequent actions on them like selecting a value or entering some text. Selenium has an API that helps us to do that. Since we have covered how to find web element(s) using Selenium selectors in the previous chapter, this chapter focuses on accessing forms in Selenium: performing actions on and interacting with the forms. Let us see how different actions can be performed on each type of web field that may be involved in your web form. We use this [example login form website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to illustrate most of the examples used in this chapter. Below is a screenshot of how this website uses forms:  
@@ -15,19 +9,22 @@ You must have noticed the ubiquity of web forms while surfing the internet. A we
 ## Input box
 The input box is the text box that displays user input. To handle any input box, we must be able to enter information, clear information or get information from the box. To enter text into a textbox we can use the `send_keys()` method, which would input the user required text from our automation script. The following code enters the student name starting with "A" into a text box whose ID is "search_name":
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id('search_name').send_keys("A")
 ```
 
 To clear pre-entered text we can use the `clear()` method. For example:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id('search_name').clear()
 ```
 
 If we need to validate some existing text, we can fetch text already in a text box using the `get_attribute()` method:
 
-```{python, eval=FALSE}
+
+```python
 nameText = driver.find_element_by_id('search_name').get_attribute("value")
 print(nameText)
 ```
@@ -35,13 +32,15 @@ print(nameText)
 ## Check box
 A check box is a small box that enables us to check or uncheck it. To select or check a value we use the `click()` method. It simply changes the state from unchecked to checked and vice-versa. For example, the code below clicks on the `Accept Privacy Policy` checkbox:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id('privacypolicy').click()
 ```
 
 Dealing with checkboxes is not always so straightforward. We may need to select a checkbox only when it is not selected already. Or, we may want to deselect a checkbox only when it is already selected. If we are trying to select a checkbox, but we perform a click operation on an already selected checkbox, then the checkbox will be deselected; something we do not want to happen. So, we first need to validate whether the checkbox is selected or not. To get the current state of the checkbox we can use one of two methods: `is_selected()` or `get_attribute("checked")`. For example, using `is_selected()`:
 
-```{python, eval=FALSE}
+
+```python
 privacy_boolean = driver.find_element_by_id('privacypolicy').is_selected()
 print(privacy_boolean)
 print(type(privacy_boolean))
@@ -49,7 +48,8 @@ print(type(privacy_boolean))
 
 This will return a boolean value. This means if the checkbox is checked we would get a `True` value else we will get `False` value. Alternatively, using `get_attribute("checked")`:
 
-```{python, eval=FALSE}
+
+```python
 privacy_other = driver.find_element_by_id('privacypolicy').get_attribute("checked")
 print(privacy_other)
 print(type(privacy_other))
@@ -57,14 +57,16 @@ print(type(privacy_other))
 
 This will return `True` if the checkbox is selected, but will return `NoneType` if the checkbox is not selected. The following code shows how to deselect a checkbox only when it is selected:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id('privacypolicy').click()
 ```
 
 ## Radio button
 A radio button is a circular element on the screen that we can select. It is similar to a checkbox only difference being if we are given multiple radio buttons, we can select just one, while in the case of multiple checkboxes, we can opt multiple of them. The actions performed on the radio button are similar to those on a checkbox and we can use the same methods as above to select a radio button or validate its status of selection: `click()` and `is_selected()` / `get_attribute(“checked”)`. The code below provides an example:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id('p5').click()
 pageSize_5_boolean = driver.find_element_by_id('p5').is_selected()
 print(pageSize_5_boolean)
@@ -77,20 +79,23 @@ print(type(pageSize_5_other))
 
 Radio button does not support deselection. To deselect a radio button, one needs to select any other radio button in that group. If you select the same radio button trying to deselect it, you will get the same selection as before; nothing will change. The following code shows how to deselect a radio button only when it is selected:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id('p10').click()
 ```
 
 ## Link
 A link redirects us to a new web page or a new window pop-up or a similar thing. We can use two mechanisms to navigate to a new screen or a new pop up or a new form: we can either do a click action on a link element we find, or get the new URL from the link element we find and then navigate to it. Here is an example of operating the link embedded in the example webpage using the first mechanism:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id("privacy_policy").click()
 ```
 
 Links are generally embedded in the link element we find with a `<a>` tag name as the **"href"** property. Instead of directly clicking on the link, we can use the `get_attribute()` method. Here is the same example using the second mechanism:
 
-```{python, eval=FALSE}
+
+```python
 privacy_object = driver.find_element_by_id("privacy_policy")
 privacy_link = privacy_object.get_attribute("href")
 driver.get(privacy_link)
@@ -101,7 +106,8 @@ Dropdown is a list which has an arrow at the rightmost end to expand and show th
 
 If the dropdown has an **“index”** attribute, then we can use that index to select a particular option. You need to be careful while using this way, because it is not un-common to have the index start at 0. We can use the `select_by_index()` method to select an option using the **"index"** attribute. For example, we want to select the 5th grade students:
 
-```{python, eval=FALSE}
+
+```python
 grade_dropdown = Select(driver.find_element_by_id("search_grade"))
 grade_dropdown.select_by_index(6)
 ```
@@ -124,13 +130,15 @@ If the html mark-up defines an `<option>` tag, then you can use the value matchi
 
 We can use the `select_by_value()` method to select an option using the `"value"` attribute.
 
-```{python, eval=FALSE}
+
+```python
 grade_dropdown.select_by_value("5")
 ```
 
 Probably the easiest way of doing it is to select an element using text of dropdown. You have to match the text which is displayed in the drop down using the `select_by_visible_text()` method. For example:
 
-```{python, eval=FALSE}
+
+```python
 grade_dropdown.select_by_visible_text("5")
 ```
 
@@ -147,7 +155,8 @@ There are times while performing Selenium automation of our web app, where we ne
 
 Buttons are simply used to submit whatever information we have filled in our forms to the server. This can be done through click actions on the button, mostly using the `click()` method:
 
-```{python, eval=FALSE}
+
+```python
 driver.find_element_by_id("search").click()
 ```
 
@@ -157,7 +166,8 @@ I will first show you a simple program that handles all the types of form elemen
 ### Fill in the Form Just Once
 Suppose that we want to search all the 5th grade students whose names start with “A” and page size set at 5. The program below shows you how to fill in the form and submit it to the server:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 
@@ -175,7 +185,8 @@ driver.find_element_by_id("search").click()
 ### Fill in the Form Many Times
 Now suppose that we want to search all the students. This will require us to fill in the form many times, each time with changing input. We have to first play with the website to see if the form webpage will be refreshed every time you access to it. This will determine how we are going to code it. If the form page is refreshed every time you access to the form, then you have to refill in all the form fields each time even if most of those fields are repetitive inputs. The program below shows an example of this case:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 import time
 import string
@@ -232,7 +243,8 @@ Another question is that when the form is refreshed for a new search, how could 
 
 Another scenario is that the form page is not refreshed for a new search. In this case, then we do not need to refill in the form fields that will not change their values in a new search. Below is the program that performs the same task – search all students – but in the situation that the form is not refreshed:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 import time
 import string
@@ -296,7 +308,8 @@ There are strategies that may work to make it interactable, depending on the cir
 ### Wait until the element is clickable 
 If the element has not been fully downloaded yet, we can wait until the element is visible / clickable. Look at the following example in which we want to get the profile for the 5th grade student named as “Adams”. 
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 
@@ -317,7 +330,8 @@ fields[3].find_element_by_tag_name("a").click()
 
 This code produces an error message that `“no such element: Unable to locate element”` because the result table has not been fully downloaded yet. Selenium WebDriver provides two types of waits to handle it – explicit and implicit wait. The `time.sleep()` method is an **explicit wait to set the condition to be an exact time period to wait**, as the code below shows:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 import time
@@ -340,7 +354,8 @@ fields[3].find_element_by_tag_name("a").click()
 
 As discussed in the previous chapter, a more efficient solution would be to make WebDriver **wait only as long as required**. This is also an **explicit wait** but more efficient than `time.sleep()`. The code below uses the presence of the resulting table element with id “resulttable” to declare that the page has been fully loaded:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
@@ -364,7 +379,8 @@ fields[3].find_element_by_tag_name("a").click()
 
 The final solution is to use an **implicit wait**, which tells WebDriver to poll the DOM for a certain amount of time when trying to find any element (or elements) not immediately available. The default setting is 0. **Once set, the implicit wait is set for the life of the WebDriver object**. 
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 
@@ -391,7 +407,8 @@ An element is on screen means that this element is embedded in the DOM structure
 
 Suppose that we want to get the profile for student “Aiden” – the 15th record of the page. It will work fine. But if we want to get the profile for the 16th student of the page, we will get an error message saying that “list index out of range”. This is because that record is off-screen. 
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 import time
@@ -412,7 +429,8 @@ fields[3].find_element_by_tag_name('a').click()
 
 The solution is that we can scroll down the page so that the off-screen records can be added into its DOM structure. You can use the following code to scroll down to a certain height of the page, where “5000” is the height, or use it to scroll down to the bottom of the page:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 import time
@@ -439,7 +457,8 @@ fields[3].find_element_by_tag_name('a').click()
 ### Execute JavaScript to interact directly with the DOM
 On this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search), we can see that the form submit button is hidden. If we still use the button `click()` method, we will get an error message saying that “element not interactable”. In this case, you can opt to execute JavaScript that directly interacts with the DOM:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 
@@ -457,12 +476,13 @@ table = driver.find_element_by_xpath('//*[@id="results"]/table')
 entries = table.find_elements_by_tag_name("tr")
 fields = entries[1].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name('a').click()
-``` 
+```
 
 ### Perform whatever other action is necessary
 Let us again search for all the 5th grade students whose name starts with “A” on this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search). If you move your mouse over a student name, you will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the mouse to a student name to enable it. Once we do that, if you inspect the webpage, you will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. The following is the code example that scrapes the content on the hover box of student “Adams”:
 
-```{python, eval=FALSE}
+
+```python
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains

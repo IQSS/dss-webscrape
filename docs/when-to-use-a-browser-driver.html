@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 When to Use a Browser Driver | Web Scraping Using Selenium Python</title>
+  <meta name="description" content="This is a tutorial for using Selenium Python to scrape websites" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 When to Use a Browser Driver | Web Scraping Using Selenium Python" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a tutorial for using Selenium Python to scrape websites" />
+  <meta name="github-repo" content="IQSS/dss-webscrape" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 When to Use a Browser Driver | Web Scraping Using Selenium Python" />
+  
+  <meta name="twitter:description" content="This is a tutorial for using Selenium Python to scrape websites" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="web-scraping-approaches.html"/>
+<link rel="next" href="finding-web-elements.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Webscraping with Selenium</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#table-of-contents"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-and-sources"><i class="fa fa-check"></i>Authors and Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="concepts.html"><a href="concepts.html"><i class="fa fa-check"></i><b>1</b> Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="concepts.html"><a href="concepts.html#how-does-the-web-work"><i class="fa fa-check"></i><b>1.1</b> How does the web work?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="concepts.html"><a href="concepts.html#components"><i class="fa fa-check"></i><b>1.1.1</b> Components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="concepts.html"><a href="concepts.html#so-what-happens"><i class="fa fa-check"></i><b>1.1.2</b> So what happens?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="concepts.html"><a href="concepts.html#uniform-resource-locator-url"><i class="fa fa-check"></i><b>1.2</b> Uniform Resource Locator (URL)</a></li>
+<li class="chapter" data-level="1.3" data-path="concepts.html"><a href="concepts.html#document-object-model-dom"><i class="fa fa-check"></i><b>1.3</b> Document Object Model (DOM)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html"><i class="fa fa-check"></i><b>2</b> Web Scraping Approaches</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#decision-tree"><i class="fa fa-check"></i><b>2.1</b> Decision tree</a></li>
+<li class="chapter" data-level="2.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#static-web-pages"><i class="fa fa-check"></i><b>2.2</b> Static web pages</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#regular-expressions"><i class="fa fa-check"></i><b>2.2.1</b> Regular expressions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#beautiful-soup"><i class="fa fa-check"></i><b>2.2.2</b> Beautiful soup</a></li>
+<li class="chapter" data-level="2.2.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#lxml"><i class="fa fa-check"></i><b>2.2.3</b> Lxml</a></li>
+<li class="chapter" data-level="2.2.4" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#comparison-of-approaches"><i class="fa fa-check"></i><b>2.2.4</b> Comparison of approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#dynamic-web-pages"><i class="fa fa-check"></i><b>2.3</b> Dynamic web pages</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#ajax-requests"><i class="fa fa-check"></i><b>2.3.1</b> AJAX requests</a></li>
+<li class="chapter" data-level="2.3.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#selenium"><i class="fa fa-check"></i><b>2.3.2</b> Selenium</a></li>
+<li class="chapter" data-level="2.3.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#comparison-of-approaches-1"><i class="fa fa-check"></i><b>2.3.3</b> Comparison of approaches</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use a Browser Driver</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-search"><i class="fa fa-check"></i><b>3.1</b> Dynamic search</a></li>
+<li class="chapter" data-level="3.2" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-link"><i class="fa fa-check"></i><b>3.2</b> Dynamic link</a></li>
+<li class="chapter" data-level="3.3" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-load"><i class="fa fa-check"></i><b>3.3</b> Dynamic load</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="finding-web-elements.html"><a href="finding-web-elements.html"><i class="fa fa-check"></i><b>4</b> Finding Web Elements</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#setting-up"><i class="fa fa-check"></i><b>4.1</b> Setting up</a></li>
+<li class="chapter" data-level="4.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#locating-web-elements"><i class="fa fa-check"></i><b>4.2</b> Locating web elements</a></li>
+<li class="chapter" data-level="4.3" data-path="finding-web-elements.html"><a href="finding-web-elements.html#demo"><i class="fa fa-check"></i><b>4.3</b> Demo</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-tables"><i class="fa fa-check"></i><b>4.3.1</b> Scrape tables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-text"><i class="fa fa-check"></i><b>4.3.2</b> Scrape text</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="finding-web-elements.html"><a href="finding-web-elements.html#nosuchelementexception"><i class="fa fa-check"></i><b>4.4</b> <code>NoSuchElementException</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html"><i class="fa fa-check"></i><b>5</b> Filling in Web Forms</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#input-box"><i class="fa fa-check"></i><b>5.1</b> Input box</a></li>
+<li class="chapter" data-level="5.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#check-box"><i class="fa fa-check"></i><b>5.2</b> Check box</a></li>
+<li class="chapter" data-level="5.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#radio-button"><i class="fa fa-check"></i><b>5.3</b> Radio button</a></li>
+<li class="chapter" data-level="5.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#link"><i class="fa fa-check"></i><b>5.4</b> Link</a></li>
+<li class="chapter" data-level="5.5" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#dropdown"><i class="fa fa-check"></i><b>5.5</b> Dropdown</a></li>
+<li class="chapter" data-level="5.6" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#buttons"><i class="fa fa-check"></i><b>5.6</b> Buttons</a></li>
+<li class="chapter" data-level="5.7" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#demos"><i class="fa fa-check"></i><b>5.7</b> Demos</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-just-once"><i class="fa fa-check"></i><b>5.7.1</b> Fill in the Form Just Once</a></li>
+<li class="chapter" data-level="5.7.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-many-times"><i class="fa fa-check"></i><b>5.7.2</b> Fill in the Form Many Times</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>5.8</b> <code>ElementNotInteractableException</code></a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-the-element-is-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait until the element is clickable</a></li>
+<li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-the-element-is-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll until the element is on-screen</a></li>
+<li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript-to-interact-directly-with-the-dom"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript to interact directly with the DOM</a></li>
+<li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-whatever-other-action-is-necessary"><i class="fa fa-check"></i><b>5.8.4</b> Perform whatever other action is necessary</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Web Scraping Using Selenium Python</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="when-to-use-a-browser-driver" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> When to Use a Browser Driver</h1>
+<p>The Selenium browser driver is typically used to scrape data from dynamic websites that use JavaScript (although it can scrape data from static websites too). The use of JavaScript can vary from simple form events to single page apps that download all their content after loading. The consequence of this is that for many web pages the content that is displayed in our web browser is not available in the original HTML. For example, the following use-cases often occur:</p>
+<ol style="list-style-type: decimal">
+<li>A result table shows up only after the user clicks the search box.</li>
+<li>Content following a click on a link is generated instantaneously rather than already being stored on the server before the click.</li>
+<li>A JavaScript request might trigger a new block of content to load.</li>
+</ol>
+<p>The following subsections cover these three use-cases in detail.</p>
+<div id="dynamic-search" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Dynamic search</h2>
+<p>Let us look at an example dynamic web page, which is available at <a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/search">Dynamic Search</a>. This example website has a search form that is used to locate students. Let us say we want to find all the students whose name begins with the letter A and who are in the fifth grade:</p>
+<p><img src="images/I-1/1.PNG" /></p>
+<p>We place the cursor anywhere on this webpage, right-click and select <code>Inspect</code> from the menu to inspect the results. In the <code>Elements</code> window, we find that the results are stored within a <code>&lt;div&gt;</code> element with <code>ID “results”</code>:</p>
+<p><img src="images/I-1/2a.png" /></p>
+<p>Let us try to scrape the information from the result table using the <code>lxml</code> module. This use-case is also covered in detail in our <a href="https://iqss.github.io/dss-workshops/python-web-scraping.html">Python Web-Scraping Workshop</a>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="when-to-use-a-browser-driver.html#cb20-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
+<span id="cb20-2"><a href="when-to-use-a-browser-driver.html#cb20-2"></a><span class="im">import</span> requests</span>
+<span id="cb20-3"><a href="when-to-use-a-browser-driver.html#cb20-3"></a></span>
+<span id="cb20-4"><a href="when-to-use-a-browser-driver.html#cb20-4"></a>search_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search&quot;</span></span>
+<span id="cb20-5"><a href="when-to-use-a-browser-driver.html#cb20-5"></a>search_page <span class="op">=</span> requests.get(search_url)</span>
+<span id="cb20-6"><a href="when-to-use-a-browser-driver.html#cb20-6"></a>search_html <span class="op">=</span> html.fromstring(search_page.text)</span>
+<span id="cb20-7"><a href="when-to-use-a-browser-driver.html#cb20-7"></a>firstEntry_link <span class="op">=</span> search_html.xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb20-8"><a href="when-to-use-a-browser-driver.html#cb20-8"></a><span class="bu">print</span>(firstEntry_link)</span></code></pre></div>
+<p>The example scraper here has failed to extract results since the <code>xpath()</code> method returns an empty list. Examining the source code of this web page can help you understand why. Let us put the cursor anywhere on this webpage. Right-click and select <code>View page source</code> from the menu to examine the source code. Here, we find that the <code>&lt;div&gt;</code> element with <code>ID “results”</code> is empty.</p>
+<p><img src="images/I-1/3.PNG" /></p>
+<p>If we scroll down the source code a little, we find that the display of the result table is coded in a JavaScript function called <code>displayResult(jsonresult)</code> in the JavaScript section. This means that the web page has used JavaScript to load the search results dynamically. At this point, you could recognize that <code>page source code</code> is the original HTML you get when you make a request to the server without executing JavaScript code. In contrast, the <code>Elements</code> window has the HTML that has been revised via running the JavaScript section code.</p>
+<p><img src="images/I-1/4.PNG" /></p>
+</div>
+<div id="dynamic-link" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Dynamic link</h2>
+<p>Let us now examine what a dynamic link is, and how it is different from a static link. When you click on a link, if it is a static link, the content that appears comes from a file that has been stored on the server before the click. If it is a dynamic link, then the content that appears is generated instantaneously after the click by executing a JavaScript function. To see this, let us <code>inspect</code> the result table in the <code>Elements</code> window.</p>
+<p>Look at the two links highlighted below. They have a tag name <code>&lt;a&gt;</code> with an attribute <code>href</code>. The first link is a static link, while the second is a dynamic link:</p>
+<p><img src="images/I-2/1a.PNG" /></p>
+<p>Normally, if a link is static, its link address will end with a file name with a file extension. In this case, the link address (<em><a href="https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adrian.html" class="uri">https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adrian.html</a></em>) ends with the file name <code>Adrian</code> and file extension <code>.html</code>. The link address is formed first starting with a server address (<a href="https://iqssdss2020.pythonanywhere.com" class="uri">https://iqssdss2020.pythonanywhere.com</a>) and followed by the web application name (<code>/tutorial</code>) and then followed by a hierarchical path of folders to that <code>.html</code> file.</p>
+<p><img src="images/I-2/1.png" /></p>
+<p>On the other hand, if a link is dynamic, you will not find a file extension at the end of its link address. For example, in this case, the link address (<a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams" class="uri">https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams</a>) has no file extension at the end. It is formed first beginning at a server address (<a href="https://iqssdss2020.pythonanywhere.com" class="uri">https://iqssdss2020.pythonanywhere.com</a>) and followed by the web application name (<code>/tutorial</code>) and then followed by the name of the Python script (<code>cases.py</code>) in the web application (<code>/cases</code>), which calls a function (<code>getstudent()</code>) within this script (<code>/getstudent</code>) followed by a parameter value (<code>/Adams</code>) to the function.</p>
+<p><img src="images/I-2/2.png" /></p>
+<p>Suppose that we temporarily disable the JavaScript execution functionality in our browser by changing the browser’s settings. Let us copy the static link address and open it in a new browser. We should be able to see the profile of the chosen student as below:</p>
+<p><img src="images/I-2/3.png" /></p>
+<p>But if we copy the dynamic link address and open it in a new browser, we will only see an empty webpage with page layout as below:</p>
+<p><img src="images/I-2/4.png" /></p>
+<p>This is because the new browser whose JavaScript functionality has been disabled cannot execute JavaScript code to display the profile content. We can also see this difference using the <code>requests</code> module, which we also covered in detail in our <a href="https://iqss.github.io/dss-workshops/python-web-scraping.html">Python Web-Scraping Workshop</a>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="when-to-use-a-browser-driver.html#cb21-1"></a>staticLink_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&quot;</span></span>
+<span id="cb21-2"><a href="when-to-use-a-browser-driver.html#cb21-2"></a>staticLink_page <span class="op">=</span> requests.get(staticLink_url)</span>
+<span id="cb21-3"><a href="when-to-use-a-browser-driver.html#cb21-3"></a>staticLink_html <span class="op">=</span> html.fromstring(staticLink_page.text)</span>
+<span id="cb21-4"><a href="when-to-use-a-browser-driver.html#cb21-4"></a>html.open_in_browser(staticLink_html, encoding <span class="op">=</span> <span class="st">&#39;UTF-8&#39;</span>)</span>
+<span id="cb21-5"><a href="when-to-use-a-browser-driver.html#cb21-5"></a></span>
+<span id="cb21-6"><a href="when-to-use-a-browser-driver.html#cb21-6"></a>dynamicLink_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams&quot;</span></span>
+<span id="cb21-7"><a href="when-to-use-a-browser-driver.html#cb21-7"></a>dynamicLink_page <span class="op">=</span> requests.get(dynamicLink_url)</span>
+<span id="cb21-8"><a href="when-to-use-a-browser-driver.html#cb21-8"></a>dynamicLink_html <span class="op">=</span> html.fromstring(dynamicLink_page.text)</span>
+<span id="cb21-9"><a href="when-to-use-a-browser-driver.html#cb21-9"></a>html.open_in_browser(dynamicLink_html, encoding <span class="op">=</span> <span class="st">&#39;UTF-8&#39;</span>)</span></code></pre></div>
+<p>The <code>requests</code> module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.</p>
+<p>Examining the source code of the chosen student’s profile web page of both the static and dynamic links can help you further understand why. The source code of the profile web page of a static link shows a complete HTML file without a JavaScript section:</p>
+<p><img src="images/I-2/5.png" /></p>
+<p>In the source code of the profile web page of a dynamic link, we find that the <code>&lt;div&gt;</code> element with <code>ID “results”</code> is empty. There is a JavaScript section next to it. We find that in this section there is a JavaScript page load function. This function makes a request to the server for the chosen student’s profile. The server then returns the information to the function. If successful, this function then displays the profile. This means that the web page has used JavaScript to load the chosen student’s profile dynamically.</p>
+<p><img src="images/I-2/6.png" /></p>
+</div>
+<div id="dynamic-load" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Dynamic load</h2>
+<p>With dynamic loading, new content appears only after a JavaScript request for that information is made to the server. There are two major ways in web application design to make a JavaScript request that triggers a new block of content to load. The first way uses pagination, while the second way involves the scroll bar hitting the bottom of a page.</p>
+<p>Let us first look at pagination. Let’s <code>inspect</code> the web page of dynamic search again. We can see that the page links are stored within a <code>&lt;div&gt;</code> element with <code>ID “pagination”</code>. Here, the <code>href</code> attribute has a value of <code>javascript:void(0)</code>. This just means the browser stays at the same position on the same page and does nothing. Once the page links are clicked, the browser will execute a JavaScript function <code>previous()</code> / <code>next()</code> to make another JavaScript request to the server for the information on that page. Then this new information from the the previous or next page will be displayed.</p>
+<p><img src="images/I-3/1.png" /></p>
+<p>In this case, the value of the <code>href</code> attribute is not a URL. So, there is no point in trying to test if this is a static or dynamic link using the <code>requests</code> module. But we can illustrate the dynamic load using the <code>lxml</code> module. The code below tries to scrape the page link information using the <code>lxml</code> module:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="when-to-use-a-browser-driver.html#cb22-1"></a>search_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search&quot;</span></span>
+<span id="cb22-2"><a href="when-to-use-a-browser-driver.html#cb22-2"></a>search_page <span class="op">=</span> requests.get(search_url)</span>
+<span id="cb22-3"><a href="when-to-use-a-browser-driver.html#cb22-3"></a>search_html <span class="op">=</span> html.fromstring(search_page.text)</span>
+<span id="cb22-4"><a href="when-to-use-a-browser-driver.html#cb22-4"></a>page_link <span class="op">=</span> search_html.xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>)</span>
+<span id="cb22-5"><a href="when-to-use-a-browser-driver.html#cb22-5"></a><span class="bu">print</span>(page_link)</span></code></pre></div>
+<p>The scraper here has failed to extract the page links since the <code>xpath()</code> method returns an empty list. Let us examine the <code>page source code</code> to see why. Here, we find that the <code>&lt;div&gt;</code> element with <code>ID “pagination”</code> is empty:</p>
+<p><img src="images/I-3/2.png" /></p>
+<p>If we scroll down the source code to the end, we find that the display of the page links is coded in a JavaScript function <code>displayResult(jsonresult)</code> in the JavaScript section. This means that the web page has used JavaScript to load the page links and insert it at the position of the <code>&lt;div&gt;</code> element with <code>ID “pagination”</code> in the original HTML. We can see the revised HTML after running the JavaScript code in the <code>Elements</code> window:</p>
+<p><img src="images/I-3/3.png" /></p>
+<p>Now let us examine the second way of dynamically loading content –– scrolling down to the bottom of a page. Let’s look at another example web page, which is available at <a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">dynamic search load</a>. This webpage is the same as the previous example webpage, except here new content is loaded when the scroll bar reaches the bottom of a page instead of when clicking a link. The code below tries to scrap the information of the result table’s entries using the <code>lxml</code> module:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="when-to-use-a-browser-driver.html#cb23-1"></a>searchLoad_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search&quot;</span></span>
+<span id="cb23-2"><a href="when-to-use-a-browser-driver.html#cb23-2"></a>searchLoad_page <span class="op">=</span> requests.get(searchLoad_url)</span>
+<span id="cb23-3"><a href="when-to-use-a-browser-driver.html#cb23-3"></a>searchLoad_html <span class="op">=</span> html.fromstring(searchLoad_page.text)</span>
+<span id="cb23-4"><a href="when-to-use-a-browser-driver.html#cb23-4"></a>entries_link <span class="op">=</span> searchLoad_html.xpath(<span class="st">&#39;//*[@id=&quot;resultstable&quot;]/tbody/tr&#39;</span>)</span>
+<span id="cb23-5"><a href="when-to-use-a-browser-driver.html#cb23-5"></a><span class="bu">print</span>(page_link)</span></code></pre></div>
+<p>The scraper here has failed to extract that information since the <code>xpath()</code> method returns an empty list. Below we see the result table part of the original HTML from the <code>page source code</code>. It is clear that there is no information under the tag name <code>&lt;tbody&gt;</code>. This explains why the <code>xpath()</code> method returns an empty list.</p>
+<p><img src="images/I-3/4.png" /></p>
+<p>Below we see the same section of the revised HTML from the <code>Elements</code> window after it executes the JavaScript code. The webpage runs the JavaScript to insert the first chunk of the students’ information into the empty result table, which has been created statically, before running the JavaScript and then displaying it in the browser.</p>
+<p><img src="images/I-3/5.png" /></p>
+<p>More interestingly, once we open the <code>Elements</code> window of this example webpage, under the <code>&lt;tbody&gt;</code> tag, we find there are 15 table entries (with tag <code>&lt;tr&gt;</code>). We can therefore infer that the initial load has a total of 15 table entries. If we scroll down to the bottom of the webpage, we can see that 9 more entries are appended to the table. If we continue to scroll down to the bottom of the page, nothing changes. This means that there exists a total of 24 table entries, with the new load delivering the last 9 of those entries. Your browser executes the JavaScript code to perform all these actions. If you look at the JavaScript section in the <code>page source code</code>, you will see that a JQuery method <code>$(window).on("scroll", function()</code> defines the scrolling down to the bottom of page and triggers the load of the new content once it is satisfied. And another JQuery method <code>$('#resultstable &gt; tbody:last-child').append(htmlContent)</code> appends the new entries to the result table.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="web-scraping-approaches.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="finding-web-elements.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/IQSS/dss-webscrape/edit/master/chapter_2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["webscraping.pdf", "webscraping.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,11 +1,5 @@
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
+
 
 # When to Use a Browser Driver
 The Selenium browser driver is typically used to scrape data from dynamic websites that use JavaScript (although it can scrape data from static websites too). The use of JavaScript can vary from simple form events to single page apps that download all their content after loading. The consequence of this is that for many web pages the content that is displayed in our web browser is not available in the original HTML. For example, the following use-cases often occur:
@@ -27,7 +21,8 @@ We place the cursor anywhere on this webpage, right-click and select `Inspect` f
 
 Let us try to scrape the information from the result table using the `lxml` module. This use-case is also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python-web-scraping.html). 
 
-```{python}
+
+```python
 from lxml import html
 import requests
 
@@ -71,7 +66,8 @@ Suppose that we temporarily disable the JavaScript execution functionality in ou
 
  This is because the new browser whose JavaScript functionality has been disabled cannot execute JavaScript code to display the profile content. We can also see this difference using the `requests` module, which we also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python-web-scraping.html). 
 
-```{python}
+
+```python
 staticLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"
 staticLink_page = requests.get(staticLink_url)
 staticLink_html = html.fromstring(staticLink_page.text)
@@ -102,7 +98,8 @@ Let us first look at pagination. Let's `inspect` the web page of dynamic search 
 
 In this case, the value of the `href` attribute is not a URL. So, there is no point in trying to test if this is a static or dynamic link using the `requests` module. But we can illustrate the dynamic load using the `lxml` module. The code below tries to scrape the page link information using the `lxml` module: 
 
-```{python}
+
+```python
 search_url = "https://iqssdss2020.pythonanywhere.com/tutorial/cases/search"
 search_page = requests.get(search_url)
 search_html = html.fromstring(search_page.text)
@@ -120,7 +117,8 @@ If we scroll down the source code to the end, we find that the display of the pa
 
 Now let us examine the second way of dynamically loading content –-- scrolling down to the bottom of a page. Let's look at another example web page, which is available at [dynamic search load](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). This webpage is the same as the previous example webpage, except here new content is loaded when the scroll bar reaches the bottom of a page instead of when clicking a link. The code below tries to scrap the information of the result table’s entries using the `lxml` module: 
 
-```{python}
+
+```python
 searchLoad_url = "https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search"
 searchLoad_page = requests.get(searchLoad_url)
 searchLoad_html = html.fromstring(searchLoad_page.text)

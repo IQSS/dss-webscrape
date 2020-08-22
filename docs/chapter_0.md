@@ -1,11 +1,5 @@
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
+
 
 # Concepts
 We start with the basic concepts that are generic to all web scraping approaches.

@@ -1,11 +1,5 @@
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
+
 
 # Web Scraping Approaches
 
@@ -42,7 +36,8 @@ We use this [static student profile webpage](https://iqssdss2020.pythonanywhere.
 ### Regular expressions
 Regular expressions (regex) directly work on a downloaded web page, without any need to parse the page into a certain format. We can use regex to match the content we want to extract from the HTML. There is a thorough overview of regex [here](https://docs.python.org/3.8/howto/regex.html). In this example, we need to match the `<td class="w2p_fw">` tag to scrape the student name. But this tag is used for multiple student profile attributes. To isolate the name, we select the first element, as shown in the code below: 
 
-```{python}
+
+```python
 import re
 import requests
 
@@ -57,7 +52,8 @@ print(name)
 
 This solution works, but could easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an `ID`, so it ought to be unique:
 
-```{python}
+
+```python
 import re
 import requests
 
@@ -70,7 +66,8 @@ print(mylist)
 
 This solution is better. However, there are many other ways the web page could be updated that still break the regex. For example, double quotation might be changed to single quotation for class name, extra space could be added between the `<td>` tags, or the `students_name_label` could be changed. The general solution for this is to make the regex as generic as possible to support various possibilities:
 
-```{python}
+
+```python
 import re
 import requests
 
@@ -98,7 +95,8 @@ The first step with Beautiful Soup is to parse the downloaded HTML into a "soup 
 
 Beautiful Soup with the `lxml` parser can correctly interpret the missing attribute quotes and closing tags, as well as add the `<html>` and `<body>` tags to form a complete HTML document, as the code below shows:
 
-```{python}
+
+```python
 from bs4 import BeautifulSoup
 
 broken_html = '<tr id=students_school_row><td class=w2p_fl><label for="students_school" id="students_school_label">School:</label><td class=w2p_fw>IV'
@@ -109,7 +107,8 @@ print(fixed_html)
 
 But if we use the `html.parser`, it interprets the school name itself as a child of the school key instead of the parallel table fields and it does not create a complete HTML document, as the code below shows:
 
-```{python}
+
+```python
 from bs4 import BeautifulSoup
 
 broken_html = '<tr id=students_school_row><td class=w2p_fl><label for="students_school" id="students_school_label">School:</label><td class=w2p_fw>IV'
@@ -120,7 +119,8 @@ print(fixed_html)
 
 However, keep in mind that none of these parsers represent a universal solution to the problem of invalid HTML. Solutions will have to be found on case-by-case basis. The next step of using Beautiful Soup is to navigate to the elements of HTML we want using its application programming interface (API). Here is an example to extract the student name from our example profile webpage:
 
-```{python}
+
+```python
 from bs4 import BeautifulSoup
 import requests
 
@@ -140,7 +140,8 @@ The `lxml` module is a Python wrapper on the top of the C libraries `libxml2` an
 
 As with Beautiful Soup, the first step of `lxml` is parsing the potentially invalid HTML into a consistent format. Here is an example of parsing the same broken HTML:
 
-```{python}
+
+```python
 from lxml import etree, html
 
 broken_html = '<tr id=students_school_row><td class=w2p_fl><label for="students_school" id="students_school_label">School:</label><td class=w2p_fw>IV'
@@ -153,7 +154,8 @@ As with Beautiful Soup, `lxml` was able to correctly parse the missing attribute
 
 After parsing the input, `lxml` has its API to select elements, such as XPath selectors, like Beautiful Soup. Here is an example using the lxml `xpath()` method to extract the student name data:
 
-```{python}
+
+```python
 from lxml import etree, html
 import requests
 
@@ -167,7 +169,8 @@ print(name)
 ### Comparison of approaches
 As shown in the previous sections, Beautiful Soup and `lxml` are more robust to webpage changes than regex. Comparing their relative efficiency, `lxml` and the regex module were written in C, while Beautiful Soup is pure Python. So, `lxml` and regex are much faster than Beautiful Soup. To provide benchmarks for these approaches, here we construct an experiment to run each scraper to extract all the available student profile data 1000 times and record the total time taken by each scraper: 
 
-```{python}
+
+```python
 import re
 from bs4 import BeautifulSoup
 from lxml import html
@@ -226,7 +229,8 @@ Because the data are loaded dynamically with JavaScript, to scrape these data, w
 
 AJAX stands for Asynchronous JavaScript and XML. A dynamic web page works because the AJAX allows JavaScript to make HTTP requests to a remote server and receive responses. This approach works by first accessing the AJAX request responses, and then scraping information of interest from them. The AJAX response data can be downloaded directly. With the URL of the response, we can make a request to the server, scrape the information from the response, and store the scraped information in a spreadsheet, as the following code shows:
 
-```{python}
+
+```python
 import requests
 import pandas as pd
 
@@ -240,7 +244,8 @@ print(students_A5p0.head(10))
 
 Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating over the resulting pages of the JSON responses. The results are then stored in a spreadsheet:
 
-```{python}
+
+```python
 import requests
 import pandas as pd
 import string
@@ -315,7 +320,8 @@ The second approach to scraping dynamic web pages uses Python packages capable o
 
 With the traditional approach of downloading the original HTML and parsing the result, the `<div>` element will be empty, as follows:
 
-```{python}
+
+```python
 from lxml import html
 import requests
 
@@ -328,7 +334,8 @@ print(table_area)
 
 Here is an initial example with Selenium. Selenium can be installed using `pip` with the command: `pip install selenium`. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser by executing the JavaScript. The JavaScript is executed because now the `<div>` element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.
 
-```{python}
+
+```python
 from selenium import webdriver
 
 driver = webdriver.Chrome('https://driver/chromedriver.exe')
@@ -342,7 +349,8 @@ driver.close()
 
 So far, our browser automation can only execute JavaScript and access the resulting HTML. To scrape the resulting HTML will require extending the browser automation to support intensive website interactions with the user. Fortunately, Selenium has an excellent API to select and manipulate the HTML elements, which makes this straightforward. Here is an example implementation that rewrites the previous example that searches all students in Selenium. We will cover Selenium in detail in the following sections.
 
-```{python}
+
+```python
 from selenium import webdriver
 import time
 import string

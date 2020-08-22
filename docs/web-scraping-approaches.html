@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Web Scraping Approaches | Web Scraping Using Selenium Python</title>
+  <meta name="description" content="This is a tutorial for using Selenium Python to scrape websites" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Web Scraping Approaches | Web Scraping Using Selenium Python" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a tutorial for using Selenium Python to scrape websites" />
+  <meta name="github-repo" content="IQSS/dss-webscrape" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Web Scraping Approaches | Web Scraping Using Selenium Python" />
+  
+  <meta name="twitter:description" content="This is a tutorial for using Selenium Python to scrape websites" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="concepts.html"/>
+<link rel="next" href="when-to-use-a-browser-driver.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Webscraping with Selenium</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#table-of-contents"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-and-sources"><i class="fa fa-check"></i>Authors and Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="concepts.html"><a href="concepts.html"><i class="fa fa-check"></i><b>1</b> Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="concepts.html"><a href="concepts.html#how-does-the-web-work"><i class="fa fa-check"></i><b>1.1</b> How does the web work?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="concepts.html"><a href="concepts.html#components"><i class="fa fa-check"></i><b>1.1.1</b> Components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="concepts.html"><a href="concepts.html#so-what-happens"><i class="fa fa-check"></i><b>1.1.2</b> So what happens?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="concepts.html"><a href="concepts.html#uniform-resource-locator-url"><i class="fa fa-check"></i><b>1.2</b> Uniform Resource Locator (URL)</a></li>
+<li class="chapter" data-level="1.3" data-path="concepts.html"><a href="concepts.html#document-object-model-dom"><i class="fa fa-check"></i><b>1.3</b> Document Object Model (DOM)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html"><i class="fa fa-check"></i><b>2</b> Web Scraping Approaches</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#decision-tree"><i class="fa fa-check"></i><b>2.1</b> Decision tree</a></li>
+<li class="chapter" data-level="2.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#static-web-pages"><i class="fa fa-check"></i><b>2.2</b> Static web pages</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#regular-expressions"><i class="fa fa-check"></i><b>2.2.1</b> Regular expressions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#beautiful-soup"><i class="fa fa-check"></i><b>2.2.2</b> Beautiful soup</a></li>
+<li class="chapter" data-level="2.2.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#lxml"><i class="fa fa-check"></i><b>2.2.3</b> Lxml</a></li>
+<li class="chapter" data-level="2.2.4" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#comparison-of-approaches"><i class="fa fa-check"></i><b>2.2.4</b> Comparison of approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#dynamic-web-pages"><i class="fa fa-check"></i><b>2.3</b> Dynamic web pages</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#ajax-requests"><i class="fa fa-check"></i><b>2.3.1</b> AJAX requests</a></li>
+<li class="chapter" data-level="2.3.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#selenium"><i class="fa fa-check"></i><b>2.3.2</b> Selenium</a></li>
+<li class="chapter" data-level="2.3.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#comparison-of-approaches-1"><i class="fa fa-check"></i><b>2.3.3</b> Comparison of approaches</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use a Browser Driver</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-search"><i class="fa fa-check"></i><b>3.1</b> Dynamic search</a></li>
+<li class="chapter" data-level="3.2" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-link"><i class="fa fa-check"></i><b>3.2</b> Dynamic link</a></li>
+<li class="chapter" data-level="3.3" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-load"><i class="fa fa-check"></i><b>3.3</b> Dynamic load</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="finding-web-elements.html"><a href="finding-web-elements.html"><i class="fa fa-check"></i><b>4</b> Finding Web Elements</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#setting-up"><i class="fa fa-check"></i><b>4.1</b> Setting up</a></li>
+<li class="chapter" data-level="4.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#locating-web-elements"><i class="fa fa-check"></i><b>4.2</b> Locating web elements</a></li>
+<li class="chapter" data-level="4.3" data-path="finding-web-elements.html"><a href="finding-web-elements.html#demo"><i class="fa fa-check"></i><b>4.3</b> Demo</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-tables"><i class="fa fa-check"></i><b>4.3.1</b> Scrape tables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-text"><i class="fa fa-check"></i><b>4.3.2</b> Scrape text</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="finding-web-elements.html"><a href="finding-web-elements.html#nosuchelementexception"><i class="fa fa-check"></i><b>4.4</b> <code>NoSuchElementException</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html"><i class="fa fa-check"></i><b>5</b> Filling in Web Forms</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#input-box"><i class="fa fa-check"></i><b>5.1</b> Input box</a></li>
+<li class="chapter" data-level="5.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#check-box"><i class="fa fa-check"></i><b>5.2</b> Check box</a></li>
+<li class="chapter" data-level="5.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#radio-button"><i class="fa fa-check"></i><b>5.3</b> Radio button</a></li>
+<li class="chapter" data-level="5.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#link"><i class="fa fa-check"></i><b>5.4</b> Link</a></li>
+<li class="chapter" data-level="5.5" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#dropdown"><i class="fa fa-check"></i><b>5.5</b> Dropdown</a></li>
+<li class="chapter" data-level="5.6" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#buttons"><i class="fa fa-check"></i><b>5.6</b> Buttons</a></li>
+<li class="chapter" data-level="5.7" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#demos"><i class="fa fa-check"></i><b>5.7</b> Demos</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-just-once"><i class="fa fa-check"></i><b>5.7.1</b> Fill in the Form Just Once</a></li>
+<li class="chapter" data-level="5.7.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-many-times"><i class="fa fa-check"></i><b>5.7.2</b> Fill in the Form Many Times</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>5.8</b> <code>ElementNotInteractableException</code></a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-the-element-is-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait until the element is clickable</a></li>
+<li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-the-element-is-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll until the element is on-screen</a></li>
+<li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript-to-interact-directly-with-the-dom"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript to interact directly with the DOM</a></li>
+<li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-whatever-other-action-is-necessary"><i class="fa fa-check"></i><b>5.8.4</b> Perform whatever other action is necessary</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Web Scraping Using Selenium Python</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="web-scraping-approaches" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Web Scraping Approaches</h1>
+<div id="decision-tree" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Decision tree</h2>
+<p>There are many commonly used web scraping approaches. This decision tree will help you to decide upon the best approach to use for a particular web site.</p>
+<p><img src="images/intro/decision_tree.png" /></p>
+<p>If the content you are viewing in your browser does not match the content you see in the HTML source code you are retrieving from the site, then you are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page. <strong>Using the Chrome browser, you could view the original HTML via <code>View page source</code>. You could view the revised HTML in your browser if it executes JavaScript in the <code>Elements</code> window via <code>Inspect</code> the web page.</strong></p>
+</div>
+<div id="static-web-pages" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Static web pages</h2>
+<p>There are three approaches to extracting data from a static webpage that has been downloaded. We can use:</p>
+<ol style="list-style-type: decimal">
+<li>Regular expressions</li>
+<li>Beautiful Soup Python module</li>
+<li>lxml Python module</li>
+</ol>
+<p>We use this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html">static student profile webpage</a> to provide examples for each approach. Suppose that we want to scrape a student name. The data we are interested in is found in the following part of the HTML. The student name is included within a <code>&lt;td&gt;</code> element of <code>class="w2p_fw"</code>, which is the child of a <code>&lt;tr&gt;</code> element of <code>ID students_name_row</code>.</p>
+<pre><code>&lt;table&gt;
+    &lt;tr id=&quot;students_name_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_name&quot; id=&quot;students_name_label&quot;&gt;Name:&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;Adams&lt;/td&gt;
+        &lt;td class=&quot;w2p_fc&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr id=&quot;students_school_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;IV&lt;/td&gt;
+        &lt;td class=&quot;w2p_fc&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr id=&quot;students_level_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_level&quot; id=&quot;students_level_label&quot;&gt;Advanced:&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;No&lt;/td&gt;
+        &lt;td class=&quot;w2p_fc&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<div id="regular-expressions" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Regular expressions</h3>
+<p>Regular expressions (regex) directly work on a downloaded web page, without any need to parse the page into a certain format. We can use regex to match the content we want to extract from the HTML. There is a thorough overview of regex <a href="https://docs.python.org/3.8/howto/regex.html">here</a>. In this example, we need to match the <code>&lt;td class="w2p_fw"&gt;</code> tag to scrape the student name. But this tag is used for multiple student profile attributes. To isolate the name, we select the first element, as shown in the code below:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="web-scraping-approaches.html#cb4-1"></a><span class="im">import</span> re</span>
+<span id="cb4-2"><a href="web-scraping-approaches.html#cb4-2"></a><span class="im">import</span> requests</span>
+<span id="cb4-3"><a href="web-scraping-approaches.html#cb4-3"></a></span>
+<span id="cb4-4"><a href="web-scraping-approaches.html#cb4-4"></a>url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></span>
+<span id="cb4-5"><a href="web-scraping-approaches.html#cb4-5"></a>html <span class="op">=</span> requests.get(url)</span>
+<span id="cb4-6"><a href="web-scraping-approaches.html#cb4-6"></a>mylist <span class="op">=</span> re.findall(<span class="st">&#39;&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)</span>
+<span id="cb4-7"><a href="web-scraping-approaches.html#cb4-7"></a><span class="bu">print</span>(mylist)</span>
+<span id="cb4-8"><a href="web-scraping-approaches.html#cb4-8"></a></span>
+<span id="cb4-9"><a href="web-scraping-approaches.html#cb4-9"></a>name <span class="op">=</span> re.findall(<span class="st">&#39;&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)[<span class="dv">0</span>]</span>
+<span id="cb4-10"><a href="web-scraping-approaches.html#cb4-10"></a><span class="bu">print</span>(name)</span></code></pre></div>
+<p>This solution works, but could easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an <code>ID</code>, so it ought to be unique:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="web-scraping-approaches.html#cb5-1"></a><span class="im">import</span> re</span>
+<span id="cb5-2"><a href="web-scraping-approaches.html#cb5-2"></a><span class="im">import</span> requests</span>
+<span id="cb5-3"><a href="web-scraping-approaches.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="web-scraping-approaches.html#cb5-4"></a>url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></span>
+<span id="cb5-5"><a href="web-scraping-approaches.html#cb5-5"></a>html <span class="op">=</span> requests.get(url)</span>
+<span id="cb5-6"><a href="web-scraping-approaches.html#cb5-6"></a>mylist <span class="op">=</span> re.findall(<span class="st">&#39;&lt;tr id=&quot;students_name_row&quot;&gt;&lt;td class=&quot;w2p_fl&quot;&gt;&lt;label for=&quot;students_name&quot; id=&quot;students_name_label&quot;&gt;Name:\</span></span>
+<span id="cb5-7"><a href="web-scraping-approaches.html#cb5-7"></a><span class="st">&lt;/label&gt;&lt;/td&gt;&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)</span>
+<span id="cb5-8"><a href="web-scraping-approaches.html#cb5-8"></a><span class="bu">print</span>(mylist)</span></code></pre></div>
+<p>This solution is better. However, there are many other ways the web page could be updated that still break the regex. For example, double quotation might be changed to single quotation for class name, extra space could be added between the <code>&lt;td&gt;</code> tags, or the <code>students_name_label</code> could be changed. The general solution for this is to make the regex as generic as possible to support various possibilities:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="web-scraping-approaches.html#cb6-1"></a><span class="im">import</span> re</span>
+<span id="cb6-2"><a href="web-scraping-approaches.html#cb6-2"></a><span class="im">import</span> requests</span>
+<span id="cb6-3"><a href="web-scraping-approaches.html#cb6-3"></a></span>
+<span id="cb6-4"><a href="web-scraping-approaches.html#cb6-4"></a>url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></span>
+<span id="cb6-5"><a href="web-scraping-approaches.html#cb6-5"></a>html <span class="op">=</span> requests.get(url)</span>
+<span id="cb6-6"><a href="web-scraping-approaches.html#cb6-6"></a>mylist <span class="op">=</span> re.findall(<span class="st">&#39;&lt;tr id=&quot;students_name_row&quot;&gt;.*?&lt;td\s*class=[&quot;</span><span class="ch">\&#39;</span><span class="st">]w2p_fw[&quot;</span><span class="ch">\&#39;</span><span class="st">]&gt;(.*?)&lt;/td&gt;&#39;</span>, html.text)</span>
+<span id="cb6-7"><a href="web-scraping-approaches.html#cb6-7"></a><span class="bu">print</span>(mylist)</span></code></pre></div>
+<p>This regex is more robust to webpage updates but is more difficult to construct, becoming even unreadable. But still, there are other minor layout changes that would break it, such as if a title attribute is added to the <code>&lt;td&gt;</code> tag. From this example, we can see that regex provide a quick way to scrape data without the step of parsing, but are too brittle and will easily break when a web page is updated.</p>
+</div>
+<div id="beautiful-soup" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Beautiful soup</h3>
+<p>Beautiful Soup is a popular Python module that parses a downloaded web page into a certain format and then provides a convenient interface to navigate content. The official documentation of Beautiful Soup can be found <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">here</a>. The latest version of the module can be installed using this command: <code>pip install beautifulsoup4</code>.</p>
+<p>The first step with Beautiful Soup is to parse the downloaded HTML into a “soup document”. Beautiful Soup supports several different parsers. Parsers behave differently when parsing web pages that do not contain perfectly valid HTML. For example, consider this HTML syntax of a table entry with missing attribute quotes and closing tags for the table row and table fields:</p>
+<pre><code>&lt;tr id=students_school_row&gt;
+    &lt;td class=w2p_fl&gt;
+        &lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;
+            School:
+        &lt;/label&gt;
+    &lt;td class=w2p_fw&gt;IV</code></pre>
+<p>Beautiful Soup with the <code>lxml</code> parser can correctly interpret the missing attribute quotes and closing tags, as well as add the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags to form a complete HTML document, as the code below shows:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="web-scraping-approaches.html#cb8-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb8-2"><a href="web-scraping-approaches.html#cb8-2"></a></span>
+<span id="cb8-3"><a href="web-scraping-approaches.html#cb8-3"></a>broken_html <span class="op">=</span> <span class="st">&#39;&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV&#39;</span></span>
+<span id="cb8-4"><a href="web-scraping-approaches.html#cb8-4"></a>soup <span class="op">=</span> BeautifulSoup(broken_html, <span class="st">&#39;lxml&#39;</span>)</span>
+<span id="cb8-5"><a href="web-scraping-approaches.html#cb8-5"></a>fixed_html <span class="op">=</span> soup.prettify()</span>
+<span id="cb8-6"><a href="web-scraping-approaches.html#cb8-6"></a><span class="bu">print</span>(fixed_html)</span></code></pre></div>
+<p>But if we use the <code>html.parser</code>, it interprets the school name itself as a child of the school key instead of the parallel table fields and it does not create a complete HTML document, as the code below shows:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="web-scraping-approaches.html#cb9-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb9-2"><a href="web-scraping-approaches.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="web-scraping-approaches.html#cb9-3"></a>broken_html <span class="op">=</span> <span class="st">&#39;&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV&#39;</span></span>
+<span id="cb9-4"><a href="web-scraping-approaches.html#cb9-4"></a>soup <span class="op">=</span> BeautifulSoup(broken_html, <span class="st">&#39;html.parser&#39;</span>)</span>
+<span id="cb9-5"><a href="web-scraping-approaches.html#cb9-5"></a>fixed_html <span class="op">=</span> soup.prettify()</span>
+<span id="cb9-6"><a href="web-scraping-approaches.html#cb9-6"></a><span class="bu">print</span>(fixed_html)</span></code></pre></div>
+<p>However, keep in mind that none of these parsers represent a universal solution to the problem of invalid HTML. Solutions will have to be found on case-by-case basis. The next step of using Beautiful Soup is to navigate to the elements of HTML we want using its application programming interface (API). Here is an example to extract the student name from our example profile webpage:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="web-scraping-approaches.html#cb10-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb10-2"><a href="web-scraping-approaches.html#cb10-2"></a><span class="im">import</span> requests</span>
+<span id="cb10-3"><a href="web-scraping-approaches.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="web-scraping-approaches.html#cb10-4"></a>url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&#39;</span></span>
+<span id="cb10-5"><a href="web-scraping-approaches.html#cb10-5"></a>html <span class="op">=</span> requests.get(url)</span>
+<span id="cb10-6"><a href="web-scraping-approaches.html#cb10-6"></a>soup <span class="op">=</span> BeautifulSoup(html.text, <span class="st">&#39;html.parser&#39;</span>)</span>
+<span id="cb10-7"><a href="web-scraping-approaches.html#cb10-7"></a>tr <span class="op">=</span> soup.find(attrs<span class="op">=</span>{<span class="st">&#39;id&#39;</span>:<span class="st">&#39;students_name_row&#39;</span>})</span>
+<span id="cb10-8"><a href="web-scraping-approaches.html#cb10-8"></a>td <span class="op">=</span> tr.find(attrs<span class="op">=</span>{<span class="st">&#39;class&#39;</span>:<span class="st">&#39;w2p_fw&#39;</span>}) </span>
+<span id="cb10-9"><a href="web-scraping-approaches.html#cb10-9"></a>name <span class="op">=</span> td.text </span>
+<span id="cb10-10"><a href="web-scraping-approaches.html#cb10-10"></a><span class="bu">print</span>(name)</span></code></pre></div>
+<p>This code is longer than the regex example, but easier to construct and understand. Also, we no longer need to worry about problems in minor layout changes, such as extra whitespace or tag attributes.</p>
+</div>
+<div id="lxml" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Lxml</h3>
+<p>The <code>lxml</code> module is a Python wrapper on the top of the C libraries <code>libxml2</code> and <code>libxslt</code>. It works the same way as Beautiful Soup, but is much faster. Here is the <a href="https://lxml.de/index.html">documentation</a> for <code>lxml</code>. The module can be installed using this command: <code>pip install lxml</code>.</p>
+<p>As with Beautiful Soup, the first step of <code>lxml</code> is parsing the potentially invalid HTML into a consistent format. Here is an example of parsing the same broken HTML:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="web-scraping-approaches.html#cb11-1"></a><span class="im">from</span> lxml <span class="im">import</span> etree, html</span>
+<span id="cb11-2"><a href="web-scraping-approaches.html#cb11-2"></a></span>
+<span id="cb11-3"><a href="web-scraping-approaches.html#cb11-3"></a>broken_html <span class="op">=</span> <span class="st">&#39;&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV&#39;</span></span>
+<span id="cb11-4"><a href="web-scraping-approaches.html#cb11-4"></a>tree <span class="op">=</span> html.fromstring(broken_html)</span>
+<span id="cb11-5"><a href="web-scraping-approaches.html#cb11-5"></a>fixed_html <span class="op">=</span> etree.tostring(tree, pretty_print<span class="op">=</span><span class="va">True</span>).decode(<span class="st">&#39;utf-8&#39;</span>)</span>
+<span id="cb11-6"><a href="web-scraping-approaches.html#cb11-6"></a><span class="bu">print</span>(fixed_html)</span></code></pre></div>
+<p>As with Beautiful Soup, <code>lxml</code> was able to correctly parse the missing attribute quotes and closing tags, although it did not add the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags. Here we use the <code>lxml.etree</code> module to formulate a more hierarchical tree structure and then convert it to text via the <code>tostring()</code> method to display it.</p>
+<p>After parsing the input, <code>lxml</code> has its API to select elements, such as XPath selectors, like Beautiful Soup. Here is an example using the lxml <code>xpath()</code> method to extract the student name data:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="web-scraping-approaches.html#cb12-1"></a><span class="im">from</span> lxml <span class="im">import</span> etree, html</span>
+<span id="cb12-2"><a href="web-scraping-approaches.html#cb12-2"></a><span class="im">import</span> requests</span>
+<span id="cb12-3"><a href="web-scraping-approaches.html#cb12-3"></a></span>
+<span id="cb12-4"><a href="web-scraping-approaches.html#cb12-4"></a>static_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&quot;</span></span>
+<span id="cb12-5"><a href="web-scraping-approaches.html#cb12-5"></a>static_html <span class="op">=</span> requests.get(static_url)</span>
+<span id="cb12-6"><a href="web-scraping-approaches.html#cb12-6"></a>tree <span class="op">=</span> html.fromstring(static_html.text)</span>
+<span id="cb12-7"><a href="web-scraping-approaches.html#cb12-7"></a>name <span class="op">=</span> tree.xpath(<span class="st">&#39;//*[@id=&quot;students_name_row&quot;]/td[2]&#39;</span>)[<span class="dv">0</span>].text</span>
+<span id="cb12-8"><a href="web-scraping-approaches.html#cb12-8"></a><span class="bu">print</span>(name)</span></code></pre></div>
+</div>
+<div id="comparison-of-approaches" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Comparison of approaches</h3>
+<p>As shown in the previous sections, Beautiful Soup and <code>lxml</code> are more robust to webpage changes than regex. Comparing their relative efficiency, <code>lxml</code> and the regex module were written in C, while Beautiful Soup is pure Python. So, <code>lxml</code> and regex are much faster than Beautiful Soup. To provide benchmarks for these approaches, here we construct an experiment to run each scraper to extract all the available student profile data 1000 times and record the total time taken by each scraper:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="web-scraping-approaches.html#cb13-1"></a><span class="im">import</span> re</span>
+<span id="cb13-2"><a href="web-scraping-approaches.html#cb13-2"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb13-3"><a href="web-scraping-approaches.html#cb13-3"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
+<span id="cb13-4"><a href="web-scraping-approaches.html#cb13-4"></a><span class="im">import</span> time</span>
+<span id="cb13-5"><a href="web-scraping-approaches.html#cb13-5"></a><span class="im">import</span> requests</span>
+<span id="cb13-6"><a href="web-scraping-approaches.html#cb13-6"></a></span>
+<span id="cb13-7"><a href="web-scraping-approaches.html#cb13-7"></a>fields <span class="op">=</span> [<span class="st">&quot;name&quot;</span>, <span class="st">&quot;school&quot;</span>, <span class="st">&quot;level&quot;</span>]</span>
+<span id="cb13-8"><a href="web-scraping-approaches.html#cb13-8"></a></span>
+<span id="cb13-9"><a href="web-scraping-approaches.html#cb13-9"></a><span class="kw">def</span> re_scraper(htmlText):</span>
+<span id="cb13-10"><a href="web-scraping-approaches.html#cb13-10"></a>    results <span class="op">=</span> {}</span>
+<span id="cb13-11"><a href="web-scraping-approaches.html#cb13-11"></a>    <span class="cf">for</span> field <span class="kw">in</span> fields:</span>
+<span id="cb13-12"><a href="web-scraping-approaches.html#cb13-12"></a>        results[field] <span class="op">=</span> re.findall(<span class="st">&#39;&lt;tr id=&quot;students_</span><span class="sc">{}</span><span class="st">_row&quot;&gt;.*?&lt;td class=&quot;w2p_fw&quot;&gt;(.*?)&lt;/td&gt;&#39;</span>.<span class="bu">format</span>(field), htmlText)[<span class="dv">0</span>]</span>
+<span id="cb13-13"><a href="web-scraping-approaches.html#cb13-13"></a>    <span class="cf">return</span> results</span>
+<span id="cb13-14"><a href="web-scraping-approaches.html#cb13-14"></a></span>
+<span id="cb13-15"><a href="web-scraping-approaches.html#cb13-15"></a><span class="kw">def</span> bs_scraper(htmlText):</span>
+<span id="cb13-16"><a href="web-scraping-approaches.html#cb13-16"></a>    soup <span class="op">=</span> BeautifulSoup(htmlText, <span class="st">&#39;html.parser&#39;</span>)</span>
+<span id="cb13-17"><a href="web-scraping-approaches.html#cb13-17"></a>    results <span class="op">=</span> {}</span>
+<span id="cb13-18"><a href="web-scraping-approaches.html#cb13-18"></a>    <span class="cf">for</span> field <span class="kw">in</span> fields:</span>
+<span id="cb13-19"><a href="web-scraping-approaches.html#cb13-19"></a>        results[field] <span class="op">=</span> soup.find(attrs<span class="op">=</span>{<span class="st">&#39;id&#39;</span>:<span class="st">&#39;students_</span><span class="sc">{}</span><span class="st">_row&#39;</span>.<span class="bu">format</span>(field)}).find(attrs<span class="op">=</span>{<span class="st">&#39;class&#39;</span>:<span class="st">&#39;w2p_fw&#39;</span>}).text</span>
+<span id="cb13-20"><a href="web-scraping-approaches.html#cb13-20"></a>    <span class="cf">return</span> results</span>
+<span id="cb13-21"><a href="web-scraping-approaches.html#cb13-21"></a></span>
+<span id="cb13-22"><a href="web-scraping-approaches.html#cb13-22"></a><span class="kw">def</span> lxml_scraper(htmlText):</span>
+<span id="cb13-23"><a href="web-scraping-approaches.html#cb13-23"></a>    tree <span class="op">=</span> html.fromstring(htmlText)</span>
+<span id="cb13-24"><a href="web-scraping-approaches.html#cb13-24"></a>    results <span class="op">=</span> {}</span>
+<span id="cb13-25"><a href="web-scraping-approaches.html#cb13-25"></a>    <span class="cf">for</span> field <span class="kw">in</span> fields:</span>
+<span id="cb13-26"><a href="web-scraping-approaches.html#cb13-26"></a>        results[field] <span class="op">=</span> tree.xpath(<span class="st">&#39;//*[@id=&quot;students_</span><span class="sc">{}</span><span class="st">_row&quot;]/td[2]&#39;</span>.<span class="bu">format</span>(field))[<span class="dv">0</span>].text</span>
+<span id="cb13-27"><a href="web-scraping-approaches.html#cb13-27"></a>    <span class="cf">return</span> results</span>
+<span id="cb13-28"><a href="web-scraping-approaches.html#cb13-28"></a></span>
+<span id="cb13-29"><a href="web-scraping-approaches.html#cb13-29"></a>num_iterations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb13-30"><a href="web-scraping-approaches.html#cb13-30"></a>static_html <span class="op">=</span> requests.get(<span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html&quot;</span>).text</span>
+<span id="cb13-31"><a href="web-scraping-approaches.html#cb13-31"></a><span class="cf">for</span> name, scraper <span class="kw">in</span> [(<span class="st">&#39;Regular Expressions&#39;</span>, re_scraper), (<span class="st">&#39;Beautiful Soup&#39;</span>, bs_scraper), (<span class="st">&#39;Lxml&#39;</span>, lxml_scraper)]:</span>
+<span id="cb13-32"><a href="web-scraping-approaches.html#cb13-32"></a>    start <span class="op">=</span> time.time()</span>
+<span id="cb13-33"><a href="web-scraping-approaches.html#cb13-33"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_iterations):</span>
+<span id="cb13-34"><a href="web-scraping-approaches.html#cb13-34"></a>        <span class="cf">if</span> scraper <span class="op">==</span> re_scraper:</span>
+<span id="cb13-35"><a href="web-scraping-approaches.html#cb13-35"></a>            re.purge()</span>
+<span id="cb13-36"><a href="web-scraping-approaches.html#cb13-36"></a>        result <span class="op">=</span> scraper(static_html)</span>
+<span id="cb13-37"><a href="web-scraping-approaches.html#cb13-37"></a>        <span class="cf">assert</span>(result[<span class="st">&quot;name&quot;</span>] <span class="op">==</span> <span class="st">&quot;Adams&quot;</span>)</span>
+<span id="cb13-38"><a href="web-scraping-approaches.html#cb13-38"></a>        <span class="cf">assert</span>(result[<span class="st">&quot;school&quot;</span>] <span class="op">==</span> <span class="st">&quot;IV&quot;</span>)</span>
+<span id="cb13-39"><a href="web-scraping-approaches.html#cb13-39"></a>        <span class="cf">assert</span>(result[<span class="st">&quot;level&quot;</span>] <span class="op">==</span> <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb13-40"><a href="web-scraping-approaches.html#cb13-40"></a>    end <span class="op">=</span> time.time()</span>
+<span id="cb13-41"><a href="web-scraping-approaches.html#cb13-41"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st"> seconds&#39;</span>.<span class="bu">format</span>(name, end <span class="op">-</span> start))</span></code></pre></div>
+<p>The results, when run on a modest Windows desktop computer, show that Beautiful Soup is much slower than the other two approaches. Regex does not perform the fastest, because we call <code>re.purge()</code> in every iteration to clear the cache. By default, the regex module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. The <code>lxml</code> module performs comparatively well with regex, although <code>lxml</code> has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and <code>lxml</code> becomes even more competitive.</p>
+</div>
+</div>
+<div id="dynamic-web-pages" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Dynamic web pages</h2>
+<p>There are two approaches to scraping a dynamic webpage:</p>
+<ol style="list-style-type: decimal">
+<li>Scrape the content directly from the JavaScript</li>
+<li>Scrape the website as you view it in your browser — using Python packages capable of executing the JavaScript.</li>
+</ol>
+<div id="ajax-requests" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> AJAX requests</h3>
+<p>Because the data are loaded dynamically with JavaScript, to scrape these data, we need to understand how the web page loads the data. Suppose that we want to find all students whose names start with the letter A in the fifth grade with page size set at 5 from this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/search">example dynamic web page</a>. After we click the <code>Search</code> button, open <code>Fiddler</code> –— software that can inspect HTTP requests on your computer and can be downloaded <a href="https://www.telerik.com/download/fiddler">here</a>. We will see that an AJAX request is made. Under <code>Request Headers</code> in the <code>Inspector</code> window, we can find the URL for this search. Under the <code>Response</code> window, we can see the response content is in JSON format. They are highlighted in blue in the following figure:</p>
+<p><img src="images/approaches/1.png" /></p>
+<p>AJAX stands for Asynchronous JavaScript and XML. A dynamic web page works because the AJAX allows JavaScript to make HTTP requests to a remote server and receive responses. This approach works by first accessing the AJAX request responses, and then scraping information of interest from them. The AJAX response data can be downloaded directly. With the URL of the response, we can make a request to the server, scrape the information from the response, and store the scraped information in a spreadsheet, as the following code shows:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="web-scraping-approaches.html#cb14-1"></a><span class="im">import</span> requests</span>
+<span id="cb14-2"><a href="web-scraping-approaches.html#cb14-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-3"><a href="web-scraping-approaches.html#cb14-3"></a></span>
+<span id="cb14-4"><a href="web-scraping-approaches.html#cb14-4"></a>html <span class="op">=</span> requests.get(<span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search_ajax?search_name=A&amp;search_grade=5&amp;page_size=5&amp;page=1&#39;</span>)</span>
+<span id="cb14-5"><a href="web-scraping-approaches.html#cb14-5"></a>html_json <span class="op">=</span> html.json()</span>
+<span id="cb14-6"><a href="web-scraping-approaches.html#cb14-6"></a><span class="bu">print</span>(html_json)</span>
+<span id="cb14-7"><a href="web-scraping-approaches.html#cb14-7"></a></span>
+<span id="cb14-8"><a href="web-scraping-approaches.html#cb14-8"></a>students_A5p0 <span class="op">=</span> pd.DataFrame.from_records(html_json[<span class="st">&#39;records&#39;</span>])</span>
+<span id="cb14-9"><a href="web-scraping-approaches.html#cb14-9"></a><span class="bu">print</span>(students_A5p0.head(<span class="dv">10</span>))</span></code></pre></div>
+<p>Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating over the resulting pages of the JSON responses. The results are then stored in a spreadsheet:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="web-scraping-approaches.html#cb15-1"></a><span class="im">import</span> requests</span>
+<span id="cb15-2"><a href="web-scraping-approaches.html#cb15-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-3"><a href="web-scraping-approaches.html#cb15-3"></a><span class="im">import</span> string</span>
+<span id="cb15-4"><a href="web-scraping-approaches.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="web-scraping-approaches.html#cb15-5"></a>temp_url <span class="op">=</span> <span class="st">&#39;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search_ajax?search_name=</span><span class="sc">{}</span><span class="st">&amp;search_grade=</span><span class="sc">{}</span><span class="st">&amp;page_size=5&amp;page=</span><span class="sc">{}</span><span class="st">&#39;</span></span>
+<span id="cb15-6"><a href="web-scraping-approaches.html#cb15-6"></a>students <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb15-7"><a href="web-scraping-approaches.html#cb15-7"></a>grades <span class="op">=</span> [<span class="st">&quot;K&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>]</span>
+<span id="cb15-8"><a href="web-scraping-approaches.html#cb15-8"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
+<span id="cb15-9"><a href="web-scraping-approaches.html#cb15-9"></a>    <span class="cf">for</span> grade <span class="kw">in</span> grades:</span>
+<span id="cb15-10"><a href="web-scraping-approaches.html#cb15-10"></a>        page <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-11"><a href="web-scraping-approaches.html#cb15-11"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb15-12"><a href="web-scraping-approaches.html#cb15-12"></a>            url <span class="op">=</span> temp_url.<span class="bu">format</span>(letter, grade, page)</span>
+<span id="cb15-13"><a href="web-scraping-approaches.html#cb15-13"></a>            html <span class="op">=</span> requests.get(url)</span>
+<span id="cb15-14"><a href="web-scraping-approaches.html#cb15-14"></a>            html_json <span class="op">=</span> html.json()</span>
+<span id="cb15-15"><a href="web-scraping-approaches.html#cb15-15"></a>            students.extend(html_json[<span class="st">&quot;records&quot;</span>])</span>
+<span id="cb15-16"><a href="web-scraping-approaches.html#cb15-16"></a>            page <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-17"><a href="web-scraping-approaches.html#cb15-17"></a>            <span class="cf">if</span> page <span class="op">&gt;=</span> html_json[<span class="st">&quot;num_pages&quot;</span>]:</span>
+<span id="cb15-18"><a href="web-scraping-approaches.html#cb15-18"></a>                <span class="cf">break</span></span>
+<span id="cb15-19"><a href="web-scraping-approaches.html#cb15-19"></a></span>
+<span id="cb15-20"><a href="web-scraping-approaches.html#cb15-20"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
+<span id="cb15-21"><a href="web-scraping-approaches.html#cb15-21"></a><span class="bu">print</span>(students_df.head(<span class="dv">10</span>))</span></code></pre></div>
+<p>The AJAX-dependent websites initially look more complex but their structure encourages separating the data transmission between client and server and the data presentation on the client browser executing JavaScript, which can make our job of extracting these data much easier.</p>
+</div>
+<div id="selenium" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Selenium</h3>
+<p>The second approach to scraping dynamic web pages uses Python packages capable of executing the JavaScript itself, so that you can scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we would normally interact with it. To illustrate how Selenium can automate a browser to execute JavaScript, we have created a simple <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example web page</a>. This web page uses JavaScript to write a table to a <code>&lt;div&gt;</code> element. Here is the source code:</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+        &lt;script&gt;
+                document.getElementById(&quot;result&quot;).innerHTML = 
+            `&lt;table&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Name&lt;/th&gt;
+                        &lt;th&gt;Grade&lt;/th&gt;
+                        &lt;th&gt;GPA&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Adams&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;4&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Alexander&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;1&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Aaron&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;3&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Aws&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;3.5&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Alan&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;2&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            `;
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>With the traditional approach of downloading the original HTML and parsing the result, the <code>&lt;div&gt;</code> element will be empty, as follows:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="web-scraping-approaches.html#cb17-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
+<span id="cb17-2"><a href="web-scraping-approaches.html#cb17-2"></a><span class="im">import</span> requests</span>
+<span id="cb17-3"><a href="web-scraping-approaches.html#cb17-3"></a></span>
+<span id="cb17-4"><a href="web-scraping-approaches.html#cb17-4"></a>global_dynamicUrl <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic&quot;</span></span>
+<span id="cb17-5"><a href="web-scraping-approaches.html#cb17-5"></a>global_dynamicPage <span class="op">=</span> requests.get(global_dynamicUrl)</span>
+<span id="cb17-6"><a href="web-scraping-approaches.html#cb17-6"></a>global_dynamicHtml <span class="op">=</span> html.fromstring(global_dynamicPage.text)</span>
+<span id="cb17-7"><a href="web-scraping-approaches.html#cb17-7"></a>table_area <span class="op">=</span> global_dynamicHtml.xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table&#39;</span>)</span>
+<span id="cb17-8"><a href="web-scraping-approaches.html#cb17-8"></a><span class="bu">print</span>(table_area)</span></code></pre></div>
+<p>Here is an initial example with Selenium. Selenium can be installed using <code>pip</code> with the command: <code>pip install selenium</code>. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser by executing the JavaScript. The JavaScript is executed because now the <code>&lt;div&gt;</code> element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="web-scraping-approaches.html#cb18-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb18-2"><a href="web-scraping-approaches.html#cb18-2"></a></span>
+<span id="cb18-3"><a href="web-scraping-approaches.html#cb18-3"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;https://driver/chromedriver.exe&#39;</span>)</span>
+<span id="cb18-4"><a href="web-scraping-approaches.html#cb18-4"></a>global_dynamicUrl <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic&quot;</span></span>
+<span id="cb18-5"><a href="web-scraping-approaches.html#cb18-5"></a>driver.get(global_dynamicUrl)</span>
+<span id="cb18-6"><a href="web-scraping-approaches.html#cb18-6"></a>table_area <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table&#39;</span>)</span>
+<span id="cb18-7"><a href="web-scraping-approaches.html#cb18-7"></a>table_entries <span class="op">=</span> table_area.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb18-8"><a href="web-scraping-approaches.html#cb18-8"></a><span class="bu">print</span>(<span class="bu">len</span>(table_entries))</span>
+<span id="cb18-9"><a href="web-scraping-approaches.html#cb18-9"></a>driver.close()</span></code></pre></div>
+<p>So far, our browser automation can only execute JavaScript and access the resulting HTML. To scrape the resulting HTML will require extending the browser automation to support intensive website interactions with the user. Fortunately, Selenium has an excellent API to select and manipulate the HTML elements, which makes this straightforward. Here is an example implementation that rewrites the previous example that searches all students in Selenium. We will cover Selenium in detail in the following sections.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="web-scraping-approaches.html#cb19-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb19-2"><a href="web-scraping-approaches.html#cb19-2"></a><span class="im">import</span> time</span>
+<span id="cb19-3"><a href="web-scraping-approaches.html#cb19-3"></a><span class="im">import</span> string</span>
+<span id="cb19-4"><a href="web-scraping-approaches.html#cb19-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-5"><a href="web-scraping-approaches.html#cb19-5"></a></span>
+<span id="cb19-6"><a href="web-scraping-approaches.html#cb19-6"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;https://driver/chromedriver.exe&#39;</span>)</span>
+<span id="cb19-7"><a href="web-scraping-approaches.html#cb19-7"></a>searchAddress <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/cases/search&quot;</span></span>
+<span id="cb19-8"><a href="web-scraping-approaches.html#cb19-8"></a>driver.get(searchAddress)</span>
+<span id="cb19-9"><a href="web-scraping-approaches.html#cb19-9"></a>time.sleep(<span class="dv">2</span>)</span>
+<span id="cb19-10"><a href="web-scraping-approaches.html#cb19-10"></a></span>
+<span id="cb19-11"><a href="web-scraping-approaches.html#cb19-11"></a>students <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb19-12"><a href="web-scraping-approaches.html#cb19-12"></a></span>
+<span id="cb19-13"><a href="web-scraping-approaches.html#cb19-13"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
+<span id="cb19-14"><a href="web-scraping-approaches.html#cb19-14"></a>    <span class="cf">for</span> grade <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">8</span>):</span>
+<span id="cb19-15"><a href="web-scraping-approaches.html#cb19-15"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).send_keys(letter)</span>
+<span id="cb19-16"><a href="web-scraping-approaches.html#cb19-16"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_grade&quot;]/option[</span><span class="sc">{}</span><span class="st">]&#39;</span>.<span class="bu">format</span>(grade)).click()</span>
+<span id="cb19-17"><a href="web-scraping-approaches.html#cb19-17"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search&quot;]&#39;</span>).click()</span>
+<span id="cb19-18"><a href="web-scraping-approaches.html#cb19-18"></a>        time.sleep(<span class="dv">5</span>)</span>
+<span id="cb19-19"><a href="web-scraping-approaches.html#cb19-19"></a>        <span class="cf">try</span>:</span>
+<span id="cb19-20"><a href="web-scraping-approaches.html#cb19-20"></a>            <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb19-21"><a href="web-scraping-approaches.html#cb19-21"></a>                table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb19-22"><a href="web-scraping-approaches.html#cb19-22"></a>                entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb19-23"><a href="web-scraping-approaches.html#cb19-23"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
+<span id="cb19-24"><a href="web-scraping-approaches.html#cb19-24"></a>                    student_dict <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb19-25"><a href="web-scraping-approaches.html#cb19-25"></a>                    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&quot;td&quot;</span>)</span>
+<span id="cb19-26"><a href="web-scraping-approaches.html#cb19-26"></a>                    student_dict[<span class="st">&quot;name&quot;</span>] <span class="op">=</span> cols[<span class="dv">0</span>].text</span>
+<span id="cb19-27"><a href="web-scraping-approaches.html#cb19-27"></a>                    student_dict[<span class="st">&quot;grade&quot;</span>] <span class="op">=</span> cols[<span class="dv">1</span>].text</span>
+<span id="cb19-28"><a href="web-scraping-approaches.html#cb19-28"></a>                    student_dict[<span class="st">&quot;gpa&quot;</span>] <span class="op">=</span> cols[<span class="dv">2</span>].text</span>
+<span id="cb19-29"><a href="web-scraping-approaches.html#cb19-29"></a>                    students.append(student_dict)</span>
+<span id="cb19-30"><a href="web-scraping-approaches.html#cb19-30"></a></span>
+<span id="cb19-31"><a href="web-scraping-approaches.html#cb19-31"></a>                <span class="cf">try</span>:</span>
+<span id="cb19-32"><a href="web-scraping-approaches.html#cb19-32"></a>                    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>).click()</span>
+<span id="cb19-33"><a href="web-scraping-approaches.html#cb19-33"></a>                    time.sleep(<span class="dv">2</span>)</span>
+<span id="cb19-34"><a href="web-scraping-approaches.html#cb19-34"></a>                <span class="cf">except</span>:</span>
+<span id="cb19-35"><a href="web-scraping-approaches.html#cb19-35"></a>                    <span class="cf">break</span></span>
+<span id="cb19-36"><a href="web-scraping-approaches.html#cb19-36"></a>            driver.get(searchAddress)</span>
+<span id="cb19-37"><a href="web-scraping-approaches.html#cb19-37"></a>            time.sleep(<span class="dv">2</span>)</span>
+<span id="cb19-38"><a href="web-scraping-approaches.html#cb19-38"></a>        <span class="cf">except</span>:</span>
+<span id="cb19-39"><a href="web-scraping-approaches.html#cb19-39"></a>            <span class="bu">print</span>(<span class="st">&quot;No results for letter </span><span class="sc">{}</span><span class="st"> at grade </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(letter, grade <span class="op">-</span> <span class="dv">2</span>))</span>
+<span id="cb19-40"><a href="web-scraping-approaches.html#cb19-40"></a>            driver.get(searchAddress)</span>
+<span id="cb19-41"><a href="web-scraping-approaches.html#cb19-41"></a>            time.sleep(<span class="dv">2</span>)</span>
+<span id="cb19-42"><a href="web-scraping-approaches.html#cb19-42"></a></span>
+<span id="cb19-43"><a href="web-scraping-approaches.html#cb19-43"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
+<span id="cb19-44"><a href="web-scraping-approaches.html#cb19-44"></a><span class="bu">print</span>(students_df.head(<span class="dv">10</span>))</span>
+<span id="cb19-45"><a href="web-scraping-approaches.html#cb19-45"></a>driver.close()</span></code></pre></div>
+</div>
+<div id="comparison-of-approaches-1" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Comparison of approaches</h3>
+<p>The first approach needs to understand how the data is loaded dynamically with JavaScript, which requires you to understand the JavaScript code that can be found in <code>View page source</code>. For the example search web page, we were able to easily know how the JavaScript works. However, some websites will be very complex and difficult to understand. With enough effort, any website can be scraped in this way. However, this effort can be avoided by instead using the Python module Selenium, which automates a web browser to execute JavaScript to display a web page and then perform actions on this web page. This approach only requires that you know how Selenium and its APIs work, so that you can control a web browser. You do not need to understand how the backend of a website works. However, there are disadvantages. Automating a web browser adds overhead and so is much slower than just downloading the HTML. Additionally, solutions using a browser driver often require polling the web page to check whether the resulting HTML from an event has occurred yet or waiting a set amount of time to make sure an AJAX event has completed, which is brittle and can easily fail when the network is slow.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="concepts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="when-to-use-a-browser-driver.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/IQSS/dss-webscrape/edit/master/chapter_1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["webscraping.pdf", "webscraping.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -8,24 +8,24 @@ use_condaenv(condaenv="r-reticulate", required=TRUE)
 ```
 
 # Filling in Web Forms
-You must have noticed the ubiquity of web forms while surfing the internet. A web form comprises web elements such as input box, check box, radio button, link, drop down menu and submit button to collect user data. To process web forms, we would need to first find these web elements and then take subsequent actions on them like selecting a value or entering some text. Selenium has an API that helps us to do that. Since we have covered how to find web element(s) using Selenium selectors in the previous section, this section focuses on the crux of accessing form in Selenium: performing actions on and interacting with the forms using Selenium. Let us see how different actions can be performed on each type of web fields that may be involved in your web form. We use this [example login form website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to illustrate most of the examples used in this section. Below is a snapshot of how this website uses forms:  
+You must have noticed the ubiquity of web forms while surfing the internet. A web form comprises web elements such as input boxes, check boxes, radio buttons, links, drop down menus, and submit buttons to collect user data. To process web forms, we need to first find these web elements and then take subsequent actions on them like selecting a value or entering some text. Selenium has an API that helps us to do that. Since we have covered how to find web element(s) using Selenium selectors in the previous chapter, this chapter focuses on accessing forms in Selenium: performing actions on and interacting with the forms. Let us see how different actions can be performed on each type of web field that may be involved in your web form. We use this [example login form website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to illustrate most of the examples used in this chapter. Below is a screenshot of how this website uses forms:  
 
 ![](images/form/form.png)
 
 ## Input box
-Input box is the text box that displays user input. To handle any input box, we must be able to enter information, clear information or get information from the box. To enter text into a textbox we can use the `send_keys()` method which would input the user required text from our automation script. The following code enters the student name starting with "A" into a text box whose ID is "search_name":
+The input box is the text box that displays user input. To handle any input box, we must be able to enter information, clear information or get information from the box. To enter text into a textbox we can use the `send_keys()` method, which would input the user required text from our automation script. The following code enters the student name starting with "A" into a text box whose ID is "search_name":
 
 ```{python, eval=FALSE}
 driver.find_element_by_id('search_name').send_keys("A")
 ```
 
-To clear a pre-entered text or the text that you last entered can be wiped clean with the `clear()` method. For example:
+To clear pre-entered text we can use the `clear()` method. For example:
 
 ```{python, eval=FALSE}
 driver.find_element_by_id('search_name').clear()
 ```
 
-To fetch the text that is written in a text box in case we need to validate some existing or entered text, use the `get_attribute()` method:
+If we need to validate some existing text, we can fetch text already in a text box using the `get_attribute()` method:
 
 ```{python, eval=FALSE}
 nameText = driver.find_element_by_id('search_name').get_attribute("value")
@@ -33,13 +33,13 @@ print(nameText)
 ```
 
 ## Check box
-Check box is a small box that enables us to check or uncheck it. To select or check a value we use the `click()` method. It simply changes the state from unchecked to checked and vice-versa. For example, the code below clicks on the “Accept Privacy Policy” checkbox:
+A check box is a small box that enables us to check or uncheck it. To select or check a value we use the `click()` method. It simply changes the state from unchecked to checked and vice-versa. For example, the code below clicks on the `Accept Privacy Policy` checkbox:
 
 ```{python, eval=FALSE}
 driver.find_element_by_id('privacypolicy').click()
 ```
 
-It is not always straightforward anyway. Because we may need to select checkbox only when it is not selected already; Likewise, checkbox deselection, we want deselect checkbox only when it is selected. To select, if we perform click operation on already selected checkbox, then the checkbox will be deselected; Something we do not want to happen. So, we need to validate whether the checkbox is selected or not. To get the state we can use two mechanisms: `is_selected()` OR `get_attribute(“checked”)`. For example:
+Dealing with checkboxes is not always so straightforward. We may need to select a checkbox only when it is not selected already. Or, we may want to deselect a checkbox only when it is already selected. If we are trying to select a checkbox, but we perform a click operation on an already selected checkbox, then the checkbox will be deselected; something we do not want to happen. So, we first need to validate whether the checkbox is selected or not. To get the current state of the checkbox we can use one of two methods: `is_selected()` or `get_attribute("checked")`. For example, using `is_selected()`:
 
 ```{python, eval=FALSE}
 privacy_boolean = driver.find_element_by_id('privacypolicy').is_selected()
@@ -47,7 +47,7 @@ print(privacy_boolean)
 print(type(privacy_boolean))
 ```
 
-This will return a boolean value. This means if the checkbox is checked we would get a True else we will get False. OR:
+This will return a boolean value. This means if the checkbox is checked we would get a `True` value else we will get `False` value. Alternatively, using `get_attribute("checked")`:
 
 ```{python, eval=FALSE}
 privacy_other = driver.find_element_by_id('privacypolicy').get_attribute("checked")
@@ -55,9 +55,7 @@ print(privacy_other)
 print(type(privacy_other))
 ```
 
-This will return True if the checkbox is selected. But will return NoneType if checkbox is not selected.
-
-The following code shows how to deselect a checkbox only when it is selected:
+This will return `True` if the checkbox is selected, but will return `NoneType` if the checkbox is not selected. The following code shows how to deselect a checkbox only when it is selected:
 
 ```{python, eval=FALSE}
 driver.find_element_by_id('privacypolicy').click()

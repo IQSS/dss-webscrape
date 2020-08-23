@@ -196,8 +196,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>5.8</b> <code>ElementNotInteractableException</code></a>
 <ul>
-<li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-the-element-is-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait until the element is clickable</a></li>
-<li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-the-element-is-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll until the element is on-screen</a></li>
+<li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait until clickable</a></li>
+<li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll until on-screen</a></li>
 <li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript-to-interact-directly-with-the-dom"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript to interact directly with the DOM</a></li>
 <li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-whatever-other-action-is-necessary"><i class="fa fa-check"></i><b>5.8.4</b> Perform whatever other action is necessary</a></li>
 </ul></li>
@@ -437,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="elementnotinteractableexception" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> <code>ElementNotInteractableException</code></h2>
-<p>In some cases when the element is not interactable, actions on it as introduced in the above sections do not work and you are likely to encounter an <code>ElementNotInteractableException</code>. This is caused when an element is found, but you cannot interact with it. For instance, you may not be able to click or send keys. There could be several reasons for this:</p>
+<p>In some cases when the element is not interactable, actions on it as introduced in the above sections do not work and we are likely to encounter an <code>ElementNotInteractableException</code>. This is caused when an element is found, but you cannot interact with it — for example, you may not be able to click or send keys. There could be several reasons for this scenario:</p>
 <ol style="list-style-type: decimal">
 <li>The element is not visible / not displayed.<br />
 </li>
@@ -445,12 +445,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>The element is behind another element or hidden.<br />
 </li>
-<li>Some other action needs to be performed by the user first to enable it.</li>
+<li>Some other action needs to be performed by the user first to enable the element.</li>
 </ol>
-<p>There are strategies that may work to make it interactable, depending on the circumstance.</p>
-<div id="wait-until-the-element-is-clickable" class="section level3" number="5.8.1">
-<h3><span class="header-section-number">5.8.1</span> Wait until the element is clickable</h3>
-<p>If the element has not been fully downloaded yet, we can wait until the element is visible / clickable. Look at the following example in which we want to get the profile for the 5th grade student named as “Adams”.</p>
+<p>There are strategies that may work to make the element interactable, depending on the circumstance.</p>
+<div id="wait-until-clickable" class="section level3" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> Wait until clickable</h3>
+<p>If the element has not been fully downloaded yet, we can wait until the element is visible / clickable. Look at the following example in which we want to get the profile for the 5th grade student named “Adams”.</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="filling-in-web-forms.html#cb64-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb64-2"><a href="filling-in-web-forms.html#cb64-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb64-3"><a href="filling-in-web-forms.html#cb64-3"></a></span>
@@ -467,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb64-14"><a href="filling-in-web-forms.html#cb64-14"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
 <span id="cb64-15"><a href="filling-in-web-forms.html#cb64-15"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
 <span id="cb64-16"><a href="filling-in-web-forms.html#cb64-16"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
-<p>This code produces an error message that <code>“no such element: Unable to locate element”</code> because the result table has not been fully downloaded yet. Selenium WebDriver provides two types of waits to handle it – explicit and implicit wait. The <code>time.sleep()</code> method is an <strong>explicit wait to set the condition to be an exact time period to wait</strong>, as the code below shows:</p>
+<p>The above code produces an error message — <code>"no such element: Unable to locate element"</code> — because the result table has not been fully downloaded yet. Selenium <code>WebDriver</code> provides two types of waits to handle it –– explicit and implicit wait. The <code>time.sleep()</code> method is an <strong>explicit wait to set the condition to be an exact time period to wait</strong>, as the code below shows:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="filling-in-web-forms.html#cb65-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb65-2"><a href="filling-in-web-forms.html#cb65-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb65-3"><a href="filling-in-web-forms.html#cb65-3"></a><span class="im">import</span> time</span>
@@ -486,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb65-16"><a href="filling-in-web-forms.html#cb65-16"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
 <span id="cb65-17"><a href="filling-in-web-forms.html#cb65-17"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
 <span id="cb65-18"><a href="filling-in-web-forms.html#cb65-18"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
-<p>As discussed in the previous chapter, a more efficient solution would be to make WebDriver <strong>wait only as long as required</strong>. This is also an <strong>explicit wait</strong> but more efficient than <code>time.sleep()</code>. The code below uses the presence of the resulting table element with id “resulttable” to declare that the page has been fully loaded:</p>
+<p>As discussed in the previous chapter, a more efficient solution would be to make <code>WebDriver</code> <strong>wait only as long as required</strong>. This is also an <strong>explicit wait</strong> but more efficient than <code>time.sleep()</code>. The code below uses the presence of the resulting table element with id <code>"resulttable"</code> to declare that the page has been fully loaded:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="filling-in-web-forms.html#cb66-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb66-2"><a href="filling-in-web-forms.html#cb66-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb66-3"><a href="filling-in-web-forms.html#cb66-3"></a><span class="im">from</span> selenium.webdriver.common.by <span class="im">import</span> By</span>
@@ -506,7 +506,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb66-17"><a href="filling-in-web-forms.html#cb66-17"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
 <span id="cb66-18"><a href="filling-in-web-forms.html#cb66-18"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
 <span id="cb66-19"><a href="filling-in-web-forms.html#cb66-19"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
-<p>The final solution is to use an <strong>implicit wait</strong>, which tells WebDriver to poll the DOM for a certain amount of time when trying to find any element (or elements) not immediately available. The default setting is 0. <strong>Once set, the implicit wait is set for the life of the WebDriver object</strong>.</p>
+<p>The final solution is to use an <strong>implicit wait</strong>, which tells <code>WebDriver</code> to poll the DOM for a certain amount of time when trying to find any element(s) not immediately available. The default setting is 0. <strong>Once set, the implicit wait is set for the life of the <code>WebDriver</code> object</strong>.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="filling-in-web-forms.html#cb67-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb67-2"><a href="filling-in-web-forms.html#cb67-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb67-3"><a href="filling-in-web-forms.html#cb67-3"></a></span>
@@ -525,11 +525,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-16"><a href="filling-in-web-forms.html#cb67-16"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
 <span id="cb67-17"><a href="filling-in-web-forms.html#cb67-17"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
 </div>
-<div id="scroll-until-the-element-is-on-screen" class="section level3" number="5.8.2">
-<h3><span class="header-section-number">5.8.2</span> Scroll until the element is on-screen</h3>
-<p>An element is on screen means that this element is embedded in the DOM structure of the web page. You can find its DOM structure when inspecting a web page. If the element you act upon is not in the DOM structure, then you will get some kind of error message due to this reason. Let us look at this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">example website</a>. Suppose that we search all the 5th grade students whose name starts with “A”. If we inspect it, we can find that there are 15 table entries included under the <code>&lt;tbody&gt;</code> tag in its DOM structure, as shown in the following figure.</p>
+<div id="scroll-until-on-screen" class="section level3" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Scroll until on-screen</h3>
+<p>When an element is on screen it means that it is embedded in the DOM structure of the web page. Therefore, you can find its DOM structure when inspecting a web page. If the element you act upon is not in the DOM structure, then we will see some kind of error message. Let us look at this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">example website</a>. Suppose that we search all the 5th grade students whose names start with “A”. If we <code>Inspect</code> the HTML, we can find that there are 15 table entries included under the <code>&lt;tbody&gt;</code> tag in its DOM structure, as shown in the following figure:</p>
 <p><img src="images/form/scroll.png" /></p>
-<p>Suppose that we want to get the profile for student “Aiden” – the 15th record of the page. It will work fine. But if we want to get the profile for the 16th student of the page, we will get an error message saying that “list index out of range”. This is because that record is off-screen.</p>
+<p>Suppose that we want to get the profile for student “Aiden” –– the 15th record of the page. It will work fine. But if we want to get the profile for the 16th student of the page, we will get an error message saying <code>"list index out of range"</code>. This is because that record is off-screen.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="filling-in-web-forms.html#cb68-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb68-2"><a href="filling-in-web-forms.html#cb68-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb68-3"><a href="filling-in-web-forms.html#cb68-3"></a><span class="im">import</span> time</span>
@@ -546,7 +546,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb68-14"><a href="filling-in-web-forms.html#cb68-14"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
 <span id="cb68-15"><a href="filling-in-web-forms.html#cb68-15"></a>fields <span class="op">=</span> entries[<span class="dv">15</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
 <span id="cb68-16"><a href="filling-in-web-forms.html#cb68-16"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
-<p>The solution is that we can scroll down the page so that the off-screen records can be added into its DOM structure. You can use the following code to scroll down to a certain height of the page, where “5000” is the height, or use it to scroll down to the bottom of the page:</p>
+<p>The solution is to scroll down the page so that the off-screen records can be added into its DOM structure. In the following code, we scroll down to a certain height of the page, where “5000” is the height (line 12). By uncommenting line 14 and commenting line 12, we can also scroll down to the bottom of the page:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="filling-in-web-forms.html#cb69-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb69-2"><a href="filling-in-web-forms.html#cb69-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb69-3"><a href="filling-in-web-forms.html#cb69-3"></a><span class="im">import</span> time</span>
@@ -571,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="execute-javascript-to-interact-directly-with-the-dom" class="section level3" number="5.8.3">
 <h3><span class="header-section-number">5.8.3</span> Execute JavaScript to interact directly with the DOM</h3>
-<p>On this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search">example website</a>, we can see that the form submit button is hidden. If we still use the button <code>click()</code> method, we will get an error message saying that “element not interactable”. In this case, you can opt to execute JavaScript that directly interacts with the DOM:</p>
+<p>On this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search">example website</a>, we can see that the form submit button is hidden. If we still use the button <code>click()</code> method, we will get an error message saying that <code>"element not interactable"</code>. In this case, you can opt to execute JavaScript that directly interacts with the DOM:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="filling-in-web-forms.html#cb70-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb70-2"><a href="filling-in-web-forms.html#cb70-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb70-3"><a href="filling-in-web-forms.html#cb70-3"></a></span>
@@ -592,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="perform-whatever-other-action-is-necessary" class="section level3" number="5.8.4">
 <h3><span class="header-section-number">5.8.4</span> Perform whatever other action is necessary</h3>
-<p>Let us again search for all the 5th grade students whose name starts with “A” on this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example website</a>. If you move your mouse over a student name, you will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the mouse to a student name to enable it. Once we do that, if you inspect the webpage, you will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. The following is the code example that scrapes the content on the hover box of student “Adams”:</p>
+<p>Let us again search for all the 5th grade students whose name starts with “A” on this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example website</a>. If you move your cursor over a student name, you will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the cursor to a student name to enable it. Once we do that, if you inspect the webpage, you will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. In the following code segment we scrape the content on the hover box of student “Adams”:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="filling-in-web-forms.html#cb71-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb71-2"><a href="filling-in-web-forms.html#cb71-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb71-3"><a href="filling-in-web-forms.html#cb71-3"></a><span class="im">from</span> selenium.webdriver.common.action_chains <span class="im">import</span> ActionChains</span>
@@ -617,7 +617,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-22"><a href="filling-in-web-forms.html#cb71-22"></a><span class="bu">print</span>(hov_id)</span>
 <span id="cb71-23"><a href="filling-in-web-forms.html#cb71-23"></a>hov_text <span class="op">=</span> driver.find_element_by_id(hov_id).text</span>
 <span id="cb71-24"><a href="filling-in-web-forms.html#cb71-24"></a><span class="bu">print</span>(hov_text)</span></code></pre></div>
-<p>We first need to import <code>ActionChains</code> class in Selenium WebDriver. We create an ActionChains object by passing driver object. We then find the student name “Adams” object in the page and move cursor on this object using the method <code>move_to_element()</code>. Method <code>perform()</code> is used to execute the actions that we have built on the ActionChains object. In this case, this action makes the hover box appear above the student name. Once this is done, the hover box element is added to the DOM structure of the page. By inspecting this new addition in the DOM structure, we can find the ID of the hover box through attribute <strong>“aria-describedby”</strong> and therefore scrape the content of the hover box object associated with that ID.</p>
+<p>We first need to import the <code>ActionChains</code> class in Selenium <code>WebDriver</code>. We create an <code>ActionChains</code> object by passing the driver object. We then find the student name “Adams” object in the page and move the cursor on this object using the method <code>move_to_element()</code>. We then use the method <code>perform()</code> to execute the actions that we have built on the <code>ActionChains</code> object. In this case, this action makes the hover box appear above the student name. Once this is done, the hover box element is added to the DOM structure of the page. By inspecting this new addition in the DOM structure, we can find the ID of the hover box through attribute <code>"aria-describedby"</code> and therefore scrape the content of the hover box object associated with that ID.</p>
 
 </div>
 </div>

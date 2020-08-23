@@ -283,17 +283,17 @@ driver.close()
 There is no code in this program that refreshes the form page. We put the lines of code that fill in the constant form fields outside of the loop so that those constant fields will not be refilled in every time for a new search. The change of the positions of lines 13 –- 15 and line 19 of the code comparing the program in the first scenario reflects this idea.  
 
 ## `ElementNotInteractableException`
-In some cases when the element is not interactable, actions on it as introduced in the above sections do not work and you are likely to encounter an `ElementNotInteractableException`. This is caused when an element is found, but you cannot interact with it. For instance, you may not be able to click or send keys. There could be several reasons for this:
+In some cases when the element is not interactable, actions on it as introduced in the above sections do not work and we are likely to encounter an `ElementNotInteractableException`. This is caused when an element is found, but you cannot interact with it --- for example, you may not be able to click or send keys. There could be several reasons for this scenario:
 
 1.  The element is not visible / not displayed.   
 2.  The element is off screen.   
 3.  The element is behind another element or hidden.   
-4.  Some other action needs to be performed by the user first to enable it.   
+4.  Some other action needs to be performed by the user first to enable the element.   
 
-There are strategies that may work to make it interactable, depending on the circumstance. 
+There are strategies that may work to make the element interactable, depending on the circumstance. 
 
-### Wait until the element is clickable 
-If the element has not been fully downloaded yet, we can wait until the element is visible / clickable. Look at the following example in which we want to get the profile for the 5th grade student named as “Adams”. 
+### Wait until clickable 
+If the element has not been fully downloaded yet, we can wait until the element is visible / clickable. Look at the following example in which we want to get the profile for the 5th grade student named "Adams". 
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -314,7 +314,7 @@ fields = entries[1].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name("a").click()
 ```
 
-This code produces an error message that `“no such element: Unable to locate element”` because the result table has not been fully downloaded yet. Selenium WebDriver provides two types of waits to handle it – explicit and implicit wait. The `time.sleep()` method is an **explicit wait to set the condition to be an exact time period to wait**, as the code below shows:
+The above code produces an error message --- `"no such element: Unable to locate element"` --- because the result table has not been fully downloaded yet. Selenium `WebDriver` provides two types of waits to handle it –-- explicit and implicit wait. The `time.sleep()` method is an **explicit wait to set the condition to be an exact time period to wait**, as the code below shows:
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -337,7 +337,7 @@ fields = entries[1].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name("a").click()
 ```
 
-As discussed in the previous chapter, a more efficient solution would be to make WebDriver **wait only as long as required**. This is also an **explicit wait** but more efficient than `time.sleep()`. The code below uses the presence of the resulting table element with id “resulttable” to declare that the page has been fully loaded:
+As discussed in the previous chapter, a more efficient solution would be to make `WebDriver` **wait only as long as required**. This is also an **explicit wait** but more efficient than `time.sleep()`. The code below uses the presence of the resulting table element with id `"resulttable"` to declare that the page has been fully loaded:
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -361,7 +361,7 @@ fields = entries[1].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name("a").click()
 ```
 
-The final solution is to use an **implicit wait**, which tells WebDriver to poll the DOM for a certain amount of time when trying to find any element (or elements) not immediately available. The default setting is 0. **Once set, the implicit wait is set for the life of the WebDriver object**. 
+The final solution is to use an **implicit wait**, which tells `WebDriver` to poll the DOM for a certain amount of time when trying to find any element(s) not immediately available. The default setting is 0. **Once set, the implicit wait is set for the life of the `WebDriver` object**. 
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -383,12 +383,12 @@ fields = entries[1].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name("a").click()
 ```
 
-### Scroll until the element is on-screen  
-An element is on screen means that this element is embedded in the DOM structure of the web page. You can find its DOM structure when inspecting a web page. If the element you act upon is not in the DOM structure, then you will get some kind of error message due to this reason. Let us look at this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). Suppose that we search all the 5th grade students whose name starts with "A". If we inspect it, we can find that there are 15 table entries included under the `<tbody>` tag in its DOM structure, as shown in the following figure. 
+### Scroll until on-screen  
+When an element is on screen it means that it is embedded in the DOM structure of the web page. Therefore, you can find its DOM structure when inspecting a web page. If the element you act upon is not in the DOM structure, then we will see some kind of error message. Let us look at this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). Suppose that we search all the 5th grade students whose names start with "A". If we `Inspect` the HTML, we can find that there are 15 table entries included under the `<tbody>` tag in its DOM structure, as shown in the following figure: 
 
 ![](images/form/scroll.png)
 
-Suppose that we want to get the profile for student “Aiden” – the 15th record of the page. It will work fine. But if we want to get the profile for the 16th student of the page, we will get an error message saying that “list index out of range”. This is because that record is off-screen. 
+Suppose that we want to get the profile for student "Aiden" --– the 15th record of the page. It will work fine. But if we want to get the profile for the 16th student of the page, we will get an error message saying `"list index out of range"`. This is because that record is off-screen. 
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -409,7 +409,7 @@ fields = entries[15].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name('a').click()
 ```
 
-The solution is that we can scroll down the page so that the off-screen records can be added into its DOM structure. You can use the following code to scroll down to a certain height of the page, where “5000” is the height, or use it to scroll down to the bottom of the page:
+The solution is to scroll down the page so that the off-screen records can be added into its DOM structure. In the following code, we scroll down to a certain height of the page, where "5000" is the height (line 12). By uncommenting line 14 and commenting line 12, we can also scroll down to the bottom of the page:
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -436,7 +436,7 @@ fields[3].find_element_by_tag_name('a').click()
 ```
 
 ### Execute JavaScript to interact directly with the DOM
-On this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search), we can see that the form submit button is hidden. If we still use the button `click()` method, we will get an error message saying that “element not interactable”. In this case, you can opt to execute JavaScript that directly interacts with the DOM:
+On this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search), we can see that the form submit button is hidden. If we still use the button `click()` method, we will get an error message saying that `"element not interactable"`. In this case, you can opt to execute JavaScript that directly interacts with the DOM:
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -459,7 +459,7 @@ fields[3].find_element_by_tag_name('a').click()
 ``` 
 
 ### Perform whatever other action is necessary
-Let us again search for all the 5th grade students whose name starts with “A” on this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search). If you move your mouse over a student name, you will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the mouse to a student name to enable it. Once we do that, if you inspect the webpage, you will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. The following is the code example that scrapes the content on the hover box of student “Adams”:
+Let us again search for all the 5th grade students whose name starts with "A" on this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search). If you move your cursor over a student name, you will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the cursor to a student name to enable it. Once we do that, if you inspect the webpage, you will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. In the following code segment we scrape the content on the hover box of student "Adams":
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -488,5 +488,5 @@ hov_text = driver.find_element_by_id(hov_id).text
 print(hov_text)
 ```
 
-We first need to import `ActionChains` class in Selenium WebDriver. We create an ActionChains object by passing driver object. We then find the student name “Adams” object in the page and move cursor on this object using the method `move_to_element()`. Method `perform()` is used to execute the actions that we have built on the ActionChains object. In this case, this action makes the hover box appear above the student name. Once this is done, the hover box element is added to the DOM structure of the page. By inspecting this new addition in the DOM structure, we can find the ID of the hover box through attribute **“aria-describedby”** and therefore scrape the content of the hover box object associated with that ID.   
+We first need to import the `ActionChains` class in Selenium `WebDriver`. We create an `ActionChains` object by passing the driver object. We then find the student name "Adams" object in the page and move the cursor on this object using the method `move_to_element()`. We then use the method `perform()` to execute the actions that we have built on the `ActionChains` object. In this case, this action makes the hover box appear above the student name. Once this is done, the hover box element is added to the DOM structure of the page. By inspecting this new addition in the DOM structure, we can find the ID of the hover box through attribute `"aria-describedby"` and therefore scrape the content of the hover box object associated with that ID.   
 

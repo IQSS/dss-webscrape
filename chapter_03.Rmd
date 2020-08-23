@@ -53,7 +53,7 @@ Look at the two links highlighted below. They have a tag name `<a>` with an attr
 
 ![](images/I-2/1a.png)
 
-Normally, if a link is static, its link address will end with a file name with a file extension. In this case, the link address (*https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adrian.html*) ends with the file name `Adrian` and file extension `.html`. The link address is formed first starting with a server address (<https://iqssdss2020.pythonanywhere.com>) and followed by the web application name (`/tutorial`) and then followed by a hierarchical path of folders to that `.html` file. 
+Normally, if a link is static, its link address will end with a file name with a file extension. In this case, the link address (<https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adrian.html>) ends with the file name `Adrian` and file extension `.html`. The link address is formed first starting with a server address (<https://iqssdss2020.pythonanywhere.com>) and followed by the web application name (`/tutorial`) and then followed by a hierarchical path of folders to that `.html` file. 
 
 ![](images/I-2/1.png)
 

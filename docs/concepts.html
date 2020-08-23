@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Webscraping with Selenium</a></li>
+<li><a href="./">Webscraping with Selenium Python</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
@@ -257,26 +257,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="document-object-model-dom" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Document Object Model (DOM)</h2>
-<p>To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in <strong>nodes</strong> and links information through <strong>branches</strong>. This tree-like structure is called the <strong>Document Object Model (DOM)</strong>. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. <em>Each branch of the tree ends in a node, and each node contains objects</em>. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following is an example of DOM hierarchy in an HTML document:</p>
+<p>To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in <strong>nodes</strong> and links information through <strong>branches</strong>. This tree-like structure is called the <strong>Document Object Model (DOM)</strong>. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. <em>Each branch of the tree ends in a node, and each node contains objects</em>. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following schematic is an example of DOM hierarchy in an HTML document:</p>
 <p><img src="images/intro/DOM.png" /></p>
-<p><strong>WE NEED AN ACTUAL EXAMPLE OF THE DOM IN HTML CODE:</strong></p>
-Explain what a
-<div>
-element is, what a
-<td>
-<p>element is etc.</p>
-<pre><code>&lt;tr id=students_school_row&gt;
-    &lt;td class=w2p_fl&gt;
-        &lt;label for=&quot;students_school&quot; id=&quot;students_school_label&quot;&gt;
-            School:
-        &lt;/label&gt;
-    &lt;td class=w2p_fw&gt;IV</code></pre>
+<p>Below is an example of DOM hierarchy in a working segment of HTML code. Here, we create a spreadsheet using the <code>&lt;table&gt;</code> element, which has row elements <code>&lt;tr&gt;</code>, header elements <code>&lt;th&gt;</code>, and cell elements <code>&lt;td&gt;</code>. In this case, we store the <code>Name</code>, <code>Grade</code>, and <code>GPA</code> of two students: “Adam”, and “Alexander”.</p>
 <pre><code>&lt;html&gt;
     &lt;body&gt;
-        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
-        &lt;script&gt;
-                document.getElementById(&quot;result&quot;).innerHTML = 
-            `&lt;table&gt;
+        &lt;div id=&quot;My_table&quot;&gt;&lt;/div&gt;
+            &lt;table&gt;
                     &lt;tr&gt;
                         &lt;th&gt;Name&lt;/th&gt;
                         &lt;th&gt;Grade&lt;/th&gt;
@@ -292,24 +279,7 @@ element is, what a
                         &lt;td&gt;5&lt;/td&gt;
                         &lt;td&gt;1&lt;/td&gt;
                     &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Aaron&lt;/td&gt;
-                        &lt;td&gt;5&lt;/td&gt;
-                        &lt;td&gt;3&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Aws&lt;/td&gt;
-                        &lt;td&gt;5&lt;/td&gt;
-                        &lt;td&gt;3.5&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;Alan&lt;/td&gt;
-                        &lt;td&gt;5&lt;/td&gt;
-                        &lt;td&gt;2&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/table&gt;
-            `;
-        &lt;/script&gt;
+            &lt;/table&gt;
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
@@ -363,7 +333,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["webscraping.pdf", "webscraping.epub"],
+"download": ["Webscraping_with_Selenium_Python.pdf", "Webscraping_with_Selenium_Python.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

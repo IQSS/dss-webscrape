@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Webscraping with Selenium</a></li>
+<li><a href="./">Webscraping with Selenium Python</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
@@ -229,57 +229,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="input-box" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Input box</h2>
 <p>The input box is the text box that displays user input. To handle any input box, we must be able to enter information, clear information or get information from the box. To enter text into a textbox we can use the <code>send_keys()</code> method, which would input the user required text from our automation script. The following code enters the student name starting with “A” into a text box whose ID is “search_name”:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="filling-in-web-forms.html#cb45-1"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="filling-in-web-forms.html#cb44-1"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span></code></pre></div>
 <p>To clear pre-entered text we can use the <code>clear()</code> method. For example:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="filling-in-web-forms.html#cb46-1"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).clear()</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="filling-in-web-forms.html#cb45-1"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).clear()</span></code></pre></div>
 <p>If we need to validate some existing text, we can fetch text already in a text box using the <code>get_attribute()</code> method:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="filling-in-web-forms.html#cb47-1"></a>nameText <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).get_attribute(<span class="st">&quot;value&quot;</span>)</span>
-<span id="cb47-2"><a href="filling-in-web-forms.html#cb47-2"></a><span class="bu">print</span>(nameText)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="filling-in-web-forms.html#cb46-1"></a>nameText <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).get_attribute(<span class="st">&quot;value&quot;</span>)</span>
+<span id="cb46-2"><a href="filling-in-web-forms.html#cb46-2"></a><span class="bu">print</span>(nameText)</span></code></pre></div>
 </div>
 <div id="check-box" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Check box</h2>
 <p>A check box is a small box that enables us to check or uncheck it. To select or check a value we use the <code>click()</code> method. It simply changes the state from unchecked to checked and vice-versa. For example, the code below clicks on the <code>Accept Privacy Policy</code> checkbox:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="filling-in-web-forms.html#cb48-1"></a>driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="filling-in-web-forms.html#cb47-1"></a>driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).click()</span></code></pre></div>
 <p>Dealing with checkboxes is not always so straightforward. We may need to select a checkbox only when it is not selected already. Or, we may want to deselect a checkbox only when it is already selected. If we are trying to select a checkbox, but we perform a click operation on an already selected checkbox, then the checkbox will be deselected; something we do not want to happen. So, we first need to validate whether the checkbox is selected or not. To get the current state of the checkbox we can use one of two methods: <code>is_selected()</code> or <code>get_attribute("checked")</code>. For example, using <code>is_selected()</code>:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="filling-in-web-forms.html#cb49-1"></a>privacy_boolean <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).is_selected()</span>
-<span id="cb49-2"><a href="filling-in-web-forms.html#cb49-2"></a><span class="bu">print</span>(privacy_boolean)</span>
-<span id="cb49-3"><a href="filling-in-web-forms.html#cb49-3"></a><span class="bu">print</span>(<span class="bu">type</span>(privacy_boolean))</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="filling-in-web-forms.html#cb48-1"></a>privacy_boolean <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).is_selected()</span>
+<span id="cb48-2"><a href="filling-in-web-forms.html#cb48-2"></a><span class="bu">print</span>(privacy_boolean)</span>
+<span id="cb48-3"><a href="filling-in-web-forms.html#cb48-3"></a><span class="bu">print</span>(<span class="bu">type</span>(privacy_boolean))</span></code></pre></div>
 <p>This will return a boolean value. This means if the checkbox is checked we would get a <code>True</code> value else we will get <code>False</code> value. Alternatively, using <code>get_attribute("checked")</code>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="filling-in-web-forms.html#cb50-1"></a>privacy_other <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).get_attribute(<span class="st">&quot;checked&quot;</span>)</span>
-<span id="cb50-2"><a href="filling-in-web-forms.html#cb50-2"></a><span class="bu">print</span>(privacy_other)</span>
-<span id="cb50-3"><a href="filling-in-web-forms.html#cb50-3"></a><span class="bu">print</span>(<span class="bu">type</span>(privacy_other))</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="filling-in-web-forms.html#cb49-1"></a>privacy_other <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).get_attribute(<span class="st">&quot;checked&quot;</span>)</span>
+<span id="cb49-2"><a href="filling-in-web-forms.html#cb49-2"></a><span class="bu">print</span>(privacy_other)</span>
+<span id="cb49-3"><a href="filling-in-web-forms.html#cb49-3"></a><span class="bu">print</span>(<span class="bu">type</span>(privacy_other))</span></code></pre></div>
 <p>This will return <code>True</code> if the checkbox is selected, but will return <code>NoneType</code> if the checkbox is not selected. The following code shows how to deselect a checkbox only when it is selected:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="filling-in-web-forms.html#cb51-1"></a>driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="filling-in-web-forms.html#cb50-1"></a>driver.find_element_by_id(<span class="st">&#39;privacypolicy&#39;</span>).click()</span></code></pre></div>
 </div>
 <div id="radio-button" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Radio button</h2>
 <p>A radio button is a circular element on the screen that we can select. A radio button is similar to a checkbox, but it is only possible to select one radio button out of several choices, while we can select multiple checkboxes. The actions performed on the radio button are similar to those on a checkbox and we can use the same methods as above to select a radio button or validate its status of selection: <code>click()</code> and <code>is_selected()</code> / <code>get_attribute(“checked”)</code>. The code below provides an example:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="filling-in-web-forms.html#cb52-1"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb52-2"><a href="filling-in-web-forms.html#cb52-2"></a>pageSize_5_boolean <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).is_selected()</span>
-<span id="cb52-3"><a href="filling-in-web-forms.html#cb52-3"></a><span class="bu">print</span>(pageSize_5_boolean)</span>
-<span id="cb52-4"><a href="filling-in-web-forms.html#cb52-4"></a><span class="bu">print</span>(<span class="bu">type</span>(pageSize_5_boolean))</span>
-<span id="cb52-5"><a href="filling-in-web-forms.html#cb52-5"></a></span>
-<span id="cb52-6"><a href="filling-in-web-forms.html#cb52-6"></a>pageSize_5_other <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).get_attribute(<span class="st">&quot;checked&quot;</span>)</span>
-<span id="cb52-7"><a href="filling-in-web-forms.html#cb52-7"></a><span class="bu">print</span>(pageSize_5_other)</span>
-<span id="cb52-8"><a href="filling-in-web-forms.html#cb52-8"></a><span class="bu">print</span>(<span class="bu">type</span>(pageSize_5_other))</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="filling-in-web-forms.html#cb51-1"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb51-2"><a href="filling-in-web-forms.html#cb51-2"></a>pageSize_5_boolean <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).is_selected()</span>
+<span id="cb51-3"><a href="filling-in-web-forms.html#cb51-3"></a><span class="bu">print</span>(pageSize_5_boolean)</span>
+<span id="cb51-4"><a href="filling-in-web-forms.html#cb51-4"></a><span class="bu">print</span>(<span class="bu">type</span>(pageSize_5_boolean))</span>
+<span id="cb51-5"><a href="filling-in-web-forms.html#cb51-5"></a></span>
+<span id="cb51-6"><a href="filling-in-web-forms.html#cb51-6"></a>pageSize_5_other <span class="op">=</span> driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).get_attribute(<span class="st">&quot;checked&quot;</span>)</span>
+<span id="cb51-7"><a href="filling-in-web-forms.html#cb51-7"></a><span class="bu">print</span>(pageSize_5_other)</span>
+<span id="cb51-8"><a href="filling-in-web-forms.html#cb51-8"></a><span class="bu">print</span>(<span class="bu">type</span>(pageSize_5_other))</span></code></pre></div>
 <p>Radio buttons do not support deselection. To deselect a radio button, one needs to select any other radio button in that group. If we select the same radio button trying to deselect it, we will get the same selection as before; nothing will change. The following code shows how to deselect a radio button only when it is selected:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="filling-in-web-forms.html#cb53-1"></a>driver.find_element_by_id(<span class="st">&#39;p10&#39;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="filling-in-web-forms.html#cb52-1"></a>driver.find_element_by_id(<span class="st">&#39;p10&#39;</span>).click()</span></code></pre></div>
 </div>
 <div id="link" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Link</h2>
 <p>A link redirects us to a new web page or a new pop-up window or a similar thing. We can use two mechanisms to navigate to a new screen or a new pop up or a new form: we can either do a click action on a link element we find, or get the new URL from the link element we find and then navigate to it. Here is an example of operating the link embedded in the example webpage using the first mechanism:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="filling-in-web-forms.html#cb54-1"></a>driver.find_element_by_id(<span class="st">&quot;privacy_policy&quot;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="filling-in-web-forms.html#cb53-1"></a>driver.find_element_by_id(<span class="st">&quot;privacy_policy&quot;</span>).click()</span></code></pre></div>
 <p>Links are generally embedded in the link element we find with a <code>&lt;a&gt;</code> tag name as the <code>"href"</code> property. Instead of directly clicking on the link, we can use the <code>get_attribute()</code> method. Here is the same example using the second mechanism:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="filling-in-web-forms.html#cb55-1"></a>privacy_object <span class="op">=</span> driver.find_element_by_id(<span class="st">&quot;privacy_policy&quot;</span>)</span>
-<span id="cb55-2"><a href="filling-in-web-forms.html#cb55-2"></a>privacy_link <span class="op">=</span> privacy_object.get_attribute(<span class="st">&quot;href&quot;</span>)</span>
-<span id="cb55-3"><a href="filling-in-web-forms.html#cb55-3"></a>driver.get(privacy_link)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="filling-in-web-forms.html#cb54-1"></a>privacy_object <span class="op">=</span> driver.find_element_by_id(<span class="st">&quot;privacy_policy&quot;</span>)</span>
+<span id="cb54-2"><a href="filling-in-web-forms.html#cb54-2"></a>privacy_link <span class="op">=</span> privacy_object.get_attribute(<span class="st">&quot;href&quot;</span>)</span>
+<span id="cb54-3"><a href="filling-in-web-forms.html#cb54-3"></a>driver.get(privacy_link)</span></code></pre></div>
 </div>
 <div id="dropdown" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Dropdown</h2>
 <p>A dropdown is a list which has an arrow at the rightmost end to expand and show values. It provides a list of options to the user, thereby giving access to one or multiple values as per the requirement. To work with a dropdown, first we need to select or find the main element group and then go inside further and select the sub-element that we want to capture. The Selenium Python API provides the <code>Select</code> class, which allows us to select the element of our choice. Note that the <code>Select</code> class only works with tags that have <code>&lt;select&gt;</code> tags. We can select a sub-element of the dropdown using: 1) index, 2) value, or 3) text.</p>
 <p>If the dropdown has an <code>"index"</code> attribute, then we can use that index to select a particular option. We need to be careful when using this approach, because it is not uncommon to have the index start at 0. We can use the <code>select_by_index()</code> method to select an option using the <code>"index"</code> attribute. For example, we want to select the 5th grade students:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="filling-in-web-forms.html#cb56-1"></a>grade_dropdown <span class="op">=</span> Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>))</span>
-<span id="cb56-2"><a href="filling-in-web-forms.html#cb56-2"></a>grade_dropdown.select_by_index(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="filling-in-web-forms.html#cb55-1"></a>grade_dropdown <span class="op">=</span> Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>))</span>
+<span id="cb55-2"><a href="filling-in-web-forms.html#cb55-2"></a>grade_dropdown.select_by_index(<span class="dv">6</span>)</span></code></pre></div>
 <p>If the HTML mark-up defines an <code>&lt;option&gt;</code> tag, then we can use the value matching the argument. Suppose the HTML for dropdown is like this:</p>
 <pre><code>&lt;td&gt;
     &lt;select id=&quot;search_grade&quot;&gt;
@@ -293,9 +293,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     &lt;/select&gt;
 &lt;/td&gt;</code></pre>
 <p>We can use the <code>select_by_value()</code> method to select an option using the <code>"value"</code> attribute.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="filling-in-web-forms.html#cb58-1"></a>grade_dropdown.select_by_value(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="filling-in-web-forms.html#cb57-1"></a>grade_dropdown.select_by_value(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
 <p>Probably the easiest way of selecting a sub-element is to select an element using the text of the dropdown. We have to match the text that is displayed in the dropdown using the <code>select_by_visible_text()</code> method. For example:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="filling-in-web-forms.html#cb59-1"></a>grade_dropdown.select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="filling-in-web-forms.html#cb58-1"></a>grade_dropdown.select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
 <p>In a similar way, we can deselect any selected value from the dropdown using any of the following options: 1) <code>deselect_by_index()</code>, 2) <code>deselect_by_value()</code>, or 3) <code>deselect_by_visible_text()</code>. These methods can be used only when we make multiple selections. The <code>deselect_all()</code> method clears all the selected options. This is also only applicable when there are multiple selections. If we try to use this when there is a single selection, it will throw a <code>NotImplementedError</code> exception.</p>
 <p>There are times while performing Selenium automation of our web app, where we need to validate the options coming in our dropdown list. The <code>Select</code> class provides property methods that allow us to do this. The first two property methods are applicable when we can select multiple options.</p>
 <ul>
@@ -311,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="buttons" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Buttons</h2>
 <p>Buttons are simply used to submit whatever information we have filled in our forms to the server. This can be done through click actions on the button, mostly using the <code>click()</code> method:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="filling-in-web-forms.html#cb60-1"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="filling-in-web-forms.html#cb59-1"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span></code></pre></div>
 </div>
 <div id="demos" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Demos</h2>
@@ -319,22 +319,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fill-form-once" class="section level3" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Fill form once</h3>
 <p>Suppose that we want to search all the 5th grade students whose names start with “A” and page size set at 5. The program below demonstrates how to fill in the form and submit it to the server:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="filling-in-web-forms.html#cb61-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb61-2"><a href="filling-in-web-forms.html#cb61-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb61-3"><a href="filling-in-web-forms.html#cb61-3"></a></span>
-<span id="cb61-4"><a href="filling-in-web-forms.html#cb61-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb61-5"><a href="filling-in-web-forms.html#cb61-5"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb61-6"><a href="filling-in-web-forms.html#cb61-6"></a>driver.get(form_url)</span>
-<span id="cb61-7"><a href="filling-in-web-forms.html#cb61-7"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb61-8"><a href="filling-in-web-forms.html#cb61-8"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb61-9"><a href="filling-in-web-forms.html#cb61-9"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb61-10"><a href="filling-in-web-forms.html#cb61-10"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb61-11"><a href="filling-in-web-forms.html#cb61-11"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb61-12"><a href="filling-in-web-forms.html#cb61-12"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="filling-in-web-forms.html#cb60-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb60-2"><a href="filling-in-web-forms.html#cb60-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
+<span id="cb60-3"><a href="filling-in-web-forms.html#cb60-3"></a></span>
+<span id="cb60-4"><a href="filling-in-web-forms.html#cb60-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb60-5"><a href="filling-in-web-forms.html#cb60-5"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb60-6"><a href="filling-in-web-forms.html#cb60-6"></a>driver.get(form_url)</span>
+<span id="cb60-7"><a href="filling-in-web-forms.html#cb60-7"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb60-8"><a href="filling-in-web-forms.html#cb60-8"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb60-9"><a href="filling-in-web-forms.html#cb60-9"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb60-10"><a href="filling-in-web-forms.html#cb60-10"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb60-11"><a href="filling-in-web-forms.html#cb60-11"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb60-12"><a href="filling-in-web-forms.html#cb60-12"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span></code></pre></div>
 </div>
 <div id="fill-form-many-times" class="section level3" number="5.7.2">
 <h3><span class="header-section-number">5.7.2</span> Fill form many times</h3>
 <p>Now suppose that we want to search all the students. This will require us to fill in the form many times, each time with changing input. We have to first play with the website to see if the form webpage will be refreshed every time we access it. This will determine how we are going to write our code. If the form page is refreshed every time we access it, then we have to refill all the form fields each time even if most of those fields are repetitive inputs. The program below shows an example of this use-case:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="filling-in-web-forms.html#cb61-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb61-2"><a href="filling-in-web-forms.html#cb61-2"></a><span class="im">import</span> time</span>
+<span id="cb61-3"><a href="filling-in-web-forms.html#cb61-3"></a><span class="im">import</span> string</span>
+<span id="cb61-4"><a href="filling-in-web-forms.html#cb61-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb61-5"><a href="filling-in-web-forms.html#cb61-5"></a></span>
+<span id="cb61-6"><a href="filling-in-web-forms.html#cb61-6"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb61-7"><a href="filling-in-web-forms.html#cb61-7"></a>searchAddress <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb61-8"><a href="filling-in-web-forms.html#cb61-8"></a>driver.get(searchAddress)</span>
+<span id="cb61-9"><a href="filling-in-web-forms.html#cb61-9"></a>time.sleep(<span class="dv">2</span>)</span>
+<span id="cb61-10"><a href="filling-in-web-forms.html#cb61-10"></a></span>
+<span id="cb61-11"><a href="filling-in-web-forms.html#cb61-11"></a>students <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb61-12"><a href="filling-in-web-forms.html#cb61-12"></a></span>
+<span id="cb61-13"><a href="filling-in-web-forms.html#cb61-13"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
+<span id="cb61-14"><a href="filling-in-web-forms.html#cb61-14"></a>    <span class="cf">for</span> grade <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">8</span>):</span>
+<span id="cb61-15"><a href="filling-in-web-forms.html#cb61-15"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).send_keys(letter)</span>
+<span id="cb61-16"><a href="filling-in-web-forms.html#cb61-16"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_grade&quot;]/option[</span><span class="sc">{}</span><span class="st">]&#39;</span>.<span class="bu">format</span>(grade)).click()</span>
+<span id="cb61-17"><a href="filling-in-web-forms.html#cb61-17"></a>        driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb61-18"><a href="filling-in-web-forms.html#cb61-18"></a>        driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb61-19"><a href="filling-in-web-forms.html#cb61-19"></a>        driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb61-20"><a href="filling-in-web-forms.html#cb61-20"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search&quot;]&#39;</span>).click()</span>
+<span id="cb61-21"><a href="filling-in-web-forms.html#cb61-21"></a>        time.sleep(<span class="dv">5</span>)</span>
+<span id="cb61-22"><a href="filling-in-web-forms.html#cb61-22"></a>        <span class="cf">try</span>:</span>
+<span id="cb61-23"><a href="filling-in-web-forms.html#cb61-23"></a>            <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb61-24"><a href="filling-in-web-forms.html#cb61-24"></a>                table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb61-25"><a href="filling-in-web-forms.html#cb61-25"></a>                entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb61-26"><a href="filling-in-web-forms.html#cb61-26"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
+<span id="cb61-27"><a href="filling-in-web-forms.html#cb61-27"></a>                    student_dict <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb61-28"><a href="filling-in-web-forms.html#cb61-28"></a>                    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&quot;td&quot;</span>)</span>
+<span id="cb61-29"><a href="filling-in-web-forms.html#cb61-29"></a>                    student_dict[<span class="st">&quot;name&quot;</span>] <span class="op">=</span> cols[<span class="dv">0</span>].text</span>
+<span id="cb61-30"><a href="filling-in-web-forms.html#cb61-30"></a>                    student_dict[<span class="st">&quot;grade&quot;</span>] <span class="op">=</span> cols[<span class="dv">1</span>].text</span>
+<span id="cb61-31"><a href="filling-in-web-forms.html#cb61-31"></a>                    student_dict[<span class="st">&quot;gpa&quot;</span>] <span class="op">=</span> cols[<span class="dv">2</span>].text</span>
+<span id="cb61-32"><a href="filling-in-web-forms.html#cb61-32"></a>                    students.append(student_dict)</span>
+<span id="cb61-33"><a href="filling-in-web-forms.html#cb61-33"></a></span>
+<span id="cb61-34"><a href="filling-in-web-forms.html#cb61-34"></a>                <span class="cf">try</span>:</span>
+<span id="cb61-35"><a href="filling-in-web-forms.html#cb61-35"></a>                    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>).click()</span>
+<span id="cb61-36"><a href="filling-in-web-forms.html#cb61-36"></a>                    time.sleep(<span class="dv">2</span>)</span>
+<span id="cb61-37"><a href="filling-in-web-forms.html#cb61-37"></a>                <span class="cf">except</span>:</span>
+<span id="cb61-38"><a href="filling-in-web-forms.html#cb61-38"></a>                    <span class="cf">break</span></span>
+<span id="cb61-39"><a href="filling-in-web-forms.html#cb61-39"></a>            driver.get(searchAddress)</span>
+<span id="cb61-40"><a href="filling-in-web-forms.html#cb61-40"></a>            time.sleep(<span class="dv">2</span>)</span>
+<span id="cb61-41"><a href="filling-in-web-forms.html#cb61-41"></a>        <span class="cf">except</span>:</span>
+<span id="cb61-42"><a href="filling-in-web-forms.html#cb61-42"></a>            <span class="bu">print</span>(<span class="st">&quot;No results for letter </span><span class="sc">{}</span><span class="st"> at grade </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(letter, grade <span class="op">-</span> <span class="dv">2</span>))</span>
+<span id="cb61-43"><a href="filling-in-web-forms.html#cb61-43"></a>            driver.get(searchAddress)</span>
+<span id="cb61-44"><a href="filling-in-web-forms.html#cb61-44"></a>            time.sleep(<span class="dv">2</span>)</span>
+<span id="cb61-45"><a href="filling-in-web-forms.html#cb61-45"></a></span>
+<span id="cb61-46"><a href="filling-in-web-forms.html#cb61-46"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
+<span id="cb61-47"><a href="filling-in-web-forms.html#cb61-47"></a><span class="bu">print</span>(students_df)</span>
+<span id="cb61-48"><a href="filling-in-web-forms.html#cb61-48"></a>driver.close()</span></code></pre></div>
+<p>Line 39 and 43 of this program (<code>driver.get(searchAddress)</code>) indicate that the form will be refreshed whenever we finish the current search. This could happen either when we find out there is no result for this search or when we have scraped the results for this search. Since the form is refreshed every time for a new search, we need to refill the form every time when a new search starts. This is why lines 15 to 19 of the code that execute the form filling actions are put in the most inner layer of the for loop.</p>
+<p>To know what we need to input for a new search, we have to find out where the search has gone so far up to this point when the form is refreshed for a new search. We control the moving of rounds of search by using the indexing of a list. We put all the options for a form field into a created list with the exact order of the list elements as that being displayed in the form field. When we loop through this list, we control where the search runs through. In the above example, line 13 and 14 play this role. They control the indexing of the name list and the grade list. The name field and the grade field are the only two fields whose input values will change for a new search. This is why we need to create a list for them and then loop over it rather than doing the same thing for all the other form fields.</p>
+<p>Another scenario is that the form page is not refreshed for a new search. In this case, then we do not need to refill the form fields that will not change their values in a new search. Below is the program that performs the same task –– search all students –– but in the use-case where the form is not refreshed:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="filling-in-web-forms.html#cb62-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb62-2"><a href="filling-in-web-forms.html#cb62-2"></a><span class="im">import</span> time</span>
 <span id="cb62-3"><a href="filling-in-web-forms.html#cb62-3"></a><span class="im">import</span> string</span>
@@ -347,91 +398,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-10"><a href="filling-in-web-forms.html#cb62-10"></a></span>
 <span id="cb62-11"><a href="filling-in-web-forms.html#cb62-11"></a>students <span class="op">=</span> <span class="bu">list</span>()</span>
 <span id="cb62-12"><a href="filling-in-web-forms.html#cb62-12"></a></span>
-<span id="cb62-13"><a href="filling-in-web-forms.html#cb62-13"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
-<span id="cb62-14"><a href="filling-in-web-forms.html#cb62-14"></a>    <span class="cf">for</span> grade <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">8</span>):</span>
-<span id="cb62-15"><a href="filling-in-web-forms.html#cb62-15"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).send_keys(letter)</span>
-<span id="cb62-16"><a href="filling-in-web-forms.html#cb62-16"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_grade&quot;]/option[</span><span class="sc">{}</span><span class="st">]&#39;</span>.<span class="bu">format</span>(grade)).click()</span>
-<span id="cb62-17"><a href="filling-in-web-forms.html#cb62-17"></a>        driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb62-18"><a href="filling-in-web-forms.html#cb62-18"></a>        driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb62-19"><a href="filling-in-web-forms.html#cb62-19"></a>        driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb62-20"><a href="filling-in-web-forms.html#cb62-20"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search&quot;]&#39;</span>).click()</span>
-<span id="cb62-21"><a href="filling-in-web-forms.html#cb62-21"></a>        time.sleep(<span class="dv">5</span>)</span>
-<span id="cb62-22"><a href="filling-in-web-forms.html#cb62-22"></a>        <span class="cf">try</span>:</span>
-<span id="cb62-23"><a href="filling-in-web-forms.html#cb62-23"></a>            <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb62-24"><a href="filling-in-web-forms.html#cb62-24"></a>                table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb62-25"><a href="filling-in-web-forms.html#cb62-25"></a>                entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb62-26"><a href="filling-in-web-forms.html#cb62-26"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
-<span id="cb62-27"><a href="filling-in-web-forms.html#cb62-27"></a>                    student_dict <span class="op">=</span> <span class="bu">dict</span>()</span>
-<span id="cb62-28"><a href="filling-in-web-forms.html#cb62-28"></a>                    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&quot;td&quot;</span>)</span>
-<span id="cb62-29"><a href="filling-in-web-forms.html#cb62-29"></a>                    student_dict[<span class="st">&quot;name&quot;</span>] <span class="op">=</span> cols[<span class="dv">0</span>].text</span>
-<span id="cb62-30"><a href="filling-in-web-forms.html#cb62-30"></a>                    student_dict[<span class="st">&quot;grade&quot;</span>] <span class="op">=</span> cols[<span class="dv">1</span>].text</span>
-<span id="cb62-31"><a href="filling-in-web-forms.html#cb62-31"></a>                    student_dict[<span class="st">&quot;gpa&quot;</span>] <span class="op">=</span> cols[<span class="dv">2</span>].text</span>
-<span id="cb62-32"><a href="filling-in-web-forms.html#cb62-32"></a>                    students.append(student_dict)</span>
-<span id="cb62-33"><a href="filling-in-web-forms.html#cb62-33"></a></span>
-<span id="cb62-34"><a href="filling-in-web-forms.html#cb62-34"></a>                <span class="cf">try</span>:</span>
-<span id="cb62-35"><a href="filling-in-web-forms.html#cb62-35"></a>                    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>).click()</span>
-<span id="cb62-36"><a href="filling-in-web-forms.html#cb62-36"></a>                    time.sleep(<span class="dv">2</span>)</span>
-<span id="cb62-37"><a href="filling-in-web-forms.html#cb62-37"></a>                <span class="cf">except</span>:</span>
-<span id="cb62-38"><a href="filling-in-web-forms.html#cb62-38"></a>                    <span class="cf">break</span></span>
-<span id="cb62-39"><a href="filling-in-web-forms.html#cb62-39"></a>            driver.get(searchAddress)</span>
-<span id="cb62-40"><a href="filling-in-web-forms.html#cb62-40"></a>            time.sleep(<span class="dv">2</span>)</span>
+<span id="cb62-13"><a href="filling-in-web-forms.html#cb62-13"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb62-14"><a href="filling-in-web-forms.html#cb62-14"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb62-15"><a href="filling-in-web-forms.html#cb62-15"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb62-16"><a href="filling-in-web-forms.html#cb62-16"></a></span>
+<span id="cb62-17"><a href="filling-in-web-forms.html#cb62-17"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
+<span id="cb62-18"><a href="filling-in-web-forms.html#cb62-18"></a>    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).clear()</span>
+<span id="cb62-19"><a href="filling-in-web-forms.html#cb62-19"></a>    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).send_keys(letter)</span>
+<span id="cb62-20"><a href="filling-in-web-forms.html#cb62-20"></a>    <span class="cf">for</span> grade <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">8</span>):</span>
+<span id="cb62-21"><a href="filling-in-web-forms.html#cb62-21"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_grade&quot;]/option[</span><span class="sc">{}</span><span class="st">]&#39;</span>.<span class="bu">format</span>(grade)).click()</span>
+<span id="cb62-22"><a href="filling-in-web-forms.html#cb62-22"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search&quot;]&#39;</span>).click()</span>
+<span id="cb62-23"><a href="filling-in-web-forms.html#cb62-23"></a>        time.sleep(<span class="dv">5</span>)</span>
+<span id="cb62-24"><a href="filling-in-web-forms.html#cb62-24"></a>        <span class="cf">try</span>:</span>
+<span id="cb62-25"><a href="filling-in-web-forms.html#cb62-25"></a>            <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb62-26"><a href="filling-in-web-forms.html#cb62-26"></a>                table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb62-27"><a href="filling-in-web-forms.html#cb62-27"></a>                entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb62-28"><a href="filling-in-web-forms.html#cb62-28"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
+<span id="cb62-29"><a href="filling-in-web-forms.html#cb62-29"></a>                    student_dict <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb62-30"><a href="filling-in-web-forms.html#cb62-30"></a>                    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&quot;td&quot;</span>)</span>
+<span id="cb62-31"><a href="filling-in-web-forms.html#cb62-31"></a>                    student_dict[<span class="st">&quot;name&quot;</span>] <span class="op">=</span> cols[<span class="dv">0</span>].text</span>
+<span id="cb62-32"><a href="filling-in-web-forms.html#cb62-32"></a>                    student_dict[<span class="st">&quot;grade&quot;</span>] <span class="op">=</span> cols[<span class="dv">1</span>].text</span>
+<span id="cb62-33"><a href="filling-in-web-forms.html#cb62-33"></a>                    student_dict[<span class="st">&quot;gpa&quot;</span>] <span class="op">=</span> cols[<span class="dv">2</span>].text</span>
+<span id="cb62-34"><a href="filling-in-web-forms.html#cb62-34"></a>                    students.append(student_dict)</span>
+<span id="cb62-35"><a href="filling-in-web-forms.html#cb62-35"></a></span>
+<span id="cb62-36"><a href="filling-in-web-forms.html#cb62-36"></a>                <span class="cf">try</span>:</span>
+<span id="cb62-37"><a href="filling-in-web-forms.html#cb62-37"></a>                    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>).click()</span>
+<span id="cb62-38"><a href="filling-in-web-forms.html#cb62-38"></a>                    time.sleep(<span class="dv">2</span>)</span>
+<span id="cb62-39"><a href="filling-in-web-forms.html#cb62-39"></a>                <span class="cf">except</span>:</span>
+<span id="cb62-40"><a href="filling-in-web-forms.html#cb62-40"></a>                    <span class="cf">break</span></span>
 <span id="cb62-41"><a href="filling-in-web-forms.html#cb62-41"></a>        <span class="cf">except</span>:</span>
 <span id="cb62-42"><a href="filling-in-web-forms.html#cb62-42"></a>            <span class="bu">print</span>(<span class="st">&quot;No results for letter </span><span class="sc">{}</span><span class="st"> at grade </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(letter, grade <span class="op">-</span> <span class="dv">2</span>))</span>
-<span id="cb62-43"><a href="filling-in-web-forms.html#cb62-43"></a>            driver.get(searchAddress)</span>
-<span id="cb62-44"><a href="filling-in-web-forms.html#cb62-44"></a>            time.sleep(<span class="dv">2</span>)</span>
-<span id="cb62-45"><a href="filling-in-web-forms.html#cb62-45"></a></span>
-<span id="cb62-46"><a href="filling-in-web-forms.html#cb62-46"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
-<span id="cb62-47"><a href="filling-in-web-forms.html#cb62-47"></a><span class="bu">print</span>(students_df)</span>
-<span id="cb62-48"><a href="filling-in-web-forms.html#cb62-48"></a>driver.close()</span></code></pre></div>
-<p>Line 39 and 43 of this program (<code>driver.get(searchAddress)</code>) indicate that the form will be refreshed whenever we finish the current search. This could happen either when we find out there is no result for this search or when we have scraped the results for this search. Since the form is refreshed every time for a new search, we need to refill the form every time when a new search starts. This is why lines 15 to 19 of the code that execute the form filling actions are put in the most inner layer of the for loop.</p>
-<p>To know what we need to input for a new search, we have to find out where the search has gone so far up to this point when the form is refreshed for a new search. We control the moving of rounds of search by using the indexing of a list. We put all the options for a form field into a created list with the exact order of the list elements as that being displayed in the form field. When we loop through this list, we control where the search runs through. In the above example, line 13 and 14 play this role. They control the indexing of the name list and the grade list. The name field and the grade field are the only two fields whose input values will change for a new search. This is why we need to create a list for them and then loop over it rather than doing the same thing for all the other form fields.</p>
-<p>Another scenario is that the form page is not refreshed for a new search. In this case, then we do not need to refill the form fields that will not change their values in a new search. Below is the program that performs the same task –– search all students –– but in the use-case where the form is not refreshed:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="filling-in-web-forms.html#cb63-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb63-2"><a href="filling-in-web-forms.html#cb63-2"></a><span class="im">import</span> time</span>
-<span id="cb63-3"><a href="filling-in-web-forms.html#cb63-3"></a><span class="im">import</span> string</span>
-<span id="cb63-4"><a href="filling-in-web-forms.html#cb63-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb63-5"><a href="filling-in-web-forms.html#cb63-5"></a></span>
-<span id="cb63-6"><a href="filling-in-web-forms.html#cb63-6"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb63-7"><a href="filling-in-web-forms.html#cb63-7"></a>searchAddress <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb63-8"><a href="filling-in-web-forms.html#cb63-8"></a>driver.get(searchAddress)</span>
-<span id="cb63-9"><a href="filling-in-web-forms.html#cb63-9"></a>time.sleep(<span class="dv">2</span>)</span>
-<span id="cb63-10"><a href="filling-in-web-forms.html#cb63-10"></a></span>
-<span id="cb63-11"><a href="filling-in-web-forms.html#cb63-11"></a>students <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb63-12"><a href="filling-in-web-forms.html#cb63-12"></a></span>
-<span id="cb63-13"><a href="filling-in-web-forms.html#cb63-13"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb63-14"><a href="filling-in-web-forms.html#cb63-14"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb63-15"><a href="filling-in-web-forms.html#cb63-15"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb63-16"><a href="filling-in-web-forms.html#cb63-16"></a></span>
-<span id="cb63-17"><a href="filling-in-web-forms.html#cb63-17"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
-<span id="cb63-18"><a href="filling-in-web-forms.html#cb63-18"></a>    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).clear()</span>
-<span id="cb63-19"><a href="filling-in-web-forms.html#cb63-19"></a>    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_name&quot;]&#39;</span>).send_keys(letter)</span>
-<span id="cb63-20"><a href="filling-in-web-forms.html#cb63-20"></a>    <span class="cf">for</span> grade <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">8</span>):</span>
-<span id="cb63-21"><a href="filling-in-web-forms.html#cb63-21"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search_grade&quot;]/option[</span><span class="sc">{}</span><span class="st">]&#39;</span>.<span class="bu">format</span>(grade)).click()</span>
-<span id="cb63-22"><a href="filling-in-web-forms.html#cb63-22"></a>        driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;search&quot;]&#39;</span>).click()</span>
-<span id="cb63-23"><a href="filling-in-web-forms.html#cb63-23"></a>        time.sleep(<span class="dv">5</span>)</span>
-<span id="cb63-24"><a href="filling-in-web-forms.html#cb63-24"></a>        <span class="cf">try</span>:</span>
-<span id="cb63-25"><a href="filling-in-web-forms.html#cb63-25"></a>            <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb63-26"><a href="filling-in-web-forms.html#cb63-26"></a>                table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb63-27"><a href="filling-in-web-forms.html#cb63-27"></a>                entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb63-28"><a href="filling-in-web-forms.html#cb63-28"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
-<span id="cb63-29"><a href="filling-in-web-forms.html#cb63-29"></a>                    student_dict <span class="op">=</span> <span class="bu">dict</span>()</span>
-<span id="cb63-30"><a href="filling-in-web-forms.html#cb63-30"></a>                    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&quot;td&quot;</span>)</span>
-<span id="cb63-31"><a href="filling-in-web-forms.html#cb63-31"></a>                    student_dict[<span class="st">&quot;name&quot;</span>] <span class="op">=</span> cols[<span class="dv">0</span>].text</span>
-<span id="cb63-32"><a href="filling-in-web-forms.html#cb63-32"></a>                    student_dict[<span class="st">&quot;grade&quot;</span>] <span class="op">=</span> cols[<span class="dv">1</span>].text</span>
-<span id="cb63-33"><a href="filling-in-web-forms.html#cb63-33"></a>                    student_dict[<span class="st">&quot;gpa&quot;</span>] <span class="op">=</span> cols[<span class="dv">2</span>].text</span>
-<span id="cb63-34"><a href="filling-in-web-forms.html#cb63-34"></a>                    students.append(student_dict)</span>
-<span id="cb63-35"><a href="filling-in-web-forms.html#cb63-35"></a></span>
-<span id="cb63-36"><a href="filling-in-web-forms.html#cb63-36"></a>                <span class="cf">try</span>:</span>
-<span id="cb63-37"><a href="filling-in-web-forms.html#cb63-37"></a>                    driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;next&quot;]&#39;</span>).click()</span>
-<span id="cb63-38"><a href="filling-in-web-forms.html#cb63-38"></a>                    time.sleep(<span class="dv">2</span>)</span>
-<span id="cb63-39"><a href="filling-in-web-forms.html#cb63-39"></a>                <span class="cf">except</span>:</span>
-<span id="cb63-40"><a href="filling-in-web-forms.html#cb63-40"></a>                    <span class="cf">break</span></span>
-<span id="cb63-41"><a href="filling-in-web-forms.html#cb63-41"></a>        <span class="cf">except</span>:</span>
-<span id="cb63-42"><a href="filling-in-web-forms.html#cb63-42"></a>            <span class="bu">print</span>(<span class="st">&quot;No results for letter </span><span class="sc">{}</span><span class="st"> at grade </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(letter, grade <span class="op">-</span> <span class="dv">2</span>))</span>
-<span id="cb63-43"><a href="filling-in-web-forms.html#cb63-43"></a>            </span>
-<span id="cb63-44"><a href="filling-in-web-forms.html#cb63-44"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
-<span id="cb63-45"><a href="filling-in-web-forms.html#cb63-45"></a><span class="bu">print</span>(students_df)</span>
-<span id="cb63-46"><a href="filling-in-web-forms.html#cb63-46"></a>driver.close()</span></code></pre></div>
+<span id="cb62-43"><a href="filling-in-web-forms.html#cb62-43"></a>            </span>
+<span id="cb62-44"><a href="filling-in-web-forms.html#cb62-44"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
+<span id="cb62-45"><a href="filling-in-web-forms.html#cb62-45"></a><span class="bu">print</span>(students_df)</span>
+<span id="cb62-46"><a href="filling-in-web-forms.html#cb62-46"></a>driver.close()</span></code></pre></div>
 <p>There is no code in this program that refreshes the form page. We put the lines of code that fill in the constant form fields outside of the loop so that those constant fields will not be refilled in every time for a new search. The change of the positions of lines 13 –- 15 and line 19 of the code comparing the program in the first scenario reflects this idea.</p>
 </div>
 </div>
@@ -451,85 +451,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wait-until-clickable" class="section level3" number="5.8.1">
 <h3><span class="header-section-number">5.8.1</span> Wait until clickable</h3>
 <p>If the element has not been fully downloaded yet, we can wait until the element is visible / clickable. Look at the following example in which we want to get the profile for the 5th grade student named “Adams”.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="filling-in-web-forms.html#cb63-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb63-2"><a href="filling-in-web-forms.html#cb63-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
+<span id="cb63-3"><a href="filling-in-web-forms.html#cb63-3"></a></span>
+<span id="cb63-4"><a href="filling-in-web-forms.html#cb63-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb63-5"><a href="filling-in-web-forms.html#cb63-5"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb63-6"><a href="filling-in-web-forms.html#cb63-6"></a>driver.get(form_url)</span>
+<span id="cb63-7"><a href="filling-in-web-forms.html#cb63-7"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb63-8"><a href="filling-in-web-forms.html#cb63-8"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb63-9"><a href="filling-in-web-forms.html#cb63-9"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb63-10"><a href="filling-in-web-forms.html#cb63-10"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb63-11"><a href="filling-in-web-forms.html#cb63-11"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb63-12"><a href="filling-in-web-forms.html#cb63-12"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
+<span id="cb63-13"><a href="filling-in-web-forms.html#cb63-13"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb63-14"><a href="filling-in-web-forms.html#cb63-14"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb63-15"><a href="filling-in-web-forms.html#cb63-15"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb63-16"><a href="filling-in-web-forms.html#cb63-16"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
+<p>The above code produces an error message — <code>"no such element: Unable to locate element"</code> — because the result table has not been fully downloaded yet. Selenium <code>WebDriver</code> provides two types of waits to handle it –– explicit and implicit wait. The <code>time.sleep()</code> method is an <strong>explicit wait to set the condition to be an exact time period to wait</strong>, as the code below shows:</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="filling-in-web-forms.html#cb64-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb64-2"><a href="filling-in-web-forms.html#cb64-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb64-3"><a href="filling-in-web-forms.html#cb64-3"></a></span>
-<span id="cb64-4"><a href="filling-in-web-forms.html#cb64-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb64-5"><a href="filling-in-web-forms.html#cb64-5"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb64-6"><a href="filling-in-web-forms.html#cb64-6"></a>driver.get(form_url)</span>
-<span id="cb64-7"><a href="filling-in-web-forms.html#cb64-7"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb64-8"><a href="filling-in-web-forms.html#cb64-8"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb64-9"><a href="filling-in-web-forms.html#cb64-9"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb64-10"><a href="filling-in-web-forms.html#cb64-10"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb64-11"><a href="filling-in-web-forms.html#cb64-11"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb64-12"><a href="filling-in-web-forms.html#cb64-12"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
-<span id="cb64-13"><a href="filling-in-web-forms.html#cb64-13"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb64-14"><a href="filling-in-web-forms.html#cb64-14"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb64-15"><a href="filling-in-web-forms.html#cb64-15"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb64-16"><a href="filling-in-web-forms.html#cb64-16"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
-<p>The above code produces an error message — <code>"no such element: Unable to locate element"</code> — because the result table has not been fully downloaded yet. Selenium <code>WebDriver</code> provides two types of waits to handle it –– explicit and implicit wait. The <code>time.sleep()</code> method is an <strong>explicit wait to set the condition to be an exact time period to wait</strong>, as the code below shows:</p>
+<span id="cb64-3"><a href="filling-in-web-forms.html#cb64-3"></a><span class="im">import</span> time</span>
+<span id="cb64-4"><a href="filling-in-web-forms.html#cb64-4"></a></span>
+<span id="cb64-5"><a href="filling-in-web-forms.html#cb64-5"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb64-6"><a href="filling-in-web-forms.html#cb64-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb64-7"><a href="filling-in-web-forms.html#cb64-7"></a>driver.get(form_url)</span>
+<span id="cb64-8"><a href="filling-in-web-forms.html#cb64-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb64-9"><a href="filling-in-web-forms.html#cb64-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb64-10"><a href="filling-in-web-forms.html#cb64-10"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb64-11"><a href="filling-in-web-forms.html#cb64-11"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb64-12"><a href="filling-in-web-forms.html#cb64-12"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb64-13"><a href="filling-in-web-forms.html#cb64-13"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
+<span id="cb64-14"><a href="filling-in-web-forms.html#cb64-14"></a>time.sleep(<span class="dv">3</span>)</span>
+<span id="cb64-15"><a href="filling-in-web-forms.html#cb64-15"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb64-16"><a href="filling-in-web-forms.html#cb64-16"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb64-17"><a href="filling-in-web-forms.html#cb64-17"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb64-18"><a href="filling-in-web-forms.html#cb64-18"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
+<p>As discussed in the previous chapter, a more efficient solution would be to make <code>WebDriver</code> <strong>wait only as long as required</strong>. This is also an <strong>explicit wait</strong> but more efficient than <code>time.sleep()</code>. The code below uses the presence of the resulting table element with id <code>"resulttable"</code> to declare that the page has been fully loaded:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="filling-in-web-forms.html#cb65-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb65-2"><a href="filling-in-web-forms.html#cb65-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb65-3"><a href="filling-in-web-forms.html#cb65-3"></a><span class="im">import</span> time</span>
-<span id="cb65-4"><a href="filling-in-web-forms.html#cb65-4"></a></span>
-<span id="cb65-5"><a href="filling-in-web-forms.html#cb65-5"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb65-6"><a href="filling-in-web-forms.html#cb65-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb65-7"><a href="filling-in-web-forms.html#cb65-7"></a>driver.get(form_url)</span>
-<span id="cb65-8"><a href="filling-in-web-forms.html#cb65-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb65-9"><a href="filling-in-web-forms.html#cb65-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb65-10"><a href="filling-in-web-forms.html#cb65-10"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb65-11"><a href="filling-in-web-forms.html#cb65-11"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb65-12"><a href="filling-in-web-forms.html#cb65-12"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb65-13"><a href="filling-in-web-forms.html#cb65-13"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
-<span id="cb65-14"><a href="filling-in-web-forms.html#cb65-14"></a>time.sleep(<span class="dv">3</span>)</span>
-<span id="cb65-15"><a href="filling-in-web-forms.html#cb65-15"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb65-16"><a href="filling-in-web-forms.html#cb65-16"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb65-17"><a href="filling-in-web-forms.html#cb65-17"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb65-18"><a href="filling-in-web-forms.html#cb65-18"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
-<p>As discussed in the previous chapter, a more efficient solution would be to make <code>WebDriver</code> <strong>wait only as long as required</strong>. This is also an <strong>explicit wait</strong> but more efficient than <code>time.sleep()</code>. The code below uses the presence of the resulting table element with id <code>"resulttable"</code> to declare that the page has been fully loaded:</p>
+<span id="cb65-3"><a href="filling-in-web-forms.html#cb65-3"></a><span class="im">from</span> selenium.webdriver.common.by <span class="im">import</span> By</span>
+<span id="cb65-4"><a href="filling-in-web-forms.html#cb65-4"></a><span class="im">from</span> selenium.webdriver.support.ui <span class="im">import</span> WebDriverWait</span>
+<span id="cb65-5"><a href="filling-in-web-forms.html#cb65-5"></a><span class="im">from</span> selenium.webdriver.support <span class="im">import</span> expected_conditions <span class="im">as</span> EC</span>
+<span id="cb65-6"><a href="filling-in-web-forms.html#cb65-6"></a></span>
+<span id="cb65-7"><a href="filling-in-web-forms.html#cb65-7"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb65-8"><a href="filling-in-web-forms.html#cb65-8"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb65-9"><a href="filling-in-web-forms.html#cb65-9"></a>driver.get(form_url)</span>
+<span id="cb65-10"><a href="filling-in-web-forms.html#cb65-10"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb65-11"><a href="filling-in-web-forms.html#cb65-11"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb65-12"><a href="filling-in-web-forms.html#cb65-12"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb65-13"><a href="filling-in-web-forms.html#cb65-13"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb65-14"><a href="filling-in-web-forms.html#cb65-14"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb65-15"><a href="filling-in-web-forms.html#cb65-15"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
+<span id="cb65-16"><a href="filling-in-web-forms.html#cb65-16"></a>table <span class="op">=</span> WebDriverWait(driver, <span class="dv">10</span>).until(EC.presence_of_element_located((By.ID, <span class="st">&quot;resulttable&quot;</span>)))</span>
+<span id="cb65-17"><a href="filling-in-web-forms.html#cb65-17"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb65-18"><a href="filling-in-web-forms.html#cb65-18"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb65-19"><a href="filling-in-web-forms.html#cb65-19"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
+<p>The final solution is to use an <strong>implicit wait</strong>, which tells <code>WebDriver</code> to poll the DOM for a certain amount of time when trying to find any element(s) not immediately available. The default setting is 0. <strong>Once set, the implicit wait is set for the life of the <code>WebDriver</code> object</strong>.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="filling-in-web-forms.html#cb66-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb66-2"><a href="filling-in-web-forms.html#cb66-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb66-3"><a href="filling-in-web-forms.html#cb66-3"></a><span class="im">from</span> selenium.webdriver.common.by <span class="im">import</span> By</span>
-<span id="cb66-4"><a href="filling-in-web-forms.html#cb66-4"></a><span class="im">from</span> selenium.webdriver.support.ui <span class="im">import</span> WebDriverWait</span>
-<span id="cb66-5"><a href="filling-in-web-forms.html#cb66-5"></a><span class="im">from</span> selenium.webdriver.support <span class="im">import</span> expected_conditions <span class="im">as</span> EC</span>
-<span id="cb66-6"><a href="filling-in-web-forms.html#cb66-6"></a></span>
-<span id="cb66-7"><a href="filling-in-web-forms.html#cb66-7"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb66-8"><a href="filling-in-web-forms.html#cb66-8"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb66-9"><a href="filling-in-web-forms.html#cb66-9"></a>driver.get(form_url)</span>
-<span id="cb66-10"><a href="filling-in-web-forms.html#cb66-10"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb66-11"><a href="filling-in-web-forms.html#cb66-11"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb66-12"><a href="filling-in-web-forms.html#cb66-12"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb66-13"><a href="filling-in-web-forms.html#cb66-13"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb66-14"><a href="filling-in-web-forms.html#cb66-14"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb66-15"><a href="filling-in-web-forms.html#cb66-15"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
-<span id="cb66-16"><a href="filling-in-web-forms.html#cb66-16"></a>table <span class="op">=</span> WebDriverWait(driver, <span class="dv">10</span>).until(EC.presence_of_element_located((By.ID, <span class="st">&quot;resulttable&quot;</span>)))</span>
-<span id="cb66-17"><a href="filling-in-web-forms.html#cb66-17"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb66-18"><a href="filling-in-web-forms.html#cb66-18"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb66-19"><a href="filling-in-web-forms.html#cb66-19"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
-<p>The final solution is to use an <strong>implicit wait</strong>, which tells <code>WebDriver</code> to poll the DOM for a certain amount of time when trying to find any element(s) not immediately available. The default setting is 0. <strong>Once set, the implicit wait is set for the life of the <code>WebDriver</code> object</strong>.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="filling-in-web-forms.html#cb67-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb67-2"><a href="filling-in-web-forms.html#cb67-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb67-3"><a href="filling-in-web-forms.html#cb67-3"></a></span>
-<span id="cb67-4"><a href="filling-in-web-forms.html#cb67-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb67-5"><a href="filling-in-web-forms.html#cb67-5"></a>driver.implicitly_wait(<span class="dv">10</span>)</span>
-<span id="cb67-6"><a href="filling-in-web-forms.html#cb67-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb67-7"><a href="filling-in-web-forms.html#cb67-7"></a>driver.get(form_url)</span>
-<span id="cb67-8"><a href="filling-in-web-forms.html#cb67-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb67-9"><a href="filling-in-web-forms.html#cb67-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb67-10"><a href="filling-in-web-forms.html#cb67-10"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb67-11"><a href="filling-in-web-forms.html#cb67-11"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb67-12"><a href="filling-in-web-forms.html#cb67-12"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb67-13"><a href="filling-in-web-forms.html#cb67-13"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
-<span id="cb67-14"><a href="filling-in-web-forms.html#cb67-14"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb67-15"><a href="filling-in-web-forms.html#cb67-15"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb67-16"><a href="filling-in-web-forms.html#cb67-16"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb67-17"><a href="filling-in-web-forms.html#cb67-17"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
+<span id="cb66-3"><a href="filling-in-web-forms.html#cb66-3"></a></span>
+<span id="cb66-4"><a href="filling-in-web-forms.html#cb66-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb66-5"><a href="filling-in-web-forms.html#cb66-5"></a>driver.implicitly_wait(<span class="dv">10</span>)</span>
+<span id="cb66-6"><a href="filling-in-web-forms.html#cb66-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb66-7"><a href="filling-in-web-forms.html#cb66-7"></a>driver.get(form_url)</span>
+<span id="cb66-8"><a href="filling-in-web-forms.html#cb66-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb66-9"><a href="filling-in-web-forms.html#cb66-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb66-10"><a href="filling-in-web-forms.html#cb66-10"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb66-11"><a href="filling-in-web-forms.html#cb66-11"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb66-12"><a href="filling-in-web-forms.html#cb66-12"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb66-13"><a href="filling-in-web-forms.html#cb66-13"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
+<span id="cb66-14"><a href="filling-in-web-forms.html#cb66-14"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb66-15"><a href="filling-in-web-forms.html#cb66-15"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb66-16"><a href="filling-in-web-forms.html#cb66-16"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb66-17"><a href="filling-in-web-forms.html#cb66-17"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&quot;a&quot;</span>).click()</span></code></pre></div>
 </div>
 <div id="scroll-until-on-screen" class="section level3" number="5.8.2">
 <h3><span class="header-section-number">5.8.2</span> Scroll until on-screen</h3>
 <p>When an element is on screen it means that it is embedded in the DOM structure of the web page. Therefore, we can find its DOM structure when inspecting a web page. If the element we act upon is not in the DOM structure, then we will see some kind of error message. Let us look at this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">example website</a>. Suppose that we search all the 5th grade students whose names start with “A”. If we <code>Inspect</code> the HTML, we can find that there are 15 table entries included under the <code>&lt;tbody&gt;</code> tag in its DOM structure, as shown in the following figure:</p>
 <p><img src="images/form/scroll.png" /></p>
 <p>Suppose that we want to get the profile for student “Aiden” –– the 15th record of the page. It will work fine. But if we want to get the profile for the 16th student of the page, we will get an error message saying <code>"list index out of range"</code>. This is because that record is off-screen.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="filling-in-web-forms.html#cb67-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb67-2"><a href="filling-in-web-forms.html#cb67-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
+<span id="cb67-3"><a href="filling-in-web-forms.html#cb67-3"></a><span class="im">import</span> time</span>
+<span id="cb67-4"><a href="filling-in-web-forms.html#cb67-4"></a></span>
+<span id="cb67-5"><a href="filling-in-web-forms.html#cb67-5"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb67-6"><a href="filling-in-web-forms.html#cb67-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search&quot;</span></span>
+<span id="cb67-7"><a href="filling-in-web-forms.html#cb67-7"></a>driver.get(form_url)</span>
+<span id="cb67-8"><a href="filling-in-web-forms.html#cb67-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb67-9"><a href="filling-in-web-forms.html#cb67-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb67-10"><a href="filling-in-web-forms.html#cb67-10"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
+<span id="cb67-11"><a href="filling-in-web-forms.html#cb67-11"></a>time.sleep(<span class="dv">5</span>)</span>
+<span id="cb67-12"><a href="filling-in-web-forms.html#cb67-12"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb67-13"><a href="filling-in-web-forms.html#cb67-13"></a>table_body <span class="op">=</span> table.find_element_by_tag_name(<span class="st">&quot;tbody&quot;</span>)</span>
+<span id="cb67-14"><a href="filling-in-web-forms.html#cb67-14"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb67-15"><a href="filling-in-web-forms.html#cb67-15"></a>fields <span class="op">=</span> entries[<span class="dv">15</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb67-16"><a href="filling-in-web-forms.html#cb67-16"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
+<p>The solution is to scroll down the page so that the off-screen records can be added into its DOM structure. In the following code, we scroll down to a certain height of the page, where “5000” is the height (line 12). By uncommenting line 14 and commenting line 12, we can also scroll down to the bottom of the page:</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="filling-in-web-forms.html#cb68-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb68-2"><a href="filling-in-web-forms.html#cb68-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
 <span id="cb68-3"><a href="filling-in-web-forms.html#cb68-3"></a><span class="im">import</span> time</span>
@@ -541,82 +558,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb68-9"><a href="filling-in-web-forms.html#cb68-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
 <span id="cb68-10"><a href="filling-in-web-forms.html#cb68-10"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
 <span id="cb68-11"><a href="filling-in-web-forms.html#cb68-11"></a>time.sleep(<span class="dv">5</span>)</span>
-<span id="cb68-12"><a href="filling-in-web-forms.html#cb68-12"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb68-13"><a href="filling-in-web-forms.html#cb68-13"></a>table_body <span class="op">=</span> table.find_element_by_tag_name(<span class="st">&quot;tbody&quot;</span>)</span>
-<span id="cb68-14"><a href="filling-in-web-forms.html#cb68-14"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb68-15"><a href="filling-in-web-forms.html#cb68-15"></a>fields <span class="op">=</span> entries[<span class="dv">15</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb68-16"><a href="filling-in-web-forms.html#cb68-16"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
-<p>The solution is to scroll down the page so that the off-screen records can be added into its DOM structure. In the following code, we scroll down to a certain height of the page, where “5000” is the height (line 12). By uncommenting line 14 and commenting line 12, we can also scroll down to the bottom of the page:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="filling-in-web-forms.html#cb69-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb69-2"><a href="filling-in-web-forms.html#cb69-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb69-3"><a href="filling-in-web-forms.html#cb69-3"></a><span class="im">import</span> time</span>
-<span id="cb69-4"><a href="filling-in-web-forms.html#cb69-4"></a></span>
-<span id="cb69-5"><a href="filling-in-web-forms.html#cb69-5"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb69-6"><a href="filling-in-web-forms.html#cb69-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search&quot;</span></span>
-<span id="cb69-7"><a href="filling-in-web-forms.html#cb69-7"></a>driver.get(form_url)</span>
-<span id="cb69-8"><a href="filling-in-web-forms.html#cb69-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb69-9"><a href="filling-in-web-forms.html#cb69-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb69-10"><a href="filling-in-web-forms.html#cb69-10"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
-<span id="cb69-11"><a href="filling-in-web-forms.html#cb69-11"></a>time.sleep(<span class="dv">5</span>)</span>
-<span id="cb69-12"><a href="filling-in-web-forms.html#cb69-12"></a><span class="co"># scroll to a certain height</span></span>
-<span id="cb69-13"><a href="filling-in-web-forms.html#cb69-13"></a>driver.execute_script(<span class="st">&quot;window.scrollTo(0, 5000)&quot;</span>) </span>
-<span id="cb69-14"><a href="filling-in-web-forms.html#cb69-14"></a><span class="co"># scroll to the bottom</span></span>
-<span id="cb69-15"><a href="filling-in-web-forms.html#cb69-15"></a><span class="co">#driver.execute_script(&quot;window.scrollTo(0, document.body.scrollHeight);&quot;) </span></span>
-<span id="cb69-16"><a href="filling-in-web-forms.html#cb69-16"></a>time.sleep(<span class="dv">5</span>)</span>
-<span id="cb69-17"><a href="filling-in-web-forms.html#cb69-17"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb69-18"><a href="filling-in-web-forms.html#cb69-18"></a>table_body <span class="op">=</span> table.find_element_by_tag_name(<span class="st">&quot;tbody&quot;</span>)</span>
-<span id="cb69-19"><a href="filling-in-web-forms.html#cb69-19"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb69-20"><a href="filling-in-web-forms.html#cb69-20"></a>fields <span class="op">=</span> entries[<span class="dv">15</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb69-21"><a href="filling-in-web-forms.html#cb69-21"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
+<span id="cb68-12"><a href="filling-in-web-forms.html#cb68-12"></a><span class="co"># scroll to a certain height</span></span>
+<span id="cb68-13"><a href="filling-in-web-forms.html#cb68-13"></a>driver.execute_script(<span class="st">&quot;window.scrollTo(0, 5000)&quot;</span>) </span>
+<span id="cb68-14"><a href="filling-in-web-forms.html#cb68-14"></a><span class="co"># scroll to the bottom</span></span>
+<span id="cb68-15"><a href="filling-in-web-forms.html#cb68-15"></a><span class="co">#driver.execute_script(&quot;window.scrollTo(0, document.body.scrollHeight);&quot;) </span></span>
+<span id="cb68-16"><a href="filling-in-web-forms.html#cb68-16"></a>time.sleep(<span class="dv">5</span>)</span>
+<span id="cb68-17"><a href="filling-in-web-forms.html#cb68-17"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb68-18"><a href="filling-in-web-forms.html#cb68-18"></a>table_body <span class="op">=</span> table.find_element_by_tag_name(<span class="st">&quot;tbody&quot;</span>)</span>
+<span id="cb68-19"><a href="filling-in-web-forms.html#cb68-19"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb68-20"><a href="filling-in-web-forms.html#cb68-20"></a>fields <span class="op">=</span> entries[<span class="dv">15</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb68-21"><a href="filling-in-web-forms.html#cb68-21"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
 </div>
 <div id="execute-javascript" class="section level3" number="5.8.3">
 <h3><span class="header-section-number">5.8.3</span> Execute JavaScript</h3>
 <p>On this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search">example website</a>, we can see that the form submit button is hidden. If we still use the button <code>click()</code> method, we will get an error message saying that <code>"element not interactable"</code>. In this case, we can opt to execute JavaScript that interacts directly with the DOM:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="filling-in-web-forms.html#cb70-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb70-2"><a href="filling-in-web-forms.html#cb70-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb70-3"><a href="filling-in-web-forms.html#cb70-3"></a></span>
-<span id="cb70-4"><a href="filling-in-web-forms.html#cb70-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb70-5"><a href="filling-in-web-forms.html#cb70-5"></a>driver.implicitly_wait(<span class="dv">10</span>)</span>
-<span id="cb70-6"><a href="filling-in-web-forms.html#cb70-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search&quot;</span></span>
-<span id="cb70-7"><a href="filling-in-web-forms.html#cb70-7"></a>driver.get(form_url)</span>
-<span id="cb70-8"><a href="filling-in-web-forms.html#cb70-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb70-9"><a href="filling-in-web-forms.html#cb70-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb70-10"><a href="filling-in-web-forms.html#cb70-10"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb70-11"><a href="filling-in-web-forms.html#cb70-11"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb70-12"><a href="filling-in-web-forms.html#cb70-12"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb70-13"><a href="filling-in-web-forms.html#cb70-13"></a>driver.execute_script(<span class="ss">f&#39;document.getElementById(&quot;search&quot;).click();&#39;</span>)</span>
-<span id="cb70-14"><a href="filling-in-web-forms.html#cb70-14"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb70-15"><a href="filling-in-web-forms.html#cb70-15"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb70-16"><a href="filling-in-web-forms.html#cb70-16"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb70-17"><a href="filling-in-web-forms.html#cb70-17"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="filling-in-web-forms.html#cb69-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb69-2"><a href="filling-in-web-forms.html#cb69-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
+<span id="cb69-3"><a href="filling-in-web-forms.html#cb69-3"></a></span>
+<span id="cb69-4"><a href="filling-in-web-forms.html#cb69-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb69-5"><a href="filling-in-web-forms.html#cb69-5"></a>driver.implicitly_wait(<span class="dv">10</span>)</span>
+<span id="cb69-6"><a href="filling-in-web-forms.html#cb69-6"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search&quot;</span></span>
+<span id="cb69-7"><a href="filling-in-web-forms.html#cb69-7"></a>driver.get(form_url)</span>
+<span id="cb69-8"><a href="filling-in-web-forms.html#cb69-8"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb69-9"><a href="filling-in-web-forms.html#cb69-9"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb69-10"><a href="filling-in-web-forms.html#cb69-10"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb69-11"><a href="filling-in-web-forms.html#cb69-11"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb69-12"><a href="filling-in-web-forms.html#cb69-12"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb69-13"><a href="filling-in-web-forms.html#cb69-13"></a>driver.execute_script(<span class="ss">f&#39;document.getElementById(&quot;search&quot;).click();&#39;</span>)</span>
+<span id="cb69-14"><a href="filling-in-web-forms.html#cb69-14"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb69-15"><a href="filling-in-web-forms.html#cb69-15"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb69-16"><a href="filling-in-web-forms.html#cb69-16"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb69-17"><a href="filling-in-web-forms.html#cb69-17"></a>fields[<span class="dv">3</span>].find_element_by_tag_name(<span class="st">&#39;a&#39;</span>).click()</span></code></pre></div>
 </div>
 <div id="perform-preliminary-actions" class="section level3" number="5.8.4">
 <h3><span class="header-section-number">5.8.4</span> Perform preliminary action(s)</h3>
 <p>Let us again search for all the 5th grade students whose name starts with “A” on this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example website</a>. If we move our cursor over a student name, we will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the cursor to a student name to enable it. Once we do that, if we inspect the webpage, we will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. In the following code segment we scrape the content on the hover box of student “Adams”:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="filling-in-web-forms.html#cb71-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb71-2"><a href="filling-in-web-forms.html#cb71-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
-<span id="cb71-3"><a href="filling-in-web-forms.html#cb71-3"></a><span class="im">from</span> selenium.webdriver.common.action_chains <span class="im">import</span> ActionChains</span>
-<span id="cb71-4"><a href="filling-in-web-forms.html#cb71-4"></a></span>
-<span id="cb71-5"><a href="filling-in-web-forms.html#cb71-5"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb71-6"><a href="filling-in-web-forms.html#cb71-6"></a>driver.implicitly_wait(<span class="dv">10</span>)</span>
-<span id="cb71-7"><a href="filling-in-web-forms.html#cb71-7"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb71-8"><a href="filling-in-web-forms.html#cb71-8"></a>driver.get(form_url)</span>
-<span id="cb71-9"><a href="filling-in-web-forms.html#cb71-9"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
-<span id="cb71-10"><a href="filling-in-web-forms.html#cb71-10"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
-<span id="cb71-11"><a href="filling-in-web-forms.html#cb71-11"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
-<span id="cb71-12"><a href="filling-in-web-forms.html#cb71-12"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
-<span id="cb71-13"><a href="filling-in-web-forms.html#cb71-13"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
-<span id="cb71-14"><a href="filling-in-web-forms.html#cb71-14"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
-<span id="cb71-15"><a href="filling-in-web-forms.html#cb71-15"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
-<span id="cb71-16"><a href="filling-in-web-forms.html#cb71-16"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb71-17"><a href="filling-in-web-forms.html#cb71-17"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb71-18"><a href="filling-in-web-forms.html#cb71-18"></a>name_tag <span class="op">=</span> fields[<span class="dv">0</span>].find_element_by_tag_name(<span class="st">&quot;span&quot;</span>)</span>
-<span id="cb71-19"><a href="filling-in-web-forms.html#cb71-19"></a>hov <span class="op">=</span> ActionChains(driver).move_to_element(name_tag)</span>
-<span id="cb71-20"><a href="filling-in-web-forms.html#cb71-20"></a>hov.perform()</span>
-<span id="cb71-21"><a href="filling-in-web-forms.html#cb71-21"></a>hov_id <span class="op">=</span> name_tag.get_attribute(<span class="st">&quot;aria-describedby&quot;</span>)</span>
-<span id="cb71-22"><a href="filling-in-web-forms.html#cb71-22"></a><span class="bu">print</span>(hov_id)</span>
-<span id="cb71-23"><a href="filling-in-web-forms.html#cb71-23"></a>hov_text <span class="op">=</span> driver.find_element_by_id(hov_id).text</span>
-<span id="cb71-24"><a href="filling-in-web-forms.html#cb71-24"></a><span class="bu">print</span>(hov_text)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="filling-in-web-forms.html#cb70-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb70-2"><a href="filling-in-web-forms.html#cb70-2"></a><span class="im">from</span> selenium.webdriver.support.select <span class="im">import</span> Select</span>
+<span id="cb70-3"><a href="filling-in-web-forms.html#cb70-3"></a><span class="im">from</span> selenium.webdriver.common.action_chains <span class="im">import</span> ActionChains</span>
+<span id="cb70-4"><a href="filling-in-web-forms.html#cb70-4"></a></span>
+<span id="cb70-5"><a href="filling-in-web-forms.html#cb70-5"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb70-6"><a href="filling-in-web-forms.html#cb70-6"></a>driver.implicitly_wait(<span class="dv">10</span>)</span>
+<span id="cb70-7"><a href="filling-in-web-forms.html#cb70-7"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb70-8"><a href="filling-in-web-forms.html#cb70-8"></a>driver.get(form_url)</span>
+<span id="cb70-9"><a href="filling-in-web-forms.html#cb70-9"></a>driver.find_element_by_id(<span class="st">&#39;search_name&#39;</span>).send_keys(<span class="st">&quot;A&quot;</span>)</span>
+<span id="cb70-10"><a href="filling-in-web-forms.html#cb70-10"></a>Select(driver.find_element_by_id(<span class="st">&quot;search_grade&quot;</span>)).select_by_visible_text(<span class="st">&quot;5&quot;</span>)</span>
+<span id="cb70-11"><a href="filling-in-web-forms.html#cb70-11"></a>driver.find_element_by_id(<span class="st">&#39;p5&#39;</span>).click()</span>
+<span id="cb70-12"><a href="filling-in-web-forms.html#cb70-12"></a>driver.find_element_by_id(<span class="st">&quot;privacypolicy&quot;</span>).click()</span>
+<span id="cb70-13"><a href="filling-in-web-forms.html#cb70-13"></a>driver.find_element_by_id(<span class="st">&quot;termsconditions&quot;</span>).click()</span>
+<span id="cb70-14"><a href="filling-in-web-forms.html#cb70-14"></a>driver.find_element_by_id(<span class="st">&quot;search&quot;</span>).click()</span>
+<span id="cb70-15"><a href="filling-in-web-forms.html#cb70-15"></a>table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;results&quot;]/table&#39;</span>)</span>
+<span id="cb70-16"><a href="filling-in-web-forms.html#cb70-16"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb70-17"><a href="filling-in-web-forms.html#cb70-17"></a>fields <span class="op">=</span> entries[<span class="dv">1</span>].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb70-18"><a href="filling-in-web-forms.html#cb70-18"></a>name_tag <span class="op">=</span> fields[<span class="dv">0</span>].find_element_by_tag_name(<span class="st">&quot;span&quot;</span>)</span>
+<span id="cb70-19"><a href="filling-in-web-forms.html#cb70-19"></a>hov <span class="op">=</span> ActionChains(driver).move_to_element(name_tag)</span>
+<span id="cb70-20"><a href="filling-in-web-forms.html#cb70-20"></a>hov.perform()</span>
+<span id="cb70-21"><a href="filling-in-web-forms.html#cb70-21"></a>hov_id <span class="op">=</span> name_tag.get_attribute(<span class="st">&quot;aria-describedby&quot;</span>)</span>
+<span id="cb70-22"><a href="filling-in-web-forms.html#cb70-22"></a><span class="bu">print</span>(hov_id)</span>
+<span id="cb70-23"><a href="filling-in-web-forms.html#cb70-23"></a>hov_text <span class="op">=</span> driver.find_element_by_id(hov_id).text</span>
+<span id="cb70-24"><a href="filling-in-web-forms.html#cb70-24"></a><span class="bu">print</span>(hov_text)</span></code></pre></div>
 <p>We first need to import the <code>ActionChains</code> class in Selenium <code>WebDriver</code>. We create an <code>ActionChains</code> object by passing the driver object. We then find the student name “Adams” object in the page and move the cursor on this object using the method <code>move_to_element()</code>. We then use the method <code>perform()</code> to execute the actions that we have built on the <code>ActionChains</code> object. In this case, this action makes the hover box appear above the student name. Once this is done, the hover box element is added to the DOM structure of the page. By inspecting this new addition in the DOM structure, we can find the ID of the hover box through attribute <code>"aria-describedby"</code> and therefore scrape the content of the hover box object associated with that ID.</p>
 
 </div>
@@ -670,7 +670,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["webscraping.pdf", "webscraping.epub"],
+"download": ["Webscraping_with_Selenium_Python.pdf", "Webscraping_with_Selenium_Python.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

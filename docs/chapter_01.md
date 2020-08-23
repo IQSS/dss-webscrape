@@ -37,31 +37,17 @@ It is often convenient to create variables containing the domain(s) and path(s) 
 
 ## Document Object Model (DOM)
 
-To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in **nodes** and links information through **branches**. This tree-like structure is called the **Document Object Model (DOM)**. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. *Each branch of the tree ends in a node, and each node contains objects*. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following is an example of DOM hierarchy in an HTML document:
+To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in **nodes** and links information through **branches**. This tree-like structure is called the **Document Object Model (DOM)**. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. *Each branch of the tree ends in a node, and each node contains objects*. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following schematic is an example of DOM hierarchy in an HTML document:
 
 ![](images/intro/DOM.png)
 
-
-**WE NEED AN ACTUAL EXAMPLE OF THE DOM IN HTML CODE:**
-
-Explain what a <div> element is, what a <td> element is etc.
-
-```
-<tr id=students_school_row>
-    <td class=w2p_fl>
-        <label for="students_school" id="students_school_label">
-            School:
-        </label>
-    <td class=w2p_fw>IV
-```
+Below is an example of DOM hierarchy in a working segment of HTML code. Here, we create a spreadsheet using the `<table>` element, which has row elements `<tr>`, header elements `<th>`, and cell elements `<td>`. In this case, we store the `Name`, `Grade`, and `GPA` of two students: "Adam", and "Alexander".
 
 ```
 <html>
     <body>
-        <div id="result"></div>
-        <script>
-                document.getElementById("result").innerHTML = 
-            `<table>
+        <div id="My_table"></div>
+            <table>
                     <tr>
                         <th>Name</th>
                         <th>Grade</th>
@@ -77,24 +63,8 @@ Explain what a <div> element is, what a <td> element is etc.
                         <td>5</td>
                         <td>1</td>
                     </tr>
-                    <tr>
-                        <td>Aaron</td>
-                        <td>5</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Aws</td>
-                        <td>5</td>
-                        <td>3.5</td>
-                    </tr>
-                    <tr>
-                        <td>Alan</td>
-                        <td>5</td>
-                        <td>2</td>
-                    </tr>
-                </table>
-            `;
-        </script>
+            </table>
     </body>
 </html>
 ```
+

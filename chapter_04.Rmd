@@ -14,7 +14,7 @@ Selenium works by automating browsers to load the website, retrieve the required
 For the successful implementation of browser automation using Selenium, the software `WebDriver` needs to be set up. The name `WebDriver` is generic --- there are versions of `WebDriver` for all major browsers. We will now go through the steps to set up `WebDriver` for Google Chrome, which is called `ChromeDriver`. Other major browsers have similar steps:  
 
 1.	Install Selenium using a third-party installer such as `pip` to install it from the command line via this command: `pip install selenium`.       
-2.	Download the latest stable release of `ChromeDriver` from this [website](https://chromedriver.chromium.org/downloads), selecting the appropriate version to your operating system.         
+2.	Download the latest stable release of `ChromeDriver` from this [website](https://chromedriver.chromium.org/downloads), selecting the appropriate version for your operating system.         
 3.	Unzip the downloaded `chromedriver*.zip` file. An application file named `chromedriver.exe` should appear. It is recommended that we place the `.exe` file on the main folder containing the codes.         
 
 Now that we have completed the setup steps, we can proceed. We have created this [example page](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to run our scraper against. We can start by loading the example page. 
@@ -38,9 +38,9 @@ driver.get(form_url)
 
 ![](images/chapter_3/1.png)
 
-As you can see above, a notice is displayed just below the address bar with the message **"Chrome is being controlled by automated test software"**. This message also confirms the successful execution of the `selenium.webdriver` activity, and it can be provided with additional code to act on or automate the page that has been loaded.
+As we can see above, a notice is displayed just below the address bar with the message **"Chrome is being controlled by automated test software"**. This message also confirms the successful execution of the `selenium.webdriver` activity, and it can be provided with additional code to act on or automate the page that has been loaded.
 
-Following successful execution of the code, it is recommended that you close and quit the driver to free up system resources. The `close()` method terminates the loaded browser window. The `quit()` method ends the `WebDriver` application.
+Following successful execution of the code, it is recommended that we close and quit the driver to free up system resources. The `close()` method terminates the loaded browser window. The `quit()` method ends the `WebDriver` application.
 
 ```{python, eval=FALSE}
 driver.close()
@@ -55,7 +55,7 @@ Next, we need to tell Selenium how to find a particular element or set of elemen
 Here, we will provide an overview of the various `find_element_by_*` and `find_elements_by_*` methods, with some examples of their use.
 
 *   `find_element_by_id()` and `find_elements_by_id()` methods:   
-Return an element or a set of elements that have matching ID attribute values. The `find_elements_by_id()` method returns all the elements that have the same ID attribute values. Let's try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as `search`. You can find this code if you inspect the site and reach this element in its DOM.
+Return an element or a set of elements that have matching ID attribute values. The `find_elements_by_id()` method returns all the elements that have the same ID attribute values. Let's try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as `search`. We can find this code if we `Inspect` the site and reach this element in its DOM.
 
     ```
     <input type="submit" id="search" value="Search" name="q" class="button" />
@@ -146,7 +146,7 @@ Find link(s) using partial text. For example, on the example site, two links are
     ```
 
 ## Demo
-This section will show you two use-cases to demonstrate the use of various `find_elements_by` methods. Most often we want to scrape data from tables or article text. The two demos therefore cover these use-cases.  
+This section will highlight two use-cases to demonstrate the use of various `find_elements_by` methods. Most often we want to scrape data from tables or article text. The two demos therefore cover these use-cases.  
 
 ### Scrape tables
 Let's examine this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This page uses JavaScript to write a table to a `<div>` element of the page. If we were to scrape this page’s table using traditional methods, we’d only get the loading page, without actually getting the data that we want. Suppose that we want to scrape all cells of this table. The first thing we need to do is to locate the cells. If we `Inspect` this page, we can see that the table is defined with a `<tbody>` tag inside a `<table>` tag. Each table row is defined with a `<tr>` tag and there are multiple table rows. The first table row is the table header row, each of its fields is defined with a `<th>` tag or a header cell tag. In each of the other table rows, there are multiple data cells and each data cell is defined with a `<td>` tag. Next, we have to find each cell using `find_elements_by` methods and get its data. There is no way to directly scrape the whole table. Given this, the logic naturally is to loop row by row, and in each row, loop cell by cell. So, we need to have a double for loop in our script. Finally, we need to store the scraped data in a nice format, like a `.csv` file. We can use the Python file operation methods to achieve this. Here's an implementation:
@@ -240,16 +240,16 @@ print(article)
 ## `NoSuchElementException` 
 The reason for `NoSuchElementException` can be any of the following:
 
-* The Locator Strategy you have adopted doesn't identify any element in the HTML DOM.
-* The Locator Strategy you have adopted doesn't uniquely identify the desired element in the HTML DOM and currently finds some other hidden / invisible element.    
-* The Locator Strategy you have adopted is unable to identify the desired element as it is not within the browser's `Viewport`.   
-* The Locator Strategy you have adopted identifies the element but is invisible due to presence of the attribute `style="display: none;"`.       
-* The `WebElement` you are trying to locate is within an `<iframe>` tag.    
+* The Locator Strategy we have adopted doesn't identify any element in the HTML DOM.
+* The Locator Strategy we have adopted doesn't uniquely identify the desired element in the HTML DOM and currently finds some other hidden / invisible element.    
+* The Locator Strategy we have adopted is unable to identify the desired element as it is not within the browser's `Viewport`.   
+* The Locator Strategy we have adopted identifies the element but is invisible due to presence of the attribute `style="display: none;"`.       
+* The `WebElement` we are trying to locate is within an `<iframe>` tag.    
 * The `WebDriver` instance is looking out for the `WebElement` even before the element is present/visibile within the HTML DOM.    
 
 The solution to address the `NoSuchElementException` can be either of the following:
 
-1.   When the element you locate does not exist in the DOM, use `try-except` event handler to avoid the termination of the program:  
+1.   When the element we locate does not exist in the DOM, use `try-except` event handler to avoid the termination of the program:  
 
     ```{python, eval=FALSE}
     from selenium.common.exceptions import NoSuchElementException
@@ -263,7 +263,7 @@ The solution to address the `NoSuchElementException` can be either of the follow
 
     This solution is to address the inconsistency in the DOM among the seemingly same pages.
 
-2.   When the page loads, for some reason you may be taken to the bottom of the page, but the element you need to scrape is on the top of the page and thus is out of view. In this situation you can locate the element in the DOM first, then use the `execute_script()` method to scroll the element into view: 
+2.   When the page loads, for some reason we may be taken to the bottom of the page, but the element we need to scrape is on the top of the page and thus is out of view. In this situation, we can locate the element in the DOM first, then use the `execute_script()` method to scroll the element into view: 
 
     ```{python, eval=FALSE}
     elem = driver.find_element_by_xpath("element_xpath")

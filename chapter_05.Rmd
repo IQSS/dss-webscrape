@@ -8,7 +8,7 @@ use_condaenv(condaenv="r-reticulate", required=TRUE)
 ```
 
 # Filling in Web Forms
-You must have noticed the ubiquity of web forms while surfing the internet. A web form comprises web elements such as input boxes, check boxes, radio buttons, links, drop down menus, and submit buttons to collect user data. To process web forms, we need to first find these web elements and then take subsequent actions on them like selecting a value or entering some text. Selenium has an API that helps us to do that. Since we have covered how to find web element(s) using Selenium selectors in the previous chapter, this chapter focuses on accessing forms in Selenium: performing actions on and interacting with the forms. Let us see how different actions can be performed on each type of web field that may be involved in your web form. We use this [example login form website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to illustrate most of the examples used in this chapter. Below is a screenshot of how this website uses forms:  
+Web forms are ubiquituous when surfing the internet. A web form comprises web elements such as input boxes, check boxes, radio buttons, links, drop down menus, and submit buttons to collect user data. To process web forms, we need to first find these web elements and then take subsequent actions on them like selecting a value or entering some text. Selenium has an API that helps us to do that. Since we have covered how to find web element(s) using Selenium selectors in the previous chapter, this chapter focuses on accessing forms in Selenium: performing actions on and interacting with the forms. Let us see how different actions can be performed on each type of web field that may be involved in a web form. We use this [example login form website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search) to illustrate most of the examples used in this chapter. Below is a screenshot of how this website uses forms:  
 
 ![](images/form/form.png)
 
@@ -75,7 +75,7 @@ print(pageSize_5_other)
 print(type(pageSize_5_other))
 ```
 
-Radio buttons do not support deselection. To deselect a radio button, one needs to select any other radio button in that group. If you select the same radio button trying to deselect it, you will get the same selection as before; nothing will change. The following code shows how to deselect a radio button only when it is selected:
+Radio buttons do not support deselection. To deselect a radio button, one needs to select any other radio button in that group. If we select the same radio button trying to deselect it, we will get the same selection as before; nothing will change. The following code shows how to deselect a radio button only when it is selected:
 
 ```{python, eval=FALSE}
 driver.find_element_by_id('p10').click()
@@ -97,7 +97,7 @@ driver.get(privacy_link)
 ```
 
 ## Dropdown
-A dropdown is a list which has an arrow at the rightmost end to expand and show values. It provides a list of options to the user, thereby giving access to one or multiple values as per the requirement. To work with a dropdown, first you need to select or find the main element group and then go inside further and select the sub-element that you want to capture. The Selenium Python API provides the `Select` class, which allows you to select the element of your choice. Note that the `Select` class only works with tags that have `<select>` tags. We can select a sub-element of the dropdown using: 1) index, 2) value, or 3) text.
+A dropdown is a list which has an arrow at the rightmost end to expand and show values. It provides a list of options to the user, thereby giving access to one or multiple values as per the requirement. To work with a dropdown, first we need to select or find the main element group and then go inside further and select the sub-element that we want to capture. The Selenium Python API provides the `Select` class, which allows us to select the element of our choice. Note that the `Select` class only works with tags that have `<select>` tags. We can select a sub-element of the dropdown using: 1) index, 2) value, or 3) text.
 
 If the dropdown has an `"index"` attribute, then we can use that index to select a particular option. We need to be careful when using this approach, because it is not uncommon to have the index start at 0. We can use the `select_by_index()` method to select an option using the `"index"` attribute. For example, we want to select the 5th grade students:
 
@@ -106,7 +106,7 @@ grade_dropdown = Select(driver.find_element_by_id("search_grade"))
 grade_dropdown.select_by_index(6)
 ```
 
-If the HTML mark-up defines an `<option>` tag, then you can use the value matching the argument. Suppose the HTML for dropdown is like this:
+If the HTML mark-up defines an `<option>` tag, then we can use the value matching the argument. Suppose the HTML for dropdown is like this:
 
 ```
 <td>
@@ -134,7 +134,7 @@ Probably the easiest way of selecting a sub-element is to select an element usin
 grade_dropdown.select_by_visible_text("5")
 ```
 
-In a similar way, we can deselect any selected value from the dropdown using any of the following options: 1) `deselect_by_index()`, 2) `deselect_by_value()`, or 3) `deselect_by_visible_text()`. These methods can be used only when you make multiple selections. The `deselect_all()` method clears all the selected options. This is also only applicable when there are multiple selections. If you try to use this when there is a single selection, it will throw a `NotImplementedError` exception.
+In a similar way, we can deselect any selected value from the dropdown using any of the following options: 1) `deselect_by_index()`, 2) `deselect_by_value()`, or 3) `deselect_by_visible_text()`. These methods can be used only when we make multiple selections. The `deselect_all()` method clears all the selected options. This is also only applicable when there are multiple selections. If we try to use this when there is a single selection, it will throw a `NotImplementedError` exception.
 
 There are times while performing Selenium automation of our web app, where we need to validate the options coming in our dropdown list. The `Select` class provides property methods that allow us to do this. The first two property methods are applicable when we can select multiple options.
 
@@ -151,10 +151,10 @@ driver.find_element_by_id("search").click()
 ```
 
 ## Demos
-Using our [example site](https://iqssdss2020.pythonanywhere.com/tutorial/form/search), We will first show you a simple program that handles all the types of form elements we have covered so far. Second, we will show you an advanced program that handles the situation where you will need to access this form not once but many times sequentially.
+Using our [example site](https://iqssdss2020.pythonanywhere.com/tutorial/form/search), we will examine a simple program that handles all the types of form elements we have covered so far. Second, we will examine an advanced program that handles the situation where we will need to access this form not once but many times sequentially.
 
 ### Fill form once
-Suppose that we want to search all the 5th grade students whose names start with "A" and page size set at 5. The program below shows you how to fill in the form and submit it to the server:
+Suppose that we want to search all the 5th grade students whose names start with "A" and page size set at 5. The program below demonstrates how to fill in the form and submit it to the server:
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -225,7 +225,7 @@ print(students_df)
 driver.close()
 ```
 
-Line 39 and 43 of this program (`driver.get(searchAddress)`) tells us that the form will be refreshed whenever we finish the current search. This could happen either when we find out there is no result for this search or when we have scraped the results for this search. Since the form is refreshed every time for a new search, we need to refill the form every time when a new search starts. This is why lines 15 to 19 of the code that execute the form filling actions are put in the most inner layer of the for loop. 
+Line 39 and 43 of this program (`driver.get(searchAddress)`) indicate that the form will be refreshed whenever we finish the current search. This could happen either when we find out there is no result for this search or when we have scraped the results for this search. Since the form is refreshed every time for a new search, we need to refill the form every time when a new search starts. This is why lines 15 to 19 of the code that execute the form filling actions are put in the most inner layer of the for loop. 
 
 To know what we need to input for a new search, we have to find out where the search has gone so far up to this point when the form is refreshed for a new search. We control the moving of rounds of search by using the indexing of a list. We put all the options for a form field into a created list with the exact order of the list elements as that being displayed in the form field. When we loop through this list, we control where the search runs through. In the above example, line 13 and 14 play this role. They control the indexing of the name list and the grade list. The name field and the grade field are the only two fields whose input values will change for a new search. This is why we need to create a list for them and then loop over it rather than doing the same thing for all the other form fields.  
 
@@ -283,7 +283,7 @@ driver.close()
 There is no code in this program that refreshes the form page. We put the lines of code that fill in the constant form fields outside of the loop so that those constant fields will not be refilled in every time for a new search. The change of the positions of lines 13 –- 15 and line 19 of the code comparing the program in the first scenario reflects this idea.  
 
 ## `ElementNotInteractableException`
-In some cases when the element is not interactable, actions on it as introduced in the above sections do not work and we are likely to encounter an `ElementNotInteractableException`. This is caused when an element is found, but you cannot interact with it --- for example, you may not be able to click or send keys. There could be several reasons for this scenario:
+In some cases when the element is not interactable, actions on it as introduced in the above sections do not work and we are likely to encounter an `ElementNotInteractableException`. This is caused when an element is found, but we cannot interact with it --- for example, we may not be able to click or send keys. There could be several reasons for this scenario:
 
 1.  The element is not visible / not displayed.   
 2.  The element is off screen.   
@@ -384,7 +384,7 @@ fields[3].find_element_by_tag_name("a").click()
 ```
 
 ### Scroll until on-screen  
-When an element is on screen it means that it is embedded in the DOM structure of the web page. Therefore, you can find its DOM structure when inspecting a web page. If the element you act upon is not in the DOM structure, then we will see some kind of error message. Let us look at this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). Suppose that we search all the 5th grade students whose names start with "A". If we `Inspect` the HTML, we can find that there are 15 table entries included under the `<tbody>` tag in its DOM structure, as shown in the following figure: 
+When an element is on screen it means that it is embedded in the DOM structure of the web page. Therefore, we can find its DOM structure when inspecting a web page. If the element we act upon is not in the DOM structure, then we will see some kind of error message. Let us look at this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). Suppose that we search all the 5th grade students whose names start with "A". If we `Inspect` the HTML, we can find that there are 15 table entries included under the `<tbody>` tag in its DOM structure, as shown in the following figure: 
 
 ![](images/form/scroll.png)
 
@@ -435,8 +435,8 @@ fields = entries[15].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name('a').click()
 ```
 
-### Execute JavaScript to interact directly with the DOM
-On this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search), we can see that the form submit button is hidden. If we still use the button `click()` method, we will get an error message saying that `"element not interactable"`. In this case, you can opt to execute JavaScript that directly interacts with the DOM:
+### Execute JavaScript
+On this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search), we can see that the form submit button is hidden. If we still use the button `click()` method, we will get an error message saying that `"element not interactable"`. In this case, we can opt to execute JavaScript that interacts directly with the DOM:
 
 ```{python, eval=FALSE}
 from selenium import webdriver
@@ -458,8 +458,8 @@ fields = entries[1].find_elements_by_tag_name('td')
 fields[3].find_element_by_tag_name('a').click()
 ``` 
 
-### Perform whatever other action is necessary
-Let us again search for all the 5th grade students whose name starts with "A" on this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search). If you move your cursor over a student name, you will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the cursor to a student name to enable it. Once we do that, if you inspect the webpage, you will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. In the following code segment we scrape the content on the hover box of student "Adams":
+### Perform preliminary action(s)
+Let us again search for all the 5th grade students whose name starts with "A" on this [example website](https://iqssdss2020.pythonanywhere.com/tutorial/form/search). If we move our cursor over a student name, we will see a hover box showing up above the name. Suppose that we want to scrape the data on the hover box. The hover box is not actionable unless we mover the cursor to a student name to enable it. Once we do that, if we inspect the webpage, we will see the hover box element has been added to its DOM structure. So, we can scrape the data on the hover box from there. In the following code segment we scrape the content on the hover box of student "Adams":
 
 ```{python, eval=FALSE}
 from selenium import webdriver

@@ -198,8 +198,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait until clickable</a></li>
 <li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll until on-screen</a></li>
-<li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript-to-interact-directly-with-the-dom"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript to interact directly with the DOM</a></li>
-<li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-whatever-other-action-is-necessary"><i class="fa fa-check"></i><b>5.8.4</b> Perform whatever other action is necessary</a></li>
+<li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript</a></li>
+<li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-preliminary-actions"><i class="fa fa-check"></i><b>5.8.4</b> Perform preliminary action(s)</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -231,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Install Selenium using a third-party installer such as <code>pip</code> to install it from the command line via this command: <code>pip install selenium</code>.<br />
 </li>
-<li>Download the latest stable release of <code>ChromeDriver</code> from this <a href="https://chromedriver.chromium.org/downloads">website</a>, selecting the appropriate version to your operating system.<br />
+<li>Download the latest stable release of <code>ChromeDriver</code> from this <a href="https://chromedriver.chromium.org/downloads">website</a>, selecting the appropriate version for your operating system.<br />
 </li>
 <li>Unzip the downloaded <code>chromedriver*.zip</code> file. An application file named <code>chromedriver.exe</code> should appear. It is recommended that we place the <code>.exe</code> file on the main folder containing the codes.</li>
 </ol>
@@ -245,8 +245,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-2"><a href="finding-web-elements.html#cb25-2"></a>driver.get(form_url)</span></code></pre></div>
 <p>This can be seen in the following screenshot:</p>
 <p><img src="images/chapter_3/1.png" /></p>
-<p>As you can see above, a notice is displayed just below the address bar with the message <strong>“Chrome is being controlled by automated test software”</strong>. This message also confirms the successful execution of the <code>selenium.webdriver</code> activity, and it can be provided with additional code to act on or automate the page that has been loaded.</p>
-<p>Following successful execution of the code, it is recommended that you close and quit the driver to free up system resources. The <code>close()</code> method terminates the loaded browser window. The <code>quit()</code> method ends the <code>WebDriver</code> application.</p>
+<p>As we can see above, a notice is displayed just below the address bar with the message <strong>“Chrome is being controlled by automated test software”</strong>. This message also confirms the successful execution of the <code>selenium.webdriver</code> activity, and it can be provided with additional code to act on or automate the page that has been loaded.</p>
+<p>Following successful execution of the code, it is recommended that we close and quit the driver to free up system resources. The <code>close()</code> method terminates the loaded browser window. The <code>quit()</code> method ends the <code>WebDriver</code> application.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="finding-web-elements.html#cb26-1"></a>driver.close()</span>
 <span id="cb26-2"><a href="finding-web-elements.html#cb26-2"></a>driver.quit()</span></code></pre></div>
 </div>
@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here, we will provide an overview of the various <code>find_element_by_*</code> and <code>find_elements_by_*</code> methods, with some examples of their use.</p>
 <ul>
 <li><p><code>find_element_by_id()</code> and <code>find_elements_by_id()</code> methods:<br />
-Return an element or a set of elements that have matching ID attribute values. The <code>find_elements_by_id()</code> method returns all the elements that have the same ID attribute values. Let’s try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as <code>search</code>. You can find this code if you inspect the site and reach this element in its DOM.</p>
+Return an element or a set of elements that have matching ID attribute values. The <code>find_elements_by_id()</code> method returns all the elements that have the same ID attribute values. Let’s try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as <code>search</code>. We can find this code if we <code>Inspect</code> the site and reach this element in its DOM.</p>
 <pre><code>&lt;input type=&quot;submit&quot; id=&quot;search&quot; value=&quot;Search&quot; name=&quot;q&quot; class=&quot;button&quot; /&gt;</code></pre>
 <p>Here is an example that uses the <code>find_element_by_id()</code> method to find the search button. We will pass the ID attribute’s value, <code>search</code>, to the <code>find_element_by_id()</code> method:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="finding-web-elements.html#cb28-1"></a>search_button <span class="op">=</span> driver.find_element_by_id(<span class="st">&quot;search&quot;</span>)</span></code></pre></div></li>
@@ -302,7 +302,7 @@ Find link(s) using partial text. For example, on the example site, two links are
 </div>
 <div id="demo" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Demo</h2>
-<p>This section will show you two use-cases to demonstrate the use of various <code>find_elements_by</code> methods. Most often we want to scrape data from tables or article text. The two demos therefore cover these use-cases.</p>
+<p>This section will highlight two use-cases to demonstrate the use of various <code>find_elements_by</code> methods. Most often we want to scrape data from tables or article text. The two demos therefore cover these use-cases.</p>
 <div id="scrape-tables" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Scrape tables</h3>
 <p>Let’s examine this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example website</a>. This page uses JavaScript to write a table to a <code>&lt;div&gt;</code> element of the page. If we were to scrape this page’s table using traditional methods, we’d only get the loading page, without actually getting the data that we want. Suppose that we want to scrape all cells of this table. The first thing we need to do is to locate the cells. If we <code>Inspect</code> this page, we can see that the table is defined with a <code>&lt;tbody&gt;</code> tag inside a <code>&lt;table&gt;</code> tag. Each table row is defined with a <code>&lt;tr&gt;</code> tag and there are multiple table rows. The first table row is the table header row, each of its fields is defined with a <code>&lt;th&gt;</code> tag or a header cell tag. In each of the other table rows, there are multiple data cells and each data cell is defined with a <code>&lt;td&gt;</code> tag. Next, we have to find each cell using <code>find_elements_by</code> methods and get its data. There is no way to directly scrape the whole table. Given this, the logic naturally is to loop row by row, and in each row, loop cell by cell. So, we need to have a double for loop in our script. Finally, we need to store the scraped data in a nice format, like a <code>.csv</code> file. We can use the Python file operation methods to achieve this. Here’s an implementation:</p>
@@ -392,20 +392,20 @@ Find link(s) using partial text. For example, on the example site, two links are
 <h2><span class="header-section-number">4.4</span> <code>NoSuchElementException</code></h2>
 <p>The reason for <code>NoSuchElementException</code> can be any of the following:</p>
 <ul>
-<li>The Locator Strategy you have adopted doesn’t identify any element in the HTML DOM.</li>
-<li>The Locator Strategy you have adopted doesn’t uniquely identify the desired element in the HTML DOM and currently finds some other hidden / invisible element.<br />
+<li>The Locator Strategy we have adopted doesn’t identify any element in the HTML DOM.</li>
+<li>The Locator Strategy we have adopted doesn’t uniquely identify the desired element in the HTML DOM and currently finds some other hidden / invisible element.<br />
 </li>
-<li>The Locator Strategy you have adopted is unable to identify the desired element as it is not within the browser’s <code>Viewport</code>.<br />
+<li>The Locator Strategy we have adopted is unable to identify the desired element as it is not within the browser’s <code>Viewport</code>.<br />
 </li>
-<li>The Locator Strategy you have adopted identifies the element but is invisible due to presence of the attribute <code>style="display: none;"</code>.<br />
+<li>The Locator Strategy we have adopted identifies the element but is invisible due to presence of the attribute <code>style="display: none;"</code>.<br />
 </li>
-<li>The <code>WebElement</code> you are trying to locate is within an <code>&lt;iframe&gt;</code> tag.<br />
+<li>The <code>WebElement</code> we are trying to locate is within an <code>&lt;iframe&gt;</code> tag.<br />
 </li>
 <li>The <code>WebDriver</code> instance is looking out for the <code>WebElement</code> even before the element is present/visibile within the HTML DOM.</li>
 </ul>
 <p>The solution to address the <code>NoSuchElementException</code> can be either of the following:</p>
 <ol style="list-style-type: decimal">
-<li>When the element you locate does not exist in the DOM, use <code>try-except</code> event handler to avoid the termination of the program:</li>
+<li>When the element we locate does not exist in the DOM, use <code>try-except</code> event handler to avoid the termination of the program:</li>
 </ol>
 <pre><code>```python
 from selenium.common.exceptions import NoSuchElementException
@@ -419,7 +419,7 @@ except NoSuchElementException:
 
 This solution is to address the inconsistency in the DOM among the seemingly same pages.</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>When the page loads, for some reason you may be taken to the bottom of the page, but the element you need to scrape is on the top of the page and thus is out of view. In this situation you can locate the element in the DOM first, then use the <code>execute_script()</code> method to scroll the element into view:</li>
+<li>When the page loads, for some reason we may be taken to the bottom of the page, but the element we need to scrape is on the top of the page and thus is out of view. In this situation, we can locate the element in the DOM first, then use the <code>execute_script()</code> method to scroll the element into view:</li>
 </ol>
 <pre><code>```python
 elem = driver.find_element_by_xpath(&quot;element_xpath&quot;)

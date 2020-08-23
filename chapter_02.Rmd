@@ -10,11 +10,11 @@ use_condaenv(condaenv="r-reticulate", required=TRUE)
 # Web Scraping Approaches
 
 ## Decision tree
-There are many commonly used web scraping approaches. This decision tree will help you to decide upon the best approach to use for a particular web site.
+There are many commonly used web scraping approaches. This decision tree will help us to decide upon the best approach to use for a particular web site.
 
 ![](images/intro/decision_tree.png)
 
-If the content you are viewing in your browser does not match the content you see in the HTML source code you are retrieving from the site, then you are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page. **Using the Chrome browser, you could view the original HTML via `View page source`. You could view the revised HTML in your browser if it executes JavaScript in the `Elements` window via `Inspect` the web page.**
+If the content we are viewing in our browser does not match the content we see in the HTML source code we are retrieving from the site, then we are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page. **Using the Chrome browser, we can view the original HTML via `View page source`. We can view the revised HTML in our browser if it executes JavaScript in the `Elements` window via `Inspect` the web page.**
 
 ## Static web pages
 There are three approaches to extracting data from a static webpage that has been downloaded. We can use:
@@ -55,7 +55,7 @@ name = re.findall('<td class="w2p_fw">(.*?)</td>', html.text)[0]
 print(name)
 ```
 
-This solution works, but could easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an `ID`, so it ought to be unique:
+This solution works, but can easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an `ID`, so it ought to be unique:
 
 ```{python}
 import re
@@ -68,7 +68,7 @@ mylist = re.findall('<tr id="students_name_row"><td class="w2p_fl"><label for="s
 print(mylist)
 ```
 
-This solution is better. However, there are many other ways the web page could be updated that still break the regex. For example, double quotation might be changed to single quotation for class name, extra space could be added between the `<td>` tags, or the `students_name_label` could be changed. The general solution for this is to make the regex as generic as possible to support various possibilities:
+This solution is better. However, there are many other ways the web page can be updated that still break the regex. For example, double quotation might be changed to single quotation for class name, extra space could be added between the `<td>` tags, or the `students_name_label` could be changed. The general solution for this is to make the regex as generic as possible to support various possibilities:
 
 ```{python}
 import re
@@ -217,10 +217,10 @@ The results, when run on a modest Windows desktop computer, show that Beautiful 
 There are two approaches to scraping a dynamic webpage: 
 
 1. Scrape the content directly from the JavaScript 
-2. Scrape the website as you view it in your browser --- using Python packages capable of executing the JavaScript.
+2. Scrape the website as we view it in our browser --- using Python packages capable of executing the JavaScript.
 
 ### AJAX requests
-Because the data are loaded dynamically with JavaScript, to scrape these data, we need to understand how the web page loads the data. Suppose that we want to find all students whose names start with the letter A in the fifth grade with page size set at 5 from this [example dynamic web page](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search). After we click the `Search` button, open `Fiddler` --— software that can inspect HTTP requests on your computer and can be downloaded [here](https://www.telerik.com/download/fiddler). We will see that an AJAX request is made. Under `Request Headers` in the `Inspector` window, we can find the URL for this search. Under the `Response` window, we can see the response content is in JSON format. They are highlighted in blue in the following figure:
+Because the data are loaded dynamically with JavaScript, to scrape these data, we need to understand how the web page loads the data. Suppose that we want to find all students whose names start with the letter "A" in the fifth grade with page size set at 5 from this [example dynamic web page](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search). After we click the `Search` button, open `Fiddler` --— software that can inspect HTTP requests on the computer and can be [downloaded here](https://www.telerik.com/download/fiddler). We will see that an AJAX request is made. Under `Request Headers` in the `Inspector` window, we can find the URL for this search. Under the `Response` window, we can see the response content is in JSON format. They are highlighted in blue in the following figure:
 
 ![](images/approaches/1.png)
 
@@ -267,7 +267,7 @@ print(students_df.head(10))
 The AJAX-dependent websites initially look more complex but their structure encourages separating the data transmission between client and server and the data presentation on the client browser executing JavaScript, which can make our job of extracting these data much easier.
 
 ### Selenium
-The second approach to scraping dynamic web pages uses Python packages capable of executing the JavaScript itself, so that you can scrape the website as you view it in your browser. Selenium works by automating browsers to execute JavaScript to display a web page as we would normally interact with it. To illustrate how Selenium can automate a browser to execute JavaScript, we have created a simple [example web page](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This web page uses JavaScript to write a table to a `<div>` element. Here is the source code:
+The second approach to scraping dynamic web pages uses Python packages capable of executing the JavaScript itself, so that we can scrape the website as we view it in our browser. Selenium works by automating browsers to execute JavaScript to display a web page as we would normally interact with it. To illustrate how Selenium can automate a browser to execute JavaScript, we have created a simple [example web page](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This web page uses JavaScript to write a table to a `<div>` element. Here is the source code:
 
 ```
 <html>
@@ -326,7 +326,7 @@ table_area = global_dynamicHtml.xpath('//*[@id="result"]/table')
 print(table_area)
 ```
 
-Here is an initial example with Selenium. Selenium can be installed using `pip` with the command: `pip install selenium`. The first step is to create a connection to the web browser that you use. Next is to load a web page in the chosen web browser by executing the JavaScript. The JavaScript is executed because now the `<div>` element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.
+Here is an initial example with Selenium. Selenium can be installed using `pip` with the command: `pip install selenium`. The first step is to create a connection to the web browser that we use. Next is to load a web page in the chosen web browser by executing the JavaScript. The JavaScript is executed because now the `<div>` element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.
 
 ```{python}
 from selenium import webdriver
@@ -391,4 +391,4 @@ driver.close()
 ```
 
 ### Comparison of approaches
-The first approach needs to understand how the data is loaded dynamically with JavaScript, which requires you to understand the JavaScript code that can be found in `View page source`. For the example search web page, we were able to easily know how the JavaScript works. However, some websites will be very complex and difficult to understand. With enough effort, any website can be scraped in this way. However, this effort can be avoided by instead using the Python module Selenium, which automates a web browser to execute JavaScript to display a web page and then perform actions on this web page. This approach only requires that you know how Selenium and its APIs work, so that you can control a web browser. You do not need to understand how the backend of a website works. However, there are disadvantages. Automating a web browser adds overhead and so is much slower than just downloading the HTML. Additionally, solutions using a browser driver often require polling the web page to check whether the resulting HTML from an event has occurred yet or waiting a set amount of time to make sure an AJAX event has completed, which is brittle and can easily fail when the network is slow.
+The first approach requires an understanding of how the data is loaded dynamically with JavaScript. This means we must be able to interpret the JavaScript code found in `View page source`. For the example search web page, we were able to easily know how the JavaScript works. However, some websites will be very complex and difficult to understand. With enough effort, any website can be scraped in this way. However, this effort can be avoided by instead using the Python module Selenium, which automates a web browser to execute JavaScript to display a web page and then perform actions on this web page. This approach only requires that we know how Selenium and its APIs work, so that we can control a web browser. You do not need to understand how the backend of a website works. However, there are disadvantages. Automating a web browser adds overhead and so is much slower than just downloading the HTML. Additionally, solutions using a browser driver often require polling the web page to check whether the resulting HTML from an event has occurred yet or waiting a set amount of time to make sure an AJAX event has completed, which is brittle and can easily fail when the network is slow.

@@ -38,16 +38,16 @@ firstEntry_link = search_html.xpath('//*[@id="results"]/table')
 print(firstEntry_link)
 ```
 
-The example scraper here has failed to extract results since the `xpath()` method returns an empty list. Examining the source code of this web page can help you understand why. Let us put the cursor anywhere on this webpage. Right-click and select `View page source` from the menu to examine the source code. Here, we find that the `<div>` element with `ID “results”` is empty. 
+The example scraper here has failed to extract results since the `xpath()` method returns an empty list. Examining the source code of this web page can help us understand why. Let us put the cursor anywhere on this webpage. Right-click and select `View page source` from the menu to examine the source code. Here, we find that the `<div>` element with `ID “results”` is empty. 
 
 ![](images/I-1/3.png)
 
-If we scroll down the source code a little, we find that the display of the result table is coded in a JavaScript function called `displayResult(jsonresult)` in the JavaScript section. This means that the web page has used JavaScript to load the search results dynamically. At this point, you could recognize that `page source code` is the original HTML you get when you make a request to the server without executing JavaScript code.  In contrast, the `Elements` window has the HTML that has been revised via running the JavaScript section code.  
+If we scroll down the source code a little, we find that the display of the result table is coded in a JavaScript function called `displayResult(jsonresult)` in the JavaScript section. This means that the web page has used JavaScript to load the search results dynamically. At this point, we can recognize that `page source code` is the original HTML we get when we make a request to the server without executing JavaScript code.  In contrast, the `Elements` window has the HTML that has been revised via running the JavaScript section code.  
 
 ![](images/I-1/4.png)
 
 ## Dynamic link
-Let us now examine what a dynamic link is, and how it is different from a static link. When you click on a link, if it is a static link, the content that appears comes from a file that has been stored on the server before the click. If it is a dynamic link, then the content that appears is generated instantaneously after the click by executing a JavaScript function. To see this, let us `Inspect` the result table in the `Elements` window.  
+Let us now examine what a dynamic link is, and how it is different from a static link. When we click on a link, if it is a static link, the content that appears comes from a file that has been stored on the server before the click. If it is a dynamic link, then the content that appears is generated instantaneously after the click by executing a JavaScript function. To see this, let us `Inspect` the result table in the `Elements` window.  
 
 Look at the two links highlighted below. They have a tag name `<a>` with an attribute `href`. The first link is a static link, while the second is a dynamic link: 
 
@@ -57,7 +57,7 @@ Normally, if a link is static, its link address will end with a file name with a
 
 ![](images/I-2/1.png)
 
-On the other hand, if a link is dynamic, you will not find a file extension at the end of its link address. For example, in this case, the link address (<https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams>) has no file extension at the end. It is formed first beginning at a server address (<https://iqssdss2020.pythonanywhere.com>) and followed by the web application name (`/tutorial`) and then followed by the name of the Python script (`cases.py`) in the web application (`/cases`), which calls a function (`getstudent()`) within this script (`/getstudent`) followed by a parameter value (`/Adams`) to the function.
+On the other hand, if a link is dynamic, we will not find a file extension at the end of its link address. For example, in this case, the link address (<https://iqssdss2020.pythonanywhere.com/tutorial/cases/getstudent/Adams>) has no file extension at the end. It is formed first beginning at a server address (<https://iqssdss2020.pythonanywhere.com>) and followed by the web application name (`/tutorial`) and then followed by the name of the Python script (`cases.py`) in the web application (`/cases`), which calls a function (`getstudent()`) within this script (`/getstudent`) followed by a parameter value (`/Adams`) to the function.
 
 ![](images/I-2/2.png)
 
@@ -85,7 +85,7 @@ html.open_in_browser(dynamicLink_html, encoding = 'UTF-8')
 
 The `requests` module cannot execute JavaScript code. As the code above illustrates, it behaves the same as a browser whose JavaScript functionality is disabled.  
 
-Examining the source code of the chosen student’s profile web page of both the static and dynamic links can help you further understand why. The source code of the profile web page of a static link shows a complete HTML file without a JavaScript section:
+Examining the source code of the chosen student’s profile web page of both the static and dynamic links can help us further understand why. The source code of the profile web page of a static link shows a complete HTML file without a JavaScript section:
 
 ![](images/I-2/5.png)
 
@@ -136,4 +136,4 @@ Below we see the same section of the revised HTML from the `Elements` window aft
 
 ![](images/I-3/5.png)
 
-More interestingly, once we open the `Elements` window of this example webpage, under the `<tbody>` tag, we find there are 15 table entries (with tag `<tr>`). We can therefore infer that the initial load has a total of 15 table entries. If we scroll down to the bottom of the webpage, we can see that 9 more entries are appended to the table. If we continue to scroll down to the bottom of the page, nothing changes. This means that there exists a total of 24 table entries, with the new load delivering the last 9 of those entries. Your browser executes the JavaScript code to perform all these actions. If you look at the JavaScript section in the `page source code`, you will see that a JQuery method `$(window).on("scroll", function()` defines the scrolling down to the bottom of page and triggers the load of the new content once it is satisfied. And another JQuery method `$('#resultstable > tbody:last-child').append(htmlContent)` appends the new entries to the result table. 
+More interestingly, once we open the `Elements` window of this example webpage, under the `<tbody>` tag, we find there are 15 table entries (with tag `<tr>`). We can therefore infer that the initial load has a total of 15 table entries. If we scroll down to the bottom of the webpage, we can see that 9 more entries are appended to the table. If we continue to scroll down to the bottom of the page, nothing changes. This means that there exists a total of 24 table entries, with the new load delivering the last 9 of those entries. Your browser executes the JavaScript code to perform all these actions. If we look at the JavaScript section in the `page source code`, we will see that a JQuery method `$(window).on("scroll", function()` defines the scrolling down to the bottom of page and triggers the load of the new content once it is satisfied. And another JQuery method `$('#resultstable > tbody:last-child').append(htmlContent)` appends the new entries to the result table. 

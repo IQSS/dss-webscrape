@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="when-to-use-selenium-driver.html"/>
+<link rel="prev" href="when-to-use-a-browser-driver.html"/>
 <link rel="next" href="filling-in-web-forms.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -128,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A template for a bookdown website</a></li>
+<li><a href="./">Webscraping with Selenium Python</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
@@ -146,59 +147,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="concepts.html"><a href="concepts.html#uniform-resource-locator-url"><i class="fa fa-check"></i><b>1.2</b> Uniform Resource Locator (URL)</a></li>
 <li class="chapter" data-level="1.3" data-path="concepts.html"><a href="concepts.html#document-object-model-dom"><i class="fa fa-check"></i><b>1.3</b> Document Object Model (DOM)</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html"><i class="fa fa-check"></i><b>2</b> Approaches to Web Scraping</a>
+<li class="chapter" data-level="2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html"><i class="fa fa-check"></i><b>2</b> Web Scraping Approaches</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#decision-tree-to-choose-web-scraping-approaches"><i class="fa fa-check"></i><b>2.1</b> Decision Tree to Choose Web Scraping Approaches</a></li>
-<li class="chapter" data-level="2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-static-web-page"><i class="fa fa-check"></i><b>2.2</b> Approaches to Scraping a Static Web Page</a>
+<li class="chapter" data-level="2.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#decision-tree"><i class="fa fa-check"></i><b>2.1</b> Decision tree</a></li>
+<li class="chapter" data-level="2.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#static-web-pages"><i class="fa fa-check"></i><b>2.2</b> Static web pages</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#regular-expressions"><i class="fa fa-check"></i><b>2.2.1</b> Regular Expressions</a></li>
-<li class="chapter" data-level="2.2.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#beautiful-soup"><i class="fa fa-check"></i><b>2.2.2</b> Beautiful Soup</a></li>
-<li class="chapter" data-level="2.2.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#lxml"><i class="fa fa-check"></i><b>2.2.3</b> Lxml</a></li>
-<li class="chapter" data-level="2.2.4" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#comparison-of-approaches"><i class="fa fa-check"></i><b>2.2.4</b> Comparison of Approaches</a></li>
+<li class="chapter" data-level="2.2.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#regular-expressions"><i class="fa fa-check"></i><b>2.2.1</b> Regular expressions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#beautiful-soup"><i class="fa fa-check"></i><b>2.2.2</b> Beautiful soup</a></li>
+<li class="chapter" data-level="2.2.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#lxml"><i class="fa fa-check"></i><b>2.2.3</b> Lxml</a></li>
+<li class="chapter" data-level="2.2.4" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#comparison-of-approaches"><i class="fa fa-check"></i><b>2.2.4</b> Comparison of approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#approaches-to-scraping-a-dynamic-web-page"><i class="fa fa-check"></i><b>2.3</b> Approaches to Scraping a Dynamic Web Page</a>
+<li class="chapter" data-level="2.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#dynamic-web-pages"><i class="fa fa-check"></i><b>2.3</b> Dynamic web pages</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#ajax-requests"><i class="fa fa-check"></i><b>2.3.1</b> AJAX Requests</a></li>
-<li class="chapter" data-level="2.3.2" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#selenium"><i class="fa fa-check"></i><b>2.3.2</b> Selenium</a></li>
-<li class="chapter" data-level="2.3.3" data-path="approaches-to-web-scraping.html"><a href="approaches-to-web-scraping.html#comparison-of-approaches-1"><i class="fa fa-check"></i><b>2.3.3</b> Comparison of Approaches</a></li>
+<li class="chapter" data-level="2.3.1" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#ajax-requests"><i class="fa fa-check"></i><b>2.3.1</b> AJAX requests</a></li>
+<li class="chapter" data-level="2.3.2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#selenium"><i class="fa fa-check"></i><b>2.3.2</b> Selenium</a></li>
+<li class="chapter" data-level="2.3.3" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html#comparison-of-approaches-1"><i class="fa fa-check"></i><b>2.3.3</b> Comparison of approaches</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use Selenium Driver?</a>
+<li class="chapter" data-level="3" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html"><i class="fa fa-check"></i><b>3</b> When to Use a Browser Driver</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-search"><i class="fa fa-check"></i><b>3.1</b> An Example of Dynamic Search</a></li>
-<li class="chapter" data-level="3.2" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-link"><i class="fa fa-check"></i><b>3.2</b> An Example of Dynamic Link</a></li>
-<li class="chapter" data-level="3.3" data-path="when-to-use-selenium-driver.html"><a href="when-to-use-selenium-driver.html#an-example-of-dynamic-new-load"><i class="fa fa-check"></i><b>3.3</b> An Example of Dynamic New Load</a></li>
+<li class="chapter" data-level="3.1" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-search"><i class="fa fa-check"></i><b>3.1</b> Dynamic search</a></li>
+<li class="chapter" data-level="3.2" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-link"><i class="fa fa-check"></i><b>3.2</b> Dynamic link</a></li>
+<li class="chapter" data-level="3.3" data-path="when-to-use-a-browser-driver.html"><a href="when-to-use-a-browser-driver.html#dynamic-load"><i class="fa fa-check"></i><b>3.3</b> Dynamic load</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="finding-web-elements.html"><a href="finding-web-elements.html"><i class="fa fa-check"></i><b>4</b> Finding Web Elements</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#setting-up"><i class="fa fa-check"></i><b>4.1</b> Setting Up</a></li>
-<li class="chapter" data-level="4.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#locating-web-elements"><i class="fa fa-check"></i><b>4.2</b> Locating Web Elements</a></li>
+<li class="chapter" data-level="4.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#setting-up"><i class="fa fa-check"></i><b>4.1</b> Setting up</a></li>
+<li class="chapter" data-level="4.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#locating-web-elements"><i class="fa fa-check"></i><b>4.2</b> Locating web elements</a></li>
 <li class="chapter" data-level="4.3" data-path="finding-web-elements.html"><a href="finding-web-elements.html#demo"><i class="fa fa-check"></i><b>4.3</b> Demo</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-tables"><i class="fa fa-check"></i><b>4.3.1</b> Scrape Tables</a></li>
-<li class="chapter" data-level="4.3.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-texts"><i class="fa fa-check"></i><b>4.3.2</b> Scrape Texts</a></li>
+<li class="chapter" data-level="4.3.1" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-tables"><i class="fa fa-check"></i><b>4.3.1</b> Scrape tables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="finding-web-elements.html"><a href="finding-web-elements.html#scrape-text"><i class="fa fa-check"></i><b>4.3.2</b> Scrape text</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="finding-web-elements.html"><a href="finding-web-elements.html#nosuchelementexception"><i class="fa fa-check"></i><b>4.4</b> NoSuchElementException</a></li>
+<li class="chapter" data-level="4.4" data-path="finding-web-elements.html"><a href="finding-web-elements.html#nosuchelementexception"><i class="fa fa-check"></i><b>4.4</b> <code>NoSuchElementException</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html"><i class="fa fa-check"></i><b>5</b> Filling in Web Forms</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#input-box"><i class="fa fa-check"></i><b>5.1</b> Input Box</a></li>
-<li class="chapter" data-level="5.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#check-box"><i class="fa fa-check"></i><b>5.2</b> Check Box</a></li>
-<li class="chapter" data-level="5.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#radio-button"><i class="fa fa-check"></i><b>5.3</b> Radio Button</a></li>
+<li class="chapter" data-level="5.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#input-box"><i class="fa fa-check"></i><b>5.1</b> Input box</a></li>
+<li class="chapter" data-level="5.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#check-box"><i class="fa fa-check"></i><b>5.2</b> Check box</a></li>
+<li class="chapter" data-level="5.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#radio-button"><i class="fa fa-check"></i><b>5.3</b> Radio button</a></li>
 <li class="chapter" data-level="5.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#link"><i class="fa fa-check"></i><b>5.4</b> Link</a></li>
 <li class="chapter" data-level="5.5" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#dropdown"><i class="fa fa-check"></i><b>5.5</b> Dropdown</a></li>
 <li class="chapter" data-level="5.6" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#buttons"><i class="fa fa-check"></i><b>5.6</b> Buttons</a></li>
 <li class="chapter" data-level="5.7" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#demos"><i class="fa fa-check"></i><b>5.7</b> Demos</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-just-once"><i class="fa fa-check"></i><b>5.7.1</b> Fill in the Form Just Once</a></li>
-<li class="chapter" data-level="5.7.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-in-the-form-many-times"><i class="fa fa-check"></i><b>5.7.2</b> Fill in the Form Many Times</a></li>
+<li class="chapter" data-level="5.7.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-form-once"><i class="fa fa-check"></i><b>5.7.1</b> Fill form once</a></li>
+<li class="chapter" data-level="5.7.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#fill-form-many-times"><i class="fa fa-check"></i><b>5.7.2</b> Fill form many times</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>5.8</b> ElementNotInteractableException</a>
+<li class="chapter" data-level="5.8" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#elementnotinteractableexception"><i class="fa fa-check"></i><b>5.8</b> <code>ElementNotInteractableException</code></a>
 <ul>
-<li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-the-element-is-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait Until the Element is Clickable</a></li>
-<li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-the-element-is-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll Until the Element is On-Screen</a></li>
-<li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript-to-interact-directly-with-the-dom"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript to Interact Directly with the DOM</a></li>
-<li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-whatever-other-action-is-necessary"><i class="fa fa-check"></i><b>5.8.4</b> Perform Whatever Other Action is Necessary</a></li>
+<li class="chapter" data-level="5.8.1" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#wait-until-clickable"><i class="fa fa-check"></i><b>5.8.1</b> Wait until clickable</a></li>
+<li class="chapter" data-level="5.8.2" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#scroll-until-on-screen"><i class="fa fa-check"></i><b>5.8.2</b> Scroll until on-screen</a></li>
+<li class="chapter" data-level="5.8.3" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#execute-javascript"><i class="fa fa-check"></i><b>5.8.3</b> Execute JavaScript</a></li>
+<li class="chapter" data-level="5.8.4" data-path="filling-in-web-forms.html"><a href="filling-in-web-forms.html#perform-preliminary-actions"><i class="fa fa-check"></i><b>5.8.4</b> Perform preliminary action(s)</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -223,228 +224,268 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="finding-web-elements" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Finding Web Elements</h1>
-<p>Selenium works by automating browsers to load the website, retrieve the required data, and even take certain actions on the website.</p>
+<p>Selenium works by automating browsers to load the website, retrieve the required data, and even take certain actions on the website. Here, we walk through a practical use-case, using Selenium to extract data from a website.</p>
 <div id="setting-up" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Setting Up</h2>
-<p>For the successful implementation of browser automation using Selenium, WebDriver needs to be set up. Let us go through the following steps to set up WebDriver for Google Chrome. Other major browsers have the similar steps.</p>
+<h2><span class="header-section-number">4.1</span> Setting up</h2>
+<p>For the successful implementation of browser automation using Selenium, the software <code>WebDriver</code> needs to be set up. The name <code>WebDriver</code> is generic — there are versions of <code>WebDriver</code> for all major browsers. We will now go through the steps to set up <code>WebDriver</code> for Google Chrome, which is called <code>ChromeDriver</code>. Other major browsers have similar steps:</p>
 <ol style="list-style-type: decimal">
 <li>Install Selenium using a third-party installer such as <code>pip</code> to install it from the command line via this command: <code>pip install selenium</code>.<br />
 </li>
-<li>Download the latest stable release of ChromeDriver from the <a href="https://chromedriver.chromium.org/downloads">website</a>, appropriate to the platform.<br />
+<li>Download the latest stable release of <code>ChromeDriver</code> from this <a href="https://chromedriver.chromium.org/downloads">website</a>, selecting the appropriate version for your operating system.<br />
 </li>
-<li>Unzip the downloaded chromedriver*.zip. An application file named <strong>chromedriver.exe</strong> should appear. It is recommended that we place the .exe file on the main folder containing the codes.</li>
+<li>Unzip the downloaded <code>chromedriver*.zip</code> file. An application file named <code>chromedriver.exe</code> should appear. It is recommended that we place the <code>.exe</code> file on the main folder containing the codes.</li>
 </ol>
-<p>Now that we have completed the setup for WebDriver and the Selenium Python library, let’s start to use this setup through the Python IDE. I have created this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example page</a> to run our scraper against. The following code simply loads the example page:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="finding-web-elements.html#cb42-1" aria-hidden="true"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb42-2"><a href="finding-web-elements.html#cb42-2" aria-hidden="true"></a></span>
-<span id="cb42-3"><a href="finding-web-elements.html#cb42-3" aria-hidden="true"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb42-4"><a href="finding-web-elements.html#cb42-4" aria-hidden="true"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
-<span id="cb42-5"><a href="finding-web-elements.html#cb42-5" aria-hidden="true"></a>driver.get(form_url)</span>
-<span id="cb42-6"><a href="finding-web-elements.html#cb42-6" aria-hidden="true"></a>driver.close()</span>
-<span id="cb42-7"><a href="finding-web-elements.html#cb42-7" aria-hidden="true"></a>driver.quit()</span></code></pre></div>
-<p>To begin with, we import webdriver from selenium and set a path to chromedriver.exe. The path created will be required to load Google Chrome. Selenium does not contain its own web browser; it requires integration with third party browsers to run. The selenium.webdriver is used to implement various browsers, in this case, Google Chrome. The <code>webdriver.Chrome()</code> method is provided with the path of Chrome WebDriver so that it creates an object of the selenium.webdriver.chrome.webdriver.WebDriver class, called as “driver” in this case, which will now provide access to the various attributes and properties from webdriver. chromedriver.exe will be instantiated at this instance or upon creation of the driver object. The Terminal screen and an empty new window of Google Chrome will be loaded. The new window from Google Chrome is then provided with a URL using the <code>get()</code> function from webdriver. The <code>get()</code> method accepts the URL that is to be loaded on the browser. We provide the example website address as an argument to <code>get()</code>; the browser will start loading the URL, as shown in the following screenshot:</p>
+<p>Now that we have completed the setup steps, we can proceed. We have created this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">example page</a> to run our scraper against. We can start by loading the example page.</p>
+<p>To begin with, we import <code>WebDriver</code> from Selenium and set a path to <code>chromedriver.exe</code>. Selenium does not contain its own web browser; it requires integration with third party browsers to run. The <code>selenium.webdriver</code> is used to implement various browsers, in this case, Google Chrome. The <code>webdriver.Chrome()</code> method is provided with the path of <code>chromedriver.exe</code> so that it creates an object of the <code>selenium.webdriver.chrome.webdriver.WebDriver</code> class, called “driver” in this case, which will now provide access to the various attributes and properties from <code>WebDriver</code>. The exectuable <code>chromedriver.exe</code> will be instantiated at this instance or upon creation of the driver object. The Terminal screen and an empty new window of Google Chrome will now be loaded.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="finding-web-elements.html#cb23-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb23-2"><a href="finding-web-elements.html#cb23-2"></a></span>
+<span id="cb23-3"><a href="finding-web-elements.html#cb23-3"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span></code></pre></div>
+<p>The new window from Google Chrome is then provided with a URL using the <code>get()</code> function from <code>WebDriver</code>. The <code>get()</code> method accepts the URL that is to be loaded on the browser. We provide our example website address as an argument to <code>get()</code>. Then the browser will start loading the URL:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="finding-web-elements.html#cb24-1"></a>form_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/form/search&quot;</span></span>
+<span id="cb24-2"><a href="finding-web-elements.html#cb24-2"></a>driver.get(form_url)</span></code></pre></div>
+<p>This can be seen in the following screenshot:</p>
 <p><img src="images/chapter_3/1.png" /></p>
-<p>As you can see in the above screenshot, a notice is displayed just below the address bar with the message <strong>“Chrome is being controlled by automated test software”</strong>. This message also confirms the successful execution of the selenium.webdriver activity, and it can be provided with further codes to act on or automate the page that has been loaded.</p>
-<p>Following successful execution of the code, it is recommended that you close and quit the driver to free up system resources. <code>close()</code> method terminates the loaded browser window. <code>quit()</code> method ends the WebDriver application.</p>
+<p>As we can see above, a notice is displayed just below the address bar with the message <strong>“Chrome is being controlled by automated test software”</strong>. This message also confirms the successful execution of the <code>selenium.webdriver</code> activity, and it can be provided with additional code to act on or automate the page that has been loaded.</p>
+<p>Following successful execution of the code, it is recommended that we close and quit the driver to free up system resources. The <code>close()</code> method terminates the loaded browser window. The <code>quit()</code> method ends the <code>WebDriver</code> application.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="finding-web-elements.html#cb25-1"></a>driver.close()</span>
+<span id="cb25-2"><a href="finding-web-elements.html#cb25-2"></a>driver.quit()</span></code></pre></div>
 </div>
 <div id="locating-web-elements" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Locating Web Elements</h2>
-<p>After the new Google Chrome window is loaded with the URL provided, we then can find the elements that we need to act on. We first need to find the selector or locator information for those elements in interest. The easiest way to identify the information is to <strong>inspect</strong> pages using developer tools. Right-click to open the pop-up menu, then select the <strong>Inspect</strong> option. In the <strong>Element</strong> window, move the mouse over the DOM structure of the page until it reaches the desired element. We then need to find information such as what HTML tag is used for the element, the defined attribute, and the values for the attributes and the structure of the page.</p>
-<p>Next, we need to tell Selenium how to find a particular element or set of elements on a web page programmatically and simulate user actions on these elements. We just need to pass the information we identify in the first step to Selenium. Selenium provides various <code>find_element_by</code> methods to find an element based on its attribute/value criteria or selector value that we supply in script. If a matching element is found, an instance of WebElement is returned or the <em>NoSuchElementException</em> exception is thrown if Selenium is not able to find any element matching the search criteria. Selenium also provides various <code>find_elements_by</code> methods to locate multiple elements. These methods search and return a list of elements that match the supplied values.</p>
+<h2><span class="header-section-number">4.2</span> Locating web elements</h2>
+<p>After the new Google Chrome window is loaded with the URL provided, we can find the elements that we need to act on. We first need to find the selector or locator information for those elements of interest. The easiest way to identify the information is to <code>Inspect</code> pages using developer tools. Place the cursor anywhere on the webpage, right-click to open a pop-up menu, then select the <code>Inspect</code> option. In the <code>Elements</code> window, move the cursor over the DOM structure of the page until it reaches the desired element. We then need to find information such as what HTML tag is used for the element, the defined attribute, and the values for the attributes and the structure of the page.</p>
+<p>Next, we need to tell Selenium how to find a particular element or set of elements on a web page programmatically and simulate user actions on these elements. We just need to pass the information we identify in the first step to Selenium. Selenium provides various <code>find_element_by</code> methods to find an element based on its attribute/value criteria or selector value that we supply in our script. If a matching element is found, an instance of <code>WebElement</code> is returned or the <code>NoSuchElementException</code> exception is thrown if Selenium is not able to find any element matching the search criteria. Selenium also provides various <code>find_elements_by</code> methods to locate multiple elements. These methods search and return a list of elements that match the supplied values.</p>
+<p>Here, we will provide an overview of the various <code>find_element_by_*</code> and <code>find_elements_by_*</code> methods, with some examples of their use.</p>
 <ul>
 <li><p><code>find_element_by_id()</code> and <code>find_elements_by_id()</code> methods:<br />
-They return an element or a set of elements that have matching ID attribute values. The <code>find_elements_by_id()</code> method returns all the elements that have the same ID attribute values. Let’s try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as search. You can find this code if you inspect the site and reach this element in its DOM.</p>
+Return an element or a set of elements that have matching ID attribute values. The <code>find_elements_by_id()</code> method returns all the elements that have the same ID attribute values. Let’s try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as <code>search</code>. We can find this code if we <code>Inspect</code> the site and reach this element in its DOM.</p>
 <pre><code>&lt;input type=&quot;submit&quot; id=&quot;search&quot; value=&quot;Search&quot; name=&quot;q&quot; class=&quot;button&quot; /&gt;</code></pre>
-<p>Here is an example that uses the <code>find_element_by_id()</code> method to find the search button. We will pass the ID attribute’s value, search, to the <code>find_element_by_id()</code> method:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="finding-web-elements.html#cb44-1" aria-hidden="true"></a>search_button <span class="op">=</span> driver.find_element_by_id(<span class="st">&quot;search&quot;</span>)</span></code></pre></div></li>
+<p>Here is an example that uses the <code>find_element_by_id()</code> method to find the search button. We will pass the ID attribute’s value, <code>search</code>, to the <code>find_element_by_id()</code> method:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="finding-web-elements.html#cb27-1"></a>search_button <span class="op">=</span> driver.find_element_by_id(<span class="st">&quot;search&quot;</span>)</span></code></pre></div></li>
 <li><p><code>find_element_by_name()</code> and <code>find_elements_by_name()</code> methods:<br />
-They return element(s) that have matching name attribute value. The <code>find_elements_by_name()</code> method returns all the elements that have the same name attribute values. In the previous example, we can find the search button using its name attribute value instead of the ID attribute value in the following way:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="finding-web-elements.html#cb45-1" aria-hidden="true"></a>search_button <span class="op">=</span> driver.find_element_by_name(<span class="st">&quot;q&quot;</span>)</span></code></pre></div></li>
+Return element(s) that have matching name attribute value(s). The <code>find_elements_by_name()</code> method returns all the elements that have the same name attribute values. Using the previous example, we can instead find the search button using its name attribute value instead of the ID attribute value in the following way:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="finding-web-elements.html#cb28-1"></a>search_button <span class="op">=</span> driver.find_element_by_name(<span class="st">&quot;q&quot;</span>)</span></code></pre></div></li>
 <li><p><code>find_element_by_class_name()</code> and <code>find_elements_by_class_name()</code> methods:<br />
-They return element(s) that have matching class attribute value. The <code>find_elements_by_class_name()</code> method returns all the elements that have the identical class name attribute values. In the previous example, we can find the search button using its class attribute value in following code:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="finding-web-elements.html#cb46-1" aria-hidden="true"></a>search_button <span class="op">=</span> driver.find_element_by_class_name(<span class="st">&quot;button&quot;</span>)</span></code></pre></div></li>
+Return element(s) that have matching class attribute value(s). The <code>find_elements_by_class_name()</code> method returns all the elements that have the identical class name attribute values. Using the previous example, we can instead find the search button using its class attribute value in following way:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="finding-web-elements.html#cb29-1"></a>search_button <span class="op">=</span> driver.find_element_by_class_name(<span class="st">&quot;button&quot;</span>)</span></code></pre></div></li>
 <li><p><code>find_element_by_tag_name()</code> and <code>find_elements_by_tag_name()</code> methods:<br />
-They find element(s) by their HTML tag name. The example page displays a search form which has several form fields to fill in. Each form field name is implemented using an <code>&lt;th&gt;</code> or table header cell tag inside a <code>&lt;tr&gt;</code> or table row tag as shown in the following HTML code:</p>
+Find element(s) by their HTML tag name. The example page displays a search form which has several form fields to fill in. Each form field name is implemented using an <code>&lt;th&gt;</code> or table header cell tag inside a <code>&lt;tr&gt;</code> or table row tag as shown in the following HTML code:</p>
 <p><img src="images/chapter_3/2.png" /></p>
 <p>We will use the <code>find_elements_by_tag_name()</code> method to get all the form field names. In this example, we will first find the table body implemented as <code>&lt;tbody&gt;</code> using the <code>find_element_by_tag_name()</code> method and then get all the <code>&lt;tr&gt;</code> or table row elements by calling the <code>find_elements_by_tag_name()</code> method on the table body object. For each of the first 4 table rows, we then get its form field name using the <code>&lt;th&gt;</code> tag.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="finding-web-elements.html#cb47-1" aria-hidden="true"></a>table <span class="op">=</span> driver.find_element_by_tag_name(<span class="st">&quot;tbody&quot;</span>)</span>
-<span id="cb47-2"><a href="finding-web-elements.html#cb47-2" aria-hidden="true"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
-<span id="cb47-3"><a href="finding-web-elements.html#cb47-3" aria-hidden="true"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
-<span id="cb47-4"><a href="finding-web-elements.html#cb47-4" aria-hidden="true"></a>    header <span class="op">=</span> entries[i].find_element_by_tag_name(<span class="st">&quot;th&quot;</span>).text</span>
-<span id="cb47-5"><a href="finding-web-elements.html#cb47-5" aria-hidden="true"></a>    <span class="bu">print</span>(header)</span></code></pre></div></li>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="finding-web-elements.html#cb30-1"></a>table <span class="op">=</span> driver.find_element_by_tag_name(<span class="st">&quot;tbody&quot;</span>)</span>
+<span id="cb30-2"><a href="finding-web-elements.html#cb30-2"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb30-3"><a href="finding-web-elements.html#cb30-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb30-4"><a href="finding-web-elements.html#cb30-4"></a>    header <span class="op">=</span> entries[i].find_element_by_tag_name(<span class="st">&quot;th&quot;</span>).text</span>
+<span id="cb30-5"><a href="finding-web-elements.html#cb30-5"></a>    <span class="bu">print</span>(header)</span></code></pre></div></li>
 <li><p><code>find_element_by_xpath()</code> and <code>find_elements_by_xpath()</code> methods:<br />
-They return element(s) that are found by the specified XPath query. XPath is a query language used to search and locate nodes in an XML document. All the major web browsers support XPath. Selenium can leverage and use powerful XPath queries to find elements on a web page. One of the advantages of using XPath is when we can’t find a suitable ID, name, or class attribute value for the element. We can use XPath to either find the element in absolute terms or relative to an element that does have an ID or name attribute. We can also use defined attributes other than the ID, name, or class with XPath queries. We can also find elements with the help of a partial check on attribute values using XPath functions such as <code>starts-with()</code>, <code>contains()</code>, and <code>ends-with()</code>.</p>
-<p>For example, we want to get the second form field name “Grade”. This element is defined as an <code>&lt;th&gt;</code> tag, but does not have the ID, name, or class attributes defined. Also, we cannot use the <code>find_element_by_tag_name()</code> method as there are multiple <code>&lt;tr&gt;</code> and <code>&lt;th&gt;</code> tags defined on the page. In this case, we can use the <code>find_element_by_xpath()</code> method. To find the XPath of this element, we <strong>inspect</strong> the example site, in the <strong>Element</strong> window, move the mouse over its DOM structure and find the desired element. We then right-click the mouse and choose <strong>copy XPath</strong> from the pop-up menu. We obtain the XPath of this element as follows:</p>
+Return element(s) that are found by the specified XPath query. XPath is a query language used to search and locate nodes in a XML document. All major web browsers support XPath. Selenium can leverage and use powerful XPath queries to find elements on a web page. One of the advantages of using XPath is when we can’t find a suitable ID, name, or class attribute value for the element. We can use XPath to either find the element in absolute terms or relative to an element that does have an ID or name attribute. We can also use defined attributes other than the ID, name, or class with XPath queries. We can also find elements with the help of a partial check on attribute values using XPath functions such as <code>starts-with()</code>, <code>contains()</code>, and <code>ends-with()</code>.</p>
+<p>For example, we want to get the second form field name “Grade”. This element is defined as a <code>&lt;th&gt;</code> tag, but does not have the ID, name, or class attributes defined. Also, we cannot use the <code>find_element_by_tag_name()</code> method as there are multiple <code>&lt;tr&gt;</code> and <code>&lt;th&gt;</code> tags defined on the page. In this case, we can use the <code>find_element_by_xpath()</code> method. To find the XPath of this element, we <code>Inspect</code> the example site, in the <code>Elements</code> window, move the cursor over its DOM structure and find the desired element. We then right-click and choose <code>copy XPath</code> from the pop-up menu. We obtain the following XPath of this element:</p>
 <pre><code>//*[@id=&quot;table&quot;]/tbody/tr[2]/th</code></pre>
-<p>This XPath says that the path to this element starts from the root and then finds the element with a unique id and then continue until it reaches the desired element. Please note that the index of the XPath always starts with 1 rather than o, unlike those of the built-in Python data structures. We then pass this XPath to the <code>find_element_by_xpath()</code> method as an argument:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="finding-web-elements.html#cb49-1" aria-hidden="true"></a>second_header <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;table&quot;]/tbody/tr[2]/th&#39;</span>).text</span></code></pre></div>
-<p>We use the XPath method when it exists an element with a unique id on the path to the desired element. Otherwise, this method is not relaible.</p></li>
+<p>This XPath indicates that the path to our desired element starts from the root and then proceeds to an element with a unique id (<code>id="table"</code>) and then continues until it reaches the desired element. Please note that the index of the XPath always starts with 1 rather than 0, unlike those of built-in Python data structures. We then pass this XPath to the <code>find_element_by_xpath()</code> method as an argument:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="finding-web-elements.html#cb32-1"></a>second_header <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;table&quot;]/tbody/tr[2]/th&#39;</span>).text</span></code></pre></div>
+<p>We typically use the XPath method when there exists an element with a unique id on the path to the desired element. Otherwise, this method is not reliable.</p></li>
 <li><p><code>find_element_by_css_selector()</code> and <code>find_elements_by_css_selector()</code> methods:<br />
-They return element(s) that are found by the specified CSS selector. CSS is a style sheet language used by web designers to describe the look and feel of an HTML document. CSS is used to define various style classes that can be applied to elements for formatting. CSS selectors are used to find HTML elements based on their attributes such as ID, classes, types, attributes, or values and much more to apply the defined CSS rules. Similar to XPath, Selenium can leverage and use CSS selectors to find elements on a web page.</p>
-<p>In the previous example in which we want to get the search button on the example site, we can use the following selector, where the selector is defined as the element tag along with the class name. This will find an <code>&lt;input&gt;</code> element with the <strong>“btn-default”</strong> class name. We then test it by automating a click on the search button object we found and find if it starts the search successfully.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="finding-web-elements.html#cb50-1" aria-hidden="true"></a>search_button <span class="op">=</span> driver.find_element_by_css_selector(<span class="st">&quot;input.btn-default&quot;</span>)</span>
-<span id="cb50-2"><a href="finding-web-elements.html#cb50-2" aria-hidden="true"></a>search_button.click()</span></code></pre></div></li>
+Return element(s) that are found by the specified CSS selector. CSS is a style sheet language used by web designers to describe the look and feel of a HTML document. CSS is used to define various style classes that can be applied to elements for formatting. CSS selectors are used to find HTML elements based on their attributes such as ID, classes, types, attributes, or values and much more to apply the defined CSS rules. Similar to XPath, Selenium can leverage and use CSS selectors to find elements on a web page.</p>
+<p>In our previous example, in which we wanted to get the search button on the example site, we can use the following selector, where the selector is defined as the element tag along with the class name. This will find an <code>&lt;input&gt;</code> element with the <code>"btn-default"</code> class name. We then test it by automating a click on the search button object we found and find if it starts the search successfully.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="finding-web-elements.html#cb33-1"></a>search_button <span class="op">=</span> driver.find_element_by_css_selector(<span class="st">&quot;input.btn-default&quot;</span>)</span>
+<span id="cb33-2"><a href="finding-web-elements.html#cb33-2"></a>search_button.click()</span></code></pre></div></li>
 <li><p><code>find_element_by_link_text()</code> and <code>find_elements_by_link_text()</code> methods:<br />
-They find link(s) using the text displayed for the link. The <code>find_elements_by_link_text()</code> method gets all the link elements that have matching link text. For example, we want to get the <strong>privacy policy link</strong> displayed on the example site. Here is the HTML code for the <strong>privacy policy link</strong> implemented as the <code>&lt;a&gt;</code> or anchor tag with text <strong>“privacy policy”</strong>:</p>
+Find link(s) using the text displayed for the link. The <code>find_elements_by_link_text()</code> method gets all the link elements that have matching link text. For example, we may want to get the <code>privacy policy link</code> displayed on the example site. Here is the HTML code for the <code>privacy policy link</code> implemented as the <code>&lt;a&gt;</code>, or anchor tag, with text <code>"privacy policy"</code>:</p>
 <pre><code>This is the &lt;a id=&quot;privacy_policy&quot; href=&quot;/tutorial/static/views/privacy.html&quot;&gt;privacy policy.&lt;/a&gt;&lt;br/&gt;</code></pre>
-<p>Let’s create a test that locates the privacy policy link using its text and check whether it’s displayed:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="finding-web-elements.html#cb52-1" aria-hidden="true"></a>privacypolicy_link <span class="op">=</span> driver.find_element_by_link_text(<span class="st">&quot;privacy policy.&quot;</span>)</span>
-<span id="cb52-2"><a href="finding-web-elements.html#cb52-2" aria-hidden="true"></a>privacypolicy_link.click()</span></code></pre></div></li>
+<p>Let’s create a test that locates the <code>privacy policy link</code> using its text and check whether it’s displayed:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="finding-web-elements.html#cb35-1"></a>privacypolicy_link <span class="op">=</span> driver.find_element_by_link_text(<span class="st">&quot;privacy policy.&quot;</span>)</span>
+<span id="cb35-2"><a href="finding-web-elements.html#cb35-2"></a>privacypolicy_link.click()</span></code></pre></div></li>
 <li><p><code>find_element_by_partial_link_text()</code> and <code>find_elements_by_partial_link_text()</code> methods:<br />
-They find link(s) using partial text. For example, on the example site, two links are displayed: one is the <strong>privacy policy link</strong> with <strong>“privacy policy”</strong> as text and the other is the <strong>term conditions policy link</strong> with <strong>“term conditions policy”</strong> as text. Let us use this method to find these links using the <strong>“policy”</strong> text and check whether we have two of these links available on the page:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="finding-web-elements.html#cb53-1" aria-hidden="true"></a>policy_links <span class="op">=</span> driver.find_elements_by_partial_link_text(<span class="st">&quot;policy&quot;</span>)</span>
-<span id="cb53-2"><a href="finding-web-elements.html#cb53-2" aria-hidden="true"></a><span class="bu">print</span>(<span class="bu">len</span>(policy_links))</span></code></pre></div></li>
+Find link(s) using partial text. For example, on the example site, two links are displayed: one is the <code>privacy policy link</code> with <code>"privacy policy"</code> as text and the other is the <code>term conditions policy link</code> with <code>"term conditions policy"</code> as text. Let us use this method to find these links using the <code>"policy"</code> text and check whether we have two of these links available on the page:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="finding-web-elements.html#cb36-1"></a>policy_links <span class="op">=</span> driver.find_elements_by_partial_link_text(<span class="st">&quot;policy&quot;</span>)</span>
+<span id="cb36-2"><a href="finding-web-elements.html#cb36-2"></a><span class="bu">print</span>(<span class="bu">len</span>(policy_links))</span></code></pre></div></li>
 </ul>
 </div>
 <div id="demo" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Demo</h2>
-<p>This section will show you two cases to demonstrate the use of various <code>find_elements_by</code> methods. Most often we want to scrape data from tables or article texts. Demos therefore cover these two cases.</p>
+<p>This section will highlight two use-cases to demonstrate the use of various <code>find_elements_by</code> methods. Most often we want to scrape data from tables or article text. The two demos therefore cover these use-cases.</p>
 <div id="scrape-tables" class="section level3" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Scrape Tables</h3>
-<p>Let us examine this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example website</a>. This page uses JavaScript to write a table to a <code>&lt;div&gt;</code> element of the page. If we were to scrape this page’s table using traditional methods, we’d only get the loading page, without actually getting the data that we want. Suppose that we want to scrape all cells of this table. The first thing we need to do is to locate the cells. If we <strong>inspect</strong> this page, we can see that the table is defined with a <code>&lt;tbody&gt;</code> tag inside a <code>&lt;table&gt;</code> tag. Each table row is defined with a <code>&lt;tr&gt;</code> tag and there are multiple table rows. The first table row is the table header row, each of its fields is defined with a <code>&lt;th&gt;</code> tag or a header cell tag. In each of the rest table rows, there are multiple data cells and each data cell is defined with a <code>&lt;td&gt;</code> tag. The information is used for us to locate those elements. Next, we have to find each cell using <code>find_elements_by</code> methods and get its data. There is no way to directly scrape the whole table. Given this, the logic naturally is to loop row by row, and in each row, loop cell by cell. So, we need to have a double looping in our script. Finally, we need to store the scraped data in a nice format, like a .csv file. We use the Python file operation methods to achieve this. The following program shows the way we do it:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="finding-web-elements.html#cb54-1" aria-hidden="true"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb54-2"><a href="finding-web-elements.html#cb54-2" aria-hidden="true"></a><span class="im">import</span> time</span>
-<span id="cb54-3"><a href="finding-web-elements.html#cb54-3" aria-hidden="true"></a></span>
-<span id="cb54-4"><a href="finding-web-elements.html#cb54-4" aria-hidden="true"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
-<span id="cb54-5"><a href="finding-web-elements.html#cb54-5" aria-hidden="true"></a>table_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic&quot;</span></span>
-<span id="cb54-6"><a href="finding-web-elements.html#cb54-6" aria-hidden="true"></a>driver.get(table_url)</span>
-<span id="cb54-7"><a href="finding-web-elements.html#cb54-7" aria-hidden="true"></a>time.sleep(<span class="dv">2</span>)</span>
-<span id="cb54-8"><a href="finding-web-elements.html#cb54-8" aria-hidden="true"></a></span>
-<span id="cb54-9"><a href="finding-web-elements.html#cb54-9" aria-hidden="true"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">table.csv&#39;</span>, <span class="st">&quot;w&quot;</span>, encoding <span class="op">=</span> <span class="st">&quot;utf-8-sig&quot;</span>)</span>
-<span id="cb54-10"><a href="finding-web-elements.html#cb54-10" aria-hidden="true"></a></span>
-<span id="cb54-11"><a href="finding-web-elements.html#cb54-11" aria-hidden="true"></a>table_body <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table/tbody&#39;</span>)</span>
-<span id="cb54-12"><a href="finding-web-elements.html#cb54-12" aria-hidden="true"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&#39;tr&#39;</span>)</span>
-<span id="cb54-13"><a href="finding-web-elements.html#cb54-13" aria-hidden="true"></a>headers <span class="op">=</span> entries[<span class="dv">0</span>].find_elements_by_tag_name(<span class="st">&#39;th&#39;</span>)</span>
-<span id="cb54-14"><a href="finding-web-elements.html#cb54-14" aria-hidden="true"></a></span>
-<span id="cb54-15"><a href="finding-web-elements.html#cb54-15" aria-hidden="true"></a>table_header <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb54-16"><a href="finding-web-elements.html#cb54-16" aria-hidden="true"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(headers)):</span>
-<span id="cb54-17"><a href="finding-web-elements.html#cb54-17" aria-hidden="true"></a>    header <span class="op">=</span> headers[i].text</span>
-<span id="cb54-18"><a href="finding-web-elements.html#cb54-18" aria-hidden="true"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="bu">len</span>(headers) <span class="op">-</span> <span class="dv">1</span>:</span>
-<span id="cb54-19"><a href="finding-web-elements.html#cb54-19" aria-hidden="true"></a>        table_header <span class="op">=</span> table_header <span class="op">+</span> header <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
-<span id="cb54-20"><a href="finding-web-elements.html#cb54-20" aria-hidden="true"></a>    <span class="cf">else</span>:</span>
-<span id="cb54-21"><a href="finding-web-elements.html#cb54-21" aria-hidden="true"></a>        table_header <span class="op">=</span> table_header <span class="op">+</span> header <span class="op">+</span> <span class="st">&quot;,&quot;</span></span>
-<span id="cb54-22"><a href="finding-web-elements.html#cb54-22" aria-hidden="true"></a><span class="bu">file</span>.write(table_header)</span>
-<span id="cb54-23"><a href="finding-web-elements.html#cb54-23" aria-hidden="true"></a></span>
-<span id="cb54-24"><a href="finding-web-elements.html#cb54-24" aria-hidden="true"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
-<span id="cb54-25"><a href="finding-web-elements.html#cb54-25" aria-hidden="true"></a>    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
-<span id="cb54-26"><a href="finding-web-elements.html#cb54-26" aria-hidden="true"></a>    table_row <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb54-27"><a href="finding-web-elements.html#cb54-27" aria-hidden="true"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cols)):</span>
-<span id="cb54-28"><a href="finding-web-elements.html#cb54-28" aria-hidden="true"></a>        col <span class="op">=</span> cols[j].text</span>
-<span id="cb54-29"><a href="finding-web-elements.html#cb54-29" aria-hidden="true"></a>        <span class="cf">if</span> j <span class="op">==</span> <span class="bu">len</span>(cols) <span class="op">-</span> <span class="dv">1</span>:</span>
-<span id="cb54-30"><a href="finding-web-elements.html#cb54-30" aria-hidden="true"></a>            table_row <span class="op">=</span> table_row <span class="op">+</span> col <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
-<span id="cb54-31"><a href="finding-web-elements.html#cb54-31" aria-hidden="true"></a>        <span class="cf">else</span>:</span>
-<span id="cb54-32"><a href="finding-web-elements.html#cb54-32" aria-hidden="true"></a>            table_row <span class="op">=</span> table_row <span class="op">+</span> col <span class="op">+</span> <span class="st">&quot;,&quot;</span></span>
-<span id="cb54-33"><a href="finding-web-elements.html#cb54-33" aria-hidden="true"></a>    <span class="bu">file</span>.write(table_row)</span>
-<span id="cb54-34"><a href="finding-web-elements.html#cb54-34" aria-hidden="true"></a></span>
-<span id="cb54-35"><a href="finding-web-elements.html#cb54-35" aria-hidden="true"></a>driver.close()</span>
-<span id="cb54-36"><a href="finding-web-elements.html#cb54-36" aria-hidden="true"></a><span class="bu">file</span>.close()</span></code></pre></div>
+<h3><span class="header-section-number">4.3.1</span> Scrape tables</h3>
+<p>Let’s examine this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">example website</a>. This page uses JavaScript to write a table to a <code>&lt;div&gt;</code> element of the page. If we were to scrape this page’s table using traditional methods, we’d only get the loading page, without actually getting the data that we want. Suppose that we want to scrape all cells of this table. The first thing we need to do is to locate the cells. If we <code>Inspect</code> this page, we can see that the table is defined with a <code>&lt;tbody&gt;</code> tag inside a <code>&lt;table&gt;</code> tag. Each table row is defined with a <code>&lt;tr&gt;</code> tag and there are multiple table rows. The first table row is the table header row, each of its fields is defined with a <code>&lt;th&gt;</code> tag or a header cell tag. In each of the other table rows, there are multiple data cells and each data cell is defined with a <code>&lt;td&gt;</code> tag. Next, we have to find each cell using <code>find_elements_by</code> methods and get its data. There is no way to directly scrape the whole table. Given this, the logic naturally is to loop row by row, and in each row, loop cell by cell. So, we need to have a double for loop in our script. Finally, we need to store the scraped data in a nice format, like a <code>.csv</code> file. We can use the Python file operation methods to achieve this. Here’s an implementation:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="finding-web-elements.html#cb37-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb37-2"><a href="finding-web-elements.html#cb37-2"></a><span class="im">import</span> time</span>
+<span id="cb37-3"><a href="finding-web-elements.html#cb37-3"></a></span>
+<span id="cb37-4"><a href="finding-web-elements.html#cb37-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&#39;</span>)</span>
+<span id="cb37-5"><a href="finding-web-elements.html#cb37-5"></a>table_url <span class="op">=</span> <span class="st">&quot;https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic&quot;</span></span>
+<span id="cb37-6"><a href="finding-web-elements.html#cb37-6"></a>driver.get(table_url)</span>
+<span id="cb37-7"><a href="finding-web-elements.html#cb37-7"></a>time.sleep(<span class="dv">2</span>)</span>
+<span id="cb37-8"><a href="finding-web-elements.html#cb37-8"></a></span>
+<span id="cb37-9"><a href="finding-web-elements.html#cb37-9"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">table.csv&#39;</span>, <span class="st">&quot;w&quot;</span>, encoding <span class="op">=</span> <span class="st">&quot;utf-8-sig&quot;</span>)</span>
+<span id="cb37-10"><a href="finding-web-elements.html#cb37-10"></a></span>
+<span id="cb37-11"><a href="finding-web-elements.html#cb37-11"></a>table_body <span class="op">=</span> driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;result&quot;]/table/tbody&#39;</span>)</span>
+<span id="cb37-12"><a href="finding-web-elements.html#cb37-12"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">&#39;tr&#39;</span>)</span>
+<span id="cb37-13"><a href="finding-web-elements.html#cb37-13"></a>headers <span class="op">=</span> entries[<span class="dv">0</span>].find_elements_by_tag_name(<span class="st">&#39;th&#39;</span>)</span>
+<span id="cb37-14"><a href="finding-web-elements.html#cb37-14"></a></span>
+<span id="cb37-15"><a href="finding-web-elements.html#cb37-15"></a>table_header <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb37-16"><a href="finding-web-elements.html#cb37-16"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(headers)):</span>
+<span id="cb37-17"><a href="finding-web-elements.html#cb37-17"></a>    header <span class="op">=</span> headers[i].text</span>
+<span id="cb37-18"><a href="finding-web-elements.html#cb37-18"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="bu">len</span>(headers) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb37-19"><a href="finding-web-elements.html#cb37-19"></a>        table_header <span class="op">=</span> table_header <span class="op">+</span> header <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb37-20"><a href="finding-web-elements.html#cb37-20"></a>    <span class="cf">else</span>:</span>
+<span id="cb37-21"><a href="finding-web-elements.html#cb37-21"></a>        table_header <span class="op">=</span> table_header <span class="op">+</span> header <span class="op">+</span> <span class="st">&quot;,&quot;</span></span>
+<span id="cb37-22"><a href="finding-web-elements.html#cb37-22"></a><span class="bu">file</span>.write(table_header)</span>
+<span id="cb37-23"><a href="finding-web-elements.html#cb37-23"></a></span>
+<span id="cb37-24"><a href="finding-web-elements.html#cb37-24"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
+<span id="cb37-25"><a href="finding-web-elements.html#cb37-25"></a>    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">&#39;td&#39;</span>)</span>
+<span id="cb37-26"><a href="finding-web-elements.html#cb37-26"></a>    table_row <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb37-27"><a href="finding-web-elements.html#cb37-27"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cols)):</span>
+<span id="cb37-28"><a href="finding-web-elements.html#cb37-28"></a>        col <span class="op">=</span> cols[j].text</span>
+<span id="cb37-29"><a href="finding-web-elements.html#cb37-29"></a>        <span class="cf">if</span> j <span class="op">==</span> <span class="bu">len</span>(cols) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb37-30"><a href="finding-web-elements.html#cb37-30"></a>            table_row <span class="op">=</span> table_row <span class="op">+</span> col <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb37-31"><a href="finding-web-elements.html#cb37-31"></a>        <span class="cf">else</span>:</span>
+<span id="cb37-32"><a href="finding-web-elements.html#cb37-32"></a>            table_row <span class="op">=</span> table_row <span class="op">+</span> col <span class="op">+</span> <span class="st">&quot;,&quot;</span></span>
+<span id="cb37-33"><a href="finding-web-elements.html#cb37-33"></a>    <span class="bu">file</span>.write(table_row)</span>
+<span id="cb37-34"><a href="finding-web-elements.html#cb37-34"></a></span>
+<span id="cb37-35"><a href="finding-web-elements.html#cb37-35"></a>driver.close()</span>
+<span id="cb37-36"><a href="finding-web-elements.html#cb37-36"></a><span class="bu">file</span>.close()</span></code></pre></div>
 </div>
-<div id="scrape-texts" class="section level3" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Scrape Texts</h3>
-<p>Let us examine this <a href="https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding">example website</a>. The article on this page has many subsections, each of which has multiple paragraphs and even bullet points. Suppose that we want to scrape the whole text of the article. One interesting way to do it is to scrape all the subsections separately first and then concatenate them altogether. The advantage of doing it in this way is obviously that we can also get each subsection text, which will greatly facilitate our later analysis, in particular the text analysis.</p>
-<p>Let us <strong>inspect</strong> this website. Let us move the mouse to the element of its DOM that defines the article content area. Under this <code>&lt;div&gt;</code> element, we can see that subsection headers have tag names all starting with <strong>“h”</strong>, paragraphs have a <code>&lt;p&gt;</code> tag name, and bullet points parts have a <code>&lt;ul&gt;</code> tag name. The elements with these tag names are all in parallel with each other, rather than embedded in a hierarchical structure. This design decides that we will not write a loop in our script to access them, for example, to access each paragraph under a subsection. Another point to note is that we use a Python dictionary to store each subsection text. For each key-value pair in this dictionary, the key stores the subsection title, and the value stores its paragraphs of text. So, we think this is a nice data structure to use for this case. The following program implements our strategy above to scrape the whole text of the article:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="finding-web-elements.html#cb55-1" aria-hidden="true"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb55-2"><a href="finding-web-elements.html#cb55-2" aria-hidden="true"></a><span class="im">import</span> time</span>
-<span id="cb55-3"><a href="finding-web-elements.html#cb55-3" aria-hidden="true"></a></span>
-<span id="cb55-4"><a href="finding-web-elements.html#cb55-4" aria-hidden="true"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&quot;</span>)</span>
-<span id="cb55-5"><a href="finding-web-elements.html#cb55-5" aria-hidden="true"></a>journalAddress <span class="op">=</span> <span class="st">&quot;https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding&quot;</span></span>
-<span id="cb55-6"><a href="finding-web-elements.html#cb55-6" aria-hidden="true"></a>driver.get(journalAddress)</span>
-<span id="cb55-7"><a href="finding-web-elements.html#cb55-7" aria-hidden="true"></a>time.sleep(<span class="dv">2</span>)</span>
-<span id="cb55-8"><a href="finding-web-elements.html#cb55-8" aria-hidden="true"></a></span>
-<span id="cb55-9"><a href="finding-web-elements.html#cb55-9" aria-hidden="true"></a>articleObjects <span class="op">=</span> driver.find_elements_by_xpath(<span class="st">&#39;//div[@id=&quot;fulltext_content_area&quot;]/*&#39;</span>)</span>
-<span id="cb55-10"><a href="finding-web-elements.html#cb55-10" aria-hidden="true"></a><span class="bu">print</span>(<span class="bu">len</span>(articleObjects), <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb55-11"><a href="finding-web-elements.html#cb55-11" aria-hidden="true"></a></span>
-<span id="cb55-12"><a href="finding-web-elements.html#cb55-12" aria-hidden="true"></a>articleDictionary <span class="op">=</span> <span class="bu">dict</span>()</span>
-<span id="cb55-13"><a href="finding-web-elements.html#cb55-13" aria-hidden="true"></a>myKey <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb55-14"><a href="finding-web-elements.html#cb55-14" aria-hidden="true"></a>myValue_total <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb55-15"><a href="finding-web-elements.html#cb55-15" aria-hidden="true"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(articleObjects)):</span>
-<span id="cb55-16"><a href="finding-web-elements.html#cb55-16" aria-hidden="true"></a>    tagName <span class="op">=</span> articleObjects[i].tag_name</span>
-<span id="cb55-17"><a href="finding-web-elements.html#cb55-17" aria-hidden="true"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">&quot;h&quot;</span>):</span>
-<span id="cb55-18"><a href="finding-web-elements.html#cb55-18" aria-hidden="true"></a>        <span class="cf">if</span> myKey:</span>
-<span id="cb55-19"><a href="finding-web-elements.html#cb55-19" aria-hidden="true"></a>            articleDictionary[myKey] <span class="op">=</span> myValue_total</span>
-<span id="cb55-20"><a href="finding-web-elements.html#cb55-20" aria-hidden="true"></a>            myKey <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb55-21"><a href="finding-web-elements.html#cb55-21" aria-hidden="true"></a>            myValue_total <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb55-22"><a href="finding-web-elements.html#cb55-22" aria-hidden="true"></a>        myKey <span class="op">=</span> articleObjects[i].get_attribute(<span class="st">&quot;innerText&quot;</span>)</span>
-<span id="cb55-23"><a href="finding-web-elements.html#cb55-23" aria-hidden="true"></a></span>
-<span id="cb55-24"><a href="finding-web-elements.html#cb55-24" aria-hidden="true"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">&quot;p&quot;</span>):</span>
-<span id="cb55-25"><a href="finding-web-elements.html#cb55-25" aria-hidden="true"></a>        myValue <span class="op">=</span> articleObjects[i].get_attribute(<span class="st">&quot;innerText&quot;</span>)</span>
-<span id="cb55-26"><a href="finding-web-elements.html#cb55-26" aria-hidden="true"></a>        myValue_total <span class="op">=</span> myValue_total <span class="op">+</span> myValue</span>
-<span id="cb55-27"><a href="finding-web-elements.html#cb55-27" aria-hidden="true"></a></span>
-<span id="cb55-28"><a href="finding-web-elements.html#cb55-28" aria-hidden="true"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">&quot;ul&quot;</span>):</span>
-<span id="cb55-29"><a href="finding-web-elements.html#cb55-29" aria-hidden="true"></a>        myBullets <span class="op">=</span> articleObjects[i].find_elements_by_tag_name(<span class="st">&#39;li&#39;</span>)</span>
-<span id="cb55-30"><a href="finding-web-elements.html#cb55-30" aria-hidden="true"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(myBullets)):</span>
-<span id="cb55-31"><a href="finding-web-elements.html#cb55-31" aria-hidden="true"></a>            myBullet <span class="op">=</span> myBullets[j].get_attribute(<span class="st">&quot;innerText&quot;</span>)</span>
-<span id="cb55-32"><a href="finding-web-elements.html#cb55-32" aria-hidden="true"></a>            myValue_total <span class="op">=</span> myValue_total <span class="op">+</span> myBullet</span>
-<span id="cb55-33"><a href="finding-web-elements.html#cb55-33" aria-hidden="true"></a></span>
-<span id="cb55-34"><a href="finding-web-elements.html#cb55-34" aria-hidden="true"></a>driver.close()</span>
-<span id="cb55-35"><a href="finding-web-elements.html#cb55-35" aria-hidden="true"></a></span>
-<span id="cb55-36"><a href="finding-web-elements.html#cb55-36" aria-hidden="true"></a>article <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb55-37"><a href="finding-web-elements.html#cb55-37" aria-hidden="true"></a><span class="cf">for</span> key, value <span class="kw">in</span> articleDictionary.items():</span>
-<span id="cb55-38"><a href="finding-web-elements.html#cb55-38" aria-hidden="true"></a>    article <span class="op">=</span> article <span class="op">+</span> key <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span> <span class="op">+</span> value <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">***************</span><span class="ch">\n\n</span><span class="st">&#39;</span></span>
-<span id="cb55-39"><a href="finding-web-elements.html#cb55-39" aria-hidden="true"></a><span class="bu">print</span>(article)</span></code></pre></div>
+<div id="scrape-text" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Scrape text</h3>
+<p>Let us examine this <a href="https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding">example website</a>. The article on this page has many subsections, each of which have multiple paragraphs and even bullet points. Suppose that we want to scrape the whole text of the article. One interesting way to do it is to scrape all the subsections separately first and then concatenate them altogether. The advantage of doing it this way is that we can also get each subsection’s text.</p>
+<p>Let us <code>Inspect</code> this website. Let us move the cursor to the element of its DOM that defines the article content area. Under this <code>&lt;div&gt;</code> element, we can see that subsection headers have tag names all starting with <code>"h"</code>, paragraphs have a <code>&lt;p&gt;</code> tag name, and bullet points parts have a <code>&lt;ul&gt;</code> tag name. The elements with these tag names are all parallel with one other, rather than embedded in a hierarchical structure. This design dictates that we should not write a loop in our script to access them, for example, to access each paragraph under a subsection. Another point to note is that here we use a Python dictionary to store each subsection’s text. For each key-value pair in this dictionary, the key stores the subsection title, and the value stores its paragraphs of text. So, this is a convenient data structure to use for this use-case. The following program implements our strategy above to scrape the whole text of the article:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="finding-web-elements.html#cb38-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb38-2"><a href="finding-web-elements.html#cb38-2"></a><span class="im">import</span> time</span>
+<span id="cb38-3"><a href="finding-web-elements.html#cb38-3"></a></span>
+<span id="cb38-4"><a href="finding-web-elements.html#cb38-4"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">chromedriver.exe&quot;</span>)</span>
+<span id="cb38-5"><a href="finding-web-elements.html#cb38-5"></a>journalAddress <span class="op">=</span> <span class="st">&quot;https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding&quot;</span></span>
+<span id="cb38-6"><a href="finding-web-elements.html#cb38-6"></a>driver.get(journalAddress)</span>
+<span id="cb38-7"><a href="finding-web-elements.html#cb38-7"></a>time.sleep(<span class="dv">2</span>)</span>
+<span id="cb38-8"><a href="finding-web-elements.html#cb38-8"></a></span>
+<span id="cb38-9"><a href="finding-web-elements.html#cb38-9"></a>articleObjects <span class="op">=</span> driver.find_elements_by_xpath(<span class="st">&#39;//div[@id=&quot;fulltext_content_area&quot;]/*&#39;</span>)</span>
+<span id="cb38-10"><a href="finding-web-elements.html#cb38-10"></a><span class="bu">print</span>(<span class="bu">len</span>(articleObjects), <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb38-11"><a href="finding-web-elements.html#cb38-11"></a></span>
+<span id="cb38-12"><a href="finding-web-elements.html#cb38-12"></a>articleDictionary <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb38-13"><a href="finding-web-elements.html#cb38-13"></a>myKey <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb38-14"><a href="finding-web-elements.html#cb38-14"></a>myValue_total <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb38-15"><a href="finding-web-elements.html#cb38-15"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(articleObjects)):</span>
+<span id="cb38-16"><a href="finding-web-elements.html#cb38-16"></a>    tagName <span class="op">=</span> articleObjects[i].tag_name</span>
+<span id="cb38-17"><a href="finding-web-elements.html#cb38-17"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">&quot;h&quot;</span>):</span>
+<span id="cb38-18"><a href="finding-web-elements.html#cb38-18"></a>        <span class="cf">if</span> myKey:</span>
+<span id="cb38-19"><a href="finding-web-elements.html#cb38-19"></a>            articleDictionary[myKey] <span class="op">=</span> myValue_total</span>
+<span id="cb38-20"><a href="finding-web-elements.html#cb38-20"></a>            myKey <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb38-21"><a href="finding-web-elements.html#cb38-21"></a>            myValue_total <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb38-22"><a href="finding-web-elements.html#cb38-22"></a>        myKey <span class="op">=</span> articleObjects[i].get_attribute(<span class="st">&quot;innerText&quot;</span>)</span>
+<span id="cb38-23"><a href="finding-web-elements.html#cb38-23"></a></span>
+<span id="cb38-24"><a href="finding-web-elements.html#cb38-24"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">&quot;p&quot;</span>):</span>
+<span id="cb38-25"><a href="finding-web-elements.html#cb38-25"></a>        myValue <span class="op">=</span> articleObjects[i].get_attribute(<span class="st">&quot;innerText&quot;</span>)</span>
+<span id="cb38-26"><a href="finding-web-elements.html#cb38-26"></a>        myValue_total <span class="op">=</span> myValue_total <span class="op">+</span> myValue</span>
+<span id="cb38-27"><a href="finding-web-elements.html#cb38-27"></a></span>
+<span id="cb38-28"><a href="finding-web-elements.html#cb38-28"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">&quot;ul&quot;</span>):</span>
+<span id="cb38-29"><a href="finding-web-elements.html#cb38-29"></a>        myBullets <span class="op">=</span> articleObjects[i].find_elements_by_tag_name(<span class="st">&#39;li&#39;</span>)</span>
+<span id="cb38-30"><a href="finding-web-elements.html#cb38-30"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(myBullets)):</span>
+<span id="cb38-31"><a href="finding-web-elements.html#cb38-31"></a>            myBullet <span class="op">=</span> myBullets[j].get_attribute(<span class="st">&quot;innerText&quot;</span>)</span>
+<span id="cb38-32"><a href="finding-web-elements.html#cb38-32"></a>            myValue_total <span class="op">=</span> myValue_total <span class="op">+</span> myBullet</span>
+<span id="cb38-33"><a href="finding-web-elements.html#cb38-33"></a></span>
+<span id="cb38-34"><a href="finding-web-elements.html#cb38-34"></a>driver.close()</span>
+<span id="cb38-35"><a href="finding-web-elements.html#cb38-35"></a></span>
+<span id="cb38-36"><a href="finding-web-elements.html#cb38-36"></a>article <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb38-37"><a href="finding-web-elements.html#cb38-37"></a><span class="cf">for</span> key, value <span class="kw">in</span> articleDictionary.items():</span>
+<span id="cb38-38"><a href="finding-web-elements.html#cb38-38"></a>    article <span class="op">=</span> article <span class="op">+</span> key <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span> <span class="op">+</span> value <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">***************</span><span class="ch">\n\n</span><span class="st">&#39;</span></span>
+<span id="cb38-39"><a href="finding-web-elements.html#cb38-39"></a><span class="bu">print</span>(article)</span></code></pre></div>
 </div>
 </div>
 <div id="nosuchelementexception" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> NoSuchElementException</h2>
-<p>The reason for <em>NoSuchElementException</em> can be either of the following:</p>
+<h2><span class="header-section-number">4.4</span> <code>NoSuchElementException</code></h2>
+<p>The reason for <code>NoSuchElementException</code> can be any of the following:</p>
 <ul>
-<li>The Locator Strategy you have adopted doesn’t identifies any element in the HTML DOM.<br />
+<li>The Locator Strategy we have adopted doesn’t identify any element in the HTML DOM.</li>
+<li>The Locator Strategy we have adopted doesn’t uniquely identify the desired element in the HTML DOM and currently finds some other hidden / invisible element.<br />
 </li>
-<li>The Locator Strategy you have adopted is unable to identify the element as it is not within the browser’s <strong>Viewport</strong>.<br />
+<li>The Locator Strategy we have adopted is unable to identify the desired element as it is not within the browser’s <code>Viewport</code>.<br />
 </li>
-<li>The Locator Strategy you have adopted identifies the element but is invisible due to presence of the attribute <strong>style=“display: none;”</strong>.<br />
+<li>The Locator Strategy we have adopted identifies the element but is invisible due to presence of the attribute <code>style="display: none;"</code>.<br />
 </li>
-<li>The Locator Strategy you have adopted doesn’t uniquely identifies the desired element in the HTML DOM and currently finds some other hidden / invisible element.<br />
+<li>The <code>WebElement</code> we are trying to locate is within an <code>&lt;iframe&gt;</code> tag.<br />
 </li>
-<li>The WebElement you are trying to locate is within an <code>&lt;iframe&gt;</code> tag.<br />
-</li>
-<li>The WebDriver instance is looking out for the WebElement even before the element is present/visibile within the HTML DOM.</li>
+<li>The <code>WebDriver</code> instance is looking out for the <code>WebElement</code> even before the element is present/visibile within the HTML DOM.</li>
 </ul>
-<p>The solution to address <em>NoSuchElementException</em> can be either of the following:</p>
-<ul>
-<li><p>When the element you locate does not exist in the DOM, use <strong>try-except</strong> event handler to avoid the termination of the program. This solution is to address the inconsistency in the DOM among the seemingly same pages. See the example code as follows:</p>
-<pre class="pythn"><code>from selenium.common.exceptions import NoSuchElementException
+<p>The solution to address the <code>NoSuchElementException</code> can be either of the following:</p>
+<ol style="list-style-type: decimal">
+<li>When the element we locate does not exist in the DOM, use <code>try-except</code> event handler to avoid the termination of the program:</li>
+</ol>
+<pre><code>```python
+from selenium.common.exceptions import NoSuchElementException
 
 try:
     elem = driver.find_element_by_xpath(&quot;element_xpath&quot;)
     elem.click()
 except NoSuchElementException:
-    pass</code></pre></li>
-<li><p>When the page loads for some reason you are taken to the bottom of the page, but the element you need to scrape is on the top of the page and thus is out of view, you can locate the element in the DOM first, then use <code>execute_script()</code> method to scroll the element in to view as follows:</p>
-<pre class="pythn"><code>elem = driver.find_element_by_xpath(&quot;element_xpath&quot;)
-driver.execute_script(&quot;arguments[0].scrollIntoView();&quot;, elem)</code></pre></li>
-<li><p>In case the element is having the attribute <strong>style=“display: none;”</strong>, remove the attribute through <code>execute_script()</code> method as follows:</p>
-<pre class="pythn"><code>elem = driver.find_element_by_xpath(&quot;element_xpath&quot;)
+    pass
+```
+
+This solution is to address the inconsistency in the DOM among the seemingly same pages.</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>When the page loads, for some reason we may be taken to the bottom of the page, but the element we need to scrape is on the top of the page and thus is out of view. In this situation, we can locate the element in the DOM first, then use the <code>execute_script()</code> method to scroll the element into view:</li>
+</ol>
+<pre><code>```python
+elem = driver.find_element_by_xpath(&quot;element_xpath&quot;)
+driver.execute_script(&quot;arguments[0].scrollIntoView();&quot;, elem)
+```</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>In case the element has the attribute <code>style="display: none;"</code>, remove the attribute through <code>execute_script()</code> method:</li>
+</ol>
+<pre><code>```python
+elem = driver.find_element_by_xpath(&quot;element_xpath&quot;)
 driver.execute_script(&quot;arguments[0].removeAttribute(&#39;style&#39;)&quot;, elem)
-elem.send_keys(&quot;text_to_send&quot;)</code></pre></li>
-<li><p>Adopt a Locator Strategy which uniquely identifies the desired WebElement. The preferable method is <code>find_element(s)_by_id()</code> method since the id attribute uniquely identifies a web element.<br />
-</p></li>
-<li><p>To check if the element is within an <code>&lt;iframe&gt;</code>, traverse up the HTML to locate the respective <code>&lt;iframe&gt;</code> tag and use the <code>switch_to()</code> to shift to the desired iframe through either of the following methods:</p>
-<pre class="pythn"><code>driver.switch_to.frame(&quot;iframe_name&quot;)
+elem.send_keys(&quot;text_to_send&quot;)
+```</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Adopt a Locator Strategy which uniquely identifies the desired <code>WebElement</code>. The preferable method is <code>find_elements_by_id()</code>, since the id attribute uniquely identifies a web element.</p></li>
+<li><p>To check if the element is within an <code>&lt;iframe&gt;</code>, traverse up the HTML to locate the respective <code>&lt;iframe&gt;</code> tag and use the <code>switch_to()</code> method to shift to the desired iframe through any of the following approaches:</p></li>
+</ol>
+<pre><code>```python
+driver.switch_to.frame(&quot;iframe_name&quot;)
 driver.switch_to.frame(&quot;iframe_id&quot;)
-driver.switch_to.frame(1) // 1 represents frame index</code></pre>
-<p>We can switch back to the main frame by using one of the following methods:</p>
-<pre class="pythn"><code>driver.switch_to.default_content()
-driver.switch_to.parent_frame()</code></pre>
-<p>A better way to switch frames will be to induce <code>WebDriverWait()</code> for the availability of the intended frame with <code>expected_conditions</code> set to <code>frame_to_be_available_and_switch_to_it</code> as either of the follows:</p>
-<pre class="pythn"><code>WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.ID,&quot;id_of_iframe&quot;)) // through Frame ID
+driver.switch_to.frame(1) // 1 represents frame index
+```
+
+We can switch back to the main frame by using one of the following methods:
+
+
+```python
+driver.switch_to.default_content()
+driver.switch_to.parent_frame()
+```
+
+A better way to switch frames would be to induce `WebDriverWait()` for the availability of the intended frame with `expected_conditions` set to `frame_to_be_available_and_switch_to_it` as in the following examples:
+
+
+```python
+WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.ID,&quot;id_of_iframe&quot;)) // through Frame ID
+
 WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.NAME,&quot;name_of_iframe&quot;)) // through Frame name
+
 WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.XPATH,&quot;xpath_of_iframe&quot;)) // through Frame XPath
-WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.CSS_SELECTOR,&quot;css_of_iframe&quot;)) // through Frame CSS</code></pre></li>
-<li><p>If the element is not present/visible in the HTML DOM immediately, induce <code>WebDriverWait</code> with <code>expected_conditions</code> set to proper method as follows:</p>
-<ul>
-<li>To wait for <strong>presence_of_element_located</strong>:</li>
-</ul>
-<pre class="pythn"><code>element = WebDriverWait(driver, 20).until(expected_conditions.presence_of_element_located((By.XPATH, &quot;element_xpath&#39;]&quot;)))</code></pre>
-<ul>
-<li>To wait for <strong>visibility_of_element_located</strong>:</li>
-</ul>
-<pre class="pythn"><code>element = WebDriverWait(driver, 20).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, &quot;element_css&quot;)))</code></pre>
-<ul>
-<li>To wait for <strong>element_to_be_clickable</strong>:</li>
-</ul>
-<pre class="pythn"><code>element = WebDriverWait(driver, 20).until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, &quot;element_link_text&quot;)))</code></pre></li>
-</ul>
+
+WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.CSS_SELECTOR,&quot;css_of_iframe&quot;)) // through Frame CSS
+```</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>If the element is not present/visible in the HTML DOM immediately, induce <code>WebDriverWait</code> with <code>expected_conditions</code> set to the proper method as follows:</li>
+</ol>
+<pre><code>+   To wait for `presence_of_element_located`:   
+
+
+   ```python
+   element = WebDriverWait(driver, 20).until(expected_conditions.presence_of_element_located((By.XPATH, &quot;element_xpath&#39;]&quot;)))
+   ```
+
++   To wait for `visibility_of_element_located`:
+
+
+   ```python
+   element = WebDriverWait(driver, 20).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, &quot;element_css&quot;)))
+   ```
+
++   To wait for `element_to_be_clickable`: 
+
+
+   ```python
+   element = WebDriverWait(driver, 20).until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, &quot;element_link_text&quot;)))
+   ```</code></pre>
 
 </div>
 </div>
@@ -453,7 +494,7 @@ WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it(By.CSS
           </div>
         </div>
       </div>
-<a href="when-to-use-selenium-driver.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="when-to-use-a-browser-driver.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="filling-in-web-forms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -485,7 +526,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/IQSS/dss-template/edit/master/chapter_3.Rmd",
+"link": "https://github.com/IQSS/dss-webscrape/edit/master/chapter_04.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -496,7 +537,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["template.pdf", "template.epub"],
+"download": ["Webscraping_with_Selenium_Python.pdf", "Webscraping_with_Selenium_Python.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

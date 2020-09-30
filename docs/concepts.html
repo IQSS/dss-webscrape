@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#table-of-contents"><i class="fa fa-check"></i>Table of Contents</a></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#custom-websites"><i class="fa fa-check"></i><b>0.1</b> Custom Websites</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#custom-websites"><i class="fa fa-check"></i>Custom Websites</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-and-sources"><i class="fa fa-check"></i>Authors and Sources</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="concepts.html"><a href="concepts.html"><i class="fa fa-check"></i><b>1</b> Concepts</a>
@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="concepts.html"><a href="concepts.html#what-are-they"><i class="fa fa-check"></i><b>1.6.1</b> What are they?</a></li>
 <li class="chapter" data-level="1.6.2" data-path="concepts.html"><a href="concepts.html#how-do-they-work-together"><i class="fa fa-check"></i><b>1.6.2</b> How do they work together?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="concepts.html"><a href="concepts.html#glossary-of-the-tutorial"><i class="fa fa-check"></i><b>1.7</b> Glossary of the Tutorial</a></li>
+<li class="chapter" data-level="1.7" data-path="concepts.html"><a href="concepts.html#glossary"><i class="fa fa-check"></i><b>1.7</b> Glossary</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="web-scraping-approaches.html"><a href="web-scraping-approaches.html"><i class="fa fa-check"></i><b>2</b> Web Scraping Approaches</a>
 <ul>
@@ -379,8 +379,8 @@ Right-click on an element (or a blank area), and choose “Inspect” or “Insp
 <p><img src="images/driver.PNG" /></p>
 <div id="components-1" class="section level3" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> Components</h3>
-<p>WebDriver is an wire protocol that defines a language-neutral interface for controlling the behaviour of web browsers. At the core of Selenium is WebDriver. Selenium WebDriver refers to both the language bindings and the implementations of the individual browser controlling code and commonly referred as WebDriver.</p>
-<p>Each browser is backed by a specific WebDriver implementation, called a driver (or a browser driver). The driver is the component responsible for delegating down to the browser, and handles communication to and from Selenium WebDriver and the browser. The browser drivers are servers that implement the WebDriver’s wire protocol, and know how to convert those commands into the specific browser’s proprietary native API. So, the driver is browser-specific. For example, ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS). The driver runs on the same system as the browser.</p>
+<p><strong>WebDriver</strong> is an wire protocol that defines a language-neutral interface for controlling the behaviour of web browsers. At the core of Selenium is WebDriver. <strong>Selenium WebDriver</strong> refers to both the language bindings and the implementations of the individual browser controlling code and commonly referred as WebDriver.</p>
+<p>Each browser is backed by a specific WebDriver implementation, called a driver (or a browser driver). The <strong>driver</strong> is the component responsible for delegating down to the browser, and handles communication to and from Selenium WebDriver and the browser. The browser drivers are servers that implement the WebDriver’s wire protocol, and know how to convert those commands into the specific browser’s proprietary native API. So, the driver is browser-specific. For example, ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS). The driver runs on the same system as the browser.</p>
 </div>
 <div id="how-does-it-work" class="section level3" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> How does it work?</h3>
@@ -397,9 +397,9 @@ Right-click on an element (or a blank area), and choose “Inspect” or “Insp
 <h2><span class="header-section-number">1.6</span> JavaScript, JQuery, and Ajax</h2>
 <div id="what-are-they" class="section level3" number="1.6.1">
 <h3><span class="header-section-number">1.6.1</span> What are they?</h3>
-<p><strong>JavaScript (JS):</strong> It is a client-side programming language. JS has a similar structure like C. JavaScript (JS) helps encourage interactivity on the website. This script runs on the user’s browser instead of on the server as well as often uses 3rd party libraries, so it can increase the functionality of the website without having to code from the beginning. Considering programming languages like house construction, HTML will format the architecture of the house, CSS will be the carpet and walls to decorate the home. JavaScript adds interactive elements in the house, such as opening doors and lighting.</p>
+<p><strong>JavaScript (JS):</strong> It is a client-side programming language. JS has a similar structure like C. JavaScript helps encourage interactivity on the website. This script runs on the user’s browser instead of on the server as well as often uses 3rd party libraries, so it can increase the functionality of the website without having to code from the beginning. Considering programming languages like house construction, HTML will format the architecture of the house, CSS will be the carpet and walls to decorate the home. JavaScript adds interactive elements in the house, such as opening doors and lighting.</p>
 <p><strong>JQuery:</strong> As same as open-source software, jQuery acts as the JS library that simplifies the HTML client-side scripting. jQuery synthesizes all problems in JS into a library. jQuery isn’t a separate programming language. It works in conjunction with JavaScript. With jQuery, you can do more with less effort. jQuery provides APIs that make it easier to browse HTML documents, animations, event handling, and manipulate AJAX.</p>
-<p><strong>Ajax:</strong> It stands for Asynchronous JavaScript XML, which is a technique to make fast dynamic web pages. You can regard Ajax as a part of JS, running on JS. Moreover, it can be seen as a way to replace data using a server, and update web page sections without requiring to reload the entire page. AJAX permits web pages’ content to be updated immediately when a user acts without reloading the page. As the action is done behind the scene, the user will not recognize the process of data exchange in the web pages.</p>
+<p><strong>Ajax:</strong> It stands for Asynchronous JavaScript XML, which is a technique to make fast dynamic web pages. You can regard Ajax as a part of JS, running on JS. Moreover, it can be seen as a way to replace data using a server, and update web page sections without requiring to reload the entire page. Ajax permits web pages’ content to be updated immediately when a user acts without reloading the page. As the action is done behind the scene, the user will not recognize the process of data exchange in the web pages.</p>
 </div>
 <div id="how-do-they-work-together" class="section level3" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> How do they work together?</h3>
@@ -408,8 +408,8 @@ Right-click on an element (or a blank area), and choose “Inspect” or “Insp
 <p>The browser creates a JavaScript call to activate XMLHttpRequest. In the background, the browser uses Ajax routines to send an HTTP request to the server. The server receives, retrieves, and delivers data back to the browser. Consequently, the browser uses Ajax routines to receive data from the server and immediately display it on the frontend without reloading the whole page. jQuery provides APIs that make it easier for browser to use Ajax routines. With the jQuery library, codes by Ajax can easily interact with the server and update content automatically without having to reload the page. This is because different browsers have minor differences in the syntax of their own built-in XMLHttpRequest library. jQuery can automatically fix errors and run on all popular browsers such as Chrome, Firefox, Safari, MS Edge, IE, Android, and iOS. So, programmers can just write the same syntax to manipulate all kinds of browser instead of writing different syntax for different kind of browser.</p>
 </div>
 </div>
-<div id="glossary-of-the-tutorial" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> Glossary of the Tutorial</h2>
+<div id="glossary" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Glossary</h2>
 <p>Here, I provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms.</p>
 <p><strong>XML:</strong> XML is a software- and hardware-independent tool for storing and transporting data. XML stands for eXtensible Markup Language. It is a markup language much like HTML. XML was designed to store and transport data. XML and HTML were designed with different goals: XML was designed to carry data - with focus on what data is. HTML was designed to display data - with focus on how data looks. XML tags are not predefined like HTML tags are.</p>
 <p><strong>Dynamic versus Static Web Page:</strong> If the content we are viewing in our browser does not match the content we see in the HTML source code we are retrieving from the site, then we are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page.</p>

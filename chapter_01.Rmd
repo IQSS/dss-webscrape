@@ -184,9 +184,9 @@ A simplified diagram of how WebDriver interacts with browser might look like thi
 
 ### Components
 
-WebDriver is an wire protocol that defines a language-neutral interface for controlling the behaviour of web browsers. At the core of Selenium is WebDriver. Selenium WebDriver refers to both the language bindings and the implementations of the individual browser controlling code and commonly referred as WebDriver. 
+**WebDriver** is an wire protocol that defines a language-neutral interface for controlling the behaviour of web browsers. At the core of Selenium is WebDriver. **Selenium WebDriver** refers to both the language bindings and the implementations of the individual browser controlling code and commonly referred as WebDriver. 
 
-Each browser is backed by a specific WebDriver implementation, called a driver (or a browser driver). The driver is the component responsible for delegating down to the browser, and handles communication to and from Selenium WebDriver and the browser. The browser drivers are servers that implement the WebDriver's wire protocol, and know how to convert those commands into the specific browser's proprietary native API. So, the driver is browser-specific. For example, ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS). The driver runs on the same system as the browser. 
+Each browser is backed by a specific WebDriver implementation, called a driver (or a browser driver). The **driver** is the component responsible for delegating down to the browser, and handles communication to and from Selenium WebDriver and the browser. The browser drivers are servers that implement the WebDriver's wire protocol, and know how to convert those commands into the specific browser's proprietary native API. So, the driver is browser-specific. For example, ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS). The driver runs on the same system as the browser. 
 
 ### How does it work?
 
@@ -201,11 +201,11 @@ Essentially, the browser doesn't know how to "talk" WebDriver Wire Protocol, and
 
 ### What are they?
 
-**JavaScript (JS):** It is a client-side programming language. JS has a similar structure like C. JavaScript (JS) helps encourage interactivity on the website. This script runs on the user’s browser instead of on the server as well as often uses 3rd party libraries, so it can increase the functionality of the website without having to code from the beginning. Considering programming languages like house construction, HTML will format the architecture of the house, CSS will be the carpet and walls to decorate the home. JavaScript adds interactive elements in the house, such as opening doors and lighting. 
+**JavaScript (JS):** It is a client-side programming language. JS has a similar structure like C. JavaScript helps encourage interactivity on the website. This script runs on the user’s browser instead of on the server as well as often uses 3rd party libraries, so it can increase the functionality of the website without having to code from the beginning. Considering programming languages like house construction, HTML will format the architecture of the house, CSS will be the carpet and walls to decorate the home. JavaScript adds interactive elements in the house, such as opening doors and lighting. 
 
 **JQuery:** As same as open-source software, jQuery acts as the JS library that simplifies the HTML client-side scripting. jQuery synthesizes all problems in JS into a library. jQuery isn’t a separate programming language. It works in conjunction with JavaScript. With jQuery, you can do more with less effort. jQuery provides APIs that make it easier to browse HTML documents, animations, event handling, and manipulate AJAX. 
 
-**Ajax:** It stands for Asynchronous JavaScript XML, which is a technique to make fast dynamic web pages. You can regard Ajax as a part of JS, running on JS. Moreover, it can be seen as a way to replace data using a server, and update web page sections without requiring to reload the entire page. AJAX permits web pages’ content to be updated immediately when a user acts without reloading the page. As the action is done behind the scene, the user will not recognize the process of data exchange in the web pages.
+**Ajax:** It stands for Asynchronous JavaScript XML, which is a technique to make fast dynamic web pages. You can regard Ajax as a part of JS, running on JS. Moreover, it can be seen as a way to replace data using a server, and update web page sections without requiring to reload the entire page. Ajax permits web pages’ content to be updated immediately when a user acts without reloading the page. As the action is done behind the scene, the user will not recognize the process of data exchange in the web pages.
 
 ### How do they work together?
 
@@ -215,7 +215,7 @@ The image below illustrates how they work together:
 
 The browser creates a JavaScript call to activate XMLHttpRequest. In the background, the browser uses Ajax routines to send an HTTP request to the server. The server receives, retrieves, and delivers data back to the browser. Consequently, the browser uses Ajax routines to receive data from the server and immediately display it on the frontend without reloading the whole page. jQuery provides APIs that make it easier for browser to use Ajax routines. With the jQuery library, codes by Ajax can easily interact with the server and update content automatically without having to reload the page. This is because different browsers have minor differences in the syntax of their own built-in XMLHttpRequest library. jQuery can automatically fix errors and run on all popular browsers such as Chrome, Firefox, Safari, MS Edge, IE, Android, and iOS. So, programmers can just write the same syntax to manipulate all kinds of browser instead of writing different syntax for different kind of browser. 
 
-## Glossary of the Tutorial
+## Glossary
 
 Here, I provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms. 
 

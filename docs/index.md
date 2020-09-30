@@ -1,7 +1,7 @@
 ---
 title: "Web Scraping Using Selenium Python"
 author: ''
-date: "August 2020"
+date: "September 2020"
 description: "This is a tutorial for using Selenium Python to scrape websites"
 documentclass: book
 geometry: "margin=1.5in"
@@ -26,6 +26,19 @@ This tutorial is organized into the following parts:
 5. Illustration of how to fill in web forms using Selenium Driver.
 
 We plan to add more applications in the near future. The content of this tutorial is a work in progress, and we are happy to receive feedback! If you find anything confusing or think the guide misses important content, please email: help@iq.harvard.edu.
+
+## Custom Websites
+
+We decided to build custom websites for many of the examples used in this tutorial instead of scraping live websites, so that we have full control over the environment. This provides us stability—live websites are updated more often than books, and by the time you try a scraping example, it may no longer work. Also, a custom website allows us to craft examples that illustrate specific skills and avoid distractions. Finally, a live website might not appreciate us using them to learn about web scraping and try to block our scrapers. Using our own custom websites avoids these risks; however, the skills learnt in these examples can certainly still be applied to live websites. 
+
+Below I listed the name and its link for each of the custom websites we have built for this tutorial:
+
+[static student profile webpage](https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html)
+[dynamic search form webpage](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search)
+[dynamic table webpage](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic)
+[dynamic search load webpage](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search)
+[dynamic complete search form webpage](https://iqssdss2020.pythonanywhere.com/tutorial/form/search)
+[dynamic search form with a hidden field webpage](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search)
 
 ## Authors and Sources {-}
 

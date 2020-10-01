@@ -4,7 +4,7 @@ require(knitr)
 knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
 # knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
 require(reticulate)
-use_condaenv(condaenv="r-reticulate", required=TRUE)
+# use_condaenv(condaenv="r-reticulate", required=TRUE)
 ```
 
 # Web Scraping Approaches
@@ -58,26 +58,14 @@ print(name)
 This solution works, but can easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an `ID`, so it ought to be unique:
 
 ```{python}
-import re
-import requests
-
-url = 'https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html'
-html = requests.get(url)
 mylist = re.findall('<tr id="students_name_row"><td class="w2p_fl"><label for="students_name" id="students_name_label">Name:\
 </label></td><td class="w2p_fw">(.*?)</td>', html.text)
-print(mylist)
 ```
 
 This solution is better. However, there are many other ways the web page can be updated that still break the regex. For example, double quotation might be changed to single quotation for class name, extra space could be added between the `<td>` tags, or the `students_name_label` could be changed. The general solution for this is to make the regex as generic as possible to support various possibilities:
 
 ```{python}
-import re
-import requests
-
-url = 'https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html'
-html = requests.get(url)
 mylist = re.findall('<tr id="students_name_row">.*?<td\s*class=["\']w2p_fw["\']>(.*?)</td>', html.text)
-print(mylist)
 ```
 
 This regex is more robust to webpage updates but is more difficult to construct, becoming even unreadable. But still, there are other minor layout changes that would break it, such as if a title attribute is added to the `<td>` tag. From this example, we can see that regex provide a quick way to scrape data without the step of parsing, but are too brittle and will easily break when a web page is updated.
@@ -110,12 +98,7 @@ print(fixed_html)
 But if we use the `html.parser`, it interprets the school name itself as a child of the school key instead of the parallel table fields and it does not create a complete HTML document, as the code below shows:
 
 ```{python}
-from bs4 import BeautifulSoup
-
-broken_html = '<tr id=students_school_row><td class=w2p_fl><label for="students_school" id="students_school_label">School:</label><td class=w2p_fw>IV'
 soup = BeautifulSoup(broken_html, 'html.parser')
-fixed_html = soup.prettify()
-print(fixed_html)
 ```
 
 However, keep in mind that none of these parsers represent a universal solution to the problem of invalid HTML. Solutions will have to be found on case-by-case basis. The next step of using Beautiful Soup is to navigate to the elements of HTML we want using its application programming interface (API). Here is an example to extract the student name from our example profile webpage:
@@ -165,7 +148,7 @@ print(name)
 ```
 
 ### Comparison of approaches
-As shown in the previous sections, Beautiful Soup and `lxml` are more robust to webpage changes than regex. Comparing their relative efficiency, `lxml` and the regex module were written in C, while Beautiful Soup is pure Python. So, `lxml` and regex are much faster than Beautiful Soup. To provide benchmarks for these approaches, here we construct an experiment to run each scraper to extract all the available student profile data 1000 times and record the total time taken by each scraper: 
+As shown in the previous sections, Beautiful Soup and `lxml` are more robust to webpage changes than regex. Comparing their relative efficiency, `lxml` and the regex module were written in C, while Beautiful Soup is pure Python. So, `lxml` and regex are much faster than Beautiful Soup. To provide benchmarks for these approaches, here we construct an experiment to run each scraper to extract all the available student profile data 1000 times and record the total time taken by each scraper. We start with importing the packages we need for this task: 
 
 ```{python}
 import re
@@ -173,29 +156,49 @@ from bs4 import BeautifulSoup
 from lxml import html
 import time
 import requests
+```
 
+We define a global list variable to specify what fields of the profile data we want to scrape. Here we want to extract all the available profile data.
+
+```{python}
 fields = ["name", "school", "level"]
+```
 
+Each table row has an ID starting with `students_` and ending with `_row`. Then, the profile data is contained within these rows in the same format - has a `td` tag name and a class name of `"w2p_fw"`. Here is the implementation that uses this information to extract all of the available profile data via regular expressions:   
+
+```{python}
 def re_scraper(htmlText):
     results = {}
     for field in fields:
         results[field] = re.findall('<tr id="students_{}_row">.*?<td class="w2p_fw">(.*?)</td>'.format(field), htmlText)[0]
     return results
+```
 
+Here is the implementation that uses this information to extract all of the available profile data via Beatiful Soup:
+
+```{python}
 def bs_scraper(htmlText):
     soup = BeautifulSoup(htmlText, 'html.parser')
     results = {}
     for field in fields:
         results[field] = soup.find(attrs={'id':'students_{}_row'.format(field)}).find(attrs={'class':'w2p_fw'}).text
     return results
+```
 
+Here is the implementation that uses this information to extract all of the available profile data via lxml:
+
+```{python}
 def lxml_scraper(htmlText):
     tree = html.fromstring(htmlText)
     results = {}
     for field in fields:
         results[field] = tree.xpath('//*[@id="students_{}_row"]/td[2]'.format(field))[0].text
     return results
+```
 
+Now that we have complete implementations for each scraper, we will test their relative performance with the script below. This script will run each scraper 1000 times, check whether the scraped results are as expected, and then print the total time taken. Note the line calling re.purge(); by default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches.
+
+```{python}
 num_iterations = 1000
 static_html = requests.get("https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html").text
 for name, scraper in [('Regular Expressions', re_scraper), ('Beautiful Soup', bs_scraper), ('Lxml', lxml_scraper)]:
@@ -211,7 +214,11 @@ for name, scraper in [('Regular Expressions', re_scraper), ('Beautiful Soup', bs
     print('{}: {} seconds'.format(name, end - start))
 ```
 
-The results, when run on a modest Windows desktop computer, show that Beautiful Soup is much slower than the other two approaches. Regex does not perform the fastest, because we call `re.purge()` in every iteration to clear the cache. By default, the regex module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches. The `lxml` module performs comparatively well with regex, although `lxml` has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and `lxml` becomes even more competitive.
+Here are the results from running this script on my computer:
+
+![](images/approaches/performance.png)
+
+The results, when run on a modest Windows desktop computer, show that Beautiful Soup is much slower than the other two approaches. Regex does not perform the fastest, because we call `re.purge()` in every iteration to clear the cache. The `lxml` module performs comparatively well with regex, although `lxml` has the additional overhead of having to parse the input into its internal format before searching for elements. When scraping many features from a web page, this initial parsing overhead is reduced and `lxml` becomes even more competitive.
 
 ## Dynamic web pages
 There are two approaches to scraping a dynamic webpage: 
@@ -220,7 +227,7 @@ There are two approaches to scraping a dynamic webpage:
 2. Scrape the website as we view it in our browser --- using Python packages capable of executing the JavaScript.
 
 ### AJAX requests
-Because the data are loaded dynamically with JavaScript, to scrape these data, we need to understand how the web page loads the data. Suppose that we want to find all students whose names start with the letter "A" in the fifth grade with page size set at 5 from this [example dynamic web page](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search). After we click the `Search` button, open `Fiddler` --— software that can inspect HTTP requests on the computer and can be [downloaded here](https://www.telerik.com/download/fiddler). We will see that an AJAX request is made. Under `Request Headers` in the `Inspector` window, we can find the URL for this search. Under the `Response` window, we can see the response content is in JSON format. They are highlighted in blue in the following figure:
+Because the data are loaded dynamically with JavaScript, to scrape these data, we need to understand how the web page loads the data. Suppose that we want to find all students whose names start with the letter "A" in the fifth grade with page size set at 5 from this [dynamic search form webpage](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search). After we click the `Search` button, open `Fiddler` --— software that can inspect HTTP requests on the computer and can be [downloaded here](https://www.telerik.com/download/fiddler). We will see that an AJAX request is made. Under `Request Headers` in the `Inspector` window, we can find the URL for this search. Under the `Response` window, we can see the response content is in JSON format. They are highlighted in blue in the following figure:
 
 ![](images/approaches/1.png)
 
@@ -238,7 +245,7 @@ students_A5p0 = pd.DataFrame.from_records(html_json['records'])
 print(students_A5p0.head(10))
 ```
 
-Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating over the resulting pages of the JSON responses. The results are then stored in a spreadsheet:
+Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating over the resulting pages of the JSON responses. The results are then stored in a spreadsheet. We start with importing the necessary packages as usual. Next, we prepare for an url with flexibility of allowing the varying input for three parameters - name, grade, and page number. We create an empty list to store all the student records scraped from this website. We hardcode a list of grade levels to control the looping order of the most inner for loop.   
 
 ```{python}
 import requests
@@ -248,6 +255,11 @@ import string
 temp_url = 'https://iqssdss2020.pythonanywhere.com/tutorial/cases/search_ajax?search_name={}&search_grade={}&page_size=5&page={}'
 students = list()
 grades = ["K", "1", "2", "3", "4", "5"]
+```
+
+With three varying input - name, grade, and page number, we design a nested loops with three levels. For a given name, a given grade, we loop every result page. Because we do not know how many pages of results there are, we use a while loop to loop result pages instead of a for loop. As we loop over this nested structure, we store each student's record to a list. 
+
+```{python}
 for letter in string.ascii_uppercase:
     for grade in grades:
         page = 0
@@ -259,7 +271,11 @@ for letter in string.ascii_uppercase:
             page += 1
             if page >= html_json["num_pages"]:
                 break
+```
 
+Finally, we restore the scraped information from a list of dictionaries into a spreadsheet, as the following code shows:
+
+```{python}
 students_df = pd.DataFrame.from_records(students)
 print(students_df.head(10))
 ```
@@ -267,7 +283,7 @@ print(students_df.head(10))
 The AJAX-dependent websites initially look more complex but their structure encourages separating the data transmission between client and server and the data presentation on the client browser executing JavaScript, which can make our job of extracting these data much easier.
 
 ### Selenium
-The second approach to scraping dynamic web pages uses Python packages capable of executing the JavaScript itself, so that we can scrape the website as we view it in our browser. Selenium works by automating browsers to execute JavaScript to display a web page as we would normally interact with it. To illustrate how Selenium can automate a browser to execute JavaScript, we have created a simple [example web page](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This web page uses JavaScript to write a table to a `<div>` element. Here is the source code:
+The second approach to scraping dynamic web pages uses Python packages capable of executing the JavaScript itself, so that we can scrape the website as we view it in our browser. Selenium works by automating browsers to execute JavaScript to display a web page as we would normally interact with it. To illustrate how Selenium can automate a browser to execute JavaScript, we have created a simple [dynamic table webpage](https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic). This web page uses JavaScript to write a table to a `<div>` element. Here is the source code:
 
 ```
 <html>
@@ -331,7 +347,7 @@ Here is an initial example with Selenium. Selenium can be installed using `pip` 
 ```{python}
 from selenium import webdriver
 
-driver = webdriver.Chrome('https://driver/chromedriver.exe')
+driver = webdriver.Chrome('YOUR_PATH_TO_chromedriver.exe_FILE')
 global_dynamicUrl = "https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic"
 driver.get(global_dynamicUrl)
 table_area = driver.find_element_by_xpath('//*[@id="result"]/table')
@@ -340,39 +356,61 @@ print(len(table_entries))
 driver.close()
 ```
 
-So far, our browser automation can only execute JavaScript and access the resulting HTML. To scrape the resulting HTML will require extending the browser automation to support intensive website interactions with the user. Fortunately, Selenium has an excellent API to select and manipulate the HTML elements, which makes this straightforward. Here is an example implementation that rewrites the previous example that searches all students in Selenium. We will cover Selenium in detail in the following sections.
+So far, our browser automation can only execute JavaScript and access the resulting HTML. To scrape the resulting HTML will require extending the browser automation to support intensive website interactions with the user. Fortunately, Selenium has an excellent API to select and manipulate the HTML elements, which makes this straightforward. Here is an example implementation that rewrites the previous example that searches all students in Selenium. We will cover Selenium in detail in the following chapters.
 
+We first define a function called as `fill_in_form_once()` with three parameters – driver object, first letter of a student’s name, and grade.
+
+```{python, eval=FALSE}
+def fill_in_form_once(driver, letter, grade):
+    driver.find_element_by_xpath('//*[@id="search_name"]').send_keys(letter)
+    driver.find_element_by_xpath('//*[@id="search_grade"]/option[{}]'.format(grade)).click()
+    driver.find_element_by_xpath('//*[@id="search"]').click()
+    time.sleep(5)
+    return driver
+```
+
+We write down another separate function called as `scrape_table_this_page()` that scrapes all student records in the table on one page.
+
+```{python, eval=FALSE}
+def scrape_table_this_page(driver):
+    students_this_page = list()
+    table = driver.find_element_by_xpath('//*[@id="results"]/table')
+    entries = table.find_elements_by_tag_name("tr")
+    for i in range(1, len(entries)):
+        student_dict = dict()
+        cols = entries[i].find_elements_by_tag_name("td")
+        student_dict["name"] = cols[0].text
+        student_dict["grade"] = cols[1].text
+        student_dict["gpa"] = cols[2].text
+        students_this_page.append(student_dict)
+    return students_this_page
+```
+
+Now, we put all these things together and write a complete program. We start with importing the packages needed for the task and going through the set-up procedure. We will talk about the set up procedure in detail in Chapter 4.
 ```{python}
 from selenium import webdriver
 import time
 import string
 import pandas as pd
 
-driver = webdriver.Chrome('https://driver/chromedriver.exe')
+driver = webdriver.Chrome('YOUR_PATH_TO_chromedriver.exe_FILE')
 searchAddress = "https://iqssdss2020.pythonanywhere.com/tutorial/cases/search"
 driver.get(searchAddress)
 time.sleep(2)
+```
 
+We use a double loop to loop over each grade for a given letter and then loop over each letter. In the inner most loop, we call function `fill_in_form_once()` with a given grade for a given letter, which fills in all the fields of the form and submits it to the server. we use `try` and `except` (the outer pair) to handle the situation when there is no result returned.In either case, when a single search is over, we refresh the search form (`driver.get(searchAddress)`) and go to the next new search. We use a `while` loop to control page turning. Inside this `while` loop, we first scrape all student records in the result table on one page by calling the `scrape_table_this_page()` function, and then append the results on the final list of results. The `while` loop is broken out when it reaches the end of results of a search.  
+
+```{python}
 students = list()
 
 for letter in string.ascii_uppercase:
     for grade in range(2,8):
-        driver.find_element_by_xpath('//*[@id="search_name"]').send_keys(letter)
-        driver.find_element_by_xpath('//*[@id="search_grade"]/option[{}]'.format(grade)).click()
-        driver.find_element_by_xpath('//*[@id="search"]').click()
-        time.sleep(5)
+        driver = fill_in_form_once(driver, letter, grade)
         try:
             while True:
-                table = driver.find_element_by_xpath('//*[@id="results"]/table')
-                entries = table.find_elements_by_tag_name("tr")
-                for i in range(1, len(entries)):
-                    student_dict = dict()
-                    cols = entries[i].find_elements_by_tag_name("td")
-                    student_dict["name"] = cols[0].text
-                    student_dict["grade"] = cols[1].text
-                    student_dict["gpa"] = cols[2].text
-                    students.append(student_dict)
-
+                students_this_page = scrape_table_this_page(driver)
+                students.extend(students_this_page)
                 try:
                     driver.find_element_by_xpath('//*[@id="next"]').click()
                     time.sleep(2)
@@ -384,11 +422,15 @@ for letter in string.ascii_uppercase:
             print("No results for letter {} at grade {}".format(letter, grade - 2))
             driver.get(searchAddress)
             time.sleep(2)
+```
 
+Finally, we store the list of final results into a Pandas data frame and close our driver. 
+
+```{python}
 students_df = pd.DataFrame.from_records(students)
 print(students_df.head(10))
 driver.close()
 ```
 
 ### Comparison of approaches
-The first approach requires an understanding of how the data is loaded dynamically with JavaScript. This means we must be able to interpret the JavaScript code found in `View page source`. For the example search web page, we were able to easily know how the JavaScript works. However, some websites will be very complex and difficult to understand. With enough effort, any website can be scraped in this way. However, this effort can be avoided by instead using the Python module Selenium, which automates a web browser to execute JavaScript to display a web page and then perform actions on this web page. This approach only requires that we know how Selenium and its APIs work, so that we can control a web browser. You do not need to understand how the backend of a website works. However, there are disadvantages. Automating a web browser adds overhead and so is much slower than just downloading the HTML. Additionally, solutions using a browser driver often require polling the web page to check whether the resulting HTML from an event has occurred yet or waiting a set amount of time to make sure an AJAX event has completed, which is brittle and can easily fail when the network is slow.
+The first approach requires an understanding of how the data is loaded dynamically with JavaScript. This means we must be able to interpret the JavaScript code found in `View page source`. For the example search web page, we were able to easily know how the JavaScript works. However, some websites will be very complex and difficult to understand. With enough effort, any website can be scraped in this way. However, this effort can be avoided by instead using the Python module Selenium, which automates a web browser to execute JavaScript to display a web page and then perform actions on this web page. This approach only requires that we know how Selenium and its APIs work, so that we can control a web browser. You do not need to understand how the backend of a website works. However, there are disadvantages. Automating a web browser adds overhead and so is much slower than just downloading the HTML. Additionally, solutions using a browser driver often require pinning the web page to check whether the resulting HTML from an event has occurred yet or waiting a set amount of time to make sure an AJAX event has completed, which is brittle and can easily fail when the network is slow.

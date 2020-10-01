@@ -11,7 +11,7 @@ The Selenium browser driver is typically used to scrape data from dynamic websit
 The following subsections cover these three use-cases in detail. 
 
 ## Dynamic search
-Let us look at an example dynamic web page, which is available at [Dynamic Search](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search). This example website has a search form that is used to locate students. Let us say we want to find all the students whose name begins with the letter A and who are in the fifth grade:
+Let us look at an example dynamic web page, which is available at [dynamic search form webpage](https://iqssdss2020.pythonanywhere.com/tutorial/cases/search). This example website has a search form that is used to locate students. Let us say we want to find all the students whose name begins with the letter A and who are in the fifth grade:
 
 ![](images/I-1/1.png)
 
@@ -19,7 +19,7 @@ We place the cursor anywhere on this webpage, right-click and select `Inspect` f
 
 ![](images/I-1/2a.png)
 
-Let us try to scrape the information from the result table using the `lxml` module. This use-case is also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python-web-scraping.html). 
+Let us try to scrape the information from the result table using the `lxml` module. The use of this module  is also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python-web-scraping.html). 
 
 
 ```python
@@ -115,7 +115,7 @@ If we scroll down the source code to the end, we find that the display of the pa
 
 ![](images/I-3/3.png) 
 
-Now let us examine the second way of dynamically loading content –-- scrolling down to the bottom of a page. Let's look at another example web page, which is available at [dynamic search load](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). This webpage is the same as the previous example webpage, except here new content is loaded when the scroll bar reaches the bottom of a page instead of when clicking a link. The code below tries to scrap the information of the result table’s entries using the `lxml` module: 
+Now let us examine the second way of dynamically loading content –-- scrolling down to the bottom of a page. Let's look at another example web page, which is available at [dynamic search load webpage](https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search). This webpage is the same as the previous example webpage, except here new content is loaded when the scroll bar reaches the bottom of a page instead of when clicking a link. The code below tries to scrap the information of the result table’s entries using the `lxml` module: 
 
 
 ```python

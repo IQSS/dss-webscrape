@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Web Scraping Using Selenium Python</title>
   <meta name="description" content="This is a tutorial for using Selenium Python to scrape websites" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Web Scraping Using Selenium Python" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,7 @@
   
 
 <link rel="next" href="concepts.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -242,16 +243,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Web Scraping Using Selenium Python</h1>
 <p class="author"><em></em></p>
-<p class="date"><em>September 2020</em></p>
+<p class="date"><em>February 2021</em></p>
 </div>
-<div id="introduction" class="section level1 unnumbered">
+<div id="introduction" class="section level1 unnumbered" number="">
 <h1>Introduction</h1>
-<div id="table-of-contents" class="section level2 unnumbered">
+<div id="table-of-contents" class="section level2 unnumbered" number="">
 <h2>Table of Contents</h2>
-<p>In this tutorial, we first provide an overview of some foundational concepts about the world-wide-web. We then lay out some common approaches to web scraping and compare their usage. With this background, we introduce several applications that use the Selenium Python package to scrape websites.</p>
+<p>In this tutorial, we first provide an overview of some foundational concepts about the World-Wide-Web. We then lay out some common approaches to web scraping and compare their usage. With this background, we introduce several applications that use the Selenium Python package to scrape websites.</p>
 <p>This tutorial is organized into the following parts:</p>
 <ol style="list-style-type: decimal">
-<li>Basic concepts of the world-wide-web.<br />
+<li>Basic concepts of the World-Wide-Web.<br />
 </li>
 <li>Comparison of some common approaches to web scraping.<br />
 </li>
@@ -263,18 +264,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>We plan to add more applications in the near future. The content of this tutorial is a work in progress, and we are happy to receive feedback! If you find anything confusing or think the guide misses important content, please email: <a href="mailto:help@iq.harvard.edu" class="email">help@iq.harvard.edu</a>.</p>
 </div>
-<div id="custom-websites" class="section level2 unnumbered">
+<div id="custom-websites" class="section level2 unnumbered" number="">
 <h2>Custom Websites</h2>
-<p>We decide to build custom websites for many of the examples used in this tutorial instead of scraping live websites, so that we have full control over the environment. This provides us stability—live websites are updated more often than books, and by the time you try a scraping example, it may no longer work. Also, a custom website allows us to craft examples that illustrate specific skills and avoid distractions. Finally, a live website might not appreciate us using them to learn about web scraping and try to block our scrapers. Using our own custom websites avoids these risks; however, the skills learnt in these examples can certainly still be applied to live websites.</p>
+<p>We decided to build custom websites for many of the examples used in this tutorial instead of scraping live websites, so that we have full control over the web environment. This provides us stability —– live websites are updated more often than books, and by the time you try a scraping example, it may no longer work. Also, a custom website allows us to craft examples that illustrate specific skills and avoid distractions. Finally, the maintainers of a live website may not appreciate us using them to learn about web scraping and could try to block our scrapers. Using our own custom websites avoids these risks, however, the skills learnt in these examples can certainly still be applied to live websites.</p>
 <p>Below I list the name and its link for each of the custom websites we have built for this tutorial:</p>
-<p><a href="https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html">static student profile webpage</a><br />
-<a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/search">dynamic search form webpage</a><br />
-<a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">dynamic table webpage</a><br />
-<a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">dynamic search load webpage</a><br />
-<a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">dynamic complete search form webpage</a><br />
-<a href="https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search">dynamic search form with a hidden field webpage</a></p>
+<ul>
+<li><a href="https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html">static student profile webpage</a><br />
+</li>
+<li><a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/search">dynamic search form webpage</a><br />
+</li>
+<li><a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">dynamic table webpage</a><br />
+</li>
+<li><a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">dynamic search load webpage</a><br />
+</li>
+<li><a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">dynamic complete search form webpage</a><br />
+</li>
+<li><a href="https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search">dynamic search form with a hidden field webpage</a></li>
+</ul>
 </div>
-<div id="authors-and-sources" class="section level2 unnumbered">
+<div id="authors-and-sources" class="section level2 unnumbered" number="">
 <h2>Authors and Sources</h2>
 <p>Jinjie Liu at IQSS designed the structure of the guide and created the content. Steve Worthington at IQSS helped design the structure of the guide and edited the content. We referenced the following sources when we wrote this guide:</p>
 <ul>

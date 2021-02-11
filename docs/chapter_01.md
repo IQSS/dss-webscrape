@@ -113,7 +113,7 @@ An ordered list starts with the `<ol>` tag. Each list item starts with the `<li>
   <li>Milk</li>
 </ol>
 ```
-There are two display values: block and inline. A block-level element always starts on a new line and takes up the full width available. An inline element does not start on a new line and it only takes up as much width as necessary. The `<div>` element is a block-level and is often used as a container for other HTML elements. The `<div>` element has no required attributes, but style, class and id are common. For example:
+There are two display values: **block** and **inline**. A block-level element always starts on a new line and takes up the full width available. An inline element does not start on a new line and it only takes up as much width as necessary. The `<div>` element is a block-level and is often used as a container for other HTML elements. The `<div>` element has no required attributes, but style, class and id are common. For example:
 
 ```
 <div style="background-color:black;color:white;padding:20px;">
@@ -132,10 +132,10 @@ HTML elements can be nested (this means that elements can contain other elements
 ### How to View HTML Source?
 
 **View HTML Source Code:** 
-Right-click in an HTML page and select "View Page Source" (in Chrome), or similar in other browsers. This will open a window containing the HTML source code of the page we are retrieving from the site.
+Right-click in an HTML page and select `View Page Source` (in Chrome), or similar in other browsers. This will open a window containing the HTML source code of the page we are retrieving from the site.
 
 **Inspect an HTML Element:**
-Right-click on an element (or a blank area), and choose "Inspect" or "Inspect Element" to see what elements are made up of. This is the content we are viewing in our browser. 
+Right-click on an element (or a blank area), and choose `Inspect` or `Inspect Element` to see what elements are made up of. This is the content we are viewing in our browser. 
 
 
 ## Document Object Model (DOM)
@@ -211,7 +211,7 @@ The browser creates a JavaScript call to activate XMLHttpRequest. In the backgro
 
 ## Glossary
 
-Here, I provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms. 
+Here, we provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms. 
 
 **XML:** XML is a software- and hardware-independent tool for storing and transporting data. XML stands for eXtensible Markup Language. It is a markup language much like HTML. XML was designed to store and transport data. XML and HTML were designed with different goals: XML was designed to carry data - with focus on what data is. HTML was designed to display data - with focus on how data looks. XML tags are not predefined like HTML tags are.
 

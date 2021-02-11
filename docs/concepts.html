@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Concepts | Web Scraping Using Selenium Python</title>
   <meta name="description" content="This is a tutorial for using Selenium Python to scrape websites" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Concepts | Web Scraping Using Selenium Python" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="web-scraping-approaches.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -328,7 +329,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   &lt;li&gt;Tea&lt;/li&gt;
   &lt;li&gt;Milk&lt;/li&gt;
 &lt;/ol&gt;</code></pre>
-<p>There are two display values: block and inline. A block-level element always starts on a new line and takes up the full width available. An inline element does not start on a new line and it only takes up as much width as necessary. The <code>&lt;div&gt;</code> element is a block-level and is often used as a container for other HTML elements. The <code>&lt;div&gt;</code> element has no required attributes, but style, class and id are common. For example:</p>
+<p>There are two display values: <strong>block</strong> and <strong>inline</strong>. A block-level element always starts on a new line and takes up the full width available. An inline element does not start on a new line and it only takes up as much width as necessary. The <code>&lt;div&gt;</code> element is a block-level and is often used as a container for other HTML elements. The <code>&lt;div&gt;</code> element has no required attributes, but style, class and id are common. For example:</p>
 <pre><code>&lt;div style=&quot;background-color:black;color:white;padding:20px;&quot;&gt;
   &lt;h2&gt;London&lt;/h2&gt;
   &lt;p&gt;London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.&lt;/p&gt;
@@ -340,9 +341,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="how-to-view-html-source" class="section level3" number="1.3.3">
 <h3><span class="header-section-number">1.3.3</span> How to View HTML Source?</h3>
 <p><strong>View HTML Source Code:</strong>
-Right-click in an HTML page and select “View Page Source” (in Chrome), or similar in other browsers. This will open a window containing the HTML source code of the page we are retrieving from the site.</p>
+Right-click in an HTML page and select <code>View Page Source</code> (in Chrome), or similar in other browsers. This will open a window containing the HTML source code of the page we are retrieving from the site.</p>
 <p><strong>Inspect an HTML Element:</strong>
-Right-click on an element (or a blank area), and choose “Inspect” or “Inspect Element” to see what elements are made up of. This is the content we are viewing in our browser.</p>
+Right-click on an element (or a blank area), and choose <code>Inspect</code> or <code>Inspect Element</code> to see what elements are made up of. This is the content we are viewing in our browser.</p>
 </div>
 </div>
 <div id="document-object-model-dom" class="section level2" number="1.4">
@@ -404,13 +405,13 @@ Right-click on an element (or a blank area), and choose “Inspect” or “Insp
 <div id="how-do-they-work-together" class="section level3" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> How do they work together?</h3>
 <p>The image below illustrates how they work together:</p>
-<p><img src="images/JavaScript.png" /></p>
+<p><img src="images/JavaScript.PNG" /></p>
 <p>The browser creates a JavaScript call to activate XMLHttpRequest. In the background, the browser uses Ajax routines to send an HTTP request to the server. The server receives, retrieves, and delivers data back to the browser. Consequently, the browser uses Ajax routines to receive data from the server and immediately display it on the frontend without reloading the whole page. jQuery provides APIs that make it easier for browser to use Ajax routines. With the jQuery library, codes by Ajax can easily interact with the server and update content automatically without having to reload the page. This is because different browsers have minor differences in the syntax of their own built-in XMLHttpRequest library. jQuery can automatically fix errors and run on all popular browsers such as Chrome, Firefox, Safari, MS Edge, IE, Android, and iOS. So, programmers can just write the same syntax to manipulate all kinds of browser instead of writing different syntax for different kind of browser.</p>
 </div>
 </div>
 <div id="glossary" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> Glossary</h2>
-<p>Here, I provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms.</p>
+<p>Here, we provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms.</p>
 <p><strong>XML:</strong> XML is a software- and hardware-independent tool for storing and transporting data. XML stands for eXtensible Markup Language. It is a markup language much like HTML. XML was designed to store and transport data. XML and HTML were designed with different goals: XML was designed to carry data - with focus on what data is. HTML was designed to display data - with focus on how data looks. XML tags are not predefined like HTML tags are.</p>
 <p><strong>Dynamic versus Static Web Page:</strong> If the content we are viewing in our browser does not match the content we see in the HTML source code we are retrieving from the site, then we are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page.</p>
 <p><strong>Web Elements:</strong> A web element is in effect, anything that appears on a webpage, whether shown to the user or not. The elements on a webpage are essentially the tags that are within the coding of the HTML. When you interact with the HTML, you are interacting with a web element. The elements themselves may have unique identifiers, such as names, or id’s, and others will be identifiable by their unique classes (such as a “div” with the class of “footer”).</p>

@@ -1,11 +1,9 @@
 # Web Scraping Using Selenium Python
-![](https://travis-ci.org/IQSS/dss-template.svg?branch=master) [![Github All Releases](https://img.shields.io/github/downloads/IQSS/dss-template/total.svg)]()
+![](https://travis-ci.org/IQSS/dss-webscrape.svg?branch=master) [![Github All Releases](https://img.shields.io/github/downloads/IQSS/dss-webscrape/total.svg)]()
 
 ## Media
 View this tutorial via a:
-* [browser](https://iqss.github.io/dss-template/)
-* [PDF](https://github.com/IQSS/dss-template/blob/gh-pages/template.pdf)
-* [EPUB](https://github.com/IQSS/dss-template/blob/gh-pages/template.epub)
+* [browser](https://iqss.github.io/dss-webscrape/)
 
 ## Aim
 To provide a tutorial for researchers wanting to scrape websites with Selenium and Python.

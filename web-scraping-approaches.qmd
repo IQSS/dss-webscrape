@@ -1,13 +1,11 @@
-
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-# use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
-
-# Web Scraping Approaches
+---
+title: "Web Scraping Approaches"
+jupyter: python3
+execute:
+  eval: false
+  warning: false
+  message: false
+---
 
 ## Decision tree
 There are many commonly used web scraping approaches. This decision tree will help us to decide upon the best approach to use for a particular web site.
@@ -360,7 +358,8 @@ So far, our browser automation can only execute JavaScript and access the result
 
 We first define a function called as `fill_in_form_once()` with three parameters – driver object, first letter of a student’s name, and grade.
 
-```{python, eval=FALSE}
+```{python}
+#| eval: false
 def fill_in_form_once(driver, letter, grade):
     driver.find_element_by_xpath('//*[@id="search_name"]').send_keys(letter)
     driver.find_element_by_xpath('//*[@id="search_grade"]/option[{}]'.format(grade)).click()
@@ -371,7 +370,8 @@ def fill_in_form_once(driver, letter, grade):
 
 We write down another separate function called as `scrape_table_this_page()` that scrapes all student records in the table on one page.
 
-```{python, eval=FALSE}
+```{python}
+#| eval: false
 def scrape_table_this_page(driver):
     students_this_page = list()
     table = driver.find_element_by_xpath('//*[@id="results"]/table')

@@ -1,17 +1,24 @@
-# Web Scraping Using Selenium Python
-![](https://travis-ci.org/IQSS/dss-webscrape.svg?branch=master) [![Github All Releases](https://img.shields.io/github/downloads/IQSS/dss-webscrape/total.svg)]()
+# dss-webscrape
 
-## Media
-View this tutorial via a:
-* [browser](https://iqss.github.io/dss-webscrape/)
+Web Scraping Using Selenium Python: a guide to the concepts (URLs, HTML, the
+DOM), the approaches to scraping, when a browser driver is needed, and
+finding elements and filling forms with Selenium. Live at
+https://iqss.github.io/dss-webscrape/. Written 2020–21 by Jinjie Liu with
+Steve Worthington (IQSS); moved from bookdown to Quarto on the `dss-theme`
+extension in 2026, content as it was.
 
-## Aim
-To provide a tutorial for researchers wanting to scrape websites with Selenium and Python.
+The practice site the examples scrape, `iqssdss2020.pythonanywhere.com`, is
+offline, so the code is shown and not run; a practice site of our own is
+planned.
 
-## Contents
-This tutorial first provides an overview of the basic concepts of a web and then compares the common approaches to web scraping. With this background, it illustrates different applications that use the Selenium Python package to scrape websites.
+## Build
+
+`quarto preview` or `quarto render`. Nothing executes, but Quarto's Jupyter
+engine needs a kernel to read the Python pages: `uv sync` makes `.venv/`
+from `uv.lock`, and `_environment` points Quarto at it. Every push to `main`
+publishes the site to `gh-pages` (`.github/workflows/publish.yml`).
 
 ## Contributing
-This material is maintained under a GPL License, and other individuals are welcome to fork, clone, or make copies of the material. Comments and suggestions are also always welcome.
 
-![](images/readme-license.png)
+GPL-3.0 (`LICENSE`). Comments and suggestions through the Request help
+button on every page.

@@ -1,0 +1,28 @@
+# Render the site and publish it to the gh-pages branch. Nothing executes (every page has eval: false), but
+# Quarto's Jupyter engine needs a kernel to read the Python pages, so the runner installs the repository's
+# locked Python environment; _environment points Quarto at it. Runs on every push to main, and by hand.
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.9.38"
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - name: Render and publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

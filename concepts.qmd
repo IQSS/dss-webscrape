@@ -1,13 +1,7 @@
+---
+title: "Concepts"
+---
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-# use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
-
-# Concepts
 We start with the basic concepts that are generic to all web scraping approaches.
 
 ## How does the web work?
@@ -143,7 +137,6 @@ Right-click in an HTML page and select `View Page Source` (in Chrome), or simila
 **Inspect an HTML Element:**
 Right-click on an element (or a blank area), and choose `Inspect` or `Inspect Element` to see what elements are made up of. This is the content we are viewing in our browser. 
 
-
 ## Document Object Model (DOM)
 
 To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in **nodes** and links information through **branches**. This tree-like structure is called the **Document Object Model (DOM)**. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. *Each branch of the tree ends in a node, and each node contains objects*. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following schematic is an example of DOM hierarchy in an HTML document:
@@ -221,7 +214,6 @@ Here, we provide a glossary of the web-related terms in the tutorial with the de
 
 **XML:** XML is a software- and hardware-independent tool for storing and transporting data. XML stands for eXtensible Markup Language. It is a markup language much like HTML. XML was designed to store and transport data. XML and HTML were designed with different goals: XML was designed to carry data - with focus on what data is. HTML was designed to display data - with focus on how data looks. XML tags are not predefined like HTML tags are.
 
-
 **Dynamic versus Static Web Page:** If the content we are viewing in our browser does not match the content we see in the HTML source code we are retrieving from the site, then we are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page.
 
 **Web Elements:** A web element is in effect, anything that appears on a webpage, whether shown to the user or not. The elements on a webpage are essentially the tags that are within the coding of the HTML. When you interact with the HTML, you are interacting with a web element. The elements themselves may have unique identifiers, such as names, or id’s, and others will be identifiable by their unique classes (such as a “div” with the class of “footer”).
@@ -231,7 +223,6 @@ Here, we provide a glossary of the web-related terms in the tutorial with the de
 **CSS:** Cascading Style Sheets (CSS) is used to format the layout of a webpage. With CSS, you can control the color, font, the size of text, the spacing between elements, how elements are positioned and laid out, what background images or background colors are to be used, different displays for different devices and screen sizes, and much more. The word cascading means that a style applied to a parent element will also apply to all children elements within the parent. So, if you set the color of the body text to "blue", all headings, paragraphs, and other text elements within the body will also get the same color (unless you specify something else).
 
 **HTML Iframes:** An HTML iframe is used to display a web page within a web page. The HTML `<iframe>` tag specifies an inline frame. An inline frame is used to embed another document within the current HTML document. It is a good practice to always include a `title` attribute for the `<iframe>`. This is used by screen readers to read out what the content of the iframe is.
-
 
 **API:** An application programming interface (API) is a computing interface which defines interactions between multiple software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc. It can also provide extension mechanisms so that users can extend existing functionality in various ways and to varying degrees. An API can be entirely custom, specific to a component, or it can be designed based on an industry-standard to ensure interoperability.
 
@@ -244,5 +235,4 @@ Here, we provide a glossary of the web-related terms in the tutorial with the de
 **Poll a Webpage:** Repeatedly check for the existence of some element on a fully loaded page and return only when that element exists.
 
 **Browser Viewport:** A viewport represents a polygonal (normally rectangular) area in computer graphics that is currently being viewed. In web browser terms, it refers to the part of the document you're viewing which is currently visible in its window (or the screen, if the document is being viewed in full screen mode). Content outside the viewport is not visible on screen until scrolled into view.
-
 

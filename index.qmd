@@ -1,19 +1,15 @@
 ---
 title: "Web Scraping Using Selenium Python"
-author: ''
-date: "`r format(Sys.Date(), '%B %Y')`"
-description: This is a tutorial for using Selenium Python to scrape websites
-documentclass: book
-geometry: margin=1.5in
-github-repo: IQSS/dss-webscrape
-link-citations: yes
-site: bookdown::bookdown_site
-biblio-style: apalike
+description: "This is a tutorial for using Selenium Python to scrape websites"
 ---
 
-# Introduction {-}
+::: {.callout-important title="The practice site is offline"}
+The custom websites listed below, at `iqssdss2020.pythonanywhere.com`, are no longer online (checked 2026-08-29). The code on these pages is shown as it was written and is not run. A practice site of our own is planned.
+:::
 
-## Table of Contents {-}
+## Introduction
+
+### Table of Contents
 
 In this tutorial, we first provide an overview of some foundational concepts about the World-Wide-Web. We then lay out some common approaches to web scraping and compare their usage. With this background, we introduce several applications that use the Selenium Python package to scrape websites.
 
@@ -27,7 +23,7 @@ This tutorial is organized into the following parts:
 
 We plan to add more applications in the near future. The content of this tutorial is a work in progress, and we are happy to receive feedback! If you find anything confusing or think the guide misses important content, please email: help@iq.harvard.edu.
 
-## Custom Websites {-}
+### Custom Websites
 
 We decided to build custom websites for many of the examples used in this tutorial instead of scraping live websites, so that we have full control over the web environment. This provides us stability —-- live websites are updated more often than books, and by the time you try a scraping example, it may no longer work. Also, a custom website allows us to craft examples that illustrate specific skills and avoid distractions. Finally, the maintainers of a live website  may not appreciate us using them to learn about web scraping and could try to block our scrapers. Using our own custom websites avoids these risks, however, the skills learnt in these examples can certainly still be applied to live websites. 
 
@@ -40,7 +36,7 @@ Below I list the name and its link for each of the custom websites we have built
 * [dynamic complete search form webpage](https://iqssdss2020.pythonanywhere.com/tutorial/form/search)            
 * [dynamic search form with a hidden field webpage](https://iqssdss2020.pythonanywhere.com/tutorial/formhidden/search)         
 
-## Authors and Sources {-}
+### Authors and Sources
 
 Jinjie Liu at IQSS designed the structure of the guide and created the content. Steve Worthington at IQSS helped design the structure of the guide and edited the content. We referenced the following sources when we wrote this guide:
 

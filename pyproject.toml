@@ -1,0 +1,9 @@
+[project]
+name = "dss-webscrape"
+version = "0.1.0"
+description = "Python environment for rendering the guide's pages (Quarto's Jupyter engine); the code itself does not run."
+requires-python = ">=3.14"
+dependencies = [
+  "jupyter",
+  "ipykernel",
+]

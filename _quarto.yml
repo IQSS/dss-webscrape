@@ -1,0 +1,31 @@
+# Web Scraping Using Selenium Python (dss-webscrape): a Quarto website on the dss-theme extension
+# (quarto add IQSS/dss-theme). Six pages named after the 2021 bookdown pages, so every old address still answers.
+# No code runs: the practice site the examples scrape is offline (2026-08-29), so every page carries
+# `execute: eval: false` in its front matter and the Python is shown as written. Quarto's Jupyter engine still
+# wants a kernel to read the pages, hence pyproject.toml, uv, and _environment.
+project:
+  type: dss-theme
+  output-dir: _site
+  render:
+    - index.qmd
+    - concepts.qmd
+    - web-scraping-approaches.qmd
+    - when-to-use-a-browser-driver.qmd
+    - finding-web-elements.qmd
+    - filling-in-web-forms.qmd
+
+website:
+  title: "Web Scraping Using Selenium Python"
+  site-url: https://iqss.github.io/dss-webscrape/
+  repo-url: https://github.com/IQSS/dss-webscrape
+  page-navigation: true
+  sidebar:
+    style: floating
+    search: true
+    contents:
+      - { href: index.qmd, text: "Introduction" }
+      - concepts.qmd
+      - web-scraping-approaches.qmd
+      - when-to-use-a-browser-driver.qmd
+      - finding-web-elements.qmd
+      - filling-in-web-forms.qmd

@@ -1,13 +1,12 @@
+---
+title: "When to Use a Browser Driver"
+jupyter: python3
+execute:
+  eval: false
+  warning: false
+  message: false
+---
 
-```{r, include=FALSE, echo=FALSE}
-require(knitr)
-knitr::opts_chunk$set(eval=FALSE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, python.reticulate=TRUE)
-# knitr::opts_chunk$set(eval=TRUE, results=TRUE, message=FALSE, warning=FALSE, error=FALSE, engine.path="c:\\Python37-x64")
-require(reticulate)
-# use_condaenv(condaenv="r-reticulate", required=TRUE)
-```
-
-# When to Use a Browser Driver
 The Selenium browser driver is typically used to scrape data from dynamic websites that use JavaScript (although it can scrape data from static websites too). The use of JavaScript can vary from simple form events to single page apps that download all their content after loading. The consequence of this is that for many web pages the content that is displayed in our web browser is not available in the original HTML. For example, the following use-cases often occur:
 
 1. A result table shows up only after the user clicks the search box.

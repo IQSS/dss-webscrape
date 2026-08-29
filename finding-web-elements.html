@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Finding Web Elements – Web Scraping Using Selenium Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./filling-in-web-forms.html" rel="next">
+<link href="./when-to-use-a-browser-driver.html" rel="prev">
+<link href="site_libs/quarto-contrib/quarto-project/IQSS/dss-theme/assets/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4b2e561824cdecea3686c6e2c01ced6c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5f5aec8d004891c7d4c4f5bfc3123b8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-4b2e561824cdecea3686c6e2c01ced6c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="theme-color" content="#3C72B4">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="https://www.iq.harvard.edu/data-science-services" class="navbar-brand navbar-brand-logo">
+    <img src="site_libs/quarto-contrib/quarto-project/IQSS/dss-theme/assets/dss-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="site_libs/quarto-contrib/quarto-project/IQSS/dss-theme/assets/dss-logo-dark.svg" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://iqss.github.io/dss-training/"> 
+<span class="menu-text">Training materials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services"> 
+<span class="menu-text">Data Science Services</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services/contact-us"> 
+<span class="menu-text">Request help</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./finding-web-elements.html">Finding Web Elements</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concepts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./web-scraping-approaches.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Web Scraping Approaches</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./when-to-use-a-browser-driver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">When to Use a Browser Driver</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./finding-web-elements.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Finding Web Elements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./filling-in-web-forms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filling in Web Forms</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#locating-web-elements" id="toc-locating-web-elements" class="nav-link" data-scroll-target="#locating-web-elements">Locating web elements</a></li>
+  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a>
+  <ul class="collapse">
+  <li><a href="#scrape-tables" id="toc-scrape-tables" class="nav-link" data-scroll-target="#scrape-tables">Scrape tables</a></li>
+  <li><a href="#scrape-text" id="toc-scrape-text" class="nav-link" data-scroll-target="#scrape-text">Scrape text</a></li>
+  </ul></li>
+  <li><a href="#nosuchelementexception" id="toc-nosuchelementexception" class="nav-link" data-scroll-target="#nosuchelementexception"><code>NoSuchElementException</code></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Finding Web Elements</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Selenium works by automating browsers to load the website, retrieve the required data, and even take certain actions on the website. Here, we walk through a practical use-case, using Selenium to extract data from a website.</p>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<p>For the successful implementation of browser automation using Selenium, the software <code>WebDriver</code> needs to be set up. The name <code>WebDriver</code> is generic — there are versions of <code>WebDriver</code> for all major browsers. We will now go through the steps to set up <code>WebDriver</code> for Google Chrome, which is called <code>ChromeDriver</code>. Other major browsers have similar steps:</p>
+<ol type="1">
+<li>Install Selenium using a third-party installer such as <code>pip</code> to install it from the command line via this command: <code>pip install selenium</code>.<br>
+</li>
+<li>Download the latest stable release of <code>ChromeDriver</code> from this <a href="https://chromedriver.chromium.org/downloads">website</a>, selecting the appropriate version for your operating system.<br>
+</li>
+<li>Unzip the downloaded <code>chromedriver*.zip</code> file. An application file named <code>chromedriver.exe</code> should appear. It is recommended that we place the <code>.exe</code> file on the main folder containing the codes.</li>
+</ol>
+<p>Now that we have completed the setup steps, we can proceed. We have created this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/form/search">dynamic complete search form webpage</a> to run our scraper against. We can start by loading the example page.</p>
+<p>To begin with, we import <code>WebDriver</code> from Selenium and set a path to <code>chromedriver.exe</code>. Selenium does not contain its own web browser; it requires integration with third party browsers to run. The <code>selenium.webdriver</code> is used to implement various browsers, in this case, Google Chrome. The <code>webdriver.Chrome()</code> method is provided with the path of <code>chromedriver.exe</code> so that it creates an object of the <code>selenium.webdriver.chrome.webdriver.WebDriver</code> class, called “driver” in this case, which will now provide access to the various attributes and properties from <code>WebDriver</code>. The exectuable <code>chromedriver.exe</code> will be instantiated at this instance or upon creation of the driver object. The Terminal screen and an empty new window of Google Chrome will now be loaded.</p>
+<div id="c5ef0718" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">'YOUR_PATH_TO_chromedriver.exe_FILE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The new window from Google Chrome is then provided with a URL using the <code>get()</code> function from <code>WebDriver</code>. The <code>get()</code> method accepts the URL that is to be loaded on the browser. We provide our example website address as an argument to <code>get()</code>. Then the browser will start loading the URL:</p>
+<div id="95fa0b09" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>form_url <span class="op">=</span> <span class="st">"https://iqssdss2020.pythonanywhere.com/tutorial/form/search"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>driver.get(form_url)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This can be seen in the following screenshot:</p>
+<p><img src="images/chapter_3/1.png" class="img-fluid"></p>
+<p>As we can see above, a notice is displayed just below the address bar with the message <strong>“Chrome is being controlled by automated test software”</strong>. This message also confirms the successful execution of the <code>selenium.webdriver</code> activity, and it can be provided with additional code to act on or automate the page that has been loaded.</p>
+<p>Following successful execution of the code, it is recommended that we close and quit the driver to free up system resources. The <code>close()</code> method terminates the loaded browser window. The <code>quit()</code> method ends the <code>WebDriver</code> application.</p>
+<div id="96cf9352" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>driver.close()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>driver.quit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="locating-web-elements" class="level2">
+<h2 class="anchored" data-anchor-id="locating-web-elements">Locating web elements</h2>
+<p>After the new Google Chrome window is loaded with the URL provided, we can find the elements that we need to act on. We first need to find the selector or locator information for those elements of interest. The easiest way to identify the information is to <code>Inspect</code> pages using developer tools. Place the cursor anywhere on the webpage, right-click to open a pop-up menu, then select the <code>Inspect</code> option. In the <code>Elements</code> window, move the cursor over the DOM structure of the page until it reaches the desired element. We then need to find information such as what HTML tag is used for the element, the defined attribute, and the values for the attributes and the structure of the page.</p>
+<p>Next, we need to tell Selenium how to find a particular element or set of elements on a web page programmatically and simulate user actions on these elements. We just need to pass the information we identify in the first step to Selenium. Selenium provides various <code>find_element_by</code> methods to find an element based on its attribute/value criteria or selector value that we supply in our script. If a matching element is found, an instance of <code>WebElement</code> is returned or the <code>NoSuchElementException</code> exception is thrown if Selenium is not able to find any element matching the search criteria. Selenium also provides various <code>find_elements_by</code> methods to locate multiple elements. These methods search and return a list of elements that match the supplied values.</p>
+<p>Here, we will provide an overview of the various <code>find_element_by_*</code> and <code>find_elements_by_*</code> methods, with some examples of their use.</p>
+<ul>
+<li><p><code>find_element_by_id()</code> and <code>find_elements_by_id()</code> methods:<br>
+Return an element or a set of elements that have matching ID attribute values. The <code>find_elements_by_id()</code> method returns all the elements that have the same ID attribute values. Let’s try finding the search button from the example website. Here is the HTML code for the search button with an ID attribute value defined as <code>search</code>. We can find this code if we <code>Inspect</code> the site and reach this element in its DOM.</p>
+<pre><code>&lt;input type="submit" id="search" value="Search" name="q" class="button" /&gt;</code></pre>
+<p>Here is an example that uses the <code>find_element_by_id()</code> method to find the search button. We will pass the ID attribute’s value, <code>search</code>, to the <code>find_element_by_id()</code> method:</p></li>
+</ul>
+<div id="52a96e52" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>search_button <span class="op">=</span> driver.find_element_by_id(<span class="st">"search"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><code>find_element_by_name()</code> and <code>find_elements_by_name()</code> methods:<br>
+Return element(s) that have matching name attribute value(s). The <code>find_elements_by_name()</code> method returns all the elements that have the same name attribute values. Using the previous example, we can instead find the search button using its name attribute value instead of the ID attribute value in the following way:</li>
+</ul>
+<div id="001866e1" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>search_button <span class="op">=</span> driver.find_element_by_name(<span class="st">"q"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><code>find_element_by_class_name()</code> and <code>find_elements_by_class_name()</code> methods:<br>
+Return element(s) that have matching class attribute value(s). The <code>find_elements_by_class_name()</code> method returns all the elements that have the identical class name attribute values. Using the previous example, we can instead find the search button using its class attribute value in following way:</li>
+</ul>
+<div id="1704c3ac" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>search_button <span class="op">=</span> driver.find_element_by_class_name(<span class="st">"button"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p><code>find_element_by_tag_name()</code> and <code>find_elements_by_tag_name()</code> methods:<br>
+Find element(s) by their HTML tag name. The example page displays a search form which has several form fields to fill in. Each form field name is implemented using an <code>&lt;th&gt;</code> or table header cell tag inside a <code>&lt;tr&gt;</code> or table row tag as shown in the following HTML code:</p>
+<p><img src="images/chapter_3/2.png" class="img-fluid"></p>
+<p>We will use the <code>find_elements_by_tag_name()</code> method to get all the form field names. In this example, we will first find the table body implemented as <code>&lt;tbody&gt;</code> using the <code>find_element_by_tag_name()</code> method and then get all the <code>&lt;tr&gt;</code> or table row elements by calling the <code>find_elements_by_tag_name()</code> method on the table body object. For each of the first 4 table rows, we then get its form field name using the <code>&lt;th&gt;</code> tag.</p></li>
+</ul>
+<div id="215e6ece" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> driver.find_element_by_tag_name(<span class="st">"tbody"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>entries <span class="op">=</span> table.find_elements_by_tag_name(<span class="st">"tr"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> entries[i].find_element_by_tag_name(<span class="st">"th"</span>).text</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(header)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p><code>find_element_by_xpath()</code> and <code>find_elements_by_xpath()</code> methods:<br>
+Return element(s) that are found by the specified XPath query. XPath is a query language used to search and locate nodes in a XML document. All major web browsers support XPath. Selenium can leverage and use powerful XPath queries to find elements on a web page. One of the advantages of using XPath is when we can’t find a suitable ID, name, or class attribute value for the element. We can use XPath to either find the element in absolute terms or relative to an element that does have an ID or name attribute. We can also use defined attributes other than the ID, name, or class with XPath queries. We can also find elements with the help of a partial check on attribute values using XPath functions such as <code>starts-with()</code>, <code>contains()</code>, and <code>ends-with()</code>.</p>
+<p>For example, we want to get the second form field name “Grade”. This element is defined as a <code>&lt;th&gt;</code> tag, but does not have the ID, name, or class attributes defined. Also, we cannot use the <code>find_element_by_tag_name()</code> method as there are multiple <code>&lt;tr&gt;</code> and <code>&lt;th&gt;</code> tags defined on the page. In this case, we can use the <code>find_element_by_xpath()</code> method. To find the XPath of this element, we <code>Inspect</code> the example site, in the <code>Elements</code> window, move the cursor over its DOM structure and find the desired element. We then right-click and choose <code>copy XPath</code> from the pop-up menu. We obtain the following XPath of this element:</p>
+<pre><code>//*[@id="table"]/tbody/tr[2]/th</code></pre>
+<p>This XPath indicates that the path to our desired element starts from the root and then proceeds to an element with a unique id (<code>id="table"</code>) and then continues until it reaches the desired element. Please note that the index of the XPath always starts with 1 rather than 0, unlike those of built-in Python data structures. We then pass this XPath to the <code>find_element_by_xpath()</code> method as an argument:</p></li>
+</ul>
+<div id="fd275e11" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>second_header <span class="op">=</span> driver.find_element_by_xpath(<span class="st">'//*[@id="table"]/tbody/tr[2]/th'</span>).text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>We typically use the XPath method when there exists an element with a unique id on the path to the desired element. Otherwise, this method is not reliable.</code></pre>
+<ul>
+<li><p><code>find_element_by_css_selector()</code> and <code>find_elements_by_css_selector()</code> methods:<br>
+Return element(s) that are found by the specified CSS selector. CSS is a style sheet language used by web designers to describe the look and feel of a HTML document. CSS is used to define various style classes that can be applied to elements for formatting. CSS selectors are used to find HTML elements based on their attributes such as ID, classes, types, attributes, or values and much more to apply the defined CSS rules. Similar to XPath, Selenium can leverage and use CSS selectors to find elements on a web page.</p>
+<p>In our previous example, in which we wanted to get the search button on the example site, we can use the following selector, where the selector is defined as the element tag along with the class name. This will find an <code>&lt;input&gt;</code> element with the <code>"btn-default"</code> class name. We then test it by automating a click on the search button object we found and find if it starts the search successfully.</p></li>
+</ul>
+<div id="dab994c8" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>search_button <span class="op">=</span> driver.find_element_by_css_selector(<span class="st">"input.btn-default"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>search_button.click()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p><code>find_element_by_link_text()</code> and <code>find_elements_by_link_text()</code> methods:<br>
+Find link(s) using the text displayed for the link. The <code>find_elements_by_link_text()</code> method gets all the link elements that have matching link text. For example, we may want to get the <code>privacy policy link</code> displayed on the example site. Here is the HTML code for the <code>privacy policy link</code> implemented as the <code>&lt;a&gt;</code>, or anchor tag, with text <code>"privacy policy"</code>:</p>
+<pre><code>This is the &lt;a id="privacy_policy" href="/tutorial/static/views/privacy.html"&gt;privacy policy.&lt;/a&gt;&lt;br/&gt;</code></pre>
+<p>Let’s create a test that locates the <code>privacy policy link</code> using its text and check whether it’s displayed:</p></li>
+</ul>
+<div id="1b1d8b04" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>privacypolicy_link <span class="op">=</span> driver.find_element_by_link_text(<span class="st">"privacy policy."</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>privacypolicy_link.click()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><code>find_element_by_partial_link_text()</code> and <code>find_elements_by_partial_link_text()</code> methods:<br>
+Find link(s) using partial text. For example, on the example site, two links are displayed: one is the <code>privacy policy link</code> with <code>"privacy policy"</code> as text and the other is the <code>term conditions policy link</code> with <code>"term conditions policy"</code> as text. Let us use this method to find these links using the <code>"policy"</code> text and check whether we have two of these links available on the page:</li>
+</ul>
+<div id="9b609107" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>policy_links <span class="op">=</span> driver.find_elements_by_partial_link_text(<span class="st">"policy"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(policy_links))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="demo" class="level2">
+<h2 class="anchored" data-anchor-id="demo">Demo</h2>
+<p>This section will highlight two use-cases to demonstrate the use of various <code>find_elements_by</code> methods. Most often we want to scrape data from tables or article text. The two demos therefore cover these use-cases.</p>
+<section id="scrape-tables" class="level3">
+<h3 class="anchored" data-anchor-id="scrape-tables">Scrape tables</h3>
+<p>Let’s examine this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic">dynamic table webpage</a>. This page uses JavaScript to write a table to a <code>&lt;div&gt;</code> element of the page. If we were to scrape this page’s table using traditional methods, we’d only get the loading page, without actually getting the data that we want. Suppose that we want to scrape all cells of this table. The first thing we need to do is to complete the physical setup steps, as detailed in section 4.1. We then proceed to load the example page in our program as shown below. We go through this loading procedure together once more so that you are going to be used to it.</p>
+<div id="834a218a" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">'YOUR_PATH_TO_chromedriver.exe_FILE'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>table_url <span class="op">=</span> <span class="st">"https://iqssdss2020.pythonanywhere.com/tutorial/default/dynamic"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>driver.get(table_url)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We need to enforce our program to pause for some time, in this case 2 seconds, after the <code>get()</code> function instead of immediately executing the next command because we need to ensure that the webpage has been fully downloaded before executing the next command in the program.</p>
+<p>Before we really start, we have to think about how to store the scraped data in a nice format, like a <code>.csv</code> file. We can use the Python file operation methods to achieve this. Here’s an implementation of creating a file object to write data to:</p>
+<div id="d2a1628f" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">JLiu</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">Web_Tutorial</span><span class="ch">\\</span><span class="st">table.csv'</span>, <span class="st">"w"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In order to scrape cells, we need to locate them in the DOM structure of the example webpage of a table. If we <code>Inspect</code> this page, we can see that the table is defined with a <code>&lt;tbody&gt;</code> tag inside a <code>&lt;table&gt;</code> tag. Each table row is defined with a <code>&lt;tr&gt;</code> tag and there are multiple table rows. So in the program we scrape all the table rows and store them in a list called as “entries”.</p>
+<div id="45ef43f4" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>table_body <span class="op">=</span> driver.find_element_by_xpath(<span class="st">'//*[@id="result"]/table/tbody'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>entries <span class="op">=</span> table_body.find_elements_by_tag_name(<span class="st">'tr'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The first table row is the table header row, each of its fields is defined with a <code>&lt;th&gt;</code> tag or a header cell tag. So, we loop each cell of this first row and write the data in each cell to a string, separated by a comma and ended with a new line. When the looping is over, we write this string to the .csv file as one row.</p>
+<div id="4c5f3a44" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> entries[<span class="dv">0</span>].find_elements_by_tag_name(<span class="st">'th'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>table_header <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(headers)):</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> headers[i].text</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="bu">len</span>(headers) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        table_header <span class="op">=</span> table_header <span class="op">+</span> header <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        table_header <span class="op">=</span> table_header <span class="op">+</span> header <span class="op">+</span> <span class="st">","</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.write(table_header)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In each of the other table rows, there are multiple data cells and each data cell is defined with a <code>&lt;td&gt;</code> tag. We have to find each cell using <code>find_elements_by</code> methods and get its data. There is no way to directly scrape the whole table. Given this, the logic naturally is to loop row by row, and in each row, loop cell by cell. So, we need to have a double for loop in our script.</p>
+<div id="9c4099a6" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(entries)):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    cols <span class="op">=</span> entries[i].find_elements_by_tag_name(<span class="st">'td'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    table_row <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cols)):</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        col <span class="op">=</span> cols[j].text</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">==</span> <span class="bu">len</span>(cols) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>            table_row <span class="op">=</span> table_row <span class="op">+</span> col <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>            table_row <span class="op">=</span> table_row <span class="op">+</span> col <span class="op">+</span> <span class="st">","</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(table_row)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we close the driver and the file:</p>
+<div id="72c3cbd0" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>driver.close()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="scrape-text" class="level3">
+<h3 class="anchored" data-anchor-id="scrape-text">Scrape text</h3>
+<p>Let us examine this <a href="https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding">live website of an online article</a>. The article on this page has many subsections, each of which have multiple paragraphs and even bullet points. Suppose that we want to scrape the whole text of the article. One interesting way to do it is to scrape all the subsections separately first and then concatenate them altogether. The advantage of doing it this way is that we can also get each subsection’s text.</p>
+<p>Let us <code>Inspect</code> this website. Let us move the cursor to the element of its DOM that defines the article content area. Under this <code>&lt;div&gt;</code> element, we can see that subsection headers have tag names all starting with <code>"h"</code>, paragraphs have a <code>&lt;p&gt;</code> tag name, and bullet points parts have a <code>&lt;ul&gt;</code> tag name. The elements with these tag names are all parallel with one other, rather than embedded in a hierarchical structure. This design dictates that we should not write a loop in our script to access them, for example, to access each paragraph under a subsection. Another point to note is that here we use a Python dictionary to store each subsection’s text. For each key-value pair in this dictionary, the key stores the subsection title, and the value stores its paragraphs of text. So, this is a convenient data structure to use for this use-case. The following program implements our strategy above to scrape the whole text of the article:</p>
+<div id="f230f0bc" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same as the set up chunk of code</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>journalAddress <span class="op">=</span> <span class="st">"https://www.federalregister.gov/documents/2013/09/24/2013-21228/affirmative-action-and-nondiscrimination-obligations-of-contractors-and-subcontractors-regarding"</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># same as the set up chunk of code</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>articleObjects <span class="op">=</span> driver.find_elements_by_xpath(<span class="st">'//div[@id="fulltext_content_area"]/*'</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>articleDictionary <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>myKey <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>myValue_total <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The program above has put all web elements related to the article content into a list called as “articleObjects”. Since all of these web elements are in parallel with each other rather than in a nested structure, we simply use one level of for loop to loop each web element on the list and scrape its content into the right place in the dictionary we have created as we loop over this list. If the tag name of a web element on the list starts with “h”, then its content should be a subsection title. We scrape its content to a string variable “myKey”. If the tag name of a web element on the list starts with “p” or “ul”, then its content should be either a paragraph or a set of bullet points under that subsection title. We scrape its content and append it to a string variable “myValue_total”. Once we meet with the next subsection title, the program must have appended all paragraphs and bullet points under the current sebsection title and stored them into a string “myValue_total”. At this point, we input the key-value pair - the current subsection title as the key and all the paragraphs and bullet points under this subsection title as its value - into the dictionary. After this, we repalce the key, which is the current sebsection title, with the next subsection title, and repeat the above steps.</p>
+<div id="50c05249" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(articleObjects)):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    tagName <span class="op">=</span> articleObjects[i].tag_name</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">"h"</span>):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> myKey:</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            articleDictionary[myKey] <span class="op">=</span> myValue_total</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            myKey <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            myValue_total <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        myKey <span class="op">=</span> articleObjects[i].get_attribute(<span class="st">"innerText"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">"p"</span>):</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        myValue <span class="op">=</span> articleObjects[i].get_attribute(<span class="st">"innerText"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        myValue_total <span class="op">=</span> myValue_total <span class="op">+</span> myValue</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tagName.startswith(<span class="st">"ul"</span>):</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        myBullets <span class="op">=</span> articleObjects[i].find_elements_by_tag_name(<span class="st">'li'</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(myBullets)):</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>            myBullet <span class="op">=</span> myBullets[j].get_attribute(<span class="st">"innerText"</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>            myValue_total <span class="op">=</span> myValue_total <span class="op">+</span> myBullet</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>After the loop is done, we have scraped all the subsections separately and stored them into a dictionary. Finally, we just need to loop each key-value pair on this dictionary and concatenate their contents altogether as we loop over the dictionary.</p>
+<div id="c839eeae" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>article <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> articleDictionary.items():</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    article <span class="op">=</span> article <span class="op">+</span> key <span class="op">+</span> <span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span> <span class="op">+</span> value <span class="op">+</span> <span class="st">'</span><span class="ch">\n\n</span><span class="st">***************</span><span class="ch">\n\n</span><span class="st">'</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(article)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="nosuchelementexception" class="level2">
+<h2 class="anchored" data-anchor-id="nosuchelementexception"><code>NoSuchElementException</code></h2>
+<p>When a web element is not found, it throws the <code>NoSuchElementException</code>. The reason for <code>NoSuchElementException</code> can be any of the following:</p>
+<ul>
+<li>The way of locating a web element we have adopted doesn’t identify any element in the HTML DOM.</li>
+<li>The way of locating a web element we have adopted doesn’t uniquely identify the desired element in the HTML DOM and currently finds some other hidden / invisible element.<br>
+</li>
+<li>The way of locating a web element we have adopted is unable to identify the desired element as it is not within the browser’s <code>Viewport</code>.<br>
+</li>
+<li>The way of locating a web element we have adopted identifies the element but is invisible due to presence of the attribute <code>style="display: none;"</code>.<br>
+</li>
+<li>The <code>WebElement</code> we are trying to locate is within an <code>&lt;iframe&gt;</code> tag.<br>
+</li>
+<li>The <code>WebDriver</code> instance is looking out for the <code>WebElement</code> even before the element is present/visibile within the HTML DOM.</li>
+</ul>
+<p>The solution to address the <code>NoSuchElementException</code> can be either of the following:</p>
+<ol type="1">
+<li>When the element we locate does not exist in the DOM, use <code>try-except</code> event handler to avoid the termination of the program:</li>
+</ol>
+<div id="5976db08" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.common.exceptions <span class="im">import</span> NoSuchElementException</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    elem <span class="op">=</span> driver.find_element_by_xpath(<span class="st">"element_xpath"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    elem.click()</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> NoSuchElementException:</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This solution is to address the inconsistency in the DOM among the seemingly same pages.</p>
+<ol start="2" type="1">
+<li>When the page loads, for some reason we may be taken to the bottom of the page, but the element we need to scrape is on the top of the page and thus is out of view. In this situation, we can locate the element in the DOM first, then use the <code>execute_script()</code> method to scroll the element into view:</li>
+</ol>
+<div id="7a8808e6" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>elem <span class="op">=</span> driver.find_element_by_xpath(<span class="st">"element_xpath"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>driver.execute_script(<span class="st">"arguments[0].scrollIntoView();"</span>, elem)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>In case the element has the attribute <code>style="display: none;"</code>, remove the attribute through <code>execute_script()</code> method:</li>
+</ol>
+<div id="07ad4f91" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>elem <span class="op">=</span> driver.find_element_by_xpath(<span class="st">"element_xpath"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>driver.execute_script(<span class="st">"arguments[0].removeAttribute('style')"</span>, elem)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>elem.send_keys(<span class="st">"text_to_send"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="4" type="1">
+<li><p>Adopt a way of locating a web element which uniquely identifies the desired <code>WebElement</code>. The preferable method is <code>find_elements_by_id()</code>, since the id attribute uniquely identifies a web element.</p></li>
+<li><p>To check if the element is within an <code>&lt;iframe&gt;</code>, traverse up the HTML to locate the respective <code>&lt;iframe&gt;</code> tag and use the <code>switch_to()</code> method to shift to the desired iframe through any of the following approaches:</p></li>
+</ol>
+<div id="2b676857" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>driver.switch_to.frame(<span class="st">"iframe_name"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>driver.switch_to.frame(<span class="st">"iframe_id"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>driver.switch_to.frame(<span class="dv">1</span>) <span class="op">//</span> <span class="dv">1</span> represents frame index</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can switch back to the main frame by using one of the following methods:</p>
+<div id="9937f583" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>driver.switch_to.default_content()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>driver.switch_to.parent_frame()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A better way to switch frames would be to induce <code>WebDriverWait()</code> for the availability of the intended frame with <code>expected_conditions</code> set to <code>frame_to_be_available_and_switch_to_it</code> as in the following examples:</p>
+<div id="55a9e19c" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>WebDriverWait(driver, <span class="dv">10</span>).until(EC.frame_to_be_available_and_switch_to_it(By.ID,<span class="st">"id_of_iframe"</span>)) <span class="op">//</span> through Frame ID</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>WebDriverWait(driver, <span class="dv">10</span>).until(EC.frame_to_be_available_and_switch_to_it(By.NAME,<span class="st">"name_of_iframe"</span>)) <span class="op">//</span> through Frame name</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>WebDriverWait(driver, <span class="dv">10</span>).until(EC.frame_to_be_available_and_switch_to_it(By.XPATH,<span class="st">"xpath_of_iframe"</span>)) <span class="op">//</span> through Frame XPath</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>WebDriverWait(driver, <span class="dv">10</span>).until(EC.frame_to_be_available_and_switch_to_it(By.CSS_SELECTOR,<span class="st">"css_of_iframe"</span>)) <span class="op">//</span> through Frame CSS</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="6" type="1">
+<li>If the element is not present/visible in the HTML DOM immediately, induce <code>WebDriverWait</code> with <code>expected_conditions</code> set to the proper method as follows:</li>
+</ol>
+<ul>
+<li>To wait for <code>presence_of_element_located</code>:</li>
+</ul>
+<div id="34a8f7d2" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>element <span class="op">=</span> WebDriverWait(driver, <span class="dv">20</span>).until(expected_conditions.presence_of_element_located((By.XPATH, <span class="st">"element_xpath']"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>To wait for <code>visibility_of_element_located</code>:</li>
+</ul>
+<div id="c4391cad" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>element <span class="op">=</span> WebDriverWait(driver, <span class="dv">20</span>).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, <span class="st">"element_css"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>To wait for <code>element_to_be_clickable</code>:</li>
+</ul>
+<div id="9adf80c5" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>element <span class="op">=</span> WebDriverWait(driver, <span class="dv">20</span>).until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, <span class="st">"element_link_text"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// Light / Dark / System switch, built on Quarto's own light-dark mechanism (Quarto 1.7+ with
+// respect-user-color-scheme: true). Quarto stores an explicit choice in localStorage["quarto-color-scheme"]
+// ("default" = light, "alternate" = dark) and, when nothing is stored, follows prefers-color-scheme and
+// tracks OS changes live. "System" here therefore means: remove the stored choice and apply the OS preference.
+(function () {
+  const KEY = "quarto-color-scheme";
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  const stored = () => { try { return window.localStorage.getItem(KEY); } catch { return null; } };
+  const mode = () => { const s = stored(); return s === "alternate" ? "dark" : s === "default" ? "light" : "system"; };
+  const isDark = () => document.body.classList.contains("quarto-dark");
+  const apply = (dark) => {
+    if (isDark() === dark) return;
+    if (typeof window.quartoToggleColorScheme === "function") { window.quartoToggleColorScheme(); }
+  };
+  const choose = (m) => {
+    const dark = m === "dark" ? true : m === "light" ? false : mq.matches;
+    apply(dark);
+    try {
+      if (m === "system") { window.localStorage.removeItem(KEY); }
+      else { window.localStorage.setItem(KEY, dark ? "alternate" : "default"); }
+    } catch {}
+    mark();
+  };
+  const items = [["light", "Light", "bi-sun"], ["dark", "Dark", "bi-moon"], ["system", "System", "bi-circle-half"]];
+  let menu;
+  const mark = () => {
+    if (!menu) return;
+    const m = mode();
+    menu.querySelectorAll("[data-mode]").forEach((a) => {
+      const on = a.dataset.mode === m;
+      a.classList.toggle("active", on);
+      a.setAttribute("aria-current", on ? "true" : "false");
+    });
+    const icon = menu.parentElement.querySelector(".dss-switch-icon");
+    if (icon) icon.className = "bi dss-switch-icon " + items.find((i) => i[0] === m)[2];
+  };
+  const build = () => {
+    const nav = document.querySelector(".navbar .navbar-nav.ms-auto") || document.querySelector(".navbar .navbar-nav");
+    if (!nav || nav.querySelector(".dss-theme-switch")) return;
+    const li = document.createElement("li");
+    li.className = "nav-item dropdown dss-theme-switch";
+    li.innerHTML =
+      '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Colour scheme" title="Colour scheme">' +
+      '<i class="bi dss-switch-icon bi-circle-half"></i></a>' +
+      '<ul class="dropdown-menu dropdown-menu-end">' +
+      items.map(([m, label, icon]) => '<li><a class="dropdown-item" href="#" data-mode="' + m + '"><i class="bi ' + icon + '"></i> ' + label + "</a></li>").join("") +
+      "</ul>";
+    nav.appendChild(li);
+    menu = li.querySelector(".dropdown-menu");
+    menu.addEventListener("click", (e) => {
+      const a = e.target.closest("[data-mode]");
+      if (!a) return;
+      e.preventDefault();
+      choose(a.dataset.mode);
+    });
+    mark();
+  };
+  if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", build); } else { build(); }
+  // Quarto's listener re-applies the OS preference on change when nothing is stored; keep the tick in step.
+  mq.addEventListener("change", () => setTimeout(mark, 0));
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/iqss\.github\.io\/dss-webscrape\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./when-to-use-a-browser-driver.html" class="pagination-link" aria-label="When to Use a Browser Driver">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">When to Use a Browser Driver</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./filling-in-web-forms.html" class="pagination-link" aria-label="Filling in Web Forms">
+        <span class="nav-page-text">Filling in Web Forms</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://www.iq.harvard.edu/" class="footer-logo" aria-label="IQSS, the Institute for Quantitative Social Science"></a><span>Data Science Services · Institute for Quantitative Social Science · Harvard University</span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services">
+<p>Data Science Services</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services/contact-us">
+<p>Request help</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/">
+<p>IQSS</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Concepts – Web Scraping Using Selenium Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./web-scraping-approaches.html" rel="next">
+<link href="./index.html" rel="prev">
+<link href="site_libs/quarto-contrib/quarto-project/IQSS/dss-theme/assets/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4b2e561824cdecea3686c6e2c01ced6c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5f5aec8d004891c7d4c4f5bfc3123b8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-4b2e561824cdecea3686c6e2c01ced6c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="theme-color" content="#3C72B4">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="https://www.iq.harvard.edu/data-science-services" class="navbar-brand navbar-brand-logo">
+    <img src="site_libs/quarto-contrib/quarto-project/IQSS/dss-theme/assets/dss-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="site_libs/quarto-contrib/quarto-project/IQSS/dss-theme/assets/dss-logo-dark.svg" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://iqss.github.io/dss-training/"> 
+<span class="menu-text">Training materials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services"> 
+<span class="menu-text">Data Science Services</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services/contact-us"> 
+<span class="menu-text">Request help</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Concepts</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concepts.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Concepts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./web-scraping-approaches.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Web Scraping Approaches</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./when-to-use-a-browser-driver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">When to Use a Browser Driver</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./finding-web-elements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding Web Elements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./filling-in-web-forms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filling in Web Forms</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-does-the-web-work" id="toc-how-does-the-web-work" class="nav-link active" data-scroll-target="#how-does-the-web-work">How does the web work?</a>
+  <ul class="collapse">
+  <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a></li>
+  <li><a href="#so-what-happens" id="toc-so-what-happens" class="nav-link" data-scroll-target="#so-what-happens">So what happens?</a></li>
+  </ul></li>
+  <li><a href="#uniform-resource-locator-url" id="toc-uniform-resource-locator-url" class="nav-link" data-scroll-target="#uniform-resource-locator-url">Uniform Resource Locator (URL)</a></li>
+  <li><a href="#hyper-text-markup-language-html" id="toc-hyper-text-markup-language-html" class="nav-link" data-scroll-target="#hyper-text-markup-language-html">Hyper Text Markup Language (HTML)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-html" id="toc-what-is-html" class="nav-link" data-scroll-target="#what-is-html">What is HTML?</a></li>
+  <li><a href="#html-elements" id="toc-html-elements" class="nav-link" data-scroll-target="#html-elements">HTML Elements</a></li>
+  <li><a href="#how-to-view-html-source" id="toc-how-to-view-html-source" class="nav-link" data-scroll-target="#how-to-view-html-source">How to View HTML Source?</a></li>
+  </ul></li>
+  <li><a href="#document-object-model-dom" id="toc-document-object-model-dom" class="nav-link" data-scroll-target="#document-object-model-dom">Document Object Model (DOM)</a></li>
+  <li><a href="#how-does-webdriver-interact-with-browser" id="toc-how-does-webdriver-interact-with-browser" class="nav-link" data-scroll-target="#how-does-webdriver-interact-with-browser">How does WebDriver Interact with Browser?</a>
+  <ul class="collapse">
+  <li><a href="#components-1" id="toc-components-1" class="nav-link" data-scroll-target="#components-1">Components</a></li>
+  <li><a href="#how-does-it-work" id="toc-how-does-it-work" class="nav-link" data-scroll-target="#how-does-it-work">How does it work?</a></li>
+  </ul></li>
+  <li><a href="#javascript-jquery-and-ajax" id="toc-javascript-jquery-and-ajax" class="nav-link" data-scroll-target="#javascript-jquery-and-ajax">JavaScript, JQuery, and Ajax</a>
+  <ul class="collapse">
+  <li><a href="#what-are-they" id="toc-what-are-they" class="nav-link" data-scroll-target="#what-are-they">What are they?</a></li>
+  <li><a href="#how-do-they-work-together" id="toc-how-do-they-work-together" class="nav-link" data-scroll-target="#how-do-they-work-together">How do they work together?</a></li>
+  </ul></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Concepts</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We start with the basic concepts that are generic to all web scraping approaches.</p>
+<section id="how-does-the-web-work" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-the-web-work">How does the web work?</h2>
+<section id="components" class="level3">
+<h3 class="anchored" data-anchor-id="components">Components</h3>
+<p>Computers connected to the web are called <strong>clients</strong> and <strong>servers</strong>. A simplified diagram of how they interact might look like this:</p>
+<p><img src="images/intro/client_server.png" class="img-fluid"></p>
+<ul>
+<li><strong>Clients</strong> are the typical web user’s internet-connected devices (for example, a computer connected to Wi-Fi) and web-accessing software available on those devices (usually a web browser like Firefox or Chrome).</li>
+<li><strong>Servers</strong> are computers that store webpages, sites, or apps. When a client device wants to access a webpage, a copy of the webpage is downloaded from the server onto the client machine to be displayed in the user’s web browser.</li>
+<li><strong>HTTP</strong> is a language for clients and servers to speak to each other.</li>
+</ul>
+</section>
+<section id="so-what-happens" class="level3">
+<h3 class="anchored" data-anchor-id="so-what-happens">So what happens?</h3>
+<p>When we type a web address into our browser:</p>
+<ol type="1">
+<li>The browser finds the address of the server that the website lives on.</li>
+<li>The browser sends an <strong>HTTP request message</strong> to the server, asking it to send a copy of the website to the client.</li>
+<li>If the server approves the client’s request, the server sends the client a <code>200 OK</code> message, and then starts displaying the website in the browser.</li>
+</ol>
+</section>
+</section>
+<section id="uniform-resource-locator-url" class="level2">
+<h2 class="anchored" data-anchor-id="uniform-resource-locator-url">Uniform Resource Locator (URL)</h2>
+<p>To retrieve information from the website (i.e., make a request), we need to know the location of the information we want to collect. The Uniform Resource Locator (URL) — commonly know as a “web address”, specifies the location of a resource (such as a web page) on the internet.</p>
+<p>A URL is usually composed of 5 parts:</p>
+<p><img src="images/intro/URL.png" class="img-fluid"></p>
+<p>The 4th part, the “query string”, contains one or more <strong>parameters</strong> — in this case, there are two parameters: <code>id</code> and <code>cat</code>. The 5th part, the “fragment”, is an internal page reference and may not be present.</p>
+<p>It is often convenient to create variables containing the domain(s) and path(s) we’ll be working with, as this allows us to swap out paths and parameters as needed. Note that the path is separated from the domain with a forward slash <code>/</code> and the parameters are separated from the path with a question mark <code>?</code>. If there are multiple parameters they are separated from each other with an ampersand <code>&amp;</code>.</p>
+</section>
+<section id="hyper-text-markup-language-html" class="level2">
+<h2 class="anchored" data-anchor-id="hyper-text-markup-language-html">Hyper Text Markup Language (HTML)</h2>
+<section id="what-is-html" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-html">What is HTML?</h3>
+<p>HTML stands for Hyper Text Markup Language. It is the standard markup language for creating Web pages. It describes the structure of a Web page. HTML consists of a series of elements. HTML elements tell the browser how to display the content. HTML elements label pieces of content such as “this is a heading”, “this is a paragraph”, “this is a link”, etc. Below is a simple HTML document:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;My First Heading&lt;/h1&gt;
+      &lt;p&gt;My first paragraph.&lt;/p&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+<p>The <code>&lt;!DOCTYPE html&gt;</code> declaration defines that this document is an HTML document. The <code>&lt;html&gt;</code> element is the root element of an HTML page. The <code>&lt;head&gt;</code> element contains meta information about the HTML page. The <code>&lt;title&gt;</code> element specifies a title for the HTML page (which is shown in the browser’s title bar or in the page’s tab). The <code>&lt;body&gt;</code> element defines the document’s body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc. The <code>&lt;h1&gt;</code> element defines a large heading. The <code>&lt;p&gt;</code> element defines a paragraph.</p>
+</section>
+<section id="html-elements" class="level3">
+<h3 class="anchored" data-anchor-id="html-elements">HTML Elements</h3>
+<p>An HTML element is defined by a start tag, some content, and an end tag:</p>
+<pre><code>&lt;tagname&gt;Content goes here...&lt;/tagname&gt;</code></pre>
+<p>The HTML element is everything from the start tag to the end tag. The most commonly used HTML elements are listed as follows:</p>
+<p>HTML links are defined with the <code>&lt;a&gt;</code> tag. The link’s destination is specified in the href attribute. Attributes are used to provide additional information about HTML elements.</p>
+<pre><code>&lt;a href="https://www.w3schools.com"&gt;This is a link&lt;/a&gt;</code></pre>
+<p>HTML images are defined with the <code>&lt;img&gt;</code> tag. The source file (src), alternative text (alt), width, and height are provided as attributes:</p>
+<pre><code>&lt;img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142"&gt;</code></pre>
+<p>The <code>&lt;table&gt;</code> tag defines an HTML table. Each table row is defined with a <code>&lt;tr&gt;</code> tag. Each table header is defined with a <code>&lt;th&gt;</code> tag. Each table data/cell is defined with a <code>&lt;td&gt;</code> tag.</p>
+<pre><code>&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Firstname&lt;/th&gt;
+    &lt;th&gt;Lastname&lt;/th&gt; 
+    &lt;th&gt;Age&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Jill&lt;/td&gt;
+    &lt;td&gt;Smith&lt;/td&gt;
+    &lt;td&gt;50&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Eve&lt;/td&gt;
+    &lt;td&gt;Jackson&lt;/td&gt;
+    &lt;td&gt;94&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<p>An unordered list starts with the <code>&lt;ul&gt;</code> tag. Each list item starts with the <code>&lt;li&gt;</code> tag. The list items will be marked with bullets (small black circles) by default:</p>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>An ordered list starts with the <code>&lt;ol&gt;</code> tag. Each list item starts with the <code>&lt;li&gt;</code> tag. The list items will be marked with numbers by default:</p>
+<pre><code>&lt;ol&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+<p>There are two display values: <strong>block</strong> and <strong>inline</strong>. A block-level element always starts on a new line and takes up the full width available. An inline element does not start on a new line and it only takes up as much width as necessary. The <code>&lt;div&gt;</code> element is a block-level and is often used as a container for other HTML elements. The <code>&lt;div&gt;</code> element has no required attributes, but style, class and id are common. For example:</p>
+<pre><code>&lt;div style="background-color:black;color:white;padding:20px;"&gt;
+  &lt;h2&gt;London&lt;/h2&gt;
+  &lt;p&gt;London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<p>The <code>&lt;span&gt;</code> element is an inline container used to mark up a part of a text, or a part of a document. The <code>&lt;span&gt;</code> element has no required attributes, but style, class and id are common. For example:</p>
+<pre><code>&lt;p&gt;My mother has &lt;span style="color:blue;font-weight:bold"&gt;blue&lt;/span&gt; eyes and my father has &lt;span style="color:darkolivegreen;font-weight:bold"&gt;dark green&lt;/span&gt; eyes.&lt;/p&gt;</code></pre>
+<p>HTML elements can be nested (this means that elements can contain other elements). All HTML documents consist of nested HTML elements.</p>
+</section>
+<section id="how-to-view-html-source" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-view-html-source">How to View HTML Source?</h3>
+<p><strong>View HTML Source Code:</strong> Right-click in an HTML page and select <code>View Page Source</code> (in Chrome), or similar in other browsers. This will open a window containing the HTML source code of the page we are retrieving from the site.</p>
+<p><strong>Inspect an HTML Element:</strong> Right-click on an element (or a blank area), and choose <code>Inspect</code> or <code>Inspect Element</code> to see what elements are made up of. This is the content we are viewing in our browser.</p>
+</section>
+</section>
+<section id="document-object-model-dom" class="level2">
+<h2 class="anchored" data-anchor-id="document-object-model-dom">Document Object Model (DOM)</h2>
+<p>To parse HTML, it is convenient to represent our HTML document as a tree-like structure that contains information in <strong>nodes</strong> and links information through <strong>branches</strong>. This tree-like structure is called the <strong>Document Object Model (DOM)</strong>. DOM is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. <em>Each branch of the tree ends in a node, and each node contains objects</em>. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. The following schematic is an example of DOM hierarchy in an HTML document:</p>
+<p><img src="images/intro/DOM.png" class="img-fluid"></p>
+<p>Below is an example of DOM hierarchy in a working segment of HTML code. Here, we create a spreadsheet using the <code>&lt;table&gt;</code> element, which has row elements <code>&lt;tr&gt;</code>, header elements <code>&lt;th&gt;</code>, and cell elements <code>&lt;td&gt;</code>. In this case, we store the <code>Name</code>, <code>Grade</code>, and <code>GPA</code> of two students: “Adam”, and “Alexander”.</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;div id="My_table"&gt;&lt;/div&gt;
+            &lt;table&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Name&lt;/th&gt;
+                        &lt;th&gt;Grade&lt;/th&gt;
+                        &lt;th&gt;GPA&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Adams&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;4&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Alexander&lt;/td&gt;
+                        &lt;td&gt;5&lt;/td&gt;
+                        &lt;td&gt;1&lt;/td&gt;
+                    &lt;/tr&gt;
+            &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section id="how-does-webdriver-interact-with-browser" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-webdriver-interact-with-browser">How does WebDriver Interact with Browser?</h2>
+<p>A simplified diagram of how WebDriver interacts with browser might look like this:</p>
+<p><img src="images/driver.png" class="img-fluid"></p>
+<section id="components-1" class="level3">
+<h3 class="anchored" data-anchor-id="components-1">Components</h3>
+<p><strong>WebDriver</strong> is an wire protocol that defines a language-neutral interface for controlling the behaviour of web browsers. At the core of Selenium is WebDriver. <strong>Selenium WebDriver</strong> refers to both the language bindings and the implementations of the individual browser controlling code and commonly referred as WebDriver.</p>
+<p>Each browser is backed by a specific WebDriver implementation, called a driver (or a browser driver). The <strong>driver</strong> is the component responsible for delegating down to the browser, and handles communication to and from Selenium WebDriver and the browser. The browser drivers are servers that implement the WebDriver’s wire protocol, and know how to convert those commands into the specific browser’s proprietary native API. So, the driver is browser-specific. For example, ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS). The driver runs on the same system as the browser.</p>
+</section>
+<section id="how-does-it-work" class="level3">
+<h3 class="anchored" data-anchor-id="how-does-it-work">How does it work?</h3>
+<p>At its minimum requirement, WebDriver talks to a browser through a driver and the communication is two way:</p>
+<ul>
+<li>WebDriver passes commands to the browser through the driver.<br>
+</li>
+<li>Receives information back via the same route.</li>
+</ul>
+<p>Essentially, the browser doesn’t know how to “talk” WebDriver Wire Protocol, and the WebDriver doesn’t know how to “talk” Browser API. In fact, each Browser has its own native API. The browser driver knows how to interpret the Wire Protocol and invoke that browser’s API.</p>
+</section>
+</section>
+<section id="javascript-jquery-and-ajax" class="level2">
+<h2 class="anchored" data-anchor-id="javascript-jquery-and-ajax">JavaScript, JQuery, and Ajax</h2>
+<section id="what-are-they" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-they">What are they?</h3>
+<p><strong>JavaScript (JS):</strong> It is a client-side programming language. JS has a similar structure like C. JavaScript helps encourage interactivity on the website. This script runs on the user’s browser instead of on the server as well as often uses 3rd party libraries, so it can increase the functionality of the website without having to code from the beginning. Considering programming languages like house construction, HTML will format the architecture of the house, CSS will be the carpet and walls to decorate the home. JavaScript adds interactive elements in the house, such as opening doors and lighting.</p>
+<p><strong>JQuery:</strong> As same as open-source software, jQuery acts as the JS library that simplifies the HTML client-side scripting. jQuery synthesizes all problems in JS into a library. jQuery isn’t a separate programming language. It works in conjunction with JavaScript. With jQuery, you can do more with less effort. jQuery provides APIs that make it easier to browse HTML documents, animations, event handling, and manipulate AJAX.</p>
+<p><strong>Ajax:</strong> It stands for Asynchronous JavaScript XML, which is a technique to make fast dynamic web pages. You can regard Ajax as a part of JS, running on JS. Moreover, it can be seen as a way to replace data using a server, and update web page sections without requiring to reload the entire page. Ajax permits web pages’ content to be updated immediately when a user acts without reloading the page. As the action is done behind the scene, the user will not recognize the process of data exchange in the web pages.</p>
+</section>
+<section id="how-do-they-work-together" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-they-work-together">How do they work together?</h3>
+<p>The image below illustrates how they work together:</p>
+<p><img src="images/JavaScript.png" class="img-fluid"></p>
+<p>The browser creates a JavaScript call to activate XMLHttpRequest. In the background, the browser uses Ajax routines to send an HTTP request to the server. The server receives, retrieves, and delivers data back to the browser. Consequently, the browser uses Ajax routines to receive data from the server and immediately display it on the frontend without reloading the whole page. jQuery provides APIs that make it easier for browser to use Ajax routines. With the jQuery library, codes by Ajax can easily interact with the server and update content automatically without having to reload the page. This is because different browsers have minor differences in the syntax of their own built-in XMLHttpRequest library. jQuery can automatically fix errors and run on all popular browsers such as Chrome, Firefox, Safari, MS Edge, IE, Android, and iOS. So, programmers can just write the same syntax to manipulate all kinds of browser instead of writing different syntax for different kind of browser.</p>
+</section>
+</section>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary">Glossary</h2>
+<p>Here, we provide a glossary of the web-related terms in the tutorial with the definitions and brief explanations for those terms.</p>
+<p><strong>XML:</strong> XML is a software- and hardware-independent tool for storing and transporting data. XML stands for eXtensible Markup Language. It is a markup language much like HTML. XML was designed to store and transport data. XML and HTML were designed with different goals: XML was designed to carry data - with focus on what data is. HTML was designed to display data - with focus on how data looks. XML tags are not predefined like HTML tags are.</p>
+<p><strong>Dynamic versus Static Web Page:</strong> If the content we are viewing in our browser does not match the content we see in the HTML source code we are retrieving from the site, then we are encountering a dynamic website. Otherwise, if the browser and source code content match each other, the website is static. A mismatch of content would be due to the execution of JavaScript that changes the HTML elements on the page.</p>
+<p><strong>Web Elements:</strong> A web element is in effect, anything that appears on a webpage, whether shown to the user or not. The elements on a webpage are essentially the tags that are within the coding of the HTML. When you interact with the HTML, you are interacting with a web element. The elements themselves may have unique identifiers, such as names, or id’s, and others will be identifiable by their unique classes (such as a “div” with the class of “footer”).</p>
+<p><strong>HTTP Requests:</strong> The Hypertext Transfer Protocol (HTTP) is designed to enable communications between clients and servers. HTTP works as a request-response protocol between a client and server. A client (browser) sends an HTTP request to the server; then the server returns a response to the client. The response contains status information about the request and may also contain the requested content.</p>
+<p><strong>CSS:</strong> Cascading Style Sheets (CSS) is used to format the layout of a webpage. With CSS, you can control the color, font, the size of text, the spacing between elements, how elements are positioned and laid out, what background images or background colors are to be used, different displays for different devices and screen sizes, and much more. The word cascading means that a style applied to a parent element will also apply to all children elements within the parent. So, if you set the color of the body text to “blue”, all headings, paragraphs, and other text elements within the body will also get the same color (unless you specify something else).</p>
+<p><strong>HTML Iframes:</strong> An HTML iframe is used to display a web page within a web page. The HTML <code>&lt;iframe&gt;</code> tag specifies an inline frame. An inline frame is used to embed another document within the current HTML document. It is a good practice to always include a <code>title</code> attribute for the <code>&lt;iframe&gt;</code>. This is used by screen readers to read out what the content of the iframe is.</p>
+<p><strong>API:</strong> An application programming interface (API) is a computing interface which defines interactions between multiple software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc. It can also provide extension mechanisms so that users can extend existing functionality in various ways and to varying degrees. An API can be entirely custom, specific to a component, or it can be designed based on an industry-standard to ensure interoperability.</p>
+<p><strong>HTML Parser:</strong> HTML parsers are software for automated HTML parsing. They have two main purposes: (1) HTML clean: to fix invalid HTML and to improve the layout and indent style of the resulting markup. (2) HTML traversal: offer an interface for programmers to easily access and modify the HTML string code.</p>
+<p><strong>JSON:</strong> JSON stands for JavaScript Object Notation. JSON is a lightweight data-interchange format between a browser and a server. JSON is “self-describing” and easy to understand. JSON is language independent because the JSON format is text only and text can be read and used as a data format by any programming language. In JSON syntax, data is in name/value pairs. Data is separated by commas. Curly braces hold objects. Square brackets hold arrays.</p>
+<p><strong>Web Application:</strong> A Web application (Web app) is an application program that is stored on a remote server and delivered over the Internet through a browser interface.</p>
+<p><strong>Poll a Webpage:</strong> Repeatedly check for the existence of some element on a fully loaded page and return only when that element exists.</p>
+<p><strong>Browser Viewport:</strong> A viewport represents a polygonal (normally rectangular) area in computer graphics that is currently being viewed. In web browser terms, it refers to the part of the document you’re viewing which is currently visible in its window (or the screen, if the document is being viewed in full screen mode). Content outside the viewport is not visible on screen until scrolled into view.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// Light / Dark / System switch, built on Quarto's own light-dark mechanism (Quarto 1.7+ with
+// respect-user-color-scheme: true). Quarto stores an explicit choice in localStorage["quarto-color-scheme"]
+// ("default" = light, "alternate" = dark) and, when nothing is stored, follows prefers-color-scheme and
+// tracks OS changes live. "System" here therefore means: remove the stored choice and apply the OS preference.
+(function () {
+  const KEY = "quarto-color-scheme";
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  const stored = () => { try { return window.localStorage.getItem(KEY); } catch { return null; } };
+  const mode = () => { const s = stored(); return s === "alternate" ? "dark" : s === "default" ? "light" : "system"; };
+  const isDark = () => document.body.classList.contains("quarto-dark");
+  const apply = (dark) => {
+    if (isDark() === dark) return;
+    if (typeof window.quartoToggleColorScheme === "function") { window.quartoToggleColorScheme(); }
+  };
+  const choose = (m) => {
+    const dark = m === "dark" ? true : m === "light" ? false : mq.matches;
+    apply(dark);
+    try {
+      if (m === "system") { window.localStorage.removeItem(KEY); }
+      else { window.localStorage.setItem(KEY, dark ? "alternate" : "default"); }
+    } catch {}
+    mark();
+  };
+  const items = [["light", "Light", "bi-sun"], ["dark", "Dark", "bi-moon"], ["system", "System", "bi-circle-half"]];
+  let menu;
+  const mark = () => {
+    if (!menu) return;
+    const m = mode();
+    menu.querySelectorAll("[data-mode]").forEach((a) => {
+      const on = a.dataset.mode === m;
+      a.classList.toggle("active", on);
+      a.setAttribute("aria-current", on ? "true" : "false");
+    });
+    const icon = menu.parentElement.querySelector(".dss-switch-icon");
+    if (icon) icon.className = "bi dss-switch-icon " + items.find((i) => i[0] === m)[2];
+  };
+  const build = () => {
+    const nav = document.querySelector(".navbar .navbar-nav.ms-auto") || document.querySelector(".navbar .navbar-nav");
+    if (!nav || nav.querySelector(".dss-theme-switch")) return;
+    const li = document.createElement("li");
+    li.className = "nav-item dropdown dss-theme-switch";
+    li.innerHTML =
+      '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Colour scheme" title="Colour scheme">' +
+      '<i class="bi dss-switch-icon bi-circle-half"></i></a>' +
+      '<ul class="dropdown-menu dropdown-menu-end">' +
+      items.map(([m, label, icon]) => '<li><a class="dropdown-item" href="#" data-mode="' + m + '"><i class="bi ' + icon + '"></i> ' + label + "</a></li>").join("") +
+      "</ul>";
+    nav.appendChild(li);
+    menu = li.querySelector(".dropdown-menu");
+    menu.addEventListener("click", (e) => {
+      const a = e.target.closest("[data-mode]");
+      if (!a) return;
+      e.preventDefault();
+      choose(a.dataset.mode);
+    });
+    mark();
+  };
+  if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", build); } else { build(); }
+  // Quarto's listener re-applies the OS preference on change when nothing is stored; keep the tick in step.
+  mq.addEventListener("change", () => setTimeout(mark, 0));
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/iqss\.github\.io\/dss-webscrape\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./web-scraping-approaches.html" class="pagination-link" aria-label="Web Scraping Approaches">
+        <span class="nav-page-text">Web Scraping Approaches</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://www.iq.harvard.edu/" class="footer-logo" aria-label="IQSS, the Institute for Quantitative Social Science"></a><span>Data Science Services · Institute for Quantitative Social Science · Harvard University</span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services">
+<p>Data Science Services</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/data-science-services/contact-us">
+<p>Request help</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.iq.harvard.edu/">
+<p>IQSS</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

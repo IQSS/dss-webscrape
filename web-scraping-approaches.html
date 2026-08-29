@@ -464,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="regular-expressions" class="level3">
 <h3 class="anchored" data-anchor-id="regular-expressions">Regular expressions</h3>
 <p>Regular expressions (regex) directly work on a downloaded web page, without any need to parse the page into a certain format. We can use regex to match the content we want to extract from the HTML. There is a thorough overview of regex <a href="https://docs.python.org/3.8/howto/regex.html">here</a>. In this example, we need to match the <code>&lt;td class="w2p_fw"&gt;</code> tag to scrape the student name. But this tag is used for multiple student profile attributes. To isolate the name, we select the first element, as shown in the code below:</p>
-<div id="80bdcaed" class="cell" data-execution_count="1">
+<div id="81946550" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -477,12 +477,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This solution works, but can easily fail if the web page is updated later. Consider if the student ID data is inserted right before the student name. Then we must change the code to select the second element. The general solution to make a regular expression scraper more robust is to include the parent element, which has an <code>ID</code>, so it ought to be unique:</p>
-<div id="938a63dd" class="cell" data-execution_count="2">
+<div id="a2baa750" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> re.findall(<span class="st">'&lt;tr id="students_name_row"&gt;&lt;td class="w2p_fl"&gt;&lt;label for="students_name" id="students_name_label"&gt;Name:</span><span class="op">\</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/label&gt;&lt;/td&gt;&lt;td class="w2p_fw"&gt;(.*?)&lt;/td&gt;'</span>, html.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This solution is better. However, there are many other ways the web page can be updated that still break the regex. For example, double quotation might be changed to single quotation for class name, extra space could be added between the <code>&lt;td&gt;</code> tags, or the <code>students_name_label</code> could be changed. The general solution for this is to make the regex as generic as possible to support various possibilities:</p>
-<div id="fb23a391" class="cell" data-execution_count="3">
+<div id="b60b771e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> re.findall(<span class="st">'&lt;tr id="students_name_row"&gt;.*?&lt;td</span><span class="er">\</span><span class="st">s*class=["</span><span class="ch">\'</span><span class="st">]w2p_fw["</span><span class="ch">\'</span><span class="st">]&gt;(.*?)&lt;/td&gt;'</span>, html.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This regex is more robust to webpage updates but is more difficult to construct, becoming even unreadable. But still, there are other minor layout changes that would break it, such as if a title attribute is added to the <code>&lt;td&gt;</code> tag. From this example, we can see that regex provide a quick way to scrape data without the step of parsing, but are too brittle and will easily break when a web page is updated.</p>
@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         &lt;/label&gt;
     &lt;td class=w2p_fw&gt;IV</code></pre>
 <p>Beautiful Soup with the <code>lxml</code> parser can correctly interpret the missing attribute quotes and closing tags, as well as add the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags to form a complete HTML document, as the code below shows:</p>
-<div id="3368db37" class="cell" data-execution_count="4">
+<div id="0d43744b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>broken_html <span class="op">=</span> <span class="st">'&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for="students_school" id="students_school_label"&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV'</span></span>
@@ -507,11 +507,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fixed_html)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>But if we use the <code>html.parser</code>, it interprets the school name itself as a child of the school key instead of the parallel table fields and it does not create a complete HTML document, as the code below shows:</p>
-<div id="d50ea541" class="cell" data-execution_count="5">
+<div id="fb81e606" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(broken_html, <span class="st">'html.parser'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, keep in mind that none of these parsers represent a universal solution to the problem of invalid HTML. Solutions will have to be found on case-by-case basis. The next step of using Beautiful Soup is to navigate to the elements of HTML we want using its application programming interface (API). Here is an example to extract the student name from our example profile webpage:</p>
-<div id="eb38a210" class="cell" data-execution_count="6">
+<div id="fd6f62b6" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -529,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="lxml">Lxml</h3>
 <p>The <code>lxml</code> module is a Python wrapper on the top of the C libraries <code>libxml2</code> and <code>libxslt</code>. It works the same way as Beautiful Soup, but is much faster. Here is the <a href="https://lxml.de/index.html">documentation</a> for <code>lxml</code>. The module can be installed using this command: <code>pip install lxml</code>.</p>
 <p>As with Beautiful Soup, the first step of <code>lxml</code> is parsing the potentially invalid HTML into a consistent format. Here is an example of parsing the same broken HTML:</p>
-<div id="23cf325e" class="cell" data-execution_count="7">
+<div id="80754d06" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> etree, html</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>broken_html <span class="op">=</span> <span class="st">'&lt;tr id=students_school_row&gt;&lt;td class=w2p_fl&gt;&lt;label for="students_school" id="students_school_label"&gt;School:&lt;/label&gt;&lt;td class=w2p_fw&gt;IV'</span></span>
@@ -539,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As with Beautiful Soup, <code>lxml</code> was able to correctly parse the missing attribute quotes and closing tags, although it did not add the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags. Here we use the <code>lxml.etree</code> module to formulate a more hierarchical tree structure and then convert it to text via the <code>tostring()</code> method to display it.</p>
 <p>After parsing the input, <code>lxml</code> has its API to select elements, such as XPath selectors, like Beautiful Soup. Here is an example using the lxml <code>xpath()</code> method to extract the student name data:</p>
-<div id="420ed5e9" class="cell" data-execution_count="8">
+<div id="651c0ff1" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> etree, html</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="comparison-of-approaches" class="level3">
 <h3 class="anchored" data-anchor-id="comparison-of-approaches">Comparison of approaches</h3>
 <p>As shown in the previous sections, Beautiful Soup and <code>lxml</code> are more robust to webpage changes than regex. Comparing their relative efficiency, <code>lxml</code> and the regex module were written in C, while Beautiful Soup is pure Python. So, <code>lxml</code> and regex are much faster than Beautiful Soup. To provide benchmarks for these approaches, here we construct an experiment to run each scraper to extract all the available student profile data 1000 times and record the total time taken by each scraper. We start with importing the packages we need for this task:</p>
-<div id="91482dc2" class="cell" data-execution_count="9">
+<div id="9a2bb780" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
@@ -561,11 +561,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We define a global list variable to specify what fields of the profile data we want to scrape. Here we want to extract all the available profile data.</p>
-<div id="91fa4830" class="cell" data-execution_count="10">
+<div id="a50b7450" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fields <span class="op">=</span> [<span class="st">"name"</span>, <span class="st">"school"</span>, <span class="st">"level"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Each table row has an ID starting with <code>students_</code> and ending with <code>_row</code>. Then, the profile data is contained within these rows in the same format - has a <code>td</code> tag name and a class name of <code>"w2p_fw"</code>. Here is the implementation that uses this information to extract all of the available profile data via regular expressions:</p>
-<div id="b2842da5" class="cell" data-execution_count="11">
+<div id="d5dfcfb1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> re_scraper(htmlText):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> field <span class="kw">in</span> fields:</span>
@@ -573,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here is the implementation that uses this information to extract all of the available profile data via Beatiful Soup:</p>
-<div id="719954d6" class="cell" data-execution_count="12">
+<div id="26017319" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bs_scraper(htmlText):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> BeautifulSoup(htmlText, <span class="st">'html.parser'</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here is the implementation that uses this information to extract all of the available profile data via lxml:</p>
-<div id="f02b4a64" class="cell" data-execution_count="13">
+<div id="914fc57e" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lxml_scraper(htmlText):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    tree <span class="op">=</span> html.fromstring(htmlText)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
@@ -591,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now that we have complete implementations for each scraper, we will test their relative performance with the script below. This script will run each scraper 1000 times, check whether the scraped results are as expected, and then print the total time taken. Note the line calling re.purge(); by default, the regular expression module will cache searches and this cache needs to be cleared to make a fair comparison with the other scraping approaches.</p>
-<div id="b082adcd" class="cell" data-execution_count="14">
+<div id="e19ee90a" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>num_iterations <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>static_html <span class="op">=</span> requests.get(<span class="st">"https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"</span>).text</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, scraper <span class="kw">in</span> [(<span class="st">'Regular Expressions'</span>, re_scraper), (<span class="st">'Beautiful Soup'</span>, bs_scraper), (<span class="st">'Lxml'</span>, lxml_scraper)]:</span>
@@ -623,7 +623,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Because the data are loaded dynamically with JavaScript, to scrape these data, we need to understand how the web page loads the data. Suppose that we want to find all students whose names start with the letter “A” in the fifth grade with page size set at 5 from this <a href="https://iqssdss2020.pythonanywhere.com/tutorial/cases/search">dynamic search form webpage</a>. After we click the <code>Search</code> button, open <code>Fiddler</code> –— software that can inspect HTTP requests on the computer and can be <a href="https://www.telerik.com/download/fiddler">downloaded here</a>. We will see that an AJAX request is made. Under <code>Request Headers</code> in the <code>Inspector</code> window, we can find the URL for this search. Under the <code>Response</code> window, we can see the response content is in JSON format. They are highlighted in blue in the following figure:</p>
 <p><img src="images/approaches/1.png" class="img-fluid"></p>
 <p>AJAX stands for Asynchronous JavaScript and XML. A dynamic web page works because the AJAX allows JavaScript to make HTTP requests to a remote server and receive responses. This approach works by first accessing the AJAX request responses, and then scraping information of interest from them. The AJAX response data can be downloaded directly. With the URL of the response, we can make a request to the server, scrape the information from the response, and store the scraped information in a spreadsheet, as the following code shows:</p>
-<div id="8036b5d8" class="cell" data-execution_count="15">
+<div id="26e3b07d" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -635,7 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(students_A5p0.head(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here is an example implementation that scrapes all the students by searching for each letter of the alphabet and each grade, and then iterating over the resulting pages of the JSON responses. The results are then stored in a spreadsheet. We start with importing the necessary packages as usual. Next, we prepare for an url with flexibility of allowing the varying input for three parameters - name, grade, and page number. We create an empty list to store all the student records scraped from this website. We hardcode a list of grade levels to control the looping order of the most inner for loop.</p>
-<div id="8dba83fd" class="cell" data-execution_count="16">
+<div id="947323d2" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
@@ -645,7 +645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> [<span class="st">"K"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With three varying input - name, grade, and page number, we design a nested loops with three levels. For a given name, a given grade, we loop every result page. Because we do not know how many pages of results there are, we use a while loop to loop result pages instead of a for loop. As we loop over this nested structure, we store each student’s record to a list.</p>
-<div id="8d897390" class="cell" data-execution_count="17">
+<div id="f7175100" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> grade <span class="kw">in</span> grades:</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        page <span class="op">=</span> <span class="dv">0</span></span>
@@ -659,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Finally, we restore the scraped information from a list of dictionaries into a spreadsheet, as the following code shows:</p>
-<div id="7e94348c" class="cell" data-execution_count="18">
+<div id="d275abbf" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(students_df.head(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -710,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 <p>With the traditional approach of downloading the original HTML and parsing the result, the <code>&lt;div&gt;</code> element will be empty, as follows:</p>
-<div id="66317467" class="cell" data-execution_count="19">
+<div id="c83d2796" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -721,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table_area)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here is an initial example with Selenium. Selenium can be installed using <code>pip</code> with the command: <code>pip install selenium</code>. The first step is to create a connection to the web browser that we use. Next is to load a web page in the chosen web browser by executing the JavaScript. The JavaScript is executed because now the <code>&lt;div&gt;</code> element has an object representing a table, and within that object, there are 6 objects representing 6 table entries.</p>
-<div id="45e309e7" class="cell" data-execution_count="20">
+<div id="e4acc960" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> webdriver.Chrome(<span class="st">'YOUR_PATH_TO_chromedriver.exe_FILE'</span>)</span>
@@ -734,7 +734,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>So far, our browser automation can only execute JavaScript and access the resulting HTML. To scrape the resulting HTML will require extending the browser automation to support intensive website interactions with the user. Fortunately, Selenium has an excellent API to select and manipulate the HTML elements, which makes this straightforward. Here is an example implementation that rewrites the previous example that searches all students in Selenium. We will cover Selenium in detail in the following chapters.</p>
 <p>We first define a function called as <code>fill_in_form_once()</code> with three parameters – driver object, first letter of a student’s name, and grade.</p>
-<div id="3b95fd2c" class="cell" data-execution_count="21">
+<div id="2afa446a" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_in_form_once(driver, letter, grade):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    driver.find_element_by_xpath(<span class="st">'//*[@id="search_name"]'</span>).send_keys(letter)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    driver.find_element_by_xpath(<span class="st">'//*[@id="search_grade"]/option[</span><span class="sc">{}</span><span class="st">]'</span>.<span class="bu">format</span>(grade)).click()</span>
@@ -743,7 +743,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> driver</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We write down another separate function called as <code>scrape_table_this_page()</code> that scrapes all student records in the table on one page.</p>
-<div id="309ab67e" class="cell" data-execution_count="22">
+<div id="6fa0f43f" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scrape_table_this_page(driver):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    students_this_page <span class="op">=</span> <span class="bu">list</span>()</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    table <span class="op">=</span> driver.find_element_by_xpath(<span class="st">'//*[@id="results"]/table'</span>)</span>
@@ -758,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> students_this_page</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now, we put all these things together and write a complete program. We start with importing the packages needed for the task and going through the set-up procedure. We will talk about the set up procedure in detail in Chapter 4.</p>
-<div id="d0935295" class="cell" data-execution_count="23">
+<div id="cfe86389" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
@@ -770,7 +770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We use a double for loop in order to loop over each grade for a given letter and then loop over each letter. In the inner most loop, we call the function <code>fill_in_form_once()</code> with a given grade for a given letter, which fills in all the fields of the form and submits it to the server. we use <code>try</code> and <code>except</code> (the outer pair) to handle the situation when there is no result returned.In either case, when a single search is over, we refresh the search form (<code>driver.get(searchAddress)</code>) and go to the next new search. We use a <code>while</code> loop to control page turning. Inside this <code>while</code> loop, we first scrape all student records in the result table on one page by calling the <code>scrape_table_this_page()</code> function, and then append the results on the final list of results. The <code>while</code> loop is broken out when it reaches the end of results of a search.</p>
-<div id="fc8f86c1" class="cell" data-execution_count="24">
+<div id="b3fbba7e" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> <span class="bu">list</span>()</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> string.ascii_uppercase:</span>
@@ -793,7 +793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>            time.sleep(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Finally, we store the list of final results into a Pandas data frame and close our driver.</p>
-<div id="0e5c4eb5" class="cell" data-execution_count="25">
+<div id="e085427b" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>students_df <span class="op">=</span> pd.DataFrame.from_records(students)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(students_df.head(<span class="dv">10</span>))</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

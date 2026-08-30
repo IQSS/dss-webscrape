@@ -5,3 +5,9 @@
 /.luarc.json
 /index_files/
 .DS_Store
+
+# Working notes kept on the maintainer's machine, never committed
+AGENTS.md
+CLAUDE.md
+STATUS.md
+TASKS.md

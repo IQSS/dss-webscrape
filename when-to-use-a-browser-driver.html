@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We place the cursor anywhere on this webpage, right-click and select <code>Inspect</code> from the menu to inspect the results. In the <code>Elements</code> window, we find that the results are stored within a <code>&lt;div&gt;</code> element with <code>ID “results”</code>:</p>
 <p><img src="images/I-1/2a.png" class="img-fluid"></p>
 <p>Let us try to scrape the information from the result table using the <code>lxml</code> module. The use of this module is also covered in detail in our <a href="https://iqss.github.io/dss-workshops/python-web-scraping.html">Python Web-Scraping Workshop</a>.</p>
-<div id="cfc110fd" class="cell" data-execution_count="1">
+<div id="ab755e41" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> html</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -467,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>But if we copy the dynamic link address and open it in a new browser, we will only see an empty webpage with page layout as below:</p>
 <p><img src="images/I-2/4.png" class="img-fluid"></p>
 <p>This is because the new browser whose JavaScript functionality has been disabled cannot execute JavaScript code to display the profile content. We can also see this difference using the <code>requests</code> module, which we also covered in detail in our <a href="https://iqss.github.io/dss-workshops/python-web-scraping.html">Python Web-Scraping Workshop</a>.</p>
-<div id="25a1acb6" class="cell" data-execution_count="2">
+<div id="88334b91" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>staticLink_url <span class="op">=</span> <span class="st">"https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>staticLink_page <span class="op">=</span> requests.get(staticLink_url)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>staticLink_html <span class="op">=</span> html.fromstring(staticLink_page.text)</span>
@@ -490,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let us first look at pagination. Let’s <code>inspect</code> the web page of dynamic search again. We can see that the page links are stored within a <code>&lt;div&gt;</code> element with <code>ID “pagination”</code>. Here, the <code>href</code> attribute has a value of <code>javascript:void(0)</code>. This just means the browser stays at the same position on the same page and does nothing. Once the page links are clicked, the browser will execute a JavaScript function <code>previous()</code> / <code>next()</code> to make another JavaScript request to the server for the information on that page. Then this new information from the the previous or next page will be displayed.</p>
 <p><img src="images/I-3/1.png" class="img-fluid"></p>
 <p>In this case, the value of the <code>href</code> attribute is not a URL. So, there is no point in trying to test if this is a static or dynamic link using the <code>requests</code> module. But we can illustrate the dynamic load using the <code>lxml</code> module. The code below tries to scrape the page link information using the <code>lxml</code> module:</p>
-<div id="3d3737b9" class="cell" data-execution_count="3">
+<div id="68223453" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>search_url <span class="op">=</span> <span class="st">"https://iqssdss2020.pythonanywhere.com/tutorial/cases/search"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>search_page <span class="op">=</span> requests.get(search_url)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>search_html <span class="op">=</span> html.fromstring(search_page.text)</span>
@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If we scroll down the source code to the end, we find that the display of the page links is coded in a JavaScript function <code>displayResult(jsonresult)</code> in the JavaScript section. This means that the web page has used JavaScript to load the page links and insert it at the position of the <code>&lt;div&gt;</code> element with <code>ID “pagination”</code> in the original HTML. We can see the revised HTML after running the JavaScript code in the <code>Elements</code> window:</p>
 <p><img src="images/I-3/3.png" class="img-fluid"></p>
 <p>Now let us examine the second way of dynamically loading content –– scrolling down to the bottom of a page. Let’s look at another example web page, which is available at <a href="https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search">dynamic search load webpage</a>. This webpage is the same as the previous example webpage, except here new content is loaded when the scroll bar reaches the bottom of a page instead of when clicking a link. The code below tries to scrap the information of the result table’s entries using the <code>lxml</code> module:</p>
-<div id="090332b3" class="cell" data-execution_count="4">
+<div id="caa5b80f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>searchLoad_url <span class="op">=</span> <span class="st">"https://iqssdss2020.pythonanywhere.com/tutorial/casesLoad/search"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>searchLoad_page <span class="op">=</span> requests.get(searchLoad_url)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>searchLoad_html <span class="op">=</span> html.fromstring(searchLoad_page.text)</span>

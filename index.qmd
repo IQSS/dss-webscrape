@@ -1,6 +1,10 @@
 ---
 title: "Web Scraping Using Selenium Python"
 description: "This is a tutorial for using Selenium Python to scrape websites"
+author:
+  - "Jinjie Liu"
+  - "Steve Worthington"
+date: "last-modified"
 ---
 
 ::: {.callout-important title="The practice site is offline"}

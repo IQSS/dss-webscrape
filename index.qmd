@@ -42,7 +42,7 @@ Below I list the name and its link for each of the custom websites we have built
 
 ### Authors and Sources
 
-Jinjie Liu at IQSS designed the structure of the guide and created the content. Steve Worthington at IQSS helped design the structure of the guide and edited the content. We referenced the following sources when we wrote this guide:
+Jinjie Liu designed the guide and wrote its content; Steve Worthington helped with the structure and edited it. We referenced the following sources:
 
 * *Web Scraping with Python: Scrape data from any website with the power of Python*, by Richard Lawson (ISBN: 978-1782164364)
 * *Web Scraping with Python: Collecting Data From the Modern Web*, by Ryan Mitchell (ISBN: 978-1491910276)

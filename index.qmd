@@ -29,7 +29,7 @@ We plan to add more applications in the near future. The content of this tutoria
 
 ### Custom Websites
 
-We decided to build custom websites for many of the examples used in this tutorial instead of scraping live websites, so that we have full control over the web environment. This provides us stability —-- live websites are updated more often than books, and by the time you try a scraping example, it may no longer work. Also, a custom website allows us to craft examples that illustrate specific skills and avoid distractions. Finally, the maintainers of a live website  may not appreciate us using them to learn about web scraping and could try to block our scrapers. Using our own custom websites avoids these risks, however, the skills learnt in these examples can certainly still be applied to live websites. 
+We decided to build custom websites for many of the examples used in this tutorial instead of scraping live websites, so that we have full control over the web environment. This provides us stability —-- live websites are updated more often than books, and by the time you try a scraping example, it may no longer work. Also, a custom website allows us to craft examples that illustrate specific skills and avoid distractions. Finally, the maintainers of a live website  may not appreciate us using them to learn about web scraping and could try to block our scrapers. Using our own custom websites avoids these risks, however, the skills learned in these examples can certainly still be applied to live websites. 
 
 Below I list the name and its link for each of the custom websites we have built for this tutorial:
 

@@ -20,5 +20,5 @@ publishes the site to `gh-pages` (`.github/workflows/publish.yml`).
 
 ## Contributing
 
-GPL-3.0 (`LICENSE`). Comments and suggestions through the Request help
+MIT for code (`LICENSE`), CC BY 4.0 for the text and figures (`LICENSE-content`). Comments and suggestions through the Request help
 button on every page.

@@ -24,7 +24,7 @@ We place the cursor anywhere on this webpage, right-click and select `Inspect` f
 
 ![](images/I-1/2a.png)
 
-Let us try to scrape the information from the result table using the `lxml` module. The use of this module  is also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python-web-scraping.html). 
+Let us try to scrape the information from the result table using the `lxml` module. The use of this module  is also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python/webscrape.html). 
 
 ```{python}
 from lxml import html
@@ -68,7 +68,7 @@ Suppose that we temporarily disable the JavaScript execution functionality in ou
  
  ![](images/I-2/4.png)
 
- This is because the new browser whose JavaScript functionality has been disabled cannot execute JavaScript code to display the profile content. We can also see this difference using the `requests` module, which we also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python-web-scraping.html). 
+ This is because the new browser whose JavaScript functionality has been disabled cannot execute JavaScript code to display the profile content. We can also see this difference using the `requests` module, which we also covered in detail in our [Python Web-Scraping Workshop](https://iqss.github.io/dss-workshops/python/webscrape.html). 
 
 ```{python}
 staticLink_url = "https://iqssdss2020.pythonanywhere.com/tutorial/static/views/Adams.html"

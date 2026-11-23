@@ -180,7 +180,7 @@ Before we really start, we have to think about how to store the scraped data in 
 
 ```{python}
 #| eval: false
-file = open('C:\\Users\\JLiu\\Desktop\\Web_Tutorial\\table.csv', "w", encoding = "utf-8")
+file = open('table.csv', "w", encoding = "utf-8")
 ```
 
 In order to scrape cells, we need to locate them in the DOM structure of the example webpage of a table. If we `Inspect` this page, we can see that the table is defined with a `<tbody>` tag inside a `<table>` tag. Each table row is defined with a `<tr>` tag and there are multiple table rows. So in the program we scrape all the table rows and store them in a list called as "entries".

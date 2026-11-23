@@ -8,7 +8,7 @@ date: "last-modified"
 ---
 
 ::: {.callout-important title="The practice site is offline"}
-The custom websites listed below, at `iqssdss2020.pythonanywhere.com`, are no longer online (checked 2026-08-29). The code on these pages is shown as it was written and is not run. A practice site of our own is planned.
+The custom websites listed below, at `iqssdss2020.pythonanywhere.com`, are no longer online (checked 2026-08-29). The code on these pages is shown as it was written and is not run.
 :::
 
 ## Introduction

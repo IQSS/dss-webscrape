@@ -8,8 +8,7 @@ Steve Worthington (IQSS); moved from bookdown to Quarto on the `dss-theme`
 extension in 2026, content as it was.
 
 The practice site the examples scrape, `iqssdss2020.pythonanywhere.com`, is
-offline, so the code is shown and not run; a practice site of our own is
-planned.
+offline, so the code is shown and not run.
 
 ## Build
 
